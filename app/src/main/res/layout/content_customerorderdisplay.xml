@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" android:backgroundTint="#ADD8E6" android:background="#ADD8E6"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:layout_weight="0.9">
+        <TextView  android:layout_gravity="center" android:gravity="center" android:textStyle="bold"
+            android:layout_width="match_parent" android:layout_weight="0.9" android:text="No"
+            android:layout_height="match_parent"></TextView>
+        <TextView  android:layout_gravity="center" android:gravity="center" android:textStyle="bold"
+            android:layout_width="match_parent" android:layout_weight="0.6" android:text="Order Id"
+            android:layout_height="match_parent"></TextView>
+        <TextView android:layout_gravity="center" android:gravity="center" android:textStyle="bold"
+            android:layout_width="match_parent" android:layout_weight="0.8" android:text="Amount"
+            android:layout_height="match_parent"></TextView>
+        <TextView  android:layout_gravity="center" android:gravity="center" android:textStyle="bold"
+            android:layout_width="match_parent" android:layout_weight="0.8" android:text="Status"
+            android:layout_height="match_parent"></TextView>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/> -->
+
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_weight="0.1"
+        android:layout_height="match_parent" android:layout_marginTop="5dp">
+        <ListView
+            android:layout_width="match_parent" android:id="@+id/listcustomerOrderHistory" android:divider="@android:color/transparent"
+            android:dividerHeight="5.0dp"
+            android:layout_height="match_parent" >
+        </ListView>
+    </LinearLayout>
+
+
+</LinearLayout>

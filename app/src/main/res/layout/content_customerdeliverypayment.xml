@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+
+    <LinearLayout
+        android:layout_width="match_parent" android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <LinearLayout android:layout_weight="0.23"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" ></LinearLayout>
+
+        <LinearLayout android:orientation="horizontal" android:layout_weight="0.14"
+            android:layout_width="match_parent"  android:padding="20dp"
+            android:layout_height="match_parent">
+            <LinearLayout android:id="@+id/layoutPickUP"
+                android:layout_width="match_parent" android:background="@drawable/roundbutton_grey"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent" android:layout_weight="0.3"
+                    android:layout_height="match_parent">
+                    <TextView android:id="@+id/txt_pickup"
+                        android:layout_width="match_parent" android:textColor="@color/blacklabels"
+                        android:layout_height="match_parent">
+                    </TextView>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent" android:layout_weight="0.7" android:orientation="vertical"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="match_parent" android:layout_weight="0.3" android:src="@mipmap/pickup"
+                        android:layout_height="match_parent"></ImageView>
+                    <Button android:id="@+id/but_pickup"
+                        android:layout_width="match_parent" android:layout_weight="0.7" android:padding="5dp" android:text="Select"
+                        android:backgroundTint="#00a700" android:layout_height="match_parent" android:textColor="#ffffff"></Button>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout android:orientation="horizontal" android:layout_weight="0.14"
+            android:layout_width="match_parent"  android:padding="20dp"
+            android:layout_height="match_parent">
+            <LinearLayout android:id="@+id/layoutHomeDelivery"
+                android:layout_width="match_parent" android:background="@drawable/roundbutton_grey"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent" android:layout_weight="0.3"
+                    android:layout_height="match_parent">
+                    <TextView android:id="@+id/txt_homedelivery"
+                        android:layout_width="match_parent" android:textColor="@color/blacklabels"
+                        android:layout_height="match_parent">
+                    </TextView>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent" android:layout_weight="0.7" android:orientation="vertical" android:backgroundTint="#bbbbbb"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="match_parent" android:layout_weight="0.3" android:src="@mipmap/home"
+                        android:layout_height="match_parent"></ImageView>
+                    <Button android:id="@+id/but_homedelivery"
+                        android:layout_width="match_parent" android:layout_weight="0.7" android:padding="5dp" android:text="Select"
+                        android:backgroundTint="#00a700" android:layout_height="match_parent" android:textColor="#ffffff"></Button>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout android:layout_weight="0.23"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" ></LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

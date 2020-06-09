@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.bigmart.customerproductdisplay">
+    <!--<item
+        android:id="@+id/menu_viewcart" android:icon="@drawable/ic_cart"
+        android:orderInCategory="100"
+        android:title="@string/viewCart"
+
+        app:showAsAction="always" />-->
+    <item
+        android:id="@+id/menu_orderhistory"
+        android:orderInCategory="100"
+        android:title="@string/orderHistory"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_viewcart"
+        android:icon="@drawable/ic_menu_cart"
+        android:title="Te"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_profile"
+        android:title="Profile"
+        android:orderInCategory="101"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/menu_logout"
+        android:title="Logout"
+        android:orderInCategory="102"
+        app:showAsAction="never"
+        />
+
+
+</menu>

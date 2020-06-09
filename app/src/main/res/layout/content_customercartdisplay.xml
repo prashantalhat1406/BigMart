@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:background="#FFFFFF"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+      <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:layout_weight="0.8">
+          <TextView android:id="@+id/txt_cartdisplay_totalnoofproduct" android:visibility="invisible"
+              android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
+              android:layout_height="match_parent" android:layout_weight="0.5" android:text="No of Items In Cart"></TextView>
+          <TextView android:id="@+id/txt_cartdisplay_totalamount" style="@style/totalAmount" android:layout_gravity="center" android:gravity="center"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" android:layout_weight="0.5" android:text="Total Price"></TextView>
+
+        </LinearLayout>
+
+    <!--<View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>-->
+
+
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_weight="0.25"
+            android:layout_height="match_parent" android:layout_marginTop="5dp">
+            <ListView
+                android:layout_width="match_parent" android:id="@+id/listCart" android:divider="@android:color/transparent"
+                android:dividerHeight="5.0dp"
+                android:layout_height="match_parent" >
+            </ListView>
+        </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+        <LinearLayout android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:layout_weight="0.75">
+            <LinearLayout android:orientation="horizontal"
+                android:layout_width="match_parent" android:layout_weight="0.6"
+                android:layout_height="match_parent">
+                <!--<Button android:id="@+id/but_cart_removeall" android:backgroundTint="@color/redColorButton" android:background="@drawable/roundbutton"
+                    android:layout_width="match_parent" android:layout_weight="0.4"
+                    android:layout_height="match_parent" android:text="RemoveAll"></Button>-->
+                <TextView android:id="@+id/txt_cart_removeall"
+                    android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center" android:textColor="@color/redColorButton"
+                    android:layout_height="match_parent" android:layout_weight="0.4" android:text="Remove All" android:textSize="@dimen/textButtons">
+
+                </TextView>
+                <Button
+                    android:layout_width="match_parent" android:visibility="invisible" android:layout_weight="0.5"
+                    android:layout_height="match_parent" android:text="invisible"></Button>
+                <TextView android:id="@+id/txt_cart_continue"
+                    android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center" android:textColor="@color/greenColorButton"
+                    android:layout_height="match_parent" android:layout_weight="0.4" android:text="Continue Shopping" android:textSize="@dimen/textButtons"></TextView>
+                <!--<Button android:id="@+id/but_cart_continueshopping" android:backgroundTint="@color/greenColorButton" android:background="@drawable/roundbutton"
+                    android:layout_width="match_parent" android:layout_weight="0.4"
+                    android:layout_height="match_parent" android:text="Continue Shopping"></Button>-->
+
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal"
+                android:layout_width="match_parent" android:layout_weight="0.4"
+                android:layout_height="match_parent">
+                <Button android:id="@+id/but_cart_confirm" android:backgroundTint="@color/greenColorButton"
+                    android:layout_width="match_parent" android:background="@drawable/roundbutton"
+                    android:layout_height="match_parent" android:text="Confirm Order"></Button>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+</LinearLayout>

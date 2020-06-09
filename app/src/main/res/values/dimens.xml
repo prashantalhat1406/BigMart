@@ -1,0 +1,12 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="productName">20dp</dimen>
+    <dimen name="ordersumary1row">16dp</dimen>
+    <dimen name="ordersumarytoprow">16dp</dimen>
+    <dimen name="textButtons">16dp</dimen>
+    <dimen name="cartItems">12dp</dimen>
+    <dimen name="profileLabel">18dp</dimen>
+</resources>

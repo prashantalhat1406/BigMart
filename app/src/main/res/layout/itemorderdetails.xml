@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="75dp">
+
+    <!--<View android:layout_width="match_parent" android:layout_height="1dp" android:background="@android:color/darker_gray"/>-->
+
+    <TextView android:id="@+id/txt_order_detail_productNo" android:layout_gravity="center" android:gravity="center"
+        android:layout_width="match_parent" android:layout_weight="0.28" android:textColor="@color/blacklabels"
+        android:layout_height="match_parent"></TextView>
+    <View android:layout_width="1dp" android:layout_height="match_parent" android:background="@android:color/darker_gray"/>
+    <TextView android:id="@+id/txt_order_detail_productName" android:layout_gravity="center" android:gravity="center"
+        android:layout_width="match_parent" android:layout_weight="0.2" android:textColor="@color/blacklabels"
+        android:layout_height="match_parent"></TextView>
+    <View android:layout_width="1dp" android:layout_height="match_parent" android:background="@android:color/darker_gray"/>
+    <TextView android:id="@+id/txt_order_detail_productQty" android:layout_gravity="center" android:gravity="center"
+        android:layout_width="match_parent" android:layout_weight="0.25" android:textColor="@color/blacklabels"
+        android:layout_height="match_parent"></TextView>
+    <View android:layout_width="1dp" android:layout_height="match_parent" android:background="@android:color/darker_gray"/>
+    <TextView android:id="@+id/txt_order_detail_productMRP" android:layout_gravity="center" android:gravity="center"
+        android:layout_width="match_parent" android:layout_weight="0.25" android:textColor="@color/blacklabels"
+        android:layout_height="match_parent"></TextView>
+    <View android:layout_width="1dp" android:layout_height="match_parent" android:background="@android:color/darker_gray"/>
+    <TextView android:id="@+id/txt_order_detail_productDiscount" android:layout_gravity="center" android:gravity="center"
+        android:layout_width="match_parent" android:layout_weight="0.25" android:textColor="@color/blacklabels"
+        android:layout_height="match_parent"></TextView>
+    <View android:layout_width="1dp" android:layout_height="match_parent" android:background="@android:color/darker_gray"/>
+    <TextView android:id="@+id/txt_order_detail_productTotal" android:layout_gravity="center" android:gravity="center"
+        android:layout_width="match_parent" android:layout_weight="0.25" android:textColor="@color/blacklabels"
+        android:layout_height="match_parent"></TextView>
+
+</LinearLayout>

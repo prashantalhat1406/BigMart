@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" android:backgroundTint="#ffffff" android:background="@drawable/roundbutton"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+
+    <ScrollView
+        android:layout_width="match_parent" android:layout_weight="0.1"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent" android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <LinearLayout android:id="@+id/layout_product_Category"
+                android:layout_weight="0.5" android:layout_width="match_parent" android:orientation="horizontal"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent" android:orientation="vertical"
+                    android:layout_height="match_parent" android:layout_weight="0.5">
+                    <TextView
+                        android:layout_weight="0.5" android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:text="Category :"
+                        android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                    <LinearLayout
+                        android:layout_weight="0.6"
+                        android:layout_width="match_parent" android:orientation="horizontal"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="match_parent" android:layout_weight="0.5"
+                            android:layout_height="match_parent"></TextView>
+                        <Spinner android:id="@+id/spn_product_category"
+                            android:layout_width="match_parent" android:layout_weight="0.03"
+                            android:layout_height="match_parent">
+
+                        </Spinner>
+                        <!--<EditText
+                            android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
+                            android:layout_width="match_parent" android:padding="10dp" android:maxLines="1"
+                            android:layout_height="match_parent" android:hint="Name"/>-->
+                        <TextView
+                            android:layout_width="match_parent" android:layout_weight="0.5"
+                            android:layout_height="match_parent"></TextView>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent" android:orientation="vertical"
+                    android:layout_height="match_parent" android:layout_weight="0.5">
+                    <TextView
+                        android:layout_weight="0.5" android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:text="SubCategory :"
+                        android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                    <LinearLayout
+                        android:layout_weight="0.6"
+                        android:layout_width="match_parent" android:orientation="horizontal"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="match_parent" android:layout_weight="0.5"
+                            android:layout_height="match_parent"></TextView>
+                        <Spinner android:id="@+id/spn_product_subcategory"
+                            android:layout_width="match_parent" android:layout_weight="0.03"
+                            android:layout_height="match_parent">
+
+                        </Spinner>
+                        <TextView
+                            android:layout_width="match_parent" android:layout_weight="0.5"
+                            android:layout_height="match_parent"></TextView>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/layout_product_name"
+                android:layout_weight="0.5" android:layout_width="match_parent" android:orientation="vertical"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_weight="0.5" android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:text="Name :"
+                    android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                <LinearLayout
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent" android:orientation="horizontal"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="match_parent" android:layout_weight="0.5"
+                        android:layout_height="match_parent"></TextView>
+                    <EditText android:id="@+id/edt_productdetails_Name"
+                        android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
+                        android:layout_width="match_parent" android:padding="10dp" android:maxLines="1"
+                        android:layout_height="match_parent" android:hint="Name"/>
+                    <TextView
+                        android:layout_width="match_parent" android:layout_weight="0.5"
+                        android:layout_height="match_parent"></TextView>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/layout_product_name2"
+                android:layout_weight="0.5" android:layout_width="match_parent" android:orientation="vertical"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_weight="0.5" android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:text="Name 2 :"
+                    android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                <LinearLayout
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent" android:orientation="horizontal"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="match_parent" android:layout_weight="0.5"
+                        android:layout_height="match_parent"></TextView>
+                    <EditText android:id="@+id/edt_productdetails_Name2"
+                        android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
+                        android:layout_width="match_parent" android:padding="10dp" android:maxLines="1"
+                        android:layout_height="match_parent" android:hint="Name2"/>
+                    <TextView
+                        android:layout_width="match_parent" android:layout_weight="0.5"
+                        android:layout_height="match_parent"></TextView>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/layout_product_displayname"
+                android:layout_weight="0.5" android:layout_width="match_parent" android:orientation="vertical" android:visibility="gone"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_weight="0.5" android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:text="Name :"
+                    android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                <LinearLayout
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent" android:orientation="horizontal"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="match_parent" android:layout_weight="0.5"
+                        android:layout_height="match_parent"></TextView>
+                    <EditText android:id="@+id/edt_productdetails_DisplayName"
+                        android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
+                        android:layout_width="match_parent" android:padding="10dp" android:maxLines="1"
+                        android:layout_height="match_parent" android:hint="Display Name"/>
+                    <TextView
+                        android:layout_width="match_parent" android:layout_weight="0.5"
+                        android:layout_height="match_parent"></TextView>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/layout_product_MRP_Discount"
+                android:layout_weight="0.5" android:layout_width="match_parent" android:orientation="horizontal"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent" android:orientation="vertical"
+                    android:layout_height="match_parent" android:layout_weight="0.5">
+                    <TextView
+                        android:layout_weight="0.5" android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:text="MRP :"
+                        android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                    <LinearLayout
+                        android:layout_weight="0.5"
+                        android:layout_width="match_parent" android:orientation="horizontal"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="match_parent" android:layout_weight="0.5"
+                            android:layout_height="match_parent"></TextView>
+                        <EditText android:id="@+id/edt_productdetails_MRP"
+                            android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
+                            android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="number"
+                            android:layout_height="match_parent" android:hint="MRP"/>
+                        <TextView
+                            android:layout_width="match_parent" android:layout_weight="0.5"
+                            android:layout_height="match_parent"></TextView>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent" android:orientation="vertical"
+                    android:layout_height="match_parent" android:layout_weight="0.5">
+                    <TextView
+                        android:layout_weight="0.5" android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:text="Discount :"
+                        android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                    <LinearLayout
+                        android:layout_weight="0.5"
+                        android:layout_width="match_parent" android:orientation="horizontal"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="match_parent" android:layout_weight="0.5"
+                            android:layout_height="match_parent"></TextView>
+                        <EditText android:id="@+id/edt_productdetails_Discount"
+                            android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
+                            android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="number"
+                            android:layout_height="match_parent" android:hint="Discount"/>
+                        <TextView
+                            android:layout_width="match_parent" android:layout_weight="0.5"
+                            android:layout_height="match_parent"></TextView>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/layout_product_GST_QTY"
+                    android:layout_weight="0.5" android:layout_width="match_parent" android:orientation="horizontal"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent" android:orientation="vertical"
+                        android:layout_height="match_parent" android:layout_weight="0.5">
+                        <TextView
+                            android:layout_weight="0.5" android:layout_width="match_parent"
+                            android:layout_height="match_parent" android:text="GST :"
+                            android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                        <LinearLayout
+                            android:layout_weight="0.5"
+                            android:layout_width="match_parent" android:orientation="horizontal"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:layout_width="match_parent" android:layout_weight="0.5"
+                                android:layout_height="match_parent"></TextView>
+                            <EditText android:id="@+id/edt_productdetails_GST"
+                                android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
+                                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="number"
+                                android:layout_height="match_parent" android:hint="GST"/>
+                            <TextView
+                                android:layout_width="match_parent" android:layout_weight="0.5"
+                                android:layout_height="match_parent"></TextView>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent" android:orientation="vertical"
+                        android:layout_height="match_parent" android:layout_weight="0.5">
+                        <TextView
+                            android:layout_weight="0.5" android:layout_width="match_parent"
+                            android:layout_height="match_parent" android:text="Quantity :"
+                            android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                        <LinearLayout
+                            android:layout_weight="0.5"
+                            android:layout_width="match_parent" android:orientation="horizontal"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:layout_width="match_parent" android:layout_weight="0.5"
+                                android:layout_height="match_parent"></TextView>
+                            <EditText android:id="@+id/edt_productdetails_QTY"
+                                android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
+                                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="number"
+                                android:layout_height="match_parent" android:hint="Quantity"/>
+                            <TextView
+                                android:layout_width="match_parent" android:layout_weight="0.5"
+                                android:layout_height="match_parent"></TextView>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            <LinearLayout android:id="@+id/layout_product_HSN_TYPE"
+                android:layout_weight="0.5" android:layout_width="match_parent" android:orientation="horizontal"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent" android:orientation="vertical"
+                    android:layout_height="match_parent" android:layout_weight="0.5">
+                    <TextView
+                        android:layout_weight="0.5" android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:text="HSN :"
+                        android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                    <LinearLayout
+                        android:layout_weight="0.5"
+                        android:layout_width="match_parent" android:orientation="horizontal"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="match_parent" android:layout_weight="0.5"
+                            android:layout_height="match_parent"></TextView>
+                        <EditText android:id="@+id/edt_productdetails_HSN"
+                            android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
+                            android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="number"
+                            android:layout_height="match_parent" android:hint="HSN"/>
+                        <TextView
+                            android:layout_width="match_parent" android:layout_weight="0.5"
+                            android:layout_height="match_parent"></TextView>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent" android:orientation="vertical"
+                    android:layout_height="match_parent" android:layout_weight="0.5">
+                    <TextView
+                        android:layout_weight="0.5" android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:text="Type :"
+                        android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                    <LinearLayout
+                        android:layout_weight="0.5"
+                        android:layout_width="match_parent" android:orientation="horizontal"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="match_parent" android:layout_weight="0.5"
+                            android:layout_height="match_parent"></TextView>
+                        <EditText android:id="@+id/edt_productdetails_TYPE"
+                            android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
+                            android:layout_width="match_parent" android:padding="10dp" android:maxLines="1"
+                            android:layout_height="match_parent" android:hint="Type"/>
+                        <TextView
+                            android:layout_width="match_parent" android:layout_weight="0.5"
+                            android:layout_height="match_parent"></TextView>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/layout_product_STOCK"
+                android:layout_weight="0.5" android:layout_width="match_parent" android:orientation="horizontal"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent" android:orientation="vertical"
+                    android:layout_height="match_parent" android:layout_weight="0.5">
+                    <TextView
+                        android:layout_weight="0.5" android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:text="Max Stock :"
+                        android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                    <LinearLayout
+                        android:layout_weight="0.5"
+                        android:layout_width="match_parent" android:orientation="horizontal"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="match_parent" android:layout_weight="0.5"
+                            android:layout_height="match_parent"></TextView>
+                        <EditText android:id="@+id/edt_productdetails_MaxStock"
+                            android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
+                            android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="number"
+                            android:layout_height="match_parent" android:hint="Max Stock"/>
+                        <TextView
+                            android:layout_width="match_parent" android:layout_weight="0.5"
+                            android:layout_height="match_parent"></TextView>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent" android:orientation="vertical"
+                    android:layout_height="match_parent" android:layout_weight="0.5">
+                    <TextView
+                        android:layout_weight="0.5" android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:text="Min Stock :"
+                        android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                    <LinearLayout
+                        android:layout_weight="0.5"
+                        android:layout_width="match_parent" android:orientation="horizontal"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="match_parent" android:layout_weight="0.5"
+                            android:layout_height="match_parent"></TextView>
+                        <EditText android:id="@+id/edt_productdetails_MinStock"
+                            android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
+                            android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="number"
+                            android:layout_height="match_parent" android:hint="Min Stock"/>
+                        <TextView
+                            android:layout_width="match_parent" android:layout_weight="0.5"
+                            android:layout_height="match_parent"></TextView>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+    <LinearLayout android:layout_weight="0.9"
+        android:layout_width="match_parent" android:orientation="horizontal" android:layout_gravity="center" android:gravity="center"
+        android:layout_height="match_parent">
+        <Button android:id="@+id/but_productdetails_save"
+            android:layout_width="260dp" android:background="@drawable/status_complete" android:layout_gravity="center" android:gravity="center"
+            android:layout_height="50dp" android:text="Save" android:textColor="#ffffff" ></Button>
+        <Button android:id="@+id/but_productdetails_delete" android:visibility="gone"
+            android:layout_width="260dp" android:background="@drawable/status_complete" android:layout_gravity="center" android:gravity="center"
+            android:layout_height="50dp" android:text="Delete" android:textColor="#ffffff" ></Button>
+    </LinearLayout>
+
+
+</LinearLayout>
+

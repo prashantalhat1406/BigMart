@@ -1,0 +1,2 @@
+rootProject.name='BigMart'
+include ':app'

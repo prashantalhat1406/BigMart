@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" android:backgroundTint="#ffffff" android:background="@drawable/roundbutton"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+
+    <LinearLayout android:layout_weight="0.5"
+        android:layout_width="match_parent" android:orientation="vertical"
+        android:layout_height="match_parent">
+        <TextView android:layout_weight="0.5" android:layout_width="match_parent"
+            android:layout_height="match_parent" android:text="Name :"
+            android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+        <LinearLayout android:layout_weight="0.5"
+            android:layout_width="match_parent" android:orientation="horizontal"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent" android:layout_weight="0.5"
+                android:layout_height="match_parent"></TextView>
+            <EditText android:id="@+id/edt_profile_name"
+                android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
+                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1"
+                android:layout_height="match_parent" android:hint="Name"/>
+            <TextView
+                android:layout_width="match_parent" android:layout_weight="0.5"
+                android:layout_height="match_parent"></TextView>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout android:layout_weight="0.5"
+        android:layout_width="match_parent" android:orientation="vertical"
+        android:layout_height="match_parent">
+        <TextView android:layout_weight="0.5"        android:layout_width="match_parent"
+            android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
+            android:layout_height="match_parent" android:text="Mobile :" />
+        <LinearLayout android:layout_weight="0.5"
+            android:layout_width="match_parent" android:orientation="horizontal"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent" android:layout_weight="0.5"
+                android:layout_height="match_parent"></TextView>
+            <EditText android:id="@+id/edt_profile_mobile"
+                android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
+                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:enabled="false"
+                android:layout_height="match_parent" android:hint="Name"/>
+            <TextView
+                android:layout_width="match_parent" android:layout_weight="0.5"
+                android:layout_height="match_parent"></TextView>
+        </LinearLayout>
+        <!--<EditText android:id="@+id/edt_profile_mobile"
+            android:layout_weight="0.5" android:visibility="visible" android:background="@drawable/profiletextbox"
+            android:layout_width="match_parent" android:padding="10dp" android:maxLines="1"
+            android:layout_height="match_parent" android:hint="Mobile"/>-->
+    </LinearLayout>
+
+    <LinearLayout android:layout_weight="0.5"
+        android:layout_width="match_parent" android:orientation="vertical"
+        android:layout_height="match_parent">
+        <TextView android:layout_weight="0.5"        android:layout_width="match_parent"
+            android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
+            android:layout_height="match_parent" android:text="Address 1 :" />
+        <LinearLayout android:layout_weight="0.5"
+            android:layout_width="match_parent" android:orientation="horizontal"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent" android:layout_weight="0.5"
+                android:layout_height="match_parent"></TextView>
+            <EditText android:id="@+id/edt_profile_address1"
+                android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
+                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1"
+                android:layout_height="match_parent" android:hint="Name"/>
+            <TextView
+                android:layout_width="match_parent" android:layout_weight="0.5"
+                android:layout_height="match_parent"></TextView>
+        </LinearLayout>
+        <!--<EditText android:id="@+id/edt_profile_address1"
+            android:layout_weight="0.5" android:visibility="visible" android:background="@drawable/profiletextbox"
+            android:layout_width="match_parent" android:padding="10dp" android:maxLines="1"
+            android:layout_height="match_parent" android:hint="Address 1"/>-->
+    </LinearLayout>
+
+    <LinearLayout android:layout_weight="0.5"
+        android:layout_width="match_parent" android:orientation="vertical"
+        android:layout_height="match_parent">
+        <TextView android:layout_weight="0.5"        android:layout_width="match_parent"
+            android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
+            android:layout_height="match_parent" android:text="Address 2 :" />
+        <LinearLayout android:layout_weight="0.5"
+            android:layout_width="match_parent" android:orientation="horizontal"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent" android:layout_weight="0.5"
+                android:layout_height="match_parent"></TextView>
+            <EditText android:id="@+id/edt_profile_address2"
+                android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
+                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1"
+                android:layout_height="match_parent" android:hint="Name"/>
+            <TextView
+                android:layout_width="match_parent" android:layout_weight="0.5"
+                android:layout_height="match_parent"></TextView>
+        </LinearLayout>
+        <!--<EditText android:id="@+id/edt_profile_address2"
+            android:layout_weight="0.5" android:visibility="visible" android:background="@drawable/profiletextbox"
+            android:layout_width="match_parent" android:padding="10dp" android:maxLines="1"
+            android:layout_height="match_parent" android:hint="Address 2"/>-->
+    </LinearLayout>
+
+    <LinearLayout android:layout_weight="0.5" android:visibility="invisible"
+        android:layout_width="match_parent" android:orientation="vertical"
+        android:layout_height="match_parent">
+        <TextView android:layout_weight="0.5"        android:layout_width="match_parent"
+            android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
+            android:layout_height="match_parent" android:text="Email :" />
+        <LinearLayout android:layout_weight="0.5"
+            android:layout_width="match_parent" android:orientation="horizontal"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent" android:layout_weight="0.5"
+                android:layout_height="match_parent"></TextView>
+            <EditText android:id="@+id/edt_profile_email"
+                android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
+                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1"
+                android:layout_height="match_parent" android:hint="Name"/>
+            <TextView
+                android:layout_width="match_parent" android:layout_weight="0.5"
+                android:layout_height="match_parent"></TextView>
+        </LinearLayout>
+        <!--<EditText android:id="@+id/edt_profile_email"
+            android:layout_weight="0.5" android:visibility="visible" android:background="@drawable/profiletextbox"
+            android:layout_width="match_parent" android:padding="10dp"
+            android:layout_height="match_parent" android:hint="Email"/>-->
+    </LinearLayout>
+
+    <LinearLayout android:layout_weight="0.5"
+        android:layout_width="match_parent" android:orientation="vertical" android:layout_gravity="center" android:gravity="center"
+        android:layout_height="match_parent">
+        <Button android:id="@+id/but_profile_save"
+            android:layout_width="260dp" android:background="@drawable/status_complete" android:layout_gravity="center" android:gravity="center"
+            android:layout_height="50dp" android:text="Save Changes" android:textColor="#ffffff" ></Button>
+    </LinearLayout>
+
+    <LinearLayout android:layout_weight="0.5"
+        android:layout_width="match_parent" android:orientation="vertical"
+        android:layout_height="match_parent">
+
+    </LinearLayout>
+
+</LinearLayout>
+

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="horizontal" android:layout_weight="0.83">
+        <EditText android:id="@+id/edt_showowner_product_search" android:background="@drawable/profiletextbox" android:inputType="text"
+            android:layout_width="match_parent" android:imeOptions="actionSearch" android:maxLines="1"
+            android:layout_height="match_parent" android:layout_weight="0.15"></EditText>
+        <ImageButton android:id="@+id/but_showowner_product_search" android:src="@drawable/ic_search" android:background="@drawable/profiletextbox"
+            android:layout_width="match_parent" android:scaleType="center" android:visibility="gone"
+            android:layout_height="match_parent" android:layout_weight="0.85"></ImageButton>
+
+    </LinearLayout>
+
+    <LinearLayout android:orientation="horizontal" android:layout_weight="0.81" android:paddingTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView  android:layout_gravity="center" android:gravity="center"
+            android:layout_width="match_parent" android:layout_weight="0.9" android:text="No" android:textStyle="bold"
+            android:layout_height="match_parent"></TextView>
+        <View android:layout_width="1dp" android:layout_height="match_parent" android:background="@android:color/darker_gray"/>
+        <TextView  android:layout_gravity="center" android:gravity="center"
+            android:layout_width="match_parent" android:layout_weight="0.6" android:text="Name" android:textStyle="bold"
+            android:layout_height="match_parent"></TextView>
+        <View android:layout_width="1dp" android:layout_height="match_parent" android:background="@android:color/darker_gray"/>
+        <TextView  android:layout_gravity="center" android:gravity="center"
+            android:layout_width="match_parent" android:layout_weight="0.8" android:text="MRP" android:textStyle="bold"
+            android:layout_height="match_parent"></TextView>
+        <View android:layout_width="1dp" android:layout_height="match_parent" android:background="@android:color/darker_gray"/>
+        <TextView  android:layout_gravity="center" android:gravity="center"
+            android:layout_width="match_parent" android:layout_weight="0.8" android:text="Stock" android:textStyle="bold"
+            android:layout_height="match_parent"></TextView>
+    </LinearLayout>
+
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@android:color/darker_gray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_weight="0.16"
+        android:layout_height="match_parent">
+        <ListView
+            android:layout_width="match_parent" android:id="@+id/listShopOwnerProduct"
+            android:layout_height="match_parent" >
+        </ListView>
+    </LinearLayout>
+</LinearLayout>
