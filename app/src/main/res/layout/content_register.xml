@@ -43,7 +43,8 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
                 android:layout_height="match_parent"></TextView>
             <EditText android:id="@+id/edt_register_mobile"
                 android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
-                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1"
+                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="number"
+                android:maxLength="10"
                 android:layout_height="match_parent" android:hint="Mobile"/>
             <TextView
                 android:layout_width="match_parent" android:layout_weight="0.5"
@@ -69,7 +70,7 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
                 android:layout_height="match_parent"></TextView>
             <EditText android:id="@+id/edt_register_pin"
                 android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
-                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1"
+                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="number"
                 android:maxLength="4"
                 android:layout_height="match_parent" android:hint="4 Digit Pin"/>
             <TextView
