@@ -69,6 +69,8 @@ public class adapterOrder extends ArrayAdapter<Orders> {
         //orderNo.setText(""+(position+1));
         final DecimalFormat formater = new DecimalFormat("0.00");
 
+
+
         orderID.setText("" + order.ID.substring(order.ID.length() - 5).toUpperCase());
         orderIDDUP.setText("" + order.ID);
         orderAmount.setText(context.getResources().getString(R.string.Rupee) + " " +  formater.format( order.amount));
