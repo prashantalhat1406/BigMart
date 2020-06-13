@@ -48,7 +48,7 @@
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".shopownerhome"
-            android:label="@string/title_activity_shopownerhome"
+            android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".customerorderhistory"

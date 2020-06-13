@@ -42,23 +42,7 @@ public class adapterOrder extends ArrayAdapter<Orders> {
                     inflate(R.layout.itemordernew, parent, false);
         }
 
-        /*TextView orderNo = (TextView)convertView.findViewById(R.id.txt_order_no);
-        TextView orderID = (TextView)convertView.findViewById(R.id.txt_order_ID);
-        TextView orderIDDUP = (TextView)convertView.findViewById(R.id.txt_order_ID_DUP);
-        TextView orderAmount = (TextView)convertView.findViewById(R.id.txt_order_Amount);
-        TextView orderStatus = (TextView)convertView.findViewById(R.id.txt_order_Status);
-        order = orders.get(position);
-        orderNo.setText(""+(position+1));
-        orderID.setText(""+order.ID.substring(order.ID.length() - 5).toUpperCase());
-        orderIDDUP.setText(""+order.ID);
-        orderAmount.setText(""+order.amount);
-        orderStatus.setText(""+order.status);
-        if(order.status.equals("Complete"))
-            orderStatus.setTextColor(ContextCompat.getColor(this.context, R.color.completeStatus));
-        else
-            orderStatus.setTextColor(Color.BLUE);*/
 
-        //TextView orderNo = (TextView)convertView.findViewById(R.id.txt_order_no);
         TextView orderID = (TextView) convertView.findViewById(R.id.txt_order_ID);
         TextView orderIDDUP = (TextView) convertView.findViewById(R.id.txt_order_ID_DUP);
         TextView orderAmount = (TextView) convertView.findViewById(R.id.txt_order_totalamount);
@@ -66,7 +50,7 @@ public class adapterOrder extends ArrayAdapter<Orders> {
         TextView orderDate = (TextView) convertView.findViewById(R.id.txt_order_date);
         TextView orderdeliverytype = (TextView) convertView.findViewById(R.id.txt_order_deliverytype);
         order = orders.get(position);
-        //orderNo.setText(""+(position+1));
+
         final DecimalFormat formater = new DecimalFormat("0.00");
 
 
@@ -84,6 +68,7 @@ public class adapterOrder extends ArrayAdapter<Orders> {
         orderStatus.setTextColor(ContextCompat.getColor(this.context, R.color.completeStatus));
         switch (order.status){
             case "Complete": orderStatus.setBackground(context.getDrawable(R.drawable.status_complete));
+            //convertView.setBackgroundColor(context.getColor(R.color.lightGreen));
                 break;
             case "Created": orderStatus.setBackground(context.getDrawable(R.drawable.status_created));
                 break;

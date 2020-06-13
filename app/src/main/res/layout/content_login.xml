@@ -2,7 +2,7 @@
 <LinearLayout android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent" android:backgroundTint="#ADD8E6" android:background="#ADD8E6"
+    android:layout_width="match_parent"  android:background="@drawable/loginbackground"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
@@ -81,7 +81,7 @@
     <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:layout_gravity="center" android:gravity="center"
         android:layout_weight="0.25">
         <TextView
-            android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
+            android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center" android:textColor="#ffffff"
             android:layout_height="match_parent" android:text=" Copyright 2020. Developed by PS Software Solutions"/>
 
     </LinearLayout>
