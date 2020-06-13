@@ -1,7 +1,6 @@
 package com.example.bigmart;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.firebase.database.DataSnapshot;
@@ -12,6 +11,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -22,7 +22,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +29,7 @@ import java.util.List;
 public class shopownerordershistory extends AppCompatActivity {
 
     private List<Orders> orders;
+    private Integer position=0;
     private List<String> orderIDs;
     ListView ordersList;
     private long userID;
@@ -71,6 +71,7 @@ public class shopownerordershistory extends AppCompatActivity {
 
         adapterOrder orderAdapter = new adapterOrder(shopownerordershistory.this,R.layout.itemorder,orders_filter, userID,2);
         ordersList.setAdapter(orderAdapter);
+        ordersList.setSelection(position);
     }
 
     @Override
@@ -108,7 +109,7 @@ public class shopownerordershistory extends AppCompatActivity {
                     //orders_filter.add(order);
                 }
 
-                adapterOrder orderAdapter = new adapterOrder(shopownerordershistory.this,R.layout.itemordernew,orders, userID,2);
+                adapterOrder orderAdapter = new adapterOrder(shopownerordershistory.this,R.layout.itemorder,orders, userID,2);
                 ordersList.setAdapter(orderAdapter);
                 RadioGroup rg = findViewById(R.id.rdbGroup);
                 rg.findViewById(R.id.rdbAll).setSelected(true);
@@ -139,8 +140,9 @@ public class shopownerordershistory extends AppCompatActivity {
                         Intent orderIntent = new Intent(shopownerordershistory.this, shopownerorderdetails.class);
                         Bundle extras = new Bundle();
                         extras.putString("orderID", ""+order.ID);
+                        extras.putInt("position", position);
                         orderIntent.putExtras(extras);
-                        startActivity(orderIntent);
+                        startActivityForResult(orderIntent,100);
                         autoCompleteTextView.setText("");
                     }
                 }
@@ -163,8 +165,9 @@ public class shopownerordershistory extends AppCompatActivity {
                 //extras.putString("orderID", ""+orders.get(position).ID);
                 String selected = ((TextView) view.findViewById(R.id.txt_order_ID_DUP)).getText().toString();
                 extras.putString("orderID", ""+selected);
+                extras.putInt("position", position);
                 orderIntent.putExtras(extras);
-                startActivity(orderIntent);
+                startActivityForResult(orderIntent,100);
             }
         });
 
@@ -178,4 +181,14 @@ public class shopownerordershistory extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 100)
+        {
+            position = data.getIntExtra("position",0);
+            ordersList.setSelection( position);
+
+        }
+    }
 }

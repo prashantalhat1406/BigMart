@@ -39,7 +39,7 @@ public class adapterOrder extends ArrayAdapter<Orders> {
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).
-                    inflate(R.layout.itemordernew, parent, false);
+                    inflate(R.layout.itemorder, parent, false);
         }
 
 

@@ -59,7 +59,7 @@ public class customerorderhistory extends AppCompatActivity {
                             orders.add(order);
                     }
                 if(orders.size() != 0){
-                    adapterOrder orderAdapter = new adapterOrder(customerorderhistory.this, R.layout.itemordernew, orders, userID, 2);
+                    adapterOrder orderAdapter = new adapterOrder(customerorderhistory.this, R.layout.itemorder, orders, userID, 2);
                     ordersList.setAdapter(orderAdapter);
                 }else
                 {

@@ -1,5 +1,7 @@
 package com.example.bigmart;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.firebase.database.DataSnapshot;
@@ -26,6 +28,7 @@ import java.util.Map;
 public class shopownerorderdetails extends AppCompatActivity {
 
     private String orderID;
+    private Integer position;
     private List<Product> products;
     ListView productList;
     Orders orderDetail;
@@ -43,6 +46,8 @@ public class shopownerorderdetails extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         orderID = b.getString("orderID","12");
+        position = b.getInt("position",0);
+
 
         productList = findViewById(R.id.listOrderDetail);
         products = new ArrayList<Product>();
@@ -61,6 +66,9 @@ public class shopownerorderdetails extends AppCompatActivity {
                 Map<String, Object> statusUpdate = new HashMap<>();
                 statusUpdate.put("status", "Complete");
                 orderReference.updateChildren(statusUpdate);
+                Intent intent=new Intent();
+                intent.putExtra("position",position);
+                setResult(Activity.RESULT_OK, intent);
                 finish();
             }
         });
@@ -89,6 +97,9 @@ public class shopownerorderdetails extends AppCompatActivity {
                 Map<String, Object> statusUpdate = new HashMap<>();
                 statusUpdate.put("status", "Cancelled");
                 orderReference.updateChildren(statusUpdate);
+                Intent intent=new Intent();
+                intent.putExtra("position",position);
+                setResult(Activity.RESULT_OK, intent);
                 finish();
             }
         });
@@ -199,6 +210,9 @@ public class shopownerorderdetails extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        Intent intent=new Intent();
+        intent.putExtra("position",position);
+        setResult(Activity.RESULT_OK, intent);
         finish();
         super.onBackPressed();
     }
