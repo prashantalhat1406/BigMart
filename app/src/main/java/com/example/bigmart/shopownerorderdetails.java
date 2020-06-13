@@ -128,7 +128,7 @@ public class shopownerorderdetails extends AppCompatActivity {
                 switch (orderDetail.status)
                 {
                     case "Complete":
-                        butComplete.setVisibility(View.VISIBLE);
+                        butComplete.setVisibility(View.INVISIBLE);
                         butPrint.setVisibility(View.VISIBLE);
                         butConfirm.setVisibility(View.GONE);
                         butCancel.setVisibility(View.GONE);
@@ -154,8 +154,8 @@ public class shopownerorderdetails extends AppCompatActivity {
                     case "Cancelled":
                         butComplete.setVisibility(View.GONE);
                         butPrint.setVisibility(View.GONE);
-                        butConfirm.setVisibility(View.VISIBLE);
-                        butCancel.setVisibility(View.VISIBLE);
+                        butConfirm.setVisibility(View.GONE);
+                        butCancel.setVisibility(View.GONE);
                         butCancel.setEnabled(false);
                         butConfirm.setEnabled(false);
                         break;
