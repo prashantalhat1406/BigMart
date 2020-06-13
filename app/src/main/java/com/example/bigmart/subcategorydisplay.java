@@ -1,6 +1,8 @@
 package com.example.bigmart;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -47,6 +49,15 @@ public class subcategorydisplay extends AppCompatActivity {
             R.id.but_subcat_8,
             R.id.but_subcat_9
     };
+
+    public void goToHome(){
+        Intent homeIntent = new Intent(subcategorydisplay.this, home.class);
+        Bundle extras = new Bundle();
+        extras.putLong("userID", userID);
+        homeIntent.putExtras(extras);
+        startActivity(homeIntent);
+        finish();
+    }
 
     public void showButton(String name, int id){
         ImageButton b = findViewById(BUTTON_IDS[id]);
@@ -151,6 +162,32 @@ public class subcategorydisplay extends AppCompatActivity {
         icon.setDrawableByLayerId(R.id.ic_badge, badge);
     }
 
+    public void showLogoutAlertDialog(){
+
+        AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(subcategorydisplay.this);
+        logoutAlertBuilder.setMessage("Are you sure to Logout ?");
+        logoutAlertBuilder.setCancelable(false);
+        logoutAlertBuilder.setPositiveButton(
+                "YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent logoutIntent = new Intent(subcategorydisplay.this, login.class);
+                        logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(logoutIntent);
+                        finish();
+                    }
+                });
+        logoutAlertBuilder.setNegativeButton(
+                "NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertLogout = logoutAlertBuilder.create();
+        alertLogout.show();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -160,12 +197,32 @@ public class subcategorydisplay extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.menu_viewcart) {
-            Intent viewCartIntent = new Intent(subcategorydisplay.this, customercartdisplay.class);
-            Bundle extras = new Bundle();
-            extras.putLong("userID", userID);
-            viewCartIntent.putExtras(extras);
-            startActivity(viewCartIntent);
-            //return true;
+            Query query = database.getReference("Users/"+userID+"/TempOrder");
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.exists())
+                    {
+                        Intent viewCartIntent = new Intent(subcategorydisplay.this, customercartdisplay.class);
+                        Bundle extras = new Bundle();
+                        extras.putLong("userID", userID);
+                        viewCartIntent.putExtras(extras);
+                        startActivity(viewCartIntent);
+                        finish();
+                    }
+                    else
+                    {
+                        Toast error = Toast.makeText(subcategorydisplay.this, "No Items In Cart !",Toast.LENGTH_SHORT);
+                        error.setGravity(Gravity.TOP, 0, 0);
+                        error.show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
         }
 
         if (id == R.id.menu_orderhistory) {
@@ -188,16 +245,15 @@ public class subcategorydisplay extends AppCompatActivity {
         }
 
         if (id == R.id.menu_logout) {
-            Intent logoutIntent = new Intent(subcategorydisplay.this, login.class);
-            logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            Toast error = Toast.makeText(subcategorydisplay.this, "Logout Successful",Toast.LENGTH_SHORT);
-            error.setGravity(Gravity.TOP, 0, 0);
-            error.show();
-            startActivity(logoutIntent);
-            finish();
+            showLogoutAlertDialog();
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        goToHome();
+        super.onBackPressed();
+    }
 }

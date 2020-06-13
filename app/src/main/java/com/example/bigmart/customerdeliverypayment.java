@@ -67,4 +67,12 @@ public class customerdeliverypayment extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent();
+        intent.putExtra("type","");
+        setResult(Activity.RESULT_CANCELED, intent);
+        finish();
+        super.onBackPressed();
+    }
 }

@@ -93,7 +93,10 @@ public class customerorderdetails extends AppCompatActivity {
                 adapterOrderDetails productAdaper = new adapterOrderDetails(customerorderdetails.this, R.layout.itemproduct, products);
                 productList.setAdapter(productAdaper);
                 TextView totalAmount = findViewById(R.id.txt_customer_orderdetails_totoalAmount);
-                totalAmount.setText("Total : " + customerorderdetails.this.getResources().getString(R.string.Rupee) + formater.format( TotalPrice));
+                if (TotalPrice < 2000)
+                    totalAmount.setText("Total : " + customerorderdetails.this.getResources().getString(R.string.Rupee) + formater.format( TotalPrice) + " + " + customerorderdetails.this.getResources().getString(R.string.Rupee) + "50" );
+                else
+                    totalAmount.setText("Total : " + customerorderdetails.this.getResources().getString(R.string.Rupee) + formater.format( TotalPrice) + " + " + customerorderdetails.this.getResources().getString(R.string.Rupee) + formater.format( TotalPrice *0.02));
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

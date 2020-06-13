@@ -1,6 +1,7 @@
 package com.example.bigmart;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.firebase.database.DataSnapshot;
@@ -16,9 +17,12 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +30,7 @@ import java.util.List;
 public class shopownerordershistory extends AppCompatActivity {
 
     private List<Orders> orders;
+    private List<String> orderIDs;
     ListView ordersList;
     private long userID;
     private int count = 0;
@@ -85,6 +90,7 @@ public class shopownerordershistory extends AppCompatActivity {
 
 
         orders = new ArrayList<Orders>();
+        orderIDs = new ArrayList<String>();
         //orders_filter = new ArrayList<Orders>();
         ordersList = findViewById(R.id.listShopOwnerOrder);
         database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
@@ -98,6 +104,7 @@ public class shopownerordershistory extends AppCompatActivity {
                 {
                     Orders order = postSnapshot.getValue(Orders.class);
                     orders.add(order);
+                    orderIDs.add(order.ID.substring(order.ID.length() - 5).toUpperCase());
                     //orders_filter.add(order);
                 }
 
@@ -113,6 +120,40 @@ public class shopownerordershistory extends AppCompatActivity {
             }
         });
         //orders_filter =orders;
+
+        final AutoCompleteTextView autoCompleteTextView = findViewById(R.id.auto_shopownerorderhistory_orderid);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,orderIDs);
+        autoCompleteTextView.setAdapter(adapter);
+        autoCompleteTextView.setThreshold(1);
+        //autoCompleteTextView.setTextColor(Color.RED);
+
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                Object t = parent.getItemAtPosition(position);
+                //Toast.makeText(shopownerordershistory.this,t.toString(),Toast.LENGTH_SHORT).show();
+                for (Orders order : orders) {
+                    if( order.ID.substring(order.ID.length() - 5).toUpperCase().equals(t.toString())){
+                        Intent orderIntent = new Intent(shopownerordershistory.this, shopownerorderdetails.class);
+                        Bundle extras = new Bundle();
+                        extras.putString("orderID", ""+order.ID);
+                        orderIntent.putExtras(extras);
+                        startActivity(orderIntent);
+                        autoCompleteTextView.setText("");
+                    }
+                }
+                /*Intent orderIntent = new Intent(shopownerordershistory.this, shopownerorderdetails.class);
+                Bundle extras = new Bundle();
+                String selected = ((TextView) view.findViewById(R.id.txt_order_ID_DUP)).getText().toString();
+                extras.putString("orderID", ""+selected);
+                orderIntent.putExtras(extras);
+                startActivity(orderIntent);*/
+
+            }
+        });
+
 
         ordersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

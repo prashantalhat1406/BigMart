@@ -15,8 +15,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,6 +37,7 @@ public class login extends AppCompatActivity {
     private long userID;
 
 
+    private Integer showpassword = 0;
     public List<User> usersDB;
     EditText edtMobile,edtPassword;
     Button butLogin ;
@@ -136,82 +140,7 @@ public class login extends AppCompatActivity {
             }
         }
     }
-    /*public void performLogin() {
 
-        if(usersDB.size() == 0){
-            Toast t = Toast.makeText(login.this, "No Internet Connectivity", Toast.LENGTH_SHORT);
-            t.setGravity(Gravity.TOP, 0, 0);
-            t.show();
-
-        }else {
-            Boolean flag = true;
-            Boolean validUserPassword = false;
-            Boolean register = true;
-
-
-            if(edtMobile.getText().length() == 0)
-                {
-                    showErrorMessage("Mobile should not be empty"); flag = false;
-                }else
-                    if (edtMobile.getText().length() < 10)
-                    {
-                        showErrorMessage("Enter 10 Digit Mobile Number"); flag = false;
-                    }else
-                        if (edtPassword.length() < 4 && edtPassword.length() > 0)
-                        {
-                            showErrorMessage("Incorrect Pin: Enter 4 Digit pin"); flag = false;
-                        }else
-                            if (edtPassword.getText().length() == 0)
-                            {
-                                Intent registerIntent = new Intent(login.this, registration.class);
-                                Bundle extras = new Bundle();
-                                extras.putLong("userID", Long.parseLong(edtMobile.getText().toString()));
-                                extras.putString("password", edtPassword.getText().toString());
-                                registerIntent.putExtras(extras);
-                                startActivity(registerIntent);
-                                finish();
-                            }else
-                            {
-                                Boolean userNotFound = true;
-                                for (User u : usersDB) {
-                                    if (u.Mobile == Long.parseLong(edtMobile.getText().toString()))
-                                        if (u.Password == Integer.parseInt((edtPassword.getText().toString()))) {
-                                            validUserPassword = true;
-                                            userNotFound = false;
-                                            userID = u.Mobile;
-                                            break;
-                                        } else {
-                                            showErrorMessage("InCorrect Password");
-                                            edtPassword.setText("");
-                                        }
-                                }
-                                if (validUserPassword) {
-                                    if (userID == 1212121212) {
-                                        Intent shopIntent = new Intent(login.this, shopownerhome.class);
-                                        startActivity(shopIntent);
-
-                                    } else {
-                                        Intent homeIntent = new Intent(login.this, home.class);
-                                        Bundle extras = new Bundle();
-                                        extras.putLong("userID", userID);
-                                        homeIntent.putExtras(extras);
-                                        startActivity(homeIntent);
-                                        finish();
-                                    }
-                                }
-                                if (userNotFound)
-                                {
-                                    Intent registerIntent = new Intent(login.this, registration.class);
-                                    Bundle extras = new Bundle();
-                                    extras.putLong("userID", Long.parseLong(edtMobile.getText().toString()));
-                                    extras.putString("password", edtPassword.getText().toString());
-                                    registerIntent.putExtras(extras);
-                                    startActivity(registerIntent);
-                                    finish();
-                                }
-                            }
-        }
-    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -250,6 +179,7 @@ public class login extends AppCompatActivity {
         //error = findViewById(R.id.txt_login_error);
         edtMobile.setText("");
         edtPassword.setText("");
+        edtPassword.setLongClickable(false);
 
         edtPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -260,6 +190,34 @@ public class login extends AppCompatActivity {
                 return false;
             }
         });
+
+        edtPassword.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (edtPassword.getRight() - edtPassword.getCompoundDrawables()[2].getBounds().width())) {
+                        if (showpassword == 0)
+                        {
+                            edtPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            showpassword = 1;
+                            edtPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye, 0);
+                        }else
+                        {
+                            edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            showpassword = 0;
+
+                            edtPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_off, 0);
+                        }
+
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+        
+        //Adding one line of comment
 
 
         butLogin = findViewById(R.id.but_login_login);
@@ -277,17 +235,37 @@ public class login extends AppCompatActivity {
         butRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent registerIntent = new Intent(login.this, registration.class);
-                Bundle extras = new Bundle();
-                if (edtMobile.getText().toString().length() == 0)
-                    extras.putLong("userID", 0);
-                else
-                    extras.putLong("userID", Long.parseLong(edtMobile.getText().toString()));
+                Long userMobile;
 
-                //extras.putString("password", edtPassword.getText().toString());
-                registerIntent.putExtras(extras);
-                startActivity(registerIntent);
-                finish();
+                if (edtMobile.getText().toString().length() == 0)
+                    userMobile = 0L;
+                else
+                    userMobile = Long.parseLong(edtMobile.getText().toString());
+
+                Boolean exitingUser = false;
+                for (User user : usersDB) {
+                    if (user.Mobile == userMobile)
+                    {exitingUser = true; break;}
+                }
+
+                if (exitingUser)
+                {
+                    showErrorMessage("User already exists.");
+                    edtPassword.setText("");
+                    edtPassword.requestFocus();
+                }else{
+                    Intent registerIntent = new Intent(login.this, registration.class);
+                    Bundle extras = new Bundle();
+                    /*if (edtMobile.getText().toString().length() == 0)
+                        extras.putLong("userID", 0);
+                    else
+                        extras.putLong("userID", Long.parseLong(edtMobile.getText().toString()));*/
+                    extras.putLong("userID", userMobile);
+                    registerIntent.putExtras(extras);
+                    startActivity(registerIntent);
+                    finish();
+                }
+
             }
         });
 

@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent" android:orientation="horizontal"
-        android:layout_height="match_parent" android:layout_weight="0.9">
+        android:layout_height="match_parent" android:layout_weight="0.89">
         <RadioGroup android:orientation="horizontal" android:id="@+id/rdbGroup"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -30,28 +30,26 @@
 
     <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@android:color/darker_gray"/>
 
-    <!--<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" android:layout_weight="0.8">
-        <TextView android:textStyle="bold"
-            android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
-            android:layout_height="match_parent" android:layout_weight="0.9" android:text="No"></TextView>
-        <TextView android:textStyle="bold"
-            android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
-            android:layout_height="match_parent" android:layout_weight="0.6" android:text="ID"></TextView>
-        <TextView android:textStyle="bold"
-            android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
-            android:layout_height="match_parent" android:layout_weight="0.8" android:text="Amount"></TextView>
-        <TextView android:textStyle="bold"
-            android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
-            android:layout_height="match_parent" android:layout_weight="0.8" android:text="Status"></TextView>
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_weight="0.87"
+        android:layout_height="match_parent">
+        <!--<EditText
+            android:layout_width="match_parent" android:hint="Order Id"
+            android:layout_height="match_parent">
 
-    </LinearLayout>-->
+        </EditText>-->
+        <AutoCompleteTextView
+            android:id="@+id/auto_shopownerorderhistory_orderid" android:hint="Enter Order ID"
+            android:layout_width="match_parent" android:paddingLeft="10dp"
+            android:layout_height="match_parent">
+
+        </AutoCompleteTextView>
+    </LinearLayout>
 
     <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@android:color/darker_gray"/>
 
     <LinearLayout
-        android:layout_width="match_parent" android:layout_weight="0.1"
+        android:layout_width="match_parent" android:layout_weight="0.15"
         android:layout_height="match_parent" android:layout_marginTop="5dp">
         <ListView
             android:layout_width="match_parent" android:id="@+id/listShopOwnerOrder" android:divider="@android:color/transparent"

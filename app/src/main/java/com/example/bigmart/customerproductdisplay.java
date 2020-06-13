@@ -1,6 +1,8 @@
 package com.example.bigmart;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
@@ -45,85 +47,8 @@ public class customerproductdisplay extends AppCompatActivity {
                 productQty = cartProduct.QtyNos;
         }
 
-        /*DatabaseReference databaseReference = database.getReference("Users/"+userID+"/TempOrder/");
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    Product product = postSnapshot.getValue(Product.class);
-                    product.setID(postSnapshot.getKey());
-                    if (productID.equals(product.ID))
-                        productQty=product.QtyNos;
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
-        //databaseReference.child(""+product.ID).setValue(product);
-
-        /*final Query cartquery = database.getReference("Users/"+userID+"/TempOrder");
-        cartquery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //cartProducts.clear();
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    Product product = postSnapshot.getValue(Product.class);
-                    product.setID(postSnapshot.getKey());
-                    if (productID.equals(product.ID))
-                        productQty=product.QtyNos;
-                    //cartProducts.add(product);
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
-
         return productQty;
     }
-/*
-    @Override
-    protected void onResume() {
-        final FirebaseDatabase database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
-        Query query = database.getReference("/Products");
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                products.clear();
-
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren())
-                {
-                    Product product = postSnapshot.getValue(Product.class);
-                    product.setID(postSnapshot.getKey());
-
-                    product.setQtyNos(isProductInCart(product.ID));
-
-                    if(searchItem.length() > 0)
-                    {
-                        if (product.Name.toLowerCase().contains(searchItem.toLowerCase()))
-                            products.add(product);
-                    }
-                    else {
-                        if (subcategoryName.equals(product.SubCategory))
-                            products.add(product);
-                    }
-                    adapterProduct productAdaper = new adapterProduct(productdisplay.this,R.layout.itemproduct,products, userID,1);
-                    productList.setAdapter(productAdaper);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        super.onResume();
-    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -235,6 +160,32 @@ public class customerproductdisplay extends AppCompatActivity {
         icon.setDrawableByLayerId(R.id.ic_badge, badge);
     }
 
+    public void showLogoutAlertDialog(){
+
+        AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(customerproductdisplay.this);
+        logoutAlertBuilder.setMessage("Are you sure to Logout ?");
+        logoutAlertBuilder.setCancelable(false);
+        logoutAlertBuilder.setPositiveButton(
+                "YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent logoutIntent = new Intent(customerproductdisplay.this, login.class);
+                        logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(logoutIntent);
+                        finish();
+                    }
+                });
+        logoutAlertBuilder.setNegativeButton(
+                "NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertLogout = logoutAlertBuilder.create();
+        alertLogout.show();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -244,13 +195,32 @@ public class customerproductdisplay extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.menu_viewcart) {
-            Intent viewCartIntent = new Intent(customerproductdisplay.this, customercartdisplay.class);
-            Bundle extras = new Bundle();
-            extras.putLong("userID", userID);
-            viewCartIntent.putExtras(extras);
-            startActivity(viewCartIntent);
-            finish();
-            //return true;
+            Query query = database.getReference("Users/"+userID+"/TempOrder");
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.exists())
+                    {
+                        Intent viewCartIntent = new Intent(customerproductdisplay.this, customercartdisplay.class);
+                        Bundle extras = new Bundle();
+                        extras.putLong("userID", userID);
+                        viewCartIntent.putExtras(extras);
+                        startActivity(viewCartIntent);
+                        finish();
+                    }
+                    else
+                    {
+                        Toast error = Toast.makeText(customerproductdisplay.this, "No Items In Cart !",Toast.LENGTH_SHORT);
+                        error.setGravity(Gravity.TOP, 0, 0);
+                        error.show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
         }
         if (id == R.id.menu_orderhistory) {
             Intent viewCartIntent = new Intent(customerproductdisplay.this, customerorderhistory.class);
@@ -272,15 +242,15 @@ public class customerproductdisplay extends AppCompatActivity {
         }
 
         if (id == R.id.menu_logout) {
-            Intent logoutIntent = new Intent(customerproductdisplay.this, login.class);
-            logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            Toast error = Toast.makeText(customerproductdisplay.this, "Logout Successful",Toast.LENGTH_SHORT);
-            error.setGravity(Gravity.TOP, 0, 0);
-            error.show();
-            startActivity(logoutIntent);
-            finish();
+            showLogoutAlertDialog();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
     }
 }

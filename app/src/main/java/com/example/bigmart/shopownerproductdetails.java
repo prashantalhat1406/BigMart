@@ -34,8 +34,9 @@ public class shopownerproductdetails extends AppCompatActivity {
     Spinner spncategory, spnsubcategory;
     Button butsave, butdelete;
     EditText edtName, edtName2, edtDisplayname, edtMRP, edtDiscount, edtGST, edtQTY, edtHSN, edtType, edtMaxStock, edtMinStock;
-    String productID, action;
+    String productID, action, productSubCategory;
     ArrayAdapter<String> categoryAdapter, subcategoryAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +53,6 @@ public class shopownerproductdetails extends AppCompatActivity {
         SubCategories = new ArrayList<SubCategory>();
         strCategories = new ArrayList<String>();
         strSubCategories = new ArrayList<String>();
-        //ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>();
-        //categoryAdapter = new ArrayAdapter<String>(shopownerproductddetails.this,R.layout.support_simple_spinner_dropdown_item,strCategories);
         spncategory = findViewById(R.id.spn_product_category);
         spnsubcategory = findViewById(R.id.spn_product_subcategory);
         spnsubcategory.setEnabled(false);
@@ -84,25 +83,25 @@ public class shopownerproductdetails extends AppCompatActivity {
                     strCategories.add(category.Name);
                 }
                 categoryAdapter = new ArrayAdapter<String>(shopownerproductdetails.this,R.layout.support_simple_spinner_dropdown_item,strCategories);
-                //clubAdapter.setDropDownViewResource(R.layout.layout_dropdown_item);
                 spncategory.setAdapter(categoryAdapter);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {     }
         });
 
-        Query subcategoryQuery = database.getReference("/SubCategories");
+        final Query subcategoryQuery = database.getReference("/SubCategories");
         subcategoryQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    SubCategory subCategory = postSnapshot.getValue(SubCategory.class);
-                    SubCategories.add(subCategory);
-                    strSubCategories.add(subCategory.Name);
-                }
-                subcategoryAdapter = new ArrayAdapter<String>(shopownerproductdetails.this,R.layout.support_simple_spinner_dropdown_item,strSubCategories);
-                //clubAdapter.setDropDownViewResource(R.layout.layout_dropdown_item);
-                spnsubcategory.setAdapter(subcategoryAdapter);
+
+                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                        SubCategory subCategory = postSnapshot.getValue(SubCategory.class);
+                        SubCategories.add(subCategory);
+                        strSubCategories.add(subCategory.Name);
+                    }
+                    subcategoryAdapter = new ArrayAdapter<String>(shopownerproductdetails.this, R.layout.support_simple_spinner_dropdown_item, strSubCategories);
+                    spnsubcategory.setAdapter(subcategoryAdapter);
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {     }
@@ -111,16 +110,16 @@ public class shopownerproductdetails extends AppCompatActivity {
         spncategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                strSubCategories.clear();
-                for (SubCategory subCategory : SubCategories) {
-                    if(subCategory.Category.toUpperCase().equals(strCategories.get(position).toString().toUpperCase()))
-                    {
-                        strSubCategories.add(subCategory.Name);
+                    strSubCategories.clear();
+                    for (SubCategory subCategory : SubCategories) {
+                        if (subCategory.Category.toUpperCase().equals(strCategories.get(position).toString().toUpperCase())) {
+                            strSubCategories.add(subCategory.Name);
+                        }
                     }
-                }
-                subcategoryAdapter = new ArrayAdapter<String>(shopownerproductdetails.this,R.layout.support_simple_spinner_dropdown_item,strSubCategories);
-                spnsubcategory.setAdapter(subcategoryAdapter);
-                spnsubcategory.setEnabled(true);
+                    subcategoryAdapter = new ArrayAdapter<String>(shopownerproductdetails.this, R.layout.support_simple_spinner_dropdown_item, strSubCategories);
+                    spnsubcategory.setAdapter(subcategoryAdapter);
+                    spnsubcategory.setEnabled(true);
+                    spnsubcategory.setSelection(subcategoryAdapter.getPosition(productSubCategory));
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {             }
@@ -150,10 +149,7 @@ public class shopownerproductdetails extends AppCompatActivity {
                 if (action.equals("edit"))
                 {
                     DatabaseReference databaseReference = database.getReference("Products/");
-                    //databaseReference.push().setValue(product);
-                    //DatabaseReference databaseReference = database.getReference("Users/"+userID+"/TempOrder");
                     databaseReference.child(""+productID).setValue(product);
-
                     Toast t = Toast.makeText(shopownerproductdetails.this, "Product Details Edited", Toast.LENGTH_SHORT);
                     t.setGravity(Gravity.TOP, 0, 0);
                     t.show();
@@ -170,13 +166,10 @@ public class shopownerproductdetails extends AppCompatActivity {
             }
         });
 
-        butdelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
 
-        if (action.equals("edit")){
+
+        if (action.equals("edit"))
+        {
 
             DatabaseReference databaseReference = database.getReference("Products/" + productID);
             databaseReference.addValueEventListener(new ValueEventListener() {
@@ -195,6 +188,8 @@ public class shopownerproductdetails extends AppCompatActivity {
                     edtGST.setText("" + product.GST);
                     edtQTY.setText("" + product.Qty);
 
+
+                    productSubCategory = product.SubCategory;
                     categoryAdapter = new ArrayAdapter<String>(shopownerproductdetails.this,R.layout.support_simple_spinner_dropdown_item,strCategories);
                     int categoryPos = categoryAdapter.getPosition(product.Category);
                     spncategory.setSelection(categoryPos);

@@ -104,22 +104,22 @@
         <LinearLayout android:orientation="horizontal"
             android:layout_width="match_parent" android:layout_weight="0.4"
             android:layout_height="match_parent">
-            <Button android:id="@+id/but_customer_orderdetail_cancel" android:layout_weight="0.5"
+            <Button android:id="@+id/but_customer_orderdetail_cancel" android:layout_weight="0.6"
                 android:layout_width="match_parent" android:background="@drawable/roundbutton" android:backgroundTint="@color/blueColorButton"
                 android:layout_height="match_parent" android:text="Cancel Order" android:visibility="visible"> </Button>
 
             <LinearLayout android:id="@+id/layout_custOrderDetails_status"
-                android:layout_width="match_parent" android:layout_weight="0.5" android:visibility="gone" android:layout_gravity="center"
+                android:layout_width="match_parent" android:layout_weight="0.6" android:visibility="gone" android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_height="match_parent" >
                 <TextView android:id="@+id/txt_customer_orderdetails_orderstatus" android:layout_gravity="center" android:gravity="right"
-                    android:layout_width="wrap_content" android:text="Created"
+                    android:layout_width="wrap_content" android:text="Created" android:textSize="18dp"
                     android:layout_height="wrap_content"></TextView>
             </LinearLayout>
 
             <TextView android:id="@+id/txt_customer_orderdetails_totoalAmount"
                 android:layout_width="match_parent" style="@style/totalAmount" android:layout_gravity="center" android:gravity="center"
-                android:layout_height="match_parent" android:layout_weight="0.5" android:text="test"></TextView>
+                android:layout_height="match_parent" android:layout_weight="0.4" android:text="test"></TextView>
         </LinearLayout>
     </LinearLayout>
 

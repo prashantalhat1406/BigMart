@@ -1,6 +1,8 @@
 package com.example.bigmart;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -33,9 +35,11 @@ import android.widget.Toast;
 
 public class home extends AppCompatActivity {
 
+    public Menu homeMenu;
     private long userID;
     private  int count = 0;
     FirebaseDatabase database;
+    EditText search;
     private static final int[] BUTTON_IDS = {
             R.id.but_category_1,
             R.id.but_category_2,
@@ -58,11 +62,23 @@ public class home extends AppCompatActivity {
 
     }
 
+    public void gotoProductDisplay(){
+        Intent productdispalyIntent = new Intent(home.this, customerproductdisplay.class);
+        Bundle extras = new Bundle();
+        extras.putString("searchItem", search.getText().toString().trim());
+        extras.putLong("userID", userID);
+        productdispalyIntent.putExtras(extras);
+        startActivity(productdispalyIntent);
+        finish();
+    }
+
     @Override
     protected void onResume() {
+        supportInvalidateOptionsMenu();
         invalidateOptionsMenu();
         EditText search = findViewById(R.id.edt_home_search);
         search.setText("");
+        //this.onCreateOptionsMenu(homeMenu);
         super.onResume();
     }
 
@@ -89,25 +105,20 @@ public class home extends AppCompatActivity {
 
         }
 
-        final EditText search = findViewById(R.id.edt_home_search);
+        search = findViewById(R.id.edt_home_search);
         search.clearFocus();
         search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    Intent productdispalyIntent = new Intent(home.this, customerproductdisplay.class);
-                    Bundle extras = new Bundle();
-                    extras.putString("searchItem", search.getText().toString());
-                    extras.putLong("userID", userID);
-                    productdispalyIntent.putExtras(extras);
-                    startActivity(productdispalyIntent);
+                    gotoProductDisplay();
                     return true;
                 }
                 return false;
             }
         });
 
-        //Button searchBut = findViewById(R.id.but_home_search);
+
         ImageButton searchBut = findViewById(R.id.but_home_search);
         searchBut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,12 +128,7 @@ public class home extends AppCompatActivity {
                     error.setGravity(Gravity.TOP, 0, 0);
                     error.show();
                 }else {
-                    Intent productdispalyIntent = new Intent(home.this, customerproductdisplay.class);
-                    Bundle extras = new Bundle();
-                    extras.putString("searchItem", search.getText().toString());
-                    extras.putLong("userID", userID);
-                    productdispalyIntent.putExtras(extras);
-                    startActivity(productdispalyIntent);
+                    gotoProductDisplay();
                 }
             }
         });
@@ -152,21 +158,21 @@ public class home extends AppCompatActivity {
 
     }
 
-    public void displaySubCategory(String categoryName)
-    {
+    public void displaySubCategory(String categoryName)    {
         Intent subcatIntent = new Intent(home.this, subcategorydisplay.class);
         Bundle extras = new Bundle();
         extras.putString("categoryName", categoryName);
         extras.putLong("userID", userID);
         subcatIntent.putExtras(extras);
         startActivity(subcatIntent);
+        finish();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.asmmenu, menu);
+        homeMenu = menu;
 
         MenuItem itemCart = menu.findItem(R.id.menu_viewcart);
         final LayerDrawable icon = (LayerDrawable) itemCart.getIcon();
@@ -204,6 +210,32 @@ public class home extends AppCompatActivity {
         icon.setDrawableByLayerId(R.id.ic_badge, badge);
     }
 
+    public void showLogoutAlertDialog(){
+
+        AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(home.this);
+        logoutAlertBuilder.setMessage("Are you sure to Logout ?");
+        logoutAlertBuilder.setCancelable(false);
+        logoutAlertBuilder.setPositiveButton(
+                "YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent logoutIntent = new Intent(home.this, login.class);
+                        logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(logoutIntent);
+                        finish();
+                    }
+                });
+        logoutAlertBuilder.setNegativeButton(
+                "NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertLogout = logoutAlertBuilder.create();
+        alertLogout.show();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -213,12 +245,33 @@ public class home extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.menu_viewcart) {
-            Intent viewCartIntent = new Intent(home.this, customercartdisplay.class);
-            Bundle extras = new Bundle();
-            extras.putLong("userID", userID);
-            viewCartIntent.putExtras(extras);
-            startActivity(viewCartIntent);
-            finish();
+
+            Query query = database.getReference("Users/"+userID+"/TempOrder");
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.exists())
+                    {
+                        Intent viewCartIntent = new Intent(home.this, customercartdisplay.class);
+                        Bundle extras = new Bundle();
+                        extras.putLong("userID", userID);
+                        viewCartIntent.putExtras(extras);
+                        startActivity(viewCartIntent);
+                        finish();
+                    }
+                    else
+                    {
+                        Toast error = Toast.makeText(home.this, "No Items In Cart !",Toast.LENGTH_SHORT);
+                        error.setGravity(Gravity.TOP, 0, 0);
+                        error.show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
             //return true;
         }
 
@@ -243,13 +296,7 @@ public class home extends AppCompatActivity {
         }
 
         if (id == R.id.menu_logout) {
-            Intent logoutIntent = new Intent(home.this, login.class);
-            logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(logoutIntent);
-            Toast error = Toast.makeText(home.this, "Logout Successful",Toast.LENGTH_SHORT);
-            error.setGravity(Gravity.TOP, 0, 0);
-            error.show();
-            finish();
+            showLogoutAlertDialog();
         }
 
         return super.onOptionsItemSelected(item);
@@ -257,9 +304,7 @@ public class home extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent loginIntent = new Intent(home.this, login.class);
-        startActivity(loginIntent);
-        finish();
-        super.onBackPressed();
+        showLogoutAlertDialog();
+
     }
 }

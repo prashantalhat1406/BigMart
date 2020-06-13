@@ -66,7 +66,7 @@ public class shopownerproductdisplay extends AppCompatActivity {
                 else {
                     tempList.clear();
                     for (Product product : products) {
-                        if (product.Name.toUpperCase().contains(edtsearch.getText().toString().toUpperCase()))
+                        if (product.Name.toUpperCase().contains(edtsearch.getText().toString().trim().toUpperCase()))
                             tempList.add(product);
                     }
                 }

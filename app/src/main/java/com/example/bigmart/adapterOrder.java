@@ -73,7 +73,10 @@ public class adapterOrder extends ArrayAdapter<Orders> {
 
         orderID.setText("" + order.ID.substring(order.ID.length() - 5).toUpperCase());
         orderIDDUP.setText("" + order.ID);
-        orderAmount.setText(context.getResources().getString(R.string.Rupee) + " " +  formater.format( order.amount));
+        if (order.amount > 2000)
+            orderAmount.setText(context.getResources().getString(R.string.Rupee) + " " +  formater.format( order.amount + (order.amount*0.02)));
+        else
+            orderAmount.setText(context.getResources().getString(R.string.Rupee) + " " +  formater.format( order.amount + 50));
         orderStatus.setText("" + order.status);
         orderDate.setText("" + order.date);
         orderdeliverytype.setText("" + order.deliveryType);

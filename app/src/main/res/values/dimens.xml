@@ -7,6 +7,7 @@
     <dimen name="ordersumary1row">16dp</dimen>
     <dimen name="ordersumarytoprow">16dp</dimen>
     <dimen name="textButtons">16dp</dimen>
+    <dimen name="textButtonsSmall">14dp</dimen>
     <dimen name="cartItems">12dp</dimen>
     <dimen name="profileLabel">18dp</dimen>
 </resources>

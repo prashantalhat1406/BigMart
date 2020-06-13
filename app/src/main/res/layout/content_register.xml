@@ -20,7 +20,8 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
                 android:layout_height="match_parent"></TextView>
             <EditText android:id="@+id/edt_register_Name"
                 android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
-                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1"
+                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="text"
+                android:tag="Name" android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM "
                 android:layout_height="match_parent" android:hint="Name"/>
             <TextView
                 android:layout_width="match_parent" android:layout_weight="0.5"
@@ -70,8 +71,8 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
                 android:layout_height="match_parent"></TextView>
             <EditText android:id="@+id/edt_register_pin"
                 android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
-                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="number"
-                android:maxLength="4"
+                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="numberPassword"
+                android:maxLength="4" android:drawableRight="@drawable/ic_eye"
                 android:layout_height="match_parent" android:hint="4 Digit Pin"/>
             <TextView
                 android:layout_width="match_parent" android:layout_weight="0.5"
@@ -97,7 +98,8 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
                 android:layout_height="match_parent"></TextView>
             <EditText android:id="@+id/edt_register_Address1"
                 android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
-                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1"
+                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="text"
+                android:gravity="left|center" android:layout_gravity="center" android:tag="Address 1"
                 android:layout_height="match_parent" android:hint="Address 1"/>
             <TextView
                 android:layout_width="match_parent" android:layout_weight="0.5"
@@ -123,7 +125,8 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
                 android:layout_height="match_parent"></TextView>
             <EditText android:id="@+id/edt_register_Address2"
                 android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
-                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1"
+                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="text"
+                android:gravity="left|center" android:layout_gravity="center" android:tag="Address 2"
                 android:layout_height="match_parent" android:hint="Address 2"/>
             <TextView
                 android:layout_width="match_parent" android:layout_weight="0.5"

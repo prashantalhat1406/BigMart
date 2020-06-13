@@ -20,7 +20,7 @@
                 android:layout_height="match_parent"></TextView>
             <EditText android:id="@+id/edt_profile_name"
                 android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
-                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1"
+                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM "
                 android:layout_height="match_parent" android:hint="Name"/>
             <TextView
                 android:layout_width="match_parent" android:layout_weight="0.5"
@@ -69,8 +69,8 @@
                 android:layout_height="match_parent"></TextView>
             <EditText android:id="@+id/edt_profile_address1"
                 android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
-                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1"
-                android:layout_height="match_parent" android:hint="Name"/>
+                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="text"
+                android:layout_height="match_parent" android:hint="Address 1"/>
             <TextView
                 android:layout_width="match_parent" android:layout_weight="0.5"
                 android:layout_height="match_parent"></TextView>
@@ -95,8 +95,8 @@
                 android:layout_height="match_parent"></TextView>
             <EditText android:id="@+id/edt_profile_address2"
                 android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
-                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1"
-                android:layout_height="match_parent" android:hint="Name"/>
+                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="text"
+                android:layout_height="match_parent" android:hint="Address 2"/>
             <TextView
                 android:layout_width="match_parent" android:layout_weight="0.5"
                 android:layout_height="match_parent"></TextView>
@@ -122,7 +122,7 @@
             <EditText android:id="@+id/edt_profile_email"
                 android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
                 android:layout_width="match_parent" android:padding="10dp" android:maxLines="1"
-                android:layout_height="match_parent" android:hint="Name"/>
+                android:layout_height="match_parent" android:hint="Email"/>
             <TextView
                 android:layout_width="match_parent" android:layout_weight="0.5"
                 android:layout_height="match_parent"></TextView>

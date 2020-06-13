@@ -10,6 +10,7 @@
     <color name="blueColorButton">#1E90FF</color>
     <color name="completeStatus">#FFFFFF</color>
     <color name="blacklabels">#000000</color>
+    <color name="lighgrey">#ececec</color>
 
 
 </resources>

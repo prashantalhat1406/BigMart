@@ -81,7 +81,7 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" android:layout_weight="0.3">
+                android:layout_height="match_parent" android:layout_weight="0.31">
                 <Button android:id="@+id/but_item_qtyedit" android:visibility="invisible"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"></Button>
@@ -90,19 +90,25 @@
                 android:layout_width="match_parent" android:orientation="horizontal"
                 android:layout_height="match_parent" android:layout_weight="0.3">
                 <Button android:id="@+id/but_addToCart" android:visibility="visible" android:layout_gravity="center" android:gravity="center"
-                    android:layout_width="match_parent" android:text="Add to Cart" android:backgroundTint="@color/greenColorButton" android:padding="5dp"
-                    android:layout_height="50dp"></Button>
+                    android:layout_width="wrap_content" android:text="  Add to Cart  "
+                      android:paddingRight="10dp"
+                    android:layout_height="40dp"></Button>
+                <!--android:backgroundTint="@color/greenColorButton"-->
                 <LinearLayout android:id="@+id/layout_incrementor" android:visibility="visible"
-                    android:layout_width="match_parent" android:orientation="horizontal" android:layout_gravity="center" android:gravity="center"
-                    android:layout_height="match_parent">
+                    android:layout_width="wrap_content" android:orientation="horizontal" android:layout_gravity="center"
+                    android:gravity="center" android:background="@drawable/button_greyborder"
+                    android:layout_height="wrap_content">
                     <Button android:id="@+id/but_item_minus" android:layout_gravity="center" android:gravity="center"
-                        android:layout_width="40dp" android:text="-" android:backgroundTint="#ffffff" android:textColor="@color/redColorButton"
-                        android:layout_height="40dp" ></Button>
+                        android:layout_width="40dp" android:text="-" android:backgroundTint="#ffffff"
+                        android:textColor="@color/redColorButton"
+                        android:layout_height="40dp" android:textSize="@dimen/profileLabel" ></Button>
                     <TextView android:id="@+id/txt_item_number"
-                        android:layout_width="50dp" android:layout_gravity="center" android:gravity="center" android:textColor="@color/blacklabels"
+                        android:layout_width="50dp" android:layout_gravity="center" android:gravity="center"
+                        android:textColor="@color/blacklabels"
                         android:layout_height="match_parent" android:text="1"></TextView>
                     <Button android:id="@+id/but_item_plus" android:layout_gravity="center" android:gravity="center"
-                        android:layout_width="40dp" android:text="+" android:backgroundTint="#ffffff" android:textColor="@color/greenColorButton"
+                        android:layout_width="40dp" android:text="+" android:backgroundTint="#ffffff"
+                        android:textColor="@color/greenColorButton" android:textSize="@dimen/profileLabel"
                         android:layout_height="40dp"></Button>
                 </LinearLayout>
             </LinearLayout>

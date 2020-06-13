@@ -1,6 +1,7 @@
 package com.example.bigmart;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.text.Layout;
 import android.text.style.StrikethroughSpan;
@@ -48,6 +49,11 @@ public class adapterShopOwnerProduct extends ArrayAdapter<Product> {
 
         TextView no = (TextView)convertView.findViewById(R.id.txt_shopowner_no);
         no.setText(""+(position+1));
+
+        if (position%2 == 0)
+            convertView.setBackgroundColor(Color.WHITE);
+        else
+            convertView.setBackgroundColor(context.getColor(R.color.lighgrey));
 
         TextView name = (TextView)convertView.findViewById(R.id.txt_shopowner_productname);
         name.setText(""+product.getName());

@@ -39,11 +39,13 @@
         <activity
             android:name=".shopownerorderdetails"
             android:label="@string/title_activity_orderdetaildisplay"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".shopownerordershistory"
             android:label="@string/title_activity_shopownerordershistory"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".shopownerhome"
             android:label="@string/title_activity_shopownerhome"

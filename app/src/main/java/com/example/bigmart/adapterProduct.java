@@ -1,6 +1,9 @@
 package com.example.bigmart;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.text.Layout;
 import android.text.style.StrikethroughSpan;
@@ -19,6 +22,7 @@ import android.widget.Toast;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -43,7 +47,7 @@ public class adapterProduct extends ArrayAdapter<Product> {
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         //return super.getView(position, convertView, parent);
 
         if(convertView == null){
@@ -104,7 +108,7 @@ public class adapterProduct extends ArrayAdapter<Product> {
         if (product.Qty < product.MinStock)
         {
             atc.setEnabled(false);
-            atc.setBackground(context.getDrawable( R.drawable.roundbutton_grey));
+            atc.setBackground(context.getDrawable(R.drawable.status_complete_disable));
             productImage.setImageResource(outofstock);
         }else {
             atc.setEnabled(true);
@@ -145,6 +149,11 @@ public class adapterProduct extends ArrayAdapter<Product> {
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent bintIntent = new Intent("message_subject_intent");
+                bintIntent.putExtra("position", position);
+                LocalBroadcastManager.getInstance(context).sendBroadcast(bintIntent);
+
+
                 final FirebaseDatabase database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
                 product = products.get((Integer) v.getTag());
                 if(product.QtyNos < 5) {
@@ -156,9 +165,20 @@ public class adapterProduct extends ArrayAdapter<Product> {
                     savedamount.setText(context.getResources().getString(R.string.Rupee) + " " + formater.format((product.Discount * product.QtyNos)));
                     bmaamount.setText(context.getResources().getString(R.string.Rupee) + " " + formater.format(((product.MRP - product.Discount) * product.QtyNos)));
                 }else{
-                    Toast error = Toast.makeText(getContext(), "Max Limit Reached",Toast.LENGTH_SHORT);
-                    error.setGravity(Gravity.TOP, 0, 0);
-                    error.show();
+
+                    AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+                    builder1.setMessage("Max Limit Reached");
+                    builder1.setCancelable(false);
+                    builder1.setPositiveButton(
+                            "Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog alert11 = builder1.create();
+                    alert11.show();
+
                 }
 
             }
@@ -169,6 +189,10 @@ public class adapterProduct extends ArrayAdapter<Product> {
         minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent bintIntent = new Intent("message_subject_intent");
+                bintIntent.putExtra("position", position);
+                LocalBroadcastManager.getInstance(context).sendBroadcast(bintIntent);
+
                 final FirebaseDatabase database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
                 product = products.get((Integer) v.getTag());
                 product.setQtyNos(product.getQtyNos() - 1);

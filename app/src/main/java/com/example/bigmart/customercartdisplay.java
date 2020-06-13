@@ -1,7 +1,11 @@
 package com.example.bigmart;
 
+import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
@@ -17,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.view.Gravity;
 import android.view.Menu;
@@ -35,6 +40,7 @@ import java.util.Date;
 import java.util.List;
 
 public class customercartdisplay extends AppCompatActivity {
+    public Integer listPosition = 0;
     private List<Product> products;
     ListView productList;
     private long userID;
@@ -59,6 +65,16 @@ public class customercartdisplay extends AppCompatActivity {
         //super.onBackPressed();
     }
 
+    public BroadcastReceiver positionMes = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            listPosition = intent.getIntExtra("position",0);
+            //Toast.makeText(customercartdisplay.this, "" + productList.getLastVisiblePosition(),Toast.LENGTH_SHORT).show();
+        }
+    };
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +82,11 @@ public class customercartdisplay extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Bundle b = getIntent().getExtras();
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(positionMes,new IntentFilter("message_subject_intent"));
+
+
+                Bundle b = getIntent().getExtras();
         userID = b.getLong("userID");
 
         products = new ArrayList<Product>();
@@ -80,56 +100,6 @@ public class customercartdisplay extends AppCompatActivity {
                 flag = true;
                 Intent intent = new Intent(customercartdisplay.this,customerdeliverypayment.class);
                 startActivityForResult(intent, 100);
-
-                /*DatabaseReference productReference = database.getReference("Users/"+userID).child("/TempOrder");
-                Query query = productReference.orderByKey();
-                query.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (flag) {
-
-                            List<Product> products = new ArrayList<Product>();
-                            for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                                products.add(postSnapshot.getValue(Product.class));
-                            }
-                            DatabaseReference orderReference = database.getReference("Orders/");
-                            orderID = orderReference.push().getKey();
-                            Orders orders = new Orders();
-                            orders.setID(orderID);
-                            orders.setUserID(userID);
-                            orders.setAmount(TotalPrice);
-
-                            Date c = Calendar.getInstance().getTime();
-                            SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-                            String formattedDate = df.format(c);
-
-                            orders.setDate(formattedDate);
-                            orders.setDeliveryType("HomeD");
-                            orders.setPaymentMode("Card");
-                            orders.setStatus("Created");
-                            orderReference.child("" + orderID).setValue(orders);
-
-                            for (Product product : products) {
-                                DatabaseReference productReference = database.getReference("Orders/" + orderID + "/Products");
-                                productReference.push().setValue(product);
-                            }
-
-                            DatabaseReference databaseReference = database.getReference("Users/" + userID + "/TempOrder");
-                            databaseReference.removeValue();
-                            flag = false;
-                            Toast error = Toast.makeText(customercartdisplay.this, "Thank you. Order placed",Toast.LENGTH_SHORT);
-                            error.setGravity(Gravity.TOP, 0, 0);
-                            error.show();
-                            goToHome();
-                            finish();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                    }
-                });*/
-
             }
         });
 
@@ -147,9 +117,30 @@ public class customercartdisplay extends AppCompatActivity {
         butRemoveAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseReference databaseReference = database.getReference("Users/"+userID+"/TempOrder");
-                databaseReference.removeValue();
-                goToHome();
+
+                AlertDialog.Builder removeAllAlertBuilder = new AlertDialog.Builder(customercartdisplay.this);
+                removeAllAlertBuilder.setMessage("Are you sure to Remove All items ?");
+                removeAllAlertBuilder.setCancelable(false);
+                removeAllAlertBuilder.setPositiveButton(
+                        "YES", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                DatabaseReference databaseReference = database.getReference("Users/"+userID+"/TempOrder");
+                                databaseReference.removeValue();
+                                goToHome();
+                            }
+                        });
+                removeAllAlertBuilder.setNegativeButton(
+                        "NO", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alertRemoveall = removeAllAlertBuilder.create();
+                alertRemoveall.show();
+
+
 
             }
         });
@@ -158,25 +149,28 @@ public class customercartdisplay extends AppCompatActivity {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                //Toast.makeText(customercartdisplay.this, "" + productList.getLastVisiblePosition(),Toast.LENGTH_SHORT).show();
+                //Integer position =  productList.getSelectedItemPosition();
                 products.clear();
                 TotalPrice = 0.0;
+                Double TotalSavings = 0.0;
                 int count = 0;
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     Product product = postSnapshot.getValue(Product.class);
                     product.setID(postSnapshot.getKey());
                     products.add(product);
                     TotalPrice = TotalPrice + (product.QtyNos * (product.MRP -  product.Discount.doubleValue()));
+                    TotalSavings = TotalSavings + (product.QtyNos * product.Discount.doubleValue() );
                     count = count + product.QtyNos;
                 }
 
                 TextView totalPrice = findViewById(R.id.txt_cartdisplay_totalamount);
                 DecimalFormat formater = new DecimalFormat("0.00");
-                totalPrice.setText("Total : "+ customercartdisplay.this.getResources().getString(R.string.Rupee) +formater.format(TotalPrice));
+                totalPrice.setText("Total : "+ customercartdisplay.this.getResources().getString(R.string.Rupee) + " " +formater.format(TotalPrice));
 
                 if(products.size() == 0)
                 {
-                    //Toast.makeText(cartdisplay.this, "No Items in Cart. Please add items to view Cart.", Toast.LENGTH_SHORT).show();
-                    //finish();
                     butConfirm.setEnabled(false);
                     butRemoveAll.setEnabled(false);
                     butRemoveAll.setVisibility(View.INVISIBLE);
@@ -188,11 +182,12 @@ public class customercartdisplay extends AppCompatActivity {
 
                     adapterProduct productAdaper = new adapterProduct(customercartdisplay.this, R.layout.itemproduct, products, userID, 2);
                     productList.setAdapter(productAdaper);
-                    TextView noOfProcts = findViewById(R.id.txt_cartdisplay_totalnoofproduct);
-                    noOfProcts.setText("" + count + " items in cart");
+                    productList.setSelection(listPosition);
 
-                //}
-
+                    TextView totSave = findViewById(R.id.txt_cartdisplay_totalsavings);
+                    totSave.setText("Savings : " + customercartdisplay.this.getResources().getString(R.string.Rupee) +" "+formater.format(TotalSavings));
+                    if (count == 0)
+                        goToHome();
             }
 
             @Override
@@ -209,55 +204,55 @@ public class customercartdisplay extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 100)
         {
-            DatabaseReference productReference = database.getReference("Users/"+userID).child("/TempOrder");
-            Query query = productReference.orderByKey();
-            query.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (flag) {
+            if (data.getStringExtra("type").length() != 0) {
+                DatabaseReference productReference = database.getReference("Users/" + userID).child("/TempOrder");
+                Query query = productReference.orderByKey();
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (flag) {
+                            List<Product> products = new ArrayList<Product>();
+                            for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                                products.add(postSnapshot.getValue(Product.class));
+                            }
+                            DatabaseReference orderReference = database.getReference("Orders/");
+                            orderID = orderReference.push().getKey();
+                            Orders orders = new Orders();
+                            orders.setID(orderID);
+                            orders.setUserID(userID);
+                            orders.setAmount(TotalPrice);
 
-                        List<Product> products = new ArrayList<Product>();
-                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                            products.add(postSnapshot.getValue(Product.class));
+                            Date c = Calendar.getInstance().getTime();
+                            SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+                            String formattedDate = df.format(c);
+
+                            orders.setDate(formattedDate);
+                            orders.setDeliveryType(data.getStringExtra("type"));
+                            orders.setPaymentMode("Card");
+                            orders.setStatus("Created");
+                            orderReference.child("" + orderID).setValue(orders);
+
+                            for (Product product : products) {
+                                DatabaseReference productReference = database.getReference("Orders/" + orderID + "/Products");
+                                productReference.push().setValue(product);
+                            }
+
+                            DatabaseReference databaseReference = database.getReference("Users/" + userID + "/TempOrder");
+                            databaseReference.removeValue();
+                            flag = false;
+                            Toast error = Toast.makeText(customercartdisplay.this, "Thank you. Order placed", Toast.LENGTH_SHORT);
+                            error.setGravity(Gravity.TOP, 0, 0);
+                            error.show();
+                            goToHome();
+                            finish();
                         }
-                        DatabaseReference orderReference = database.getReference("Orders/");
-                        orderID = orderReference.push().getKey();
-                        Orders orders = new Orders();
-                        orders.setID(orderID);
-                        orders.setUserID(userID);
-                        orders.setAmount(TotalPrice);
-
-                        Date c = Calendar.getInstance().getTime();
-                        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-                        String formattedDate = df.format(c);
-
-                        orders.setDate(formattedDate);
-                        orders.setDeliveryType(data.getStringExtra("type"));
-                        orders.setPaymentMode("Card");
-                        orders.setStatus("Created");
-                        orderReference.child("" + orderID).setValue(orders);
-
-                        for (Product product : products) {
-                            DatabaseReference productReference = database.getReference("Orders/" + orderID + "/Products");
-                            productReference.push().setValue(product);
-                        }
-
-                        DatabaseReference databaseReference = database.getReference("Users/" + userID + "/TempOrder");
-                        databaseReference.removeValue();
-                        flag = false;
-                        Toast error = Toast.makeText(customercartdisplay.this, "Thank you. Order placed",Toast.LENGTH_SHORT);
-                        error.setGravity(Gravity.TOP, 0, 0);
-                        error.show();
-                        goToHome();
-                        finish();
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                }
-            });
-
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });
+            }
         }
     }
 
@@ -302,6 +297,32 @@ public class customercartdisplay extends AppCompatActivity {
         icon.setDrawableByLayerId(R.id.ic_badge, badge);
     }
 
+    public void showLogoutAlertDialog(){
+
+        AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(customercartdisplay.this);
+        logoutAlertBuilder.setMessage("Are you sure to Logout ?");
+        logoutAlertBuilder.setCancelable(false);
+        logoutAlertBuilder.setPositiveButton(
+                "YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent logoutIntent = new Intent(customercartdisplay.this, login.class);
+                        logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(logoutIntent);
+                        finish();
+                    }
+                });
+        logoutAlertBuilder.setNegativeButton(
+                "NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertLogout = logoutAlertBuilder.create();
+        alertLogout.show();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -311,12 +332,32 @@ public class customercartdisplay extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.menu_viewcart) {
-            Intent viewCartIntent = new Intent(customercartdisplay.this, customercartdisplay.class);
-            Bundle extras = new Bundle();
-            extras.putLong("userID", userID);
-            viewCartIntent.putExtras(extras);
-            startActivity(viewCartIntent);
-            finish();
+            Query query = database.getReference("Users/"+userID+"/TempOrder");
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.exists())
+                    {
+                        Intent viewCartIntent = new Intent(customercartdisplay.this, customercartdisplay.class);
+                        Bundle extras = new Bundle();
+                        extras.putLong("userID", userID);
+                        viewCartIntent.putExtras(extras);
+                        startActivity(viewCartIntent);
+                        finish();
+                    }
+                    else
+                    {
+                        Toast error = Toast.makeText(customercartdisplay.this, "No Items In Cart !",Toast.LENGTH_SHORT);
+                        error.setGravity(Gravity.TOP, 0, 0);
+                        error.show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
             //return true;
         }
         if (id == R.id.menu_orderhistory) {
@@ -340,13 +381,7 @@ public class customercartdisplay extends AppCompatActivity {
         }
 
         if (id == R.id.menu_logout) {
-            Intent logoutIntent = new Intent(customercartdisplay.this, login.class);
-            logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            Toast error = Toast.makeText(customercartdisplay.this, "Logout Successful",Toast.LENGTH_SHORT);
-            error.setGravity(Gravity.TOP, 0, 0);
-            error.show();
-            startActivity(logoutIntent);
-            finish();
+            showLogoutAlertDialog();
         }
 
         return super.onOptionsItemSelected(item);
