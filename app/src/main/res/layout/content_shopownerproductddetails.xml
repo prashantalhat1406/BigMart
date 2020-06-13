@@ -93,7 +93,7 @@
                         android:layout_height="match_parent"></TextView>
                     <EditText android:id="@+id/edt_productdetails_Name"
                         android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
-                        android:layout_width="match_parent" android:padding="10dp"
+                        android:layout_width="match_parent" android:padding="10dp" android:inputType="text"
                         android:maxLines="1" android:nextFocusDown="@id/edt_productdetails_Name2"
                         android:layout_height="match_parent" android:hint="Name"/>
                     <TextView
@@ -120,7 +120,7 @@
                         android:layout_height="match_parent"></TextView>
                     <EditText android:id="@+id/edt_productdetails_Name2"
                         android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
-                        android:layout_width="match_parent" android:padding="10dp"
+                        android:layout_width="match_parent" android:padding="10dp" android:inputType="text"
                         android:maxLines="1" android:nextFocusDown="@id/edt_productdetails_DisplayName"
                         android:layout_height="match_parent" android:hint="Name2"/>
                     <TextView
@@ -147,7 +147,7 @@
                         android:layout_height="match_parent"></TextView>
                     <EditText android:id="@+id/edt_productdetails_DisplayName"
                         android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
-                        android:layout_width="match_parent" android:padding="10dp"
+                        android:layout_width="match_parent" android:padding="10dp" android:inputType="text"
                         android:maxLines="1" android:nextFocusDown="@id/edt_productdetails_MRP"
                         android:layout_height="match_parent" android:hint="Display Name"/>
                     <TextView
