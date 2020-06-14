@@ -38,6 +38,64 @@ public class shopownerproductdetails extends AppCompatActivity {
     ArrayAdapter<String> categoryAdapter, subcategoryAdapter;
     ArrayAdapter<String> PTadapter;
 
+    public void showErrorMessage(String message){
+        Toast error = Toast.makeText(shopownerproductdetails.this, message,Toast.LENGTH_SHORT);
+        error.setGravity(Gravity.TOP, 0, 0);
+        error.show();
+    }
+
+
+    public boolean fieldValidated(){
+        boolean flag = true;
+
+        if (edtName.getText().toString().trim().length() == 0)
+        {
+            flag = false;
+            showErrorMessage("Name should not be empty");
+        }else
+            if (edtMRP.getText().toString().trim().length() == 0)
+            {
+                flag = false;
+                showErrorMessage("MRP should not be empty");
+            }else
+                if (edtDiscount.getText().toString().length() == 0)
+                {
+                    flag = false;
+                    showErrorMessage("Discount should not be empty");
+                }else
+                    if (edtGST.getText().toString().length() == 0)
+                    {
+                        flag = false;
+                        showErrorMessage("GST should not be empty");
+                    }else
+                        if (edtQTY.getText().toString().length() == 0)
+                        {
+                            flag = false;
+                            showErrorMessage("Quantity should not be empty");
+                        }else
+                            if (edtHSN.getText().toString().length() == 0)
+                            {
+                                flag = false;
+                                showErrorMessage("HSN should not be empty");
+                            }else
+                                if (edtMaxStock.getText().toString().length() == 0)
+                                {
+                                    flag = false;
+                                    showErrorMessage("Max Stock should not be empty");
+                                }else
+                                    if (edtMinStock.getText().toString().length() == 0)
+                                    {
+                                        flag = false;
+                                        showErrorMessage("Minimum Stock should not be empty");
+                                    }else
+                                        if (Integer.parseInt(edtQTY.getText().toString()) < Integer.parseInt(edtMinStock.getText().toString()) )
+                                        {
+                                            flag = false;
+                                            showErrorMessage("Quantity should not be less than Minimum Stock");
+                                        }
+
+        return flag;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,41 +193,42 @@ public class shopownerproductdetails extends AppCompatActivity {
             public void onClick(View v)
             {
 
-                Product product = new Product();
-                product.setName("" + edtName.getText().toString());
-                product.setName2("" + edtName2.getText().toString());
-                product.setQtyNos(0);
-                product.setQty(Integer.parseInt(edtQTY.getText().toString()));
-                product.setMinStock(Integer.parseInt(edtMinStock.getText().toString()));
-                product.setMaxStock(Integer.parseInt(edtMaxStock.getText().toString()));
-                product.setMRP(Double.parseDouble(edtMRP.getText().toString()));
-                product.setDisplayName("" + edtDisplayname.getText().toString());
-                product.setDiscount(Integer.parseInt(edtDiscount.getText().toString()));
-                product.setCategory(spncategory.getSelectedItem().toString());
-                product.setSubCategory(spnsubcategory.getSelectedItem().toString());
-                product.setHSN(Integer.parseInt(edtHSN.getText().toString()));
-                //product.setType(edtType.getText().toString());
-                product.setType(spnType.getSelectedItem().toString());
-                product.setGST(Integer.parseInt(edtGST.getText().toString()));
+                if (fieldValidated()) {
+                    Product product = new Product();
+                    product.setName("" + edtName.getText().toString());
+                    product.setName2("" + edtName2.getText().toString());
+                    product.setQtyNos(0);
+                    product.setQty(Integer.parseInt(edtQTY.getText().toString()));
+                    product.setMinStock(Integer.parseInt(edtMinStock.getText().toString()));
+                    product.setMaxStock(Integer.parseInt(edtMaxStock.getText().toString()));
+                    product.setMRP(Double.parseDouble(edtMRP.getText().toString()));
+                    product.setDisplayName("" + edtDisplayname.getText().toString());
+                    product.setDiscount(Integer.parseInt(edtDiscount.getText().toString()));
+                    product.setCategory(spncategory.getSelectedItem().toString());
+                    product.setSubCategory(spnsubcategory.getSelectedItem().toString());
+                    product.setHSN(Integer.parseInt(edtHSN.getText().toString()));
+                    //product.setType(edtType.getText().toString());
+                    product.setType(spnType.getSelectedItem().toString());
+                    product.setGST(Integer.parseInt(edtGST.getText().toString()));
 
 
-                if (action.equals("edit"))
-                {
-                    DatabaseReference databaseReference = database.getReference("Products/");
-                    databaseReference.child(""+productID).setValue(product);
-                    Toast t = Toast.makeText(shopownerproductdetails.this, "Product Details Edited", Toast.LENGTH_SHORT);
-                    t.setGravity(Gravity.TOP, 0, 0);
-                    t.show();
-                }else {
-                    DatabaseReference databaseReference = database.getReference("Products/");
-                    databaseReference.push().setValue(product);
-                    Toast t = Toast.makeText(shopownerproductdetails.this, "New Product Added", Toast.LENGTH_SHORT);
-                    t.setGravity(Gravity.TOP, 0, 0);
-                    t.show();
+                    if (action.equals("edit")) {
+                        DatabaseReference databaseReference = database.getReference("Products/");
+                        databaseReference.child("" + productID).setValue(product);
+                        Toast t = Toast.makeText(shopownerproductdetails.this, "Product Details Edited", Toast.LENGTH_SHORT);
+                        t.setGravity(Gravity.TOP, 0, 0);
+                        t.show();
+                    } else {
+                        DatabaseReference databaseReference = database.getReference("Products/");
+                        databaseReference.push().setValue(product);
+                        Toast t = Toast.makeText(shopownerproductdetails.this, "New Product Added", Toast.LENGTH_SHORT);
+                        t.setGravity(Gravity.TOP, 0, 0);
+                        t.show();
+                    }
+
+
+                    finish();
                 }
-
-
-                finish();
             }
         });
 
