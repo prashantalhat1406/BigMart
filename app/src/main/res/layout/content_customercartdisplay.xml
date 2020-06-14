@@ -5,8 +5,41 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+    <LinearLayout android:id="@+id/layout_cart_empty"
+        android:layout_width="match_parent" android:orientation="vertical"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_weight="0.3"
+            android:layout_height="match_parent">
 
-    <LinearLayout
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_weight="0.4" android:orientation="vertical"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="match_parent" android:layout_weight="0.2"
+                android:layout_height="match_parent" android:src="@drawable/ic_shopping_basket"> </ImageView>
+            <TextView
+                android:layout_width="wrap_content" android:textStyle="bold"
+                android:layout_height="wrap_content" android:text="You Cart is Empty" android:layout_gravity="center"></TextView>
+            <Button android:id="@+id/but_cart_continueShopping"
+                android:layout_width="wrap_content" android:layout_weight="0.3" android:paddingLeft="20dp" android:paddingRight="20dp"
+                android:layout_height="match_parent" android:layout_gravity="center" android:text="Continue Shopping"
+                android:background="@color/darkgreenColorButton" android:textColor="#ffffff">
+
+            </Button>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_weight="0.3"
+            android:layout_height="match_parent">
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/layout_cart_price"
             android:layout_width="match_parent" android:orientation="vertical" android:layout_gravity="right"
             android:layout_height="match_parent" android:layout_weight="0.8">
 
@@ -21,7 +54,7 @@
 
         </LinearLayout>
 
-    <LinearLayout
+    <LinearLayout android:id="@+id/layout_cart_list"
             android:layout_width="match_parent" android:layout_weight="0.25"
             android:layout_height="match_parent" android:layout_marginTop="5dp">
             <ListView
@@ -36,7 +69,8 @@
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"/>
 
-    <LinearLayout android:orientation="vertical"
+    <LinearLayout android:id="@+id/layout_cart_buttons"
+        android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent" android:layout_weight="0.75">
 

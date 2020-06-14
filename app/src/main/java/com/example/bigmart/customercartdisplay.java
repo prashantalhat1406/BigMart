@@ -28,6 +28,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +50,7 @@ public class customercartdisplay extends AppCompatActivity {
     private Boolean flag = false;
     private Double TotalPrice = 0.0;
     FirebaseDatabase database;
+    LinearLayout emptyCart,list,buttons, price;
 
     public void goToHome(){
         Intent homeIntent = new Intent(customercartdisplay.this, home.class);
@@ -93,6 +95,11 @@ public class customercartdisplay extends AppCompatActivity {
         productList = findViewById(R.id.listCart);
         database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
 
+        emptyCart = findViewById(R.id.layout_cart_empty);
+        list = findViewById(R.id.layout_cart_list);
+        buttons = findViewById(R.id.layout_cart_buttons);
+        price  = findViewById(R.id.layout_cart_price);
+
         final Button butConfirm = findViewById(R.id.but_cart_confirm);
         butConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,9 +110,17 @@ public class customercartdisplay extends AppCompatActivity {
             }
         });
 
+        Button buttonContinueShopping = findViewById(R.id.but_cart_continueShopping);
+        buttonContinueShopping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToHome();
+            }
+        });
+
         //Button butContinueShopping = findViewById(R.id.but_cart_continueshopping);
-        TextView butContinueShopping = findViewById(R.id.txt_cart_continue);
-        butContinueShopping.setOnClickListener(new View.OnClickListener() {
+        TextView txtContinueShopping = findViewById(R.id.txt_cart_continue);
+        txtContinueShopping.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToHome();
@@ -186,14 +201,22 @@ public class customercartdisplay extends AppCompatActivity {
 
                     TextView totSave = findViewById(R.id.txt_cartdisplay_totalsavings);
                     totSave.setText("Savings : " + customercartdisplay.this.getResources().getString(R.string.Rupee) +" "+formater.format(TotalSavings));
-                    if (count == 0)
-                        goToHome();
+                    if (count == 0){
+                        price.setVisibility(View.GONE);
+                        list.setVisibility(View.GONE);
+                        buttons.setVisibility(View.GONE);
+                        emptyCart.setVisibility(View.VISIBLE);
+                    }else{
+                        price.setVisibility(View.VISIBLE);
+                        list.setVisibility(View.VISIBLE);
+                        buttons.setVisibility(View.VISIBLE);
+                        emptyCart.setVisibility(View.GONE);
+                    }
+                        //goToHome();
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) {            }
         });
 
 
