@@ -71,7 +71,7 @@
             <LinearLayout android:orientation="horizontal"
                 android:layout_width="match_parent" android:layout_weight="0.4"
                 android:layout_height="match_parent">
-                <Button android:id="@+id/but_cart_confirm" android:backgroundTint="@color/greenColorButton"
+                <Button android:id="@+id/but_cart_confirm" android:backgroundTint="@color/darkgreenColorButton"
                     android:layout_width="match_parent" android:textColor="#ffffff" android:textSize="@dimen/profileLabel"
                     android:layout_height="match_parent" android:text="Confirm Order"></Button>
             </LinearLayout>
