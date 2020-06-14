@@ -92,11 +92,15 @@ public class customerproductdisplay extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                List<Product> tempproducts;
+                tempproducts = new ArrayList<Product>();
+
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren())
                 {
                     Product product = postSnapshot.getValue(Product.class);
                     product.setID(postSnapshot.getKey());
                     product.setQtyNos(isProductInCart(product.ID));
+                    tempproducts.add(product);
 
                     if(searchItem.length() > 0)
                     {
@@ -107,7 +111,16 @@ public class customerproductdisplay extends AppCompatActivity {
                         if (subcategoryName.equals(product.SubCategory))
                             products.add(product);
                     }
-                    adapterProduct productAdaper = new adapterProduct(customerproductdisplay.this,R.layout.itemproduct,products, userID,1);
+                    adapterProduct productAdaper;
+                    if (products.size() == 0)
+                    {
+                        Toast error = Toast.makeText(customerproductdisplay.this, "No Match found. Showing all Products.",Toast.LENGTH_SHORT);
+                        error.setGravity(Gravity.TOP, 0, 0);
+                        error.show();
+                        productAdaper = new adapterProduct(customerproductdisplay.this,R.layout.itemproduct,tempproducts, userID,1);
+                    }
+                    else
+                        productAdaper = new adapterProduct(customerproductdisplay.this,R.layout.itemproduct,products, userID,1);
                     productList.setAdapter(productAdaper);
                 }
             }
