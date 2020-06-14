@@ -1,5 +1,6 @@
 package com.example.bigmart;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -15,6 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
@@ -32,14 +35,12 @@ import java.util.List;
 
 public class login extends AppCompatActivity {
 
-    private long userID;
-
 
     private Integer showpassword = 0;
     public List<User> usersDB;
     EditText edtMobile,edtPassword;
     Button butLogin ;
-    TextView error;
+
 
     public void showErrorMessage(String message){
         Toast error = Toast.makeText(login.this, message,Toast.LENGTH_SHORT);
@@ -48,7 +49,7 @@ public class login extends AppCompatActivity {
     }
 
     public Boolean isMobileValid(String mobileNumber){
-        Boolean flag = false;
+        boolean flag = false;
 
         if (mobileNumber.length() == 0)
             showErrorMessage("Mobile should not be empty");
@@ -68,7 +69,7 @@ public class login extends AppCompatActivity {
     }
 
     public Boolean isPasswordValid(String password){
-        Boolean flag = false;
+        boolean flag = false;
 
         if (password.length() == 0)
             showErrorMessage("Password should not be empty");
@@ -84,10 +85,10 @@ public class login extends AppCompatActivity {
 
     public Boolean isUserExist(String mobileNumber)
     {
-        Boolean flag = false;
+        boolean flag = false;
 
         for (User u : usersDB) {
-            if (u.Mobile == Long.parseLong(edtMobile.getText().toString()))
+            if (u.Mobile.equals(Long.parseLong(mobileNumber)))
                 flag = true;
         }
         return flag;
@@ -98,7 +99,7 @@ public class login extends AppCompatActivity {
         Integer pin = 0;
 
         for (User u : usersDB) {
-            if (u.Mobile == Long.parseLong(edtMobile.getText().toString()))
+            if (u.Mobile.equals(Long.parseLong(mobileNumber)))
                 pin = u.Password;
         }
         return pin;
@@ -111,7 +112,7 @@ public class login extends AppCompatActivity {
             if (isUserExist(edtMobile.getText().toString()))
             {
                 Integer pin = getPassword(edtMobile.getText().toString());
-                userID = Long.parseLong(edtMobile.getText().toString());
+                long userID = Long.parseLong(edtMobile.getText().toString());
                 if (pin == Integer.parseInt(edtPassword.getText().toString()))
                 {
                     if (userID == 9999999999.0) {
@@ -146,6 +147,7 @@ public class login extends AppCompatActivity {
     }
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -153,7 +155,7 @@ public class login extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        usersDB = new ArrayList<User>();
+        usersDB = new ArrayList<>();
 
         FirebaseApp.initializeApp(login.this);
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
@@ -163,8 +165,10 @@ public class login extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 User user = dataSnapshot.getValue(User.class);
-                user.setID(dataSnapshot.getKey());
-                usersDB.add(user);
+                if (user != null) {
+                    user.setID(dataSnapshot.getKey());
+                    usersDB.add(user);
+                }
             }
 
             @Override
@@ -180,11 +184,26 @@ public class login extends AppCompatActivity {
 
         edtMobile = findViewById(R.id.edt_login_mobile);
         edtPassword = findViewById(R.id.edt_login_password);
-        //error = findViewById(R.id.txt_login_error);
         edtMobile.setText("");
+        edtMobile.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (edtMobile.getText().length() == 10)
+                    edtPassword.requestFocus();
+            }
+        });
+
         edtPassword.setText("");
         edtPassword.setLongClickable(false);
-
         edtPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -194,7 +213,6 @@ public class login extends AppCompatActivity {
                 return false;
             }
         });
-
         edtPassword.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -219,6 +237,8 @@ public class login extends AppCompatActivity {
                 }
                 return false;
             }
+
+
         });
 
         //Adding one line of comment
@@ -239,14 +259,14 @@ public class login extends AppCompatActivity {
         butRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Long userMobile;
+                long userMobile;
 
                 if (edtMobile.getText().toString().length() == 0)
                     userMobile = 0L;
                 else
                     userMobile = Long.parseLong(edtMobile.getText().toString());
 
-                Boolean exitingUser = false;
+                boolean exitingUser = false;
                 for (User user : usersDB) {
                     if (user.Mobile.equals(userMobile))
                     {
