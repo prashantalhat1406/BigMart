@@ -116,6 +116,7 @@ public class customerproductdisplay extends AppCompatActivity {
                     {
                         Toast error = Toast.makeText(customerproductdisplay.this, "No Match found. Showing all Products.",Toast.LENGTH_SHORT);
                         error.setGravity(Gravity.TOP, 0, 0);
+
                         error.show();
                         productAdaper = new adapterProduct(customerproductdisplay.this,R.layout.itemproduct,tempproducts, userID,1);
                     }

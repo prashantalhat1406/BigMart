@@ -142,7 +142,11 @@ public class customercartdisplay extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 DatabaseReference databaseReference = database.getReference("Users/"+userID+"/TempOrder");
                                 databaseReference.removeValue();
-                                goToHome();
+                                //goToHome();
+                                price.setVisibility(View.GONE);
+                                list.setVisibility(View.GONE);
+                                buttons.setVisibility(View.GONE);
+                                emptyCart.setVisibility(View.VISIBLE);
                             }
                         });
                 removeAllAlertBuilder.setNegativeButton(
