@@ -61,7 +61,7 @@ public class registration extends AppCompatActivity {
                     //flag = true;
                     Boolean exitingUser = false;
                     for (User user : usersDB) {
-                        if (user.Mobile == Long.parseLong(mobileNumber))
+                        if (user.Mobile.equals(Long.parseLong(mobileNumber)))
                             {exitingUser = true; break;}
                     }
 

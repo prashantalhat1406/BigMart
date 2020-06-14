@@ -323,7 +323,6 @@
                             android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
                             android:layout_width="match_parent" android:padding="10dp" android:inputType="text"
                             android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
-                            android:imeOptions="actionNone"
                             android:maxLines="1" android:nextFocusDown="@id/edt_productdetails_MaxStock"
                             android:layout_height="match_parent" android:hint="Type"/>
                         <TextView

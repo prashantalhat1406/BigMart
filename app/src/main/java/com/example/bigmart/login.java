@@ -242,8 +242,10 @@ public class login extends AppCompatActivity {
 
                 Boolean exitingUser = false;
                 for (User user : usersDB) {
-                    if (user.Mobile == userMobile)
-                    {exitingUser = true; break;}
+                    if (user.Mobile.equals(userMobile))
+                    {
+                        exitingUser = true; break;
+                    }
                 }
 
                 if (exitingUser)
