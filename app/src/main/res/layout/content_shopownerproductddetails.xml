@@ -296,7 +296,7 @@
                         <EditText android:id="@+id/edt_productdetails_HSN"
                             android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
                             android:layout_width="match_parent" android:padding="10dp"
-                            android:maxLines="1" android:nextFocusDown="@id/edt_productdetails_TYPE" android:inputType="number"
+                            android:maxLines="1" android:nextFocusDown="@id/spn_productdetails_type" android:inputType="number"
                             android:layout_height="match_parent" android:hint="HSN"/>
                         <TextView
                             android:layout_width="match_parent" android:layout_weight="0.5"
@@ -316,15 +316,18 @@
                         android:layout_weight="0.5"
                         android:layout_width="match_parent" android:orientation="horizontal"
                         android:layout_height="match_parent">
-                        <TextView
+                        <!--<TextView
                             android:layout_width="match_parent" android:layout_weight="0.5"
-                            android:layout_height="match_parent"></TextView>
-                        <EditText android:id="@+id/edt_productdetails_TYPE"
+                            android:layout_height="match_parent"></TextView>-->
+                        <!--<EditText android:id="@+id/edt_productdetails_TYPE"
                             android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
                             android:layout_width="match_parent" android:padding="10dp" android:inputType="text"
                             android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
                             android:maxLines="1" android:nextFocusDown="@id/edt_productdetails_MaxStock"
-                            android:layout_height="match_parent" android:hint="Type"/>
+                            android:layout_height="match_parent" android:hint="Type"/>-->
+                        <Spinner android:id="@+id/spn_productdetails_type" android:layout_weight="0.3"
+                            android:layout_width="match_parent" android:paddingLeft="10dp" android:layout_gravity="center" android:gravity="center"
+                            android:layout_height="match_parent"></Spinner>
                         <TextView
                             android:layout_width="match_parent" android:layout_weight="0.5"
                             android:layout_height="match_parent"></TextView>

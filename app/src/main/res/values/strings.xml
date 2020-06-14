@@ -58,4 +58,11 @@
 ]]>
 </string>
 
+    <string-array name="producttype">
+        <item>KG</item>
+        <item>GRAM</item>
+        <item>LTR</item>
+        <item>PKT</item>
+    </string-array>
+
 </resources>

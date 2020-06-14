@@ -31,11 +31,12 @@ public class shopownerproductdetails extends AppCompatActivity {
     private List<Category> Categories;
     private List<SubCategory> SubCategories;
     private List<String> strCategories, strSubCategories;
-    Spinner spncategory, spnsubcategory;
+    Spinner spncategory, spnsubcategory,spnType;
     Button butsave, butdelete;
-    EditText edtName, edtName2, edtDisplayname, edtMRP, edtDiscount, edtGST, edtQTY, edtHSN, edtType, edtMaxStock, edtMinStock;
+    EditText edtName, edtName2, edtDisplayname, edtMRP, edtDiscount, edtGST, edtQTY, edtHSN, edtMaxStock, edtMinStock;
     String productID, action, productSubCategory;
     ArrayAdapter<String> categoryAdapter, subcategoryAdapter;
+    ArrayAdapter<String> PTadapter;
 
 
     @Override
@@ -68,7 +69,7 @@ public class shopownerproductdetails extends AppCompatActivity {
         edtMRP = findViewById(R.id.edt_productdetails_MRP);
         edtName = findViewById(R.id.edt_productdetails_Name);
         edtName2 = findViewById(R.id.edt_productdetails_Name2);
-        edtType = findViewById(R.id.edt_productdetails_TYPE);
+        spnType = findViewById(R.id.spn_productdetails_type);
         edtQTY = findViewById(R.id.edt_productdetails_QTY);
 
         database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
@@ -125,6 +126,10 @@ public class shopownerproductdetails extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {             }
         });
 
+        String[] productTypeArray = getResources().getStringArray(R.array.producttype);
+        PTadapter =  new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, productTypeArray);
+        spnType.setAdapter(PTadapter);
+
         butsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -143,7 +148,8 @@ public class shopownerproductdetails extends AppCompatActivity {
                 product.setCategory(spncategory.getSelectedItem().toString());
                 product.setSubCategory(spnsubcategory.getSelectedItem().toString());
                 product.setHSN(Integer.parseInt(edtHSN.getText().toString()));
-                product.setType(edtType.getText().toString());
+                //product.setType(edtType.getText().toString());
+                product.setType(spnType.getSelectedItem().toString());
                 product.setGST(Integer.parseInt(edtGST.getText().toString()));
 
 
@@ -185,15 +191,14 @@ public class shopownerproductdetails extends AppCompatActivity {
                     edtMinStock.setText("" + product.MinStock);
                     edtMRP.setText("" + product.MRP);
                     edtHSN.setText("" + product.HSN);
-                    edtType.setText(product.Type);
                     edtGST.setText("" + product.GST);
                     edtQTY.setText("" + product.Qty);
+                    spnType.setSelection(PTadapter.getPosition(product.Type));
 
 
                     productSubCategory = product.SubCategory;
                     categoryAdapter = new ArrayAdapter<String>(shopownerproductdetails.this,R.layout.support_simple_spinner_dropdown_item,strCategories);
-                    int categoryPos = categoryAdapter.getPosition(product.Category);
-                    spncategory.setSelection(categoryPos);
+                    spncategory.setSelection(categoryAdapter.getPosition(product.Category));
                 }
 
                 @Override
