@@ -134,7 +134,13 @@ public class login extends AppCompatActivity {
                 }
             }else {
                 showErrorMessage("User does not exist. Please Register first.");
-                edtPassword.setText("");
+                //edtPassword.setText("");
+                Intent registerIntent = new Intent(login.this, registration.class);
+                Bundle extras = new Bundle();
+                extras.putLong("userID", Long.parseLong(edtMobile.getText().toString()));
+                registerIntent.putExtras(extras);
+                startActivity(registerIntent);
+                finish();
             }
         }
     }
@@ -256,10 +262,6 @@ public class login extends AppCompatActivity {
                 }else{
                     Intent registerIntent = new Intent(login.this, registration.class);
                     Bundle extras = new Bundle();
-                    /*if (edtMobile.getText().toString().length() == 0)
-                        extras.putLong("userID", 0);
-                    else
-                        extras.putLong("userID", Long.parseLong(edtMobile.getText().toString()));*/
                     extras.putLong("userID", userMobile);
                     registerIntent.putExtras(extras);
                     startActivity(registerIntent);
