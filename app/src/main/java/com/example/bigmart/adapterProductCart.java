@@ -24,14 +24,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class adapterProduct extends ArrayAdapter<Product> {
+public class adapterProductCart extends ArrayAdapter<Product> {
     List<Product> products;
     Context context;
     Long userID;
     Product product;
     Integer type;
 
-    public adapterProduct(@NonNull Context context, int resource, @NonNull List<Product> objects, Long userID, Integer type) {
+    public adapterProductCart(@NonNull Context context, int resource, @NonNull List<Product> objects, Long userID, Integer type) {
         super(context, resource, objects);
         products = objects;
         this.context= context;
@@ -46,23 +46,50 @@ public class adapterProduct extends ArrayAdapter<Product> {
 
         if(convertView == null){
             convertView = LayoutInflater.from(getContext()).
-                    inflate(R.layout.itemproduct,parent,false);
+                    inflate(R.layout.itemproductcart,parent,false);
         }
 
         final DecimalFormat formater = new DecimalFormat("0.00");
 
 
-        final Button atc = (Button) convertView.findViewById(R.id.but_product_addToCart);
+        final Button atc = (Button) convertView.findViewById(R.id.but_addToCart);
         atc.setTag(position);
 
+        Button qtyEdit = (Button) convertView.findViewById(R.id.but_item_qtyedit);
+        final LinearLayout subQty = (LinearLayout) convertView.findViewById(R.id.layout_subQty);
+        final LinearLayout incrementor = (LinearLayout) convertView.findViewById(R.id.layout_incrementor);
 
-        final LinearLayout incrementor = (LinearLayout) convertView.findViewById(R.id.layout_product_incrementor);
-        incrementor.setVisibility(View.GONE);
+        TextView remove = (TextView)convertView.findViewById(R.id.txt_item_remove);
+        remove.setTag(position);
+        remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final FirebaseDatabase database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
+                DatabaseReference databaseReference = database.getReference("Users/"+userID+"/TempOrder");
+                product = products.get((Integer) v.getTag());
+                databaseReference.child(""+product.ID).removeValue();
+            }
+        });
 
+        //type mean Cart=2, Product=1, Order=3
+        switch (type){
+            case 1:
+                qtyEdit.setVisibility(View.INVISIBLE);
+                subQty.setVisibility(View.GONE);
+                remove.setVisibility(View.INVISIBLE);
+                break;
+            case 2:
+                qtyEdit.setVisibility(View.INVISIBLE);
+                subQty.setVisibility(View.GONE);
+                remove.setVisibility(View.VISIBLE);
+                incrementor.setVisibility(View.VISIBLE);
+                break;
+
+        }
 
         product = products.get(position);
 
-        ImageView productImage = (ImageView) convertView.findViewById(R.id.img_product_image);
+        ImageView productImage = (ImageView) convertView.findViewById(R.id.product_image);
         int id_ = context.getResources().getIdentifier(product.ID.toLowerCase(), "drawable", context.getPackageName());
         int noimage = context.getResources().getIdentifier("imagenotavailable", "drawable", context.getPackageName());
         int outofstock = context.getResources().getIdentifier("outofstock", "drawable", context.getPackageName());
@@ -82,15 +109,19 @@ public class adapterProduct extends ArrayAdapter<Product> {
             atc.setBackground(context.getDrawable(R.drawable.roundbutton_green));
         }
 
-        TextView Name = (TextView)convertView.findViewById(R.id.txt_product_product_Name);
+        TextView Name = (TextView)convertView.findViewById(R.id.product_Name);
         Name.setText(""+product.getName());
-        TextView mrp = (TextView)convertView.findViewById(R.id.txt_product_product_MRP);
+        TextView mrp = (TextView)convertView.findViewById(R.id.product_MRP);
         mrp.setText(context.getResources().getString(R.string.Rupee) + " "+ formater.format( product.MRP));
         mrp.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-        TextView discount = (TextView)convertView.findViewById(R.id.txt_product_product_BMA);
+        TextView discount = (TextView)convertView.findViewById(R.id.product_BMA);
         discount.setText(context.getResources().getString(R.string.Rupee) +" " + formater.format(product.MRP -  product.Discount.doubleValue()));
-        final TextView savedamount = (TextView)convertView.findViewById(R.id.txt_product_product_Save);
-        final TextView bmaamount = (TextView)convertView.findViewById(R.id.txt_product_product_BMA);
+        final TextView savedamount = (TextView)convertView.findViewById(R.id.product_Save);
+        final TextView bmaamount = (TextView)convertView.findViewById(R.id.product_BMA);
+
+
+
+
 
 
         if(product.QtyNos == 0) {
@@ -104,10 +135,10 @@ public class adapterProduct extends ArrayAdapter<Product> {
 
         }
 
-        final TextView itemNos = (TextView) convertView.findViewById(R.id.txt_product_item_number);
+        final TextView itemNos = (TextView) convertView.findViewById(R.id.txt_item_number);
         itemNos.setText(""+product.getQtyNos());
 
-        Button plus = (Button) convertView.findViewById(R.id.but_product_item_plus);
+        Button plus = (Button) convertView.findViewById(R.id.but_item_plus);
         plus.setTag(position);
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,7 +178,7 @@ public class adapterProduct extends ArrayAdapter<Product> {
             }
         });
 
-        Button minus = (Button) convertView.findViewById(R.id.but_product_item_minus);
+        Button minus = (Button) convertView.findViewById(R.id.but_item_minus);
         minus.setTag(position);
         minus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -208,6 +239,20 @@ public class adapterProduct extends ArrayAdapter<Product> {
             }
         });
 
+
+        Button subCat1 = (Button) convertView.findViewById(R.id.but_product_subcat1);
+        Button subCat2 = (Button) convertView.findViewById(R.id.but_product_subcat2);
+        if(product.Type.equals("LQ"))
+        {
+            subCat1.setText("0.5 ltr");
+            subCat2.setText("1 ltr");
+        }
+
+        if(product.Type.equals("KG"))
+        {
+            subCat1.setText("0.5 kg");
+            subCat2.setText("1 kg");
+        }
 
         return convertView;
     }

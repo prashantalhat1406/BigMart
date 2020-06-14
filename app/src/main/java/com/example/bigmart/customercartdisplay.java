@@ -195,7 +195,7 @@ public class customercartdisplay extends AppCompatActivity {
                     butRemoveAll.setVisibility(View.VISIBLE);
                 }
 
-                    adapterProduct productAdaper = new adapterProduct(customercartdisplay.this, R.layout.itemproduct, products, userID, 2);
+                    adapterProductCart productAdaper = new adapterProductCart(customercartdisplay.this, R.layout.itemproductcart, products, userID, 2);
                     productList.setAdapter(productAdaper);
                     productList.setSelection(listPosition);
 

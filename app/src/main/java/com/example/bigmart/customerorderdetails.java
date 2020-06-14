@@ -90,7 +90,7 @@ public class customerorderdetails extends AppCompatActivity {
 
                     TotalPrice = TotalPrice + (product.QtyNos * (product.MRP -  product.Discount.doubleValue()));
                 }
-                adapterOrderDetails productAdaper = new adapterOrderDetails(customerorderdetails.this, R.layout.itemproduct, products);
+                adapterOrderDetails productAdaper = new adapterOrderDetails(customerorderdetails.this, R.layout.itemorderdetails, products);
                 productList.setAdapter(productAdaper);
             }
             @Override
