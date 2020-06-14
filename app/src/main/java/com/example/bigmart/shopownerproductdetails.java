@@ -129,6 +129,7 @@ public class shopownerproductdetails extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+
                 Product product = new Product();
                 product.setName("" + edtName.getText().toString());
                 product.setName2("" + edtName2.getText().toString());

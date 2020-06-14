@@ -30,10 +30,32 @@ public class shopownerorderdetails extends AppCompatActivity {
     private String orderID;
     private Integer position;
     private List<Product> products;
+    private List<Product> databaseProducts;
     ListView productList;
     Orders orderDetail;
     Button butComplete, butConfirm, butCancel,butPrint;
     User user;
+    FirebaseDatabase database;
+
+    public void updateStoreQuantity(List<Product> products){
+
+        for (Product product : products) {
+            for (Product databaseProduct : databaseProducts) {
+                if (product.ID.equals(databaseProduct.ID))
+                {
+                    DatabaseReference databaseReference = database.getReference("Products/" + product.ID);
+                    Product updatedProduct = new Product();
+                    updatedProduct = databaseProduct;
+                    updatedProduct.setQty(databaseProduct.Qty - product.QtyNos);
+                    databaseReference.setValue(updatedProduct) ;
+                }
+            }
+            //DatabaseReference databaseReference = database.getReference("Products/" + product.ID);
+            //databaseReference.child("" + product.ID).setValue(product);
+        }
+
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +64,7 @@ public class shopownerorderdetails extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final FirebaseDatabase database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
+        database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
 
         Bundle b = getIntent().getExtras();
         orderID = b.getString("orderID","12");
@@ -51,6 +73,7 @@ public class shopownerorderdetails extends AppCompatActivity {
 
         productList = findViewById(R.id.listOrderDetail);
         products = new ArrayList<Product>();
+        databaseProducts = new ArrayList<Product>();
 
         orderDetail = new Orders();
         user = new User();
@@ -85,6 +108,7 @@ public class shopownerorderdetails extends AppCompatActivity {
                 butPrint.setVisibility(View.VISIBLE);
                 butConfirm.setVisibility(View.GONE);
                 butCancel.setVisibility(View.GONE);
+                updateStoreQuantity(products);
                 //finish();
             }
         });
@@ -112,7 +136,7 @@ public class shopownerorderdetails extends AppCompatActivity {
 
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     Product product = postSnapshot.getValue(Product.class);
-                    product.setID(postSnapshot.getKey());
+                    //product.setID(product);
                     products.add(product);
                 }
                 adapterOrderDetails productAdaper = new adapterOrderDetails(shopownerorderdetails.this, R.layout.itemorderdetails, products);
@@ -121,6 +145,21 @@ public class shopownerorderdetails extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
+        });
+
+
+        Query databasequery = database.getReference("Products/");
+        databasequery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Product product = postSnapshot.getValue(Product.class);
+                    product.setID(postSnapshot.getKey());
+                    databaseProducts.add(product);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {            }
         });
 
 

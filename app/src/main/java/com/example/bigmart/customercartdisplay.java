@@ -67,11 +67,11 @@ public class customercartdisplay extends AppCompatActivity {
         //super.onBackPressed();
     }
 
-    public BroadcastReceiver positionMes = new BroadcastReceiver() {
+    public BroadcastReceiver positionMes = new BroadcastReceiver()
+    {
         @Override
         public void onReceive(Context context, Intent intent) {
             listPosition = intent.getIntExtra("position",0);
-            //Toast.makeText(customercartdisplay.this, "" + productList.getLastVisiblePosition(),Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -118,7 +118,7 @@ public class customercartdisplay extends AppCompatActivity {
             }
         });
 
-        //Button butContinueShopping = findViewById(R.id.but_cart_continueshopping);
+
         TextView txtContinueShopping = findViewById(R.id.txt_cart_continue);
         txtContinueShopping.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,12 +127,11 @@ public class customercartdisplay extends AppCompatActivity {
             }
         });
 
-        //final Button butRemoveAll = findViewById(R.id.but_cart_removeall);
+
         final TextView butRemoveAll = findViewById(R.id.txt_cart_removeall);
         butRemoveAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 AlertDialog.Builder removeAllAlertBuilder = new AlertDialog.Builder(customercartdisplay.this);
                 removeAllAlertBuilder.setMessage("Are you sure to Remove All items ?");
                 removeAllAlertBuilder.setCancelable(false);
@@ -226,6 +225,8 @@ public class customercartdisplay extends AppCompatActivity {
 
     }
 
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -263,6 +264,8 @@ public class customercartdisplay extends AppCompatActivity {
                                 DatabaseReference productReference = database.getReference("Orders/" + orderID + "/Products");
                                 productReference.push().setValue(product);
                             }
+
+                            //updateStoreQuantity(products);
 
                             DatabaseReference databaseReference = database.getReference("Users/" + userID + "/TempOrder");
                             databaseReference.removeValue();
