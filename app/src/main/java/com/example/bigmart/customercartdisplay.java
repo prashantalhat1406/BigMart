@@ -362,7 +362,7 @@ public class customercartdisplay extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.menu_viewcart) {
-            Query query = database.getReference("Users/"+userID+"/TempOrder");
+            /*Query query = database.getReference("Users/"+userID+"/TempOrder");
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -387,7 +387,8 @@ public class customercartdisplay extends AppCompatActivity {
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 }
-            });
+            }
+            );*/
             //return true;
         }
         if (id == R.id.menu_orderhistory) {
