@@ -13,19 +13,19 @@
             android:layout_height="match_parent">
             <RadioButton android:id="@+id/rdbAll"
                 android:layout_width="match_parent" android:checked="true" android:textColor="#ffffff" android:textSize="@dimen/textButtons"
-                android:buttonTint="@color/orangeColorButton" android:textStyle="bold"
+                android:buttonTint="@color/blacklabels" android:textStyle="bold"
                 android:layout_height="match_parent" android:layout_weight="0.55" android:text="All"></RadioButton>
             <RadioButton android:id="@+id/rdbInProgress"
                 android:layout_width="match_parent"  android:textColor="#ffffff" android:textSize="@dimen/textButtons"
-                android:buttonTint="@color/orangeColorButton" android:textStyle="bold"
+                android:buttonTint="@color/blacklabels" android:textStyle="bold"
                 android:layout_height="match_parent" android:layout_weight="0.43" android:text="In-Progress"></RadioButton>
             <RadioButton android:id="@+id/rdbComplete"
                 android:layout_width="match_parent"  android:textColor="#ffffff" android:textSize="@dimen/textButtons"
-                android:buttonTint="@color/orangeColorButton" android:textStyle="bold"
+                android:buttonTint="@color/blacklabels" android:textStyle="bold"
                 android:layout_height="match_parent" android:layout_weight="0.45" android:text="Completed"></RadioButton>
             <RadioButton android:id="@+id/rdbCreated"
                 android:layout_width="match_parent"  android:textColor="#ffffff" android:textSize="@dimen/textButtons"
-                android:buttonTint="@color/orangeColorButton" android:textStyle="bold"
+                android:buttonTint="@color/blacklabels" android:textStyle="bold"
                 android:layout_height="match_parent" android:layout_weight="0.5" android:text="Created"></RadioButton>
 
         </RadioGroup>
