@@ -21,10 +21,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
@@ -198,7 +201,6 @@ public class home extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object t = parent.getItemAtPosition(position);
-
                 if (t.toString().length() == 0){
                     Toast error = Toast.makeText(home.this, "Error : Please enter text to search",Toast.LENGTH_SHORT);
                     error.setGravity(Gravity.TOP, 0, 0);
@@ -206,6 +208,25 @@ public class home extends AppCompatActivity {
                 }else {
                     gotoProductDisplay(t.toString());
                 }
+            }
+        });
+
+        txtSearch.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (txtSearch.getRight() - txtSearch.getCompoundDrawables()[2].getBounds().width())) {
+                        if (txtSearch.getText().toString().length() == 0){
+                            Toast error = Toast.makeText(home.this, "Error : Please enter text to search",Toast.LENGTH_SHORT);
+                            error.setGravity(Gravity.TOP, 0, 0);
+                            error.show();
+                        }else {
+                            gotoProductDisplay(txtSearch.getText().toString());
+                        }
+                    }
+                }
+                return false;
             }
         });
 
