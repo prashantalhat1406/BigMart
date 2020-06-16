@@ -22,6 +22,9 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -37,6 +40,7 @@ public class customerproductdisplay extends AppCompatActivity {
     String searchItem;
     FirebaseDatabase database;
     Integer productQty;
+    LinearLayout empty, normal;
 
     public Integer isProductInCart(final String productID)
     {
@@ -48,6 +52,15 @@ public class customerproductdisplay extends AppCompatActivity {
         }
 
         return productQty;
+    }
+
+    public void goToHome(){
+        Intent homeIntent = new Intent(customerproductdisplay.this, home.class);
+        Bundle extras = new Bundle();
+        extras.putLong("userID", userID);
+        homeIntent.putExtras(extras);
+        startActivity(homeIntent);
+        finish();
     }
 
     @Override
@@ -66,6 +79,9 @@ public class customerproductdisplay extends AppCompatActivity {
         cartProducts = new ArrayList<Product>();
         cartProducts.clear();
         productList = findViewById(R.id.listProduct);
+
+        empty = findViewById(R.id.layout_productdisplay_empty);
+        normal = findViewById(R.id.layout_productdisplay_list);
 
         database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
 
@@ -112,20 +128,33 @@ public class customerproductdisplay extends AppCompatActivity {
                 adapterProduct productAdaper;
                 if (products.size() == 0)
                 {
-                    Toast error = Toast.makeText(customerproductdisplay.this, "No Match found. Showing all Products.",Toast.LENGTH_SHORT);
+                    /*Toast error = Toast.makeText(customerproductdisplay.this, "No Match found. Showing all Products.",Toast.LENGTH_SHORT);
                     error.setGravity(Gravity.TOP, 0, 0);
 
                     error.show();
-                    productAdaper = new adapterProduct(customerproductdisplay.this,R.layout.itemproduct,tempproducts, userID,1);
+                    productAdaper = new adapterProduct(customerproductdisplay.this,R.layout.itemproduct,tempproducts, userID,1);*/
+                    empty.setVisibility(View.VISIBLE);
+                    normal.setVisibility(View.GONE);
                 }
-                else
-                    productAdaper = new adapterProduct(customerproductdisplay.this,R.layout.itemproduct,products, userID,1);
-                productList.setAdapter(productAdaper);
+                else {
+                    empty.setVisibility(View.GONE);
+                    normal.setVisibility(View.VISIBLE);
+                    productAdaper = new adapterProduct(customerproductdisplay.this, R.layout.itemproduct, products, userID, 1);
+                    productList.setAdapter(productAdaper);
+                }
+
 
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {      }
+        });
+
+        Button continueShopping = findViewById(R.id.but_productdisplay_continueShopping);
+        continueShopping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToHome();
             }
         });
 

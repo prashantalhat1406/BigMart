@@ -362,35 +362,8 @@ public class customercartdisplay extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.menu_viewcart) {
-            /*Query query = database.getReference("Users/"+userID+"/TempOrder");
-            query.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if(dataSnapshot.exists())
-                    {
-                        Intent viewCartIntent = new Intent(customercartdisplay.this, customercartdisplay.class);
-                        Bundle extras = new Bundle();
-                        extras.putLong("userID", userID);
-                        viewCartIntent.putExtras(extras);
-                        startActivity(viewCartIntent);
-                        finish();
-                    }
-                    else
-                    {
-                        Toast error = Toast.makeText(customercartdisplay.this, "No Items In Cart !",Toast.LENGTH_SHORT);
-                        error.setGravity(Gravity.TOP, 0, 0);
-                        error.show();
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            }
-            );*/
-            //return true;
         }
+
         if (id == R.id.menu_orderhistory) {
             Intent viewCartIntent = new Intent(customercartdisplay.this, customerorderhistory.class);
             Bundle extras = new Bundle();

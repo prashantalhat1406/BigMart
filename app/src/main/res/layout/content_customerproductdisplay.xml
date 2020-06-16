@@ -2,10 +2,44 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="match_parent" android:background="#ffffff"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <LinearLayout
+    <LinearLayout android:id="@+id/layout_productdisplay_empty"
+        android:layout_width="match_parent" android:orientation="vertical"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_weight="0.32"
+            android:layout_height="match_parent">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_weight="0.35" android:orientation="vertical"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="match_parent" android:layout_weight="0.15"
+                android:layout_height="match_parent" android:src="@drawable/noproductfound"> </ImageView>
+            <TextView
+                android:layout_width="wrap_content" android:textStyle="bold"
+                android:layout_height="wrap_content" android:text=" No Product Found" android:layout_gravity="center"></TextView>
+            <Button android:id="@+id/but_productdisplay_continueShopping"
+                android:layout_width="wrap_content" android:layout_weight="0.4" android:paddingLeft="20dp" android:paddingRight="20dp"
+                android:layout_height="match_parent" android:layout_gravity="center" android:text="Continue Shopping"
+                android:background="@color/darkgreenColorButton" android:textColor="#ffffff">
+            </Button>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_weight="0.32"
+            android:layout_height="match_parent">
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/layout_productdisplay_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" android:layout_marginTop="5dp">
         <ListView
