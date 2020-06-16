@@ -27,11 +27,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class home extends AppCompatActivity {
 
@@ -40,6 +46,9 @@ public class home extends AppCompatActivity {
     private  int count = 0;
     FirebaseDatabase database;
     EditText search;
+    AutoCompleteTextView txtSearch;
+    private List<String> productNames;
+
     private static final int[] BUTTON_IDS = {
             R.id.but_category_1,
             R.id.but_category_2,
@@ -72,6 +81,16 @@ public class home extends AppCompatActivity {
         finish();
     }
 
+    public void gotoProductDisplay(String productName){
+        Intent productdispalyIntent = new Intent(home.this, customerproductdisplay.class);
+        Bundle extras = new Bundle();
+        extras.putString("searchItem", productName);
+        extras.putLong("userID", userID);
+        productdispalyIntent.putExtras(extras);
+        startActivity(productdispalyIntent);
+        finish();
+    }
+
     @Override
     protected void onResume() {
         supportInvalidateOptionsMenu();
@@ -91,6 +110,9 @@ public class home extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         userID = b.getLong("userID");
+
+
+        productNames = new ArrayList<String>();
 
 
         for(int id : BUTTON_IDS) {
@@ -154,6 +176,39 @@ public class home extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {             }
         });
+
+        Query productsQuery = database.getReference("/Products");
+        productsQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Product product = postSnapshot.getValue(Product.class);
+                    productNames.add(product.Name);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {      }
+        });
+
+        txtSearch = findViewById(R.id.txt_auto_search);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,productNames);
+        txtSearch.setAdapter(adapter);
+        txtSearch.setThreshold(1);
+        txtSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object t = parent.getItemAtPosition(position);
+
+                if (t.toString().length() == 0){
+                    Toast error = Toast.makeText(home.this, "Error : Please enter text to search",Toast.LENGTH_SHORT);
+                    error.setGravity(Gravity.TOP, 0, 0);
+                    error.show();
+                }else {
+                    gotoProductDisplay(t.toString());
+                }
+            }
+        });
+
 
 
     }

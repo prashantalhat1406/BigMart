@@ -8,12 +8,17 @@
 
     <LinearLayout android:layout_width="match_parent" android:layout_height="460dp" android:orientation="horizontal" android:layout_weight="0.9">
         <EditText android:id="@+id/edt_home_search" android:background="@drawable/profiletextbox" android:inputType="text"
-            android:layout_width="match_parent" android:imeOptions="actionSearch" android:maxLines="1"
+            android:layout_width="match_parent" android:imeOptions="actionSearch" android:maxLines="1" android:visibility="gone"
             android:layout_height="match_parent" android:layout_weight="0.15"></EditText>
 
-        <ImageButton android:id="@+id/but_home_search" android:src="@drawable/ic_search" android:background="@drawable/profiletextbox"
-            android:layout_width="match_parent" android:scaleType="center"
-            android:layout_height="match_parent" android:layout_weight="0.85"></ImageButton>
+        <AutoCompleteTextView android:id="@+id/txt_auto_search"
+            android:layout_width="match_parent" android:layout_weight="0.1" android:maxLines="1" android:inputType="text"
+            android:imeOptions="actionSearch" android:drawableRight="@drawable/ic_search"
+            android:layout_height="match_parent"></AutoCompleteTextView>
+
+        <ImageButton android:id="@+id/but_home_search" android:src="@drawable/ic_search" android:background="@drawable/searchbutton"
+            android:layout_width="match_parent" android:scaleType="center" android:visibility="gone"
+            android:layout_height="match_parent" android:layout_weight="0.9"></ImageButton>
 
     </LinearLayout>
 

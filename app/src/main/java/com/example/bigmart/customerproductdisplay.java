@@ -290,4 +290,9 @@ public class customerproductdisplay extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+        goToHome();
+        super.onBackPressed();
+    }
 }

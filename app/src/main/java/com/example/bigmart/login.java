@@ -83,8 +83,7 @@ public class login extends AppCompatActivity {
         return flag;
     }
 
-    public Boolean isUserExist(String mobileNumber)
-    {
+    public Boolean isUserExist(String mobileNumber){
         boolean flag = false;
 
         for (User u : usersDB) {
@@ -183,6 +182,7 @@ public class login extends AppCompatActivity {
 
 
         edtMobile = findViewById(R.id.edt_login_mobile);
+        edtMobile.requestFocus();
         edtPassword = findViewById(R.id.edt_login_password);
         edtMobile.setText("");
         edtMobile.addTextChangedListener(new TextWatcher() {
