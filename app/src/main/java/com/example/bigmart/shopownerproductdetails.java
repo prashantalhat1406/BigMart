@@ -92,7 +92,12 @@ public class shopownerproductdetails extends AppCompatActivity {
                                         {
                                             flag = false;
                                             showErrorMessage("Quantity should not be less than Minimum Stock");
-                                        }
+                                        }else
+                                            if (Integer.parseInt(edtDiscount.getText().toString()) > 25 )
+                                            {
+                                                flag = false;
+                                                showErrorMessage("Discount can not be greater than 25%");
+                                            }
 
         return flag;
     }
