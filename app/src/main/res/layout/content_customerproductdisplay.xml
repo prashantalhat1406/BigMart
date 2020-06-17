@@ -41,7 +41,7 @@
 
     <LinearLayout android:id="@+id/layout_productdisplay_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" android:layout_marginTop="5dp">
+        android:layout_height="match_parent" android:layout_marginTop="0dp">
         <ListView
             android:layout_width="match_parent" android:id="@+id/listProduct" android:divider="@android:color/transparent"
             android:dividerHeight="5.0dp"
