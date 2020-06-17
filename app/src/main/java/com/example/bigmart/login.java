@@ -53,21 +53,21 @@ public class login extends AppCompatActivity {
 
         if (mobileNumber.length() == 0)
         {
-            showErrorMessage("Mobile should not be empty");
+            edtMobile.setError("Mobile Should not be empty");
             edtMobile.requestFocus();
         }
         else
         {
             if (mobileNumber.length() < 10)
             {
-                showErrorMessage("Enter 10 Digit Mobile Number");
+                edtMobile.setError("Enter 10 Digit Mobile Number");
                 edtMobile.requestFocus();
             }
             else
             {
                 if (Double.parseDouble(mobileNumber) < 7000000000.00)
                 {
-                    showErrorMessage("Invalid Mobile Number");
+                    edtMobile.setError("Invalid Mobile Number");
                     edtMobile.requestFocus();
                 }
                 else
@@ -82,14 +82,14 @@ public class login extends AppCompatActivity {
 
         if (password.length() == 0)
         {
-            showErrorMessage("Password should not be empty");
+            edtPassword.setError("Password should not be empty");
             edtPassword.requestFocus();
         }
         else
         {
             if (password.length() < 4)
             {
-                showErrorMessage("Incorrect Pin: Enter 4 Digit pin");
+                edtPassword.setError("Incorrect Password: Enter 4 Digit pin");
                 edtPassword.requestFocus();
             }
             else
@@ -143,7 +143,7 @@ public class login extends AppCompatActivity {
                     }
                 }else {
                     {
-                        showErrorMessage("InCorrect Pin.");
+                        edtPassword.setError("InCorrect Pin.");
                         edtPassword.setText("");
                     }
                 }

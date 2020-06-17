@@ -47,15 +47,15 @@ public class registration extends AppCompatActivity {
         Boolean flag = false;
 
         if (mobileNumber.length() == 0)
-            showErrorMessage("Mobile should not be empty");
+            edtMobile.setError("Mobile should not be empty");
         else
         {
             if (mobileNumber.length() < 10)
-                showErrorMessage("Enter 10 Digit Mobile Number");
+                edtMobile.setError("Enter 10 Digit Mobile Number");
             else
             {
                 if (Double.parseDouble(mobileNumber) < 7000000000.00)
-                    showErrorMessage("Invalid Mobile Number");
+                    edtMobile.setError("Invalid Mobile Number");
                 else
                 {
                     //flag = true;
@@ -84,11 +84,11 @@ public class registration extends AppCompatActivity {
         Boolean flag = false;
 
         if (pin.length() == 0)
-            showErrorMessage("Pin should not be empty");
+            edtPassword.setError("Password should not be empty");
         else
         {
             if (pin.length() < 4)
-                showErrorMessage("Incorrect Pin: Enter 4 Digit pin");
+                edtPassword.setError("Incorrect Password: Enter 4 Digit pin");
             else
                 flag = true;
         }
@@ -100,7 +100,7 @@ public class registration extends AppCompatActivity {
 
         if (field.getText().length() == 0)
         {
-            showErrorMessage(field.getTag().toString() + " should not be empty");
+            field.setError(field.getTag().toString() + " should not be empty");
             field.requestFocus();
         }
         else
