@@ -80,7 +80,7 @@
             android:layout_height="match_parent" android:text="MRP"></TextView>
         <TextView android:layout_gravity="center" android:gravity="center" android:textStyle="bold"
             android:layout_width="match_parent" android:layout_weight="0.25"
-            android:layout_height="match_parent" android:text="Discount"></TextView>
+            android:layout_height="match_parent" android:text="Save"></TextView>
         <TextView android:layout_gravity="center" android:gravity="center" android:textStyle="bold"
             android:layout_width="match_parent" android:layout_weight="0.25"
             android:layout_height="match_parent" android:text="Total"></TextView>
