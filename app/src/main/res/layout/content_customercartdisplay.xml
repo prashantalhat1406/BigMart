@@ -22,7 +22,7 @@
                 android:layout_height="match_parent" android:src="@drawable/ic_shopping_basket"> </ImageView>
             <TextView
                 android:layout_width="wrap_content" android:textStyle="bold"
-                android:layout_height="wrap_content" android:text="You Cart is Empty" android:layout_gravity="center"></TextView>
+                android:layout_height="wrap_content" android:text="Your Cart is Empty" android:layout_gravity="center"></TextView>
             <Button android:id="@+id/but_cart_continueShopping"
                 android:layout_width="wrap_content" android:layout_weight="0.3" android:paddingLeft="20dp" android:paddingRight="20dp"
                 android:layout_height="match_parent" android:layout_gravity="center" android:text="Continue Shopping"
