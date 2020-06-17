@@ -43,11 +43,11 @@ public class customerprofile extends AppCompatActivity {
         finish();
     }
 
-    public void showErrorMessage(String message){
+    /*public void showErrorMessage(String message){
         Toast error = Toast.makeText(customerprofile.this, message,Toast.LENGTH_SHORT);
         error.setGravity(Gravity.TOP, 0, 0);
         error.show();
-    }
+    }*/
 
 
     public Boolean isAddress2Empty(){
@@ -55,7 +55,7 @@ public class customerprofile extends AppCompatActivity {
 
         if (address2.getText().toString().trim().length() == 0)
         {
-            showErrorMessage("Address2 should not be empty");
+            address2.setError("Address2 should not be empty");
             address2.requestFocus();
         }
         else
@@ -69,7 +69,7 @@ public class customerprofile extends AppCompatActivity {
 
         if (name.getText().toString().trim().length() == 0)
         {
-            showErrorMessage("Name should not be empty");
+            name.setError("Name should not be empty");
             name.requestFocus();
         }
         else
@@ -83,7 +83,7 @@ public class customerprofile extends AppCompatActivity {
 
         if (address1.getText().toString().trim().length() == 0)
         {
-            showErrorMessage("Address1 should not be empty");
+            address1.setError("Address1 should not be empty");
             address1.requestFocus();
         }
         else
