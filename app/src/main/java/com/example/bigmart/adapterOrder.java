@@ -2,6 +2,7 @@ package com.example.bigmart;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,11 @@ public class adapterOrder extends ArrayAdapter<Orders> {
             convertView = LayoutInflater.from(getContext()).
                     inflate(R.layout.itemorder, parent, false);
         }
+
+        if (position%2 == 0)
+            convertView.setBackground(context.getDrawable(R.drawable.orderhistory));
+        else
+            convertView.setBackground(context.getDrawable(R.drawable.orderhistory_grey));
 
 
         TextView orderID = (TextView) convertView.findViewById(R.id.txt_order_ID);
