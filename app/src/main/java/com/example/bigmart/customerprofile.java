@@ -53,7 +53,7 @@ public class customerprofile extends AppCompatActivity {
     public Boolean isAddress2Empty(){
         Boolean flag = false;
 
-        if (address2.getText().toString().length() == 0)
+        if (address2.getText().toString().trim().length() == 0)
         {
             showErrorMessage("Address2 should not be empty");
             address2.requestFocus();
@@ -67,7 +67,7 @@ public class customerprofile extends AppCompatActivity {
     public Boolean isNameEmpty(){
         Boolean flag = false;
 
-        if (name.getText().toString().length() == 0)
+        if (name.getText().toString().trim().length() == 0)
         {
             showErrorMessage("Name should not be empty");
             name.requestFocus();
@@ -81,7 +81,7 @@ public class customerprofile extends AppCompatActivity {
     public Boolean isAddress1Empty(){
         Boolean flag = false;
 
-        if (address1.getText().toString().length() == 0)
+        if (address1.getText().toString().trim().length() == 0)
         {
             showErrorMessage("Address1 should not be empty");
             address1.requestFocus();
