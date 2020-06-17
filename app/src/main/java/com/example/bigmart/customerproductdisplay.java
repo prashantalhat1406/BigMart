@@ -36,7 +36,7 @@ public class customerproductdisplay extends AppCompatActivity {
     private List<Product> products,cartProducts;
     ListView productList;
     private long userID;
-    String subcategoryName;
+    String subcategoryName,categoryName;
     String searchItem;
     FirebaseDatabase database;
     Integer productQty;
@@ -55,12 +55,22 @@ public class customerproductdisplay extends AppCompatActivity {
     }
 
     public void goToHome(){
-        Intent homeIntent = new Intent(customerproductdisplay.this, home.class);
-        Bundle extras = new Bundle();
-        extras.putLong("userID", userID);
-        homeIntent.putExtras(extras);
-        startActivity(homeIntent);
-        finish();
+        if (subcategoryName.length() == 0) {
+            Intent homeIntent = new Intent(customerproductdisplay.this, home.class);
+            Bundle extras = new Bundle();
+            extras.putLong("userID", userID);
+            homeIntent.putExtras(extras);
+            startActivity(homeIntent);
+            finish();
+        }else{
+            Intent homeIntent = new Intent(customerproductdisplay.this, subcategorydisplay.class);
+            Bundle extras = new Bundle();
+            extras.putLong("userID", userID);
+            extras.putString("categoryName", categoryName);
+            homeIntent.putExtras(extras);
+            startActivity(homeIntent);
+            finish();
+        }
     }
 
     @Override
@@ -73,6 +83,7 @@ public class customerproductdisplay extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         userID = b.getLong("userID");
         subcategoryName = b.getString("subCategoryName","");
+        categoryName = b.getString("categoryName","");
         searchItem = b.getString("searchItem","");
 
         products = new ArrayList<Product>();

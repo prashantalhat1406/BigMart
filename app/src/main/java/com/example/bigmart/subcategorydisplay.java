@@ -38,6 +38,7 @@ public class subcategorydisplay extends AppCompatActivity {
     private List<SubCategory> subCategories;
     private  int count = 0;
     FirebaseDatabase database;
+    String categoryName;
     private static final int[] BUTTON_IDS = {
             R.id.but_subcat_1,
             R.id.but_subcat_2,
@@ -77,7 +78,7 @@ public class subcategorydisplay extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Bundle b = getIntent().getExtras();
-        final String categoryName = b.getString("categoryName");
+        categoryName = b.getString("categoryName");
         userID = b.getLong("userID");
 
         for(int id : BUTTON_IDS) {
@@ -90,6 +91,7 @@ public class subcategorydisplay extends AppCompatActivity {
                     Bundle extras = new Bundle();
                     extras.putLong("userID", userID);
                     extras.putString("subCategoryName", button.getTag().toString());
+                    extras.putString("categoryName", categoryName);
                     productIntent.putExtras(extras);
                     startActivity(productIntent);
                 }
