@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -89,6 +90,8 @@ public class customerorderdetails extends AppCompatActivity {
                     products.add(product);
 
                     TotalPrice = TotalPrice + (product.QtyNos * (product.MRP -  product.Discount.doubleValue()));
+
+                    //TotalPrice = (Double) Math.round(TotalPrice);
                 }
                 adapterOrderDetails productAdaper = new adapterOrderDetails(customerorderdetails.this, R.layout.itemorderdetails, products);
                 productList.setAdapter(productAdaper);

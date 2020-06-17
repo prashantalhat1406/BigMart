@@ -65,11 +65,12 @@ public class adapterOrder extends ArrayAdapter<Orders> {
         orderIDDUP.setText("" + order.ID);
         if (order.deliveryType.equals("Home Delivery"))
             if (order.amount > 2000)
-                orderAmount.setText(context.getResources().getString(R.string.Rupee) + " " +  formater.format( order.amount + (order.amount*0.02)));
+                //orderAmount.setText(context.getResources().getString(R.string.Rupee) + " " +  formater.format( order.amount + (order.amount*0.02)));
+                orderAmount.setText(context.getResources().getString(R.string.Rupee) + " " + Math.round( order.amount + (order.amount*0.02)));
             else
-                orderAmount.setText(context.getResources().getString(R.string.Rupee) + " " +  formater.format( order.amount + 50));
+                orderAmount.setText(context.getResources().getString(R.string.Rupee) + " " +  Math.round( order.amount + 50));
         else
-            orderAmount.setText(context.getResources().getString(R.string.Rupee) + " " +  formater.format( order.amount));
+            orderAmount.setText(context.getResources().getString(R.string.Rupee) + " " +  Math.round( order.amount));
 
         orderAmount.setTextColor(ContextCompat.getColor(this.context, R.color.colorPrimaryDark));
 
