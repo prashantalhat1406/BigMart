@@ -57,7 +57,7 @@
         android:layout_height="match_parent" android:layout_marginTop="5dp">
         <ListView
             android:layout_width="match_parent" android:id="@+id/listShopOwnerOrder" android:divider="@android:color/transparent"
-            android:dividerHeight="5.0dp"
+            android:dividerHeight="5.0dp" android:paddingRight="5dp" android:paddingLeft="5dp"
             android:layout_height="match_parent" >
         </ListView>
     </LinearLayout>
