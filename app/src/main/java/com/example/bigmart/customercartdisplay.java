@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
@@ -155,7 +156,14 @@ public class customercartdisplay extends AppCompatActivity {
                                 dialog.cancel();
                             }
                         });
-                AlertDialog alertRemoveall = removeAllAlertBuilder.create();
+                final AlertDialog alertRemoveall = removeAllAlertBuilder.create();
+                alertRemoveall.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialog) {
+                        alertRemoveall.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
+                        alertRemoveall.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.GREEN);
+                    }
+                });
                 alertRemoveall.show();
 
 
