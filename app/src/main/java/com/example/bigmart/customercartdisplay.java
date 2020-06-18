@@ -53,6 +53,21 @@ public class customercartdisplay extends AppCompatActivity {
     FirebaseDatabase database;
     LinearLayout emptyCart,list,buttons, price;
 
+    public String getOrderID(){
+        String unquieOrderID = "";
+
+        Calendar cal=Calendar.getInstance();
+        //SimpleDateFormat month_date = new SimpleDateFormat("MMM");
+        String month_name = new SimpleDateFormat("MMM").format(cal.getTime());
+        String day = new SimpleDateFormat("dd").format(cal.getTime());
+        String hh = new SimpleDateFormat("hh").format(cal.getTime());
+        String mm = new SimpleDateFormat("mm").format(cal.getTime());
+
+        unquieOrderID = "" + month_name.toUpperCase() + day+hh+mm;
+
+        return unquieOrderID;
+    }
+
     public void goToHome(){
         Intent homeIntent = new Intent(customercartdisplay.this, home.class);
         Bundle extras = new Bundle();
@@ -84,6 +99,7 @@ public class customercartdisplay extends AppCompatActivity {
         setContentView(R.layout.activity_cartdisplay);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
 
         LocalBroadcastManager.getInstance(this).registerReceiver(positionMes,new IntentFilter("message_subject_intent"));
@@ -252,7 +268,9 @@ public class customercartdisplay extends AppCompatActivity {
                                 products.add(postSnapshot.getValue(Product.class));
                             }
                             DatabaseReference orderReference = database.getReference("Orders/");
-                            orderID = orderReference.push().getKey();
+
+                            //orderID = orderReference.push().getKey();
+                            orderID =  getOrderID();
                             Orders orders = new Orders();
                             orders.setID(orderID);
                             orders.setUserID(userID);

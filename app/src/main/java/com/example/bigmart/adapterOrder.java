@@ -61,7 +61,8 @@ public class adapterOrder extends ArrayAdapter<Orders> {
 
 
 
-        orderID.setText("" + order.ID.substring(order.ID.length() - 5).toUpperCase());
+        //orderID.setText("" + order.ID.substring(order.ID.length() - 5).toUpperCase());
+        orderID.setText("" + order.ID);
         orderIDDUP.setText("" + order.ID);
         if (order.deliveryType.equals("Home Delivery"))
             if (order.amount > 2000)

@@ -105,7 +105,8 @@ public class customerorderdetails extends AppCompatActivity {
         final TextView name = findViewById(R.id.txt_customer_orderdetails_customerName);
         final TextView mobile = findViewById(R.id.txt_customer_orderdetails_customerMobile);
         TextView txtorderID = findViewById(R.id.txt_customer_orderdetails_orderID);
-        txtorderID.setText(""+orderID.substring(orderID.length() - 5).toUpperCase());
+        //txtorderID.setText(""+orderID.substring(orderID.length() - 5).toUpperCase());
+        txtorderID.setText(""+orderID);
 
 
 
