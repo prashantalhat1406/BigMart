@@ -177,6 +177,7 @@ public class adapterProductCart extends ArrayAdapter<Product> {
                         @Override
                         public void onShow(DialogInterface dialog) {
                             alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+                            alert11.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(Color.BLACK);
                         }
                     });
                     alert11.show();
