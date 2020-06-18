@@ -24,6 +24,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class shopownerordershistory extends AppCompatActivity {
@@ -69,6 +70,7 @@ public class shopownerordershistory extends AppCompatActivity {
         }
 
 
+        //Collections.reverse(orders_filter);
         adapterOrder orderAdapter = new adapterOrder(shopownerordershistory.this,R.layout.itemorder,orders_filter, userID,2);
         ordersList.setAdapter(orderAdapter);
         ordersList.setSelection(position);
@@ -109,6 +111,7 @@ public class shopownerordershistory extends AppCompatActivity {
                     //orders_filter.add(order);
                 }
 
+                //Collections.reverse(orders);
                 adapterOrder orderAdapter = new adapterOrder(shopownerordershistory.this,R.layout.itemorder,orders, userID,2);
                 ordersList.setAdapter(orderAdapter);
                 RadioGroup rg = findViewById(R.id.rdbGroup);

@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class customerorderhistory extends AppCompatActivity {
@@ -52,12 +53,13 @@ public class customerorderhistory extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //if (dataSnapshot.exists()) {
-                    List<Orders> orders = new ArrayList<Orders>();
-                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                        Orders order = postSnapshot.getValue(Orders.class);
-                        if (order.userID == userID)
-                            orders.add(order);
-                    }
+                List<Orders> orders = new ArrayList<Orders>();
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    Orders order = postSnapshot.getValue(Orders.class);
+                    if (order.userID == userID)
+                        orders.add(order);
+                }
+                Collections.reverse(orders);
                 if(orders.size() != 0){
                     adapterOrder orderAdapter = new adapterOrder(customerorderhistory.this, R.layout.itemorder, orders, userID, 2);
                     ordersList.setAdapter(orderAdapter);
