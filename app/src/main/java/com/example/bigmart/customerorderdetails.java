@@ -84,6 +84,7 @@ public class customerorderdetails extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 products.clear();
+                savePrice = 0;
 
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     Product product = postSnapshot.getValue(Product.class);
@@ -91,7 +92,7 @@ public class customerorderdetails extends AppCompatActivity {
                     products.add(product);
 
                     TotalPrice = TotalPrice +  (product.QtyNos * (product.MRP -  product.Discount.doubleValue()));
-                    savePrice = savePrice + (product.Qty * product.Discount);
+                    savePrice = savePrice + (product.QtyNos * product.Discount);
 
                     //TotalPrice = (Double) Math.round(TotalPrice);
                 }
