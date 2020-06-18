@@ -161,7 +161,7 @@ public class customercartdisplay extends AppCompatActivity {
                     @Override
                     public void onShow(DialogInterface dialog) {
                         alertRemoveall.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
-                        alertRemoveall.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.GREEN);
+                        alertRemoveall.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
                     }
                 });
                 alertRemoveall.show();

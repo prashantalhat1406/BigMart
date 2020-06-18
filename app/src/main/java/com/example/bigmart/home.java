@@ -325,7 +325,7 @@ public class home extends AppCompatActivity {
             @Override
             public void onShow(DialogInterface dialog) {
                 alertLogout.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
-                alertLogout.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.GREEN);
+                alertLogout.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
             }
         });
 
