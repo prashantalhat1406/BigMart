@@ -71,23 +71,26 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent" android:layout_weight="0.7">
-            <LinearLayout
+
+            <LinearLayout android:layout_weight="0.29"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" android:layout_weight="0.3">
+                android:layout_height="match_parent" >
                 <TextView android:id="@+id/txt_item_remove" android:clickable="true"
                     android:layout_width="match_parent"  android:layout_gravity="center" android:gravity="center" android:textColor="#FF0000"
                     android:layout_height="match_parent" android:text="Remove"></TextView>
             </LinearLayout>
-            <LinearLayout
+
+            <LinearLayout android:layout_weight="0.33"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" android:layout_weight="0.31">
+                android:layout_height="match_parent" >
                 <Button android:id="@+id/but_item_qtyedit" android:visibility="invisible"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"></Button>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent" android:orientation="horizontal"
-                android:layout_height="match_parent" android:layout_weight="0.3">
+
+            <LinearLayout android:layout_weight="0.29"
+                android:layout_width="match_parent" android:orientation="horizontal" android:paddingRight="20dp"
+                android:layout_height="match_parent" >
                 <Button android:id="@+id/but_addToCart" android:visibility="visible" android:layout_gravity="center" android:gravity="center"
                     android:layout_width="wrap_content" android:text="  Add to Cart  "
                       android:paddingRight="10dp"
@@ -115,6 +118,7 @@
                         android:layout_height="40dp"></Button>
                 </LinearLayout>
             </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout android:id="@+id/layout_subQty"
