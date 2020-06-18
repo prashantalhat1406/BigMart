@@ -62,8 +62,9 @@ public class customercartdisplay extends AppCompatActivity {
         String day = new SimpleDateFormat("dd").format(cal.getTime());
         String hh = new SimpleDateFormat("hh").format(cal.getTime());
         String mm = new SimpleDateFormat("mm").format(cal.getTime());
+        String ss = new SimpleDateFormat("ss").format(cal.getTime());
 
-        unquieOrderID = "" + month_name.toUpperCase() + day+hh+mm;
+        unquieOrderID = "" + month_name.toUpperCase() + day+hh+mm+ss;
 
         return unquieOrderID;
     }
