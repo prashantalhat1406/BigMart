@@ -40,6 +40,7 @@ public class customerorderdetails extends AppCompatActivity {
     Button butComplete, butConfirm, butCancel,butPrint;
     User user;
     Double TotalPrice = 0.0;
+    Integer savePrice = 0;
     TextView txtorderStatus;
     LinearLayout linearLayout;
 
@@ -90,6 +91,7 @@ public class customerorderdetails extends AppCompatActivity {
                     products.add(product);
 
                     TotalPrice = TotalPrice +  (product.QtyNos * (product.MRP -  product.Discount.doubleValue()));
+                    savePrice = savePrice + (product.Qty * product.Discount);
 
                     //TotalPrice = (Double) Math.round(TotalPrice);
                 }
@@ -127,6 +129,9 @@ public class customerorderdetails extends AppCompatActivity {
                         totalAmount.setText("Total : " + customerorderdetails.this.getResources().getString(R.string.Rupee) + " "+formater.format( TotalPrice) + " + " + customerorderdetails.this.getResources().getString(R.string.Rupee) + " "+ formater.format(Math.round( ( TotalPrice *0.02))));
                 else
                     totalAmount.setText("Total : " + customerorderdetails.this.getResources().getString(R.string.Rupee) + " "+formater.format( TotalPrice));
+
+                TextView sAmount = findViewById(R.id.txt_customer_orderdetails_saveAmount);
+                sAmount.setText("Savings : " + customerorderdetails.this.getResources().getString(R.string.Rupee) + " "+formater.format( savePrice));
 
 
                 if(orderDetail.status.equals("Created")) {
