@@ -261,6 +261,8 @@ public class home extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.asmmenu, menu);
         homeMenu = menu;
 
+
+
         MenuItem itemCart = menu.findItem(R.id.menu_viewcart);
         final LayerDrawable icon = (LayerDrawable) itemCart.getIcon();
         Query query = database.getReference("Users/"+userID+"/TempOrder");
