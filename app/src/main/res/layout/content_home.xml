@@ -36,30 +36,30 @@
                     android:layout_width="match_parent" android:text="dairy"
                     android:layout_height="match_parent" android:layout_weight="0.5"></Button>-->
                 <ImageButton android:id="@+id/but_category_1" android:tag="Dairy" android:backgroundTint="#ffffff"
-                    android:layout_width="match_parent" android:scaleType="fitXY"
+                    android:layout_width="match_parent" android:scaleType="fitCenter"
                     android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
                 <ImageButton android:id="@+id/but_category_2"  android:tag="Grocery"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:layout_weight="0.5" android:scaleType="fitXY" ></ImageButton>
+                    android:layout_height="match_parent" android:layout_weight="0.5" android:scaleType="fitCenter" ></ImageButton>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp" android:layout_weight="0.1" android:orientation="horizontal">
                 <ImageButton android:id="@+id/but_category_3"
-                    android:layout_width="match_parent"
+                    android:layout_width="match_parent" android:scaleType="fitCenter"
                     android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
                 <ImageButton android:id="@+id/but_category_4"
-                    android:layout_width="match_parent"
+                    android:layout_width="match_parent" android:scaleType="fitCenter"
                     android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp" android:layout_weight="0.1" android:orientation="horizontal">
                 <ImageButton android:id="@+id/but_category_5"
-                    android:layout_width="match_parent"
+                    android:layout_width="match_parent" android:scaleType="fitCenter"
                     android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
                 <ImageButton android:id="@+id/but_category_6"
-                    android:layout_width="match_parent"
+                    android:layout_width="match_parent" android:scaleType="fitCenter"
                     android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
             </LinearLayout>
             <LinearLayout android:visibility="gone"
