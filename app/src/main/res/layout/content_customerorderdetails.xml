@@ -106,13 +106,13 @@
         <LinearLayout android:orientation="horizontal"
             android:layout_width="match_parent" android:layout_weight="0.4" android:paddingLeft="10dp"
             android:layout_height="match_parent">
-            <Button android:id="@+id/but_customer_orderdetail_cancel" android:layout_weight="0.7"
+            <Button android:id="@+id/but_customer_orderdetail_cancel" android:layout_weight="0.65"
                 android:layout_width="match_parent" android:background="@drawable/roundbutton" android:backgroundTint="@color/blueColorButton"
                 android:layout_height="match_parent" android:text="Cancel Order" android:visibility="visible"
                 > </Button>
 
-            <LinearLayout android:id="@+id/layout_custOrderDetails_status"
-                android:layout_width="match_parent" android:layout_weight="0.7" android:visibility="gone" android:layout_gravity="center"
+            <LinearLayout android:id="@+id/layout_custOrderDetails_status" android:layout_weight="0.65"
+                android:layout_width="match_parent"  android:visibility="gone" android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_height="match_parent" >
                 <TextView android:id="@+id/txt_customer_orderdetails_orderstatus" android:layout_gravity="center" android:gravity="right"
@@ -120,10 +120,11 @@
                     android:layout_height="wrap_content"></TextView>
             </LinearLayout>
 
-            <TextView android:id="@+id/txt_customer_orderdetails_totoalAmount"
+            <TextView android:id="@+id/txt_customer_orderdetails_totoalAmount" android:layout_weight="0.35"
                 android:layout_width="match_parent" style="@style/totalAmount" android:layout_gravity="center" android:gravity="center"
-                android:layout_height="match_parent" android:layout_weight="0.3" android:text="test"></TextView>
+                android:layout_height="match_parent"  android:text="test"></TextView>
         </LinearLayout>
+
         <LinearLayout android:orientation="horizontal"
             android:layout_width="match_parent" android:layout_weight="0.4" android:paddingLeft="10dp"
             android:layout_height="match_parent">

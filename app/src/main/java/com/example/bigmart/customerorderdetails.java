@@ -125,11 +125,11 @@ public class customerorderdetails extends AppCompatActivity {
 
                 if (orderDetail.deliveryType.equals("Home Delivery"))
                     if (TotalPrice < 2000)
-                        totalAmount.setText("Total : " + customerorderdetails.this.getResources().getString(R.string.Rupee) + " "+formater.format( TotalPrice) + " + " + customerorderdetails.this.getResources().getString(R.string.Rupee) + " 50" );
+                        totalAmount.setText("Total : " + customerorderdetails.this.getResources().getString(R.string.Rupee) + " "+formater.format( Math.round( TotalPrice)) + " + " + customerorderdetails.this.getResources().getString(R.string.Rupee) + " 50" );
                     else
-                        totalAmount.setText("Total : " + customerorderdetails.this.getResources().getString(R.string.Rupee) + " "+formater.format( TotalPrice) + " + " + customerorderdetails.this.getResources().getString(R.string.Rupee) + " "+ formater.format(Math.round( ( TotalPrice *0.02))));
+                        totalAmount.setText("Total : " + customerorderdetails.this.getResources().getString(R.string.Rupee) + " "+formater.format( Math.round( TotalPrice)) + " + " + customerorderdetails.this.getResources().getString(R.string.Rupee) + " "+ formater.format(Math.round( ( TotalPrice *0.02))));
                 else
-                    totalAmount.setText("Total : " + customerorderdetails.this.getResources().getString(R.string.Rupee) + " "+formater.format( TotalPrice));
+                    totalAmount.setText("Total : " + customerorderdetails.this.getResources().getString(R.string.Rupee) + " "+formater.format( Math.round( TotalPrice)));
 
                 TextView sAmount = findViewById(R.id.txt_customer_orderdetails_saveAmount);
                 sAmount.setText("Savings : " + customerorderdetails.this.getResources().getString(R.string.Rupee) + " "+formater.format( savePrice));
