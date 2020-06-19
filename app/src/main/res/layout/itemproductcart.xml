@@ -80,7 +80,7 @@
                     android:layout_height="match_parent" android:text="Remove"></TextView>
             </LinearLayout>
 
-            <LinearLayout android:layout_weight="0.33"
+            <LinearLayout android:layout_weight="0.38"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
                 <Button android:id="@+id/but_item_qtyedit" android:visibility="invisible"
@@ -98,12 +98,12 @@
                 <LinearLayout android:id="@+id/layout_incrementor" android:visibility="visible"
                     android:layout_width="wrap_content" android:orientation="horizontal" android:layout_gravity="center"
                     android:gravity="center" android:background="@drawable/button_greyborder"
-                    android:paddingRight="1dp" android:paddingLeft="1dp"
+                    android:paddingRight="2dp" android:paddingLeft="2dp"
                     android:layout_height="wrap_content">
                     <Button android:id="@+id/but_item_minus" android:layout_gravity="center" android:gravity="center"
                         android:layout_width="40dp" android:backgroundTint="#ffffff"
                         android:drawableStart="@drawable/ic_remove"
-                        android:paddingLeft="10dp" android:paddingRight="10dp"
+                        android:paddingLeft="7dp" android:paddingRight="5dp"
                         android:textColor="@color/redColorButton"
                         android:layout_height="40dp" android:textSize="@dimen/profileLabel" ></Button>
                     <TextView android:id="@+id/txt_item_number"
@@ -114,7 +114,7 @@
                         android:layout_width="40dp" android:backgroundTint="#ffffff"
                         android:textColor="@color/greenColorButton" android:textSize="@dimen/profileLabel"
                         android:drawableStart="@drawable/ic_plus"
-                        android:paddingLeft="10dp" android:paddingRight="10dp"
+                        android:paddingLeft="7dp" android:paddingRight="5dp"
                         android:layout_height="40dp"></Button>
                 </LinearLayout>
             </LinearLayout>
