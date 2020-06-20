@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,6 +41,7 @@ public class login extends AppCompatActivity {
     public List<User> usersDB;
     EditText edtMobile,edtPassword;
     Button butLogin ;
+    private FirebaseAuth mAuth;
 
 
     public void showErrorMessage(String message){
@@ -172,6 +174,9 @@ public class login extends AppCompatActivity {
         usersDB = new ArrayList<>();
 
         FirebaseApp.initializeApp(login.this);
+
+        mAuth = FirebaseAuth.getInstance();
+
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
 
         Query query = database.getReference("/Users");
