@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -139,7 +140,14 @@ public class adapterProduct extends ArrayAdapter<Product> {
                                     dialog.cancel();
                                 }
                             });
-                    AlertDialog alert11 = builder1.create();
+                    final AlertDialog alert11 = builder1.create();
+                    alert11.setOnShowListener(new DialogInterface.OnShowListener() {
+                        @Override
+                        public void onShow(DialogInterface dialog) {
+                            //alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+                            alert11.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(Color.BLACK);
+                        }
+                    });
                     alert11.show();
 
                 }
