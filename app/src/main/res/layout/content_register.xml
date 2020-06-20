@@ -8,6 +8,7 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
     <LinearLayout android:layout_weight="0.5"
         android:layout_width="match_parent" android:orientation="vertical"
+        android:paddingEnd="10dp" android:paddingStart="10dp"
         android:layout_height="match_parent">
         <TextView android:layout_weight="0.5" android:layout_width="match_parent"
             android:layout_height="match_parent" android:text="Full Name :"
@@ -15,9 +16,7 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
         <LinearLayout android:layout_weight="0.5"
             android:layout_width="match_parent" android:orientation="horizontal"
             android:layout_height="match_parent">
-            <TextView
-                android:layout_width="match_parent" android:layout_weight="0.5"
-                android:layout_height="match_parent"></TextView>
+
             <EditText android:id="@+id/edt_register_Name"
                 android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
                 android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="text"
@@ -25,15 +24,14 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
                 android:nextFocusDown="@id/edt_register_mobile" android:imeOptions="actionNone"
 
                 android:layout_height="match_parent" android:hint="Name"/>
-            <TextView
-                android:layout_width="match_parent" android:layout_weight="0.5"
-                android:layout_height="match_parent"></TextView>
+
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout android:layout_weight="0.5"
         android:layout_width="match_parent" android:orientation="vertical"
+        android:paddingEnd="10dp" android:paddingStart="10dp"
         android:layout_height="match_parent">
         <TextView android:layout_weight="0.5"        android:layout_width="match_parent"
             android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
@@ -41,27 +39,21 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
         <LinearLayout android:layout_weight="0.5"
             android:layout_width="match_parent" android:orientation="horizontal"
             android:layout_height="match_parent">
-            <TextView
-                android:layout_width="match_parent" android:layout_weight="0.5"
-                android:layout_height="match_parent"></TextView>
+
             <EditText android:id="@+id/edt_register_mobile"
                 android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
                 android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="number"
                 android:maxLength="10"
                 android:nextFocusDown="@id/edt_register_pin" android:imeOptions="actionNext"
                 android:layout_height="match_parent" android:hint="Mobile"/>
-            <TextView
-                android:layout_width="match_parent" android:layout_weight="0.5"
-                android:layout_height="match_parent"></TextView>
+
         </LinearLayout>
-        <!--<EditText android:id="@+id/edt_profile_mobile"
-            android:layout_weight="0.5" android:visibility="visible" android:background="@drawable/profiletextbox"
-            android:layout_width="match_parent" android:padding="10dp" android:maxLines="1"
-            android:layout_height="match_parent" android:hint="Mobile"/>-->
+
     </LinearLayout>
 
     <LinearLayout android:layout_weight="0.5"
         android:layout_width="match_parent" android:orientation="vertical"
+        android:paddingEnd="10dp" android:paddingStart="10dp"
         android:layout_height="match_parent">
         <TextView android:layout_weight="0.5"        android:layout_width="match_parent"
             android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
@@ -69,18 +61,20 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
         <LinearLayout android:layout_weight="0.5"
             android:layout_width="match_parent" android:orientation="horizontal"
             android:layout_height="match_parent">
-            <TextView
-                android:layout_width="match_parent" android:layout_weight="0.5"
-                android:layout_height="match_parent"></TextView>
+
             <EditText android:id="@+id/edt_register_pin"
                 android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
                 android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="numberPassword"
                 android:maxLength="4" android:drawableRight="@drawable/ic_eye_off"
                 android:nextFocusDown="@id/edt_register_Address1" android:imeOptions="actionNext"
                 android:layout_height="match_parent" android:hint="4 Digit Pin"/>
-            <TextView
-                android:layout_width="match_parent" android:layout_weight="0.5"
-                android:layout_height="match_parent"></TextView>
+            <EditText
+                android:layout_weight="0.03" android:visibility="invisible" android:background="@drawable/profiletextbox"
+                android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="numberPassword"
+                android:maxLength="4" android:drawableRight="@drawable/ic_eye_off"
+                android:nextFocusDown="@id/edt_register_Address1" android:imeOptions="actionNext"
+                android:layout_height="match_parent" android:hint="4 Digit Pin"/>
+
         </LinearLayout>
         <!--<EditText android:id="@+id/edt_profile_address1"
             android:layout_weight="0.5" android:visibility="visible" android:background="@drawable/profiletextbox"
@@ -90,6 +84,7 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
     <LinearLayout android:layout_weight="0.5"
         android:layout_width="match_parent" android:orientation="vertical"
+        android:paddingEnd="10dp" android:paddingStart="10dp"
         android:layout_height="match_parent">
         <TextView android:layout_weight="0.5"        android:layout_width="match_parent"
             android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
@@ -97,18 +92,14 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
         <LinearLayout android:layout_weight="0.5"
             android:layout_width="match_parent" android:orientation="horizontal"
             android:layout_height="match_parent">
-            <TextView
-                android:layout_width="match_parent" android:layout_weight="0.5"
-                android:layout_height="match_parent"></TextView>
+
             <EditText android:id="@+id/edt_register_Address1"
                 android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
                 android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="text"
                 android:gravity="left|center" android:layout_gravity="center" android:tag="Address 1"
                 android:nextFocusDown="@id/edt_register_Address2" android:imeOptions="actionNext"
                 android:layout_height="match_parent" android:hint="Address 1"/>
-            <TextView
-                android:layout_width="match_parent" android:layout_weight="0.5"
-                android:layout_height="match_parent"></TextView>
+
         </LinearLayout>
         <!--<EditText android:id="@+id/edt_profile_address2"
             android:layout_weight="0.5" android:visibility="visible" android:background="@drawable/profiletextbox"
@@ -118,6 +109,7 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
     <LinearLayout android:layout_weight="0.5"
         android:layout_width="match_parent" android:orientation="vertical"
+        android:paddingEnd="10dp" android:paddingStart="10dp"
         android:layout_height="match_parent">
         <TextView android:layout_weight="0.5"        android:layout_width="match_parent"
             android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
@@ -125,23 +117,37 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
         <LinearLayout android:layout_weight="0.5"
             android:layout_width="match_parent" android:orientation="horizontal"
             android:layout_height="match_parent">
-            <TextView
-                android:layout_width="match_parent" android:layout_weight="0.5"
-                android:layout_height="match_parent"></TextView>
             <EditText android:id="@+id/edt_register_Address2"
                 android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
                 android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="text"
                 android:gravity="left|center" android:layout_gravity="center" android:tag="Address 2"
                 android:nextFocusDown="@id/but_register_save" android:imeOptions="actionNext"
                 android:layout_height="match_parent" android:hint="Address 2"/>
-            <TextView
-                android:layout_width="match_parent" android:layout_weight="0.5"
-                android:layout_height="match_parent"></TextView>
         </LinearLayout>
-        <!--<EditText android:id="@+id/edt_profile_email"
-            android:layout_weight="0.5" android:visibility="visible" android:background="@drawable/profiletextbox"
-            android:layout_width="match_parent" android:padding="10dp"
-            android:layout_height="match_parent" android:hint="Email"/>-->
+    </LinearLayout>
+
+    <LinearLayout android:layout_weight="0.5" android:visibility="gone"
+        android:layout_width="match_parent" android:orientation="vertical"
+        android:paddingEnd="10dp"
+        android:layout_height="match_parent">
+        <TextView android:layout_weight="0.5"        android:layout_width="match_parent"
+            android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
+            android:layout_height="match_parent" android:text="Security Question :" />
+        <LinearLayout android:layout_weight="0.5"
+            android:layout_width="match_parent" android:orientation="horizontal"
+            android:layout_height="match_parent">
+
+
+            <Spinner android:layout_weight="0.4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></Spinner>
+            <EditText android:layout_weight="0.4"
+                android:background="@drawable/profiletextbox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></EditText>
+
+
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout android:layout_weight="0.5"
