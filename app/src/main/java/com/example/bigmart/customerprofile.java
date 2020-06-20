@@ -25,6 +25,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
 public class customerprofile extends AppCompatActivity {
 
     private long userID;
@@ -33,6 +39,7 @@ public class customerprofile extends AppCompatActivity {
     FirebaseDatabase database;
     Integer password = 0;
     Button save;
+    List<Product> products;
 
     public void goToHome(){
         Intent homeIntent = new Intent(customerprofile.this, home.class);
@@ -153,6 +160,26 @@ public class customerprofile extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {            }
         });
 
+        products = new ArrayList<Product>();
+
+        /*DatabaseReference productReference = database.getReference("Users/" + userID).child("/TempOrder");
+        Query query = productReference.orderByKey();
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                products.clear();
+                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                        products.add(postSnapshot.getValue(Product.class));
+                    }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });*/
+
+
         save = findViewById(R.id.but_profile_save);
         save.setEnabled(false);
         save.setOnClickListener(new View.OnClickListener() {
@@ -168,10 +195,26 @@ public class customerprofile extends AppCompatActivity {
                     user.setAddress2("" + address2.getText().toString());
                     user.setEmail("" + email.getText().toString());
                     user.setPassword(password);
-                    databaseReference.setValue(user);
+                    databaseReference.child("name").setValue(user.Name);
+                    databaseReference.child("address1").setValue(user.Address1);
+                    databaseReference.child("address2").setValue(user.Address2);
+                    databaseReference.child("email").setValue(user.Email);
+                    databaseReference.child("password").setValue(user.Password);
+                    databaseReference.child("mobile").setValue(user.Mobile);
+
                     Toast error = Toast.makeText(customerprofile.this, "Changes Saved", Toast.LENGTH_SHORT);
                     error.setGravity(Gravity.CENTER, 0, 0);
                     error.show();
+
+                    /*database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
+
+                    DatabaseReference userTempOrderReference = database.getReference("Users/"+userID+"/TempOrder");
+
+                    for (Product product : products) {
+                        userTempOrderReference.child(""+product.ID).setValue(product);
+                    }*/
+
+
                     goToHome();
                     //finish();
                 }
