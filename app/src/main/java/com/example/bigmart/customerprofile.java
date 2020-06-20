@@ -116,6 +116,7 @@ public class customerprofile extends AppCompatActivity {
         setContentView(R.layout.activity_customerprofile);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
 
         Bundle b = getIntent().getExtras();
         userID = b.getLong("userID");

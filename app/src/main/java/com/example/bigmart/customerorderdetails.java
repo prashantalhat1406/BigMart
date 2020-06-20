@@ -50,6 +50,7 @@ public class customerorderdetails extends AppCompatActivity {
         setContentView(R.layout.activity_customerorderdetails);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
 

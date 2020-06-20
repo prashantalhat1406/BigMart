@@ -171,6 +171,8 @@ public class login extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
+
         usersDB = new ArrayList<>();
 
         FirebaseApp.initializeApp(login.this);

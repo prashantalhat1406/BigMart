@@ -76,6 +76,7 @@ public class subcategorydisplay extends AppCompatActivity {
         setContentView(R.layout.activity_subcat);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
 
 
         Bundle b = getIntent().getExtras();

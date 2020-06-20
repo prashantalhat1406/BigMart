@@ -79,6 +79,7 @@ public class customerproductdisplay extends AppCompatActivity {
         setContentView(R.layout.activity_productdisplay);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
 
         Bundle b = getIntent().getExtras();
         userID = b.getLong("userID");
@@ -102,6 +103,19 @@ public class customerproductdisplay extends AppCompatActivity {
             case "SunScreen": setTitle("Sunscreen"); break;
             case "TalcomPowder": setTitle("Talcom Powder"); break;
             case "DryFruits": setTitle("Dry Fruits"); break;
+            case "Deos": setTitle("Deos & Perfumes"); break;
+            case "Health": setTitle("Health & Wellness"); break;
+            case "Shaving": setTitle("Shaving Needs"); break;
+            case "Jams": setTitle("Jams & Spreads"); break;
+            case "Pasta": setTitle("Pasta & Noodles"); break;
+            case "Ketchup": setTitle("Ketchup & Sauce"); break;
+            case "Freshner": setTitle("Freshener & Repellents"); break;
+            case "Masala": setTitle("Masala & Spices"); break;
+            case "Salt": setTitle("Salt/Sugar/Jaggery"); break;
+            case "Flours": setTitle("Flours & Grains"); break;
+            case "Ghee": setTitle("Ghee & Vanaspati"); break;
+            case "Rice": setTitle("Rice & Rice Products"); break;
+            case "Dairy": setTitle("Dairy Products"); break;
         }
 
         products = new ArrayList<Product>();

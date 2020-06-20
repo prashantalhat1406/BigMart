@@ -22,6 +22,7 @@ public class customerdeliverypayment extends AppCompatActivity {
         setContentView(R.layout.activity_customerdeliverypayment);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
 
         TextView pickup = findViewById(R.id.txt_pickup);
         pickup.setText(Html.fromHtml(getString(R.string.pickup)));

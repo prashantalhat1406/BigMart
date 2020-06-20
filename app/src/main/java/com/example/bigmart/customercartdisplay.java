@@ -100,6 +100,7 @@ public class customercartdisplay extends AppCompatActivity {
         setContentView(R.layout.activity_cartdisplay);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
 
 
 
