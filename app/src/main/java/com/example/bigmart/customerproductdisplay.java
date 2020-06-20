@@ -80,6 +80,7 @@ public class customerproductdisplay extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
+        toolbar.setOverflowIcon(getDrawable(R.drawable.ic_menuicon));
 
         Bundle b = getIntent().getExtras();
         userID = b.getLong("userID");
