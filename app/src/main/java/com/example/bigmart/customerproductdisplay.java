@@ -86,6 +86,24 @@ public class customerproductdisplay extends AppCompatActivity {
         categoryName = b.getString("categoryName","");
         searchItem = b.getString("searchItem","");
 
+        setTitle(subcategoryName);
+
+        switch (subcategoryName){
+            case "DetergentsFabric": setTitle("Detergents & Fabric"); break;
+            case "HomeUtility": setTitle("Home Utility"); break;
+            case "UtensilCleaners": setTitle("Utensil Cleaners"); break;
+            case "ReadyToCook": setTitle("Ready To Cook"); break;
+            case "OralCare": setTitle("Oral Care"); break;
+            case "PersonalHygiene": setTitle("Personal Hygiene"); break;
+            case "SanitaryNapkins": setTitle("Sanitary Napkins"); break;
+            case "CookingOil": setTitle("Cooking Oil"); break;
+            case "FaceCare": setTitle("Face Care"); break;
+            case "ShowerGel": setTitle("Shower Gel"); break;
+            case "SunScreen": setTitle("Sunscreen"); break;
+            case "TalcomPowder": setTitle("Talcom Powder"); break;
+            case "DryFruits": setTitle("Dry Fruits"); break;
+        }
+
         products = new ArrayList<Product>();
         cartProducts = new ArrayList<Product>();
         cartProducts.clear();
