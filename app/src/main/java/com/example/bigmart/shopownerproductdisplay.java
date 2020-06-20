@@ -48,6 +48,8 @@ public class shopownerproductdisplay extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
+
         database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
 
 

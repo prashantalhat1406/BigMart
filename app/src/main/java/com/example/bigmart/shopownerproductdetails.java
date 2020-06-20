@@ -109,6 +109,8 @@ public class shopownerproductdetails extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
+
         Bundle b = getIntent().getExtras();
         productID = b.getString("productID", "");
         action = b.getString("action", "add");

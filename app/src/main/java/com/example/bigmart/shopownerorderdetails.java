@@ -63,6 +63,7 @@ public class shopownerorderdetails extends AppCompatActivity {
         setContentView(R.layout.activity_orderdetaildisplay);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
 
         database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
 

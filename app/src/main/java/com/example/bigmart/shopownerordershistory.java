@@ -90,6 +90,8 @@ public class shopownerordershistory extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
+
 
 
         orders = new ArrayList<Orders>();

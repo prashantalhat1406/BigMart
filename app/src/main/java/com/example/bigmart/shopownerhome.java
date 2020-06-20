@@ -20,6 +20,7 @@ public class shopownerhome extends AppCompatActivity {
         setContentView(R.layout.activity_shopownerhome);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
 
         Button order = findViewById(R.id.but_shop_order);
         order.setOnClickListener(new View.OnClickListener() {
