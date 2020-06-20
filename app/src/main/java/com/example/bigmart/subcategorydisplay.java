@@ -77,9 +77,20 @@ public class subcategorydisplay extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         Bundle b = getIntent().getExtras();
         categoryName = b.getString("categoryName");
         userID = b.getLong("userID");
+
+        switch(categoryName){
+            case "Dairy" : setTitle("Dairy & Beverages"); break;
+            case "Grovery" : setTitle("Grocery"); break;
+            case "HomeKitchen" : setTitle("Home & Kitchen"); break;
+            case "SkinCare" : setTitle("Skin Care"); break;
+            case "PersonalCare" : setTitle("Personal Care"); break;
+            case "PackagedFoods" : setTitle("Packaged Foods"); break;
+        }
+        //setTitle(categoryName);
 
         for(int id : BUTTON_IDS) {
             final ImageButton button = (ImageButton) findViewById(id);
