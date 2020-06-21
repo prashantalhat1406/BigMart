@@ -109,7 +109,8 @@ public class shopownerordershistory extends AppCompatActivity {
                 {
                     Orders order = postSnapshot.getValue(Orders.class);
                     orders.add(order);
-                    orderIDs.add(order.ID.substring(order.ID.length() - 5).toUpperCase());
+                    //orderIDs.add(order.ID.substring(order.ID.length() - 5).toUpperCase());
+                    orderIDs.add(order.ID);
                     //orders_filter.add(order);
                 }
 
@@ -141,7 +142,8 @@ public class shopownerordershistory extends AppCompatActivity {
                 Object t = parent.getItemAtPosition(position);
                 //Toast.makeText(shopownerordershistory.this,t.toString(),Toast.LENGTH_SHORT).show();
                 for (Orders order : orders) {
-                    if( order.ID.substring(order.ID.length() - 5).toUpperCase().equals(t.toString())){
+                    //if( order.ID.substring(order.ID.length() - 5).toUpperCase().equals(t.toString())){
+                    if( order.ID.equals(t.toString())){
                         Intent orderIntent = new Intent(shopownerordershistory.this, shopownerorderdetails.class);
                         Bundle extras = new Bundle();
                         extras.putString("orderID", ""+order.ID);
@@ -149,6 +151,7 @@ public class shopownerordershistory extends AppCompatActivity {
                         orderIntent.putExtras(extras);
                         startActivityForResult(orderIntent,100);
                         autoCompleteTextView.setText("");
+                        break;
                     }
                 }
                 /*Intent orderIntent = new Intent(shopownerordershistory.this, shopownerorderdetails.class);

@@ -237,6 +237,7 @@ public class shopownerorderdetails extends AppCompatActivity {
                         name.setText("" + u.Name);
                         mobile.setText("" + u.Mobile);
                         address.setText("" + u.Address1 + " , " + u.Address2);
+                        break;
                     }
                 }
             }

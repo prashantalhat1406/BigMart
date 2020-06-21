@@ -174,6 +174,7 @@ public class customerorderdetails extends AppCompatActivity {
                     {
                         name.setText("" + u.Name);
                         mobile.setText("" + u.Mobile);
+                        break;
                     }
                 }
             }
