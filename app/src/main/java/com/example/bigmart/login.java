@@ -105,7 +105,7 @@ public class login extends AppCompatActivity {
 
         for (User u : usersDB) {
             if (u.Mobile.equals(Long.parseLong(mobileNumber)))
-                flag = true;
+            {flag = true;break;}
         }
         return flag;
     }
@@ -116,7 +116,7 @@ public class login extends AppCompatActivity {
 
         for (User u : usersDB) {
             if (u.Mobile.equals(Long.parseLong(mobileNumber)))
-                pin = u.Password;
+            {pin = u.Password;break;}
         }
         return pin;
     }
