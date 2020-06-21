@@ -113,6 +113,17 @@ public class registration extends AppCompatActivity {
         return flag;
     }
 
+    public boolean isSecurityQuestionSelected(){
+        boolean flag = false;
+
+        if (spnSecurityQ.getSelectedItemPosition() > 0)
+            flag = true;
+        else
+            showErrorMessage("Please select security Question");
+
+        return  flag;
+    }
+
 
 
     @Override
@@ -206,6 +217,7 @@ public class registration extends AppCompatActivity {
                         && isFieldEmpty(edtAddress1)
                         && isFieldEmpty(edtAddress2)
                         && isFieldEmpty(edtSecurityAns)
+                        && isSecurityQuestionSelected()
                 )
                 {
                     User user = new User();
