@@ -8,6 +8,8 @@ public class User {
     String Email;
     String Address1;
     String Address2;
+    Integer securityQ;
+    String Answer;
 
     public User() {
     }
@@ -27,6 +29,22 @@ public class User {
         Name = name;
         Password = password;
         Address1 = address1;
+    }
+
+    public Integer getSecurityQ() {
+        return securityQ;
+    }
+
+    public void setSecurityQ(Integer securityQ) {
+        this.securityQ = securityQ;
+    }
+
+    public String getAnswer() {
+        return Answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.Answer = answer;
     }
 
     public String getID() {

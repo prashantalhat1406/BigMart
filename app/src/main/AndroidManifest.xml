@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".forgotpassword"
+            android:label="@string/title_activity_forgotpassword"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".customerdeliverypayment"
             android:label="@string/title_activity_customerdeliverypayment"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".shopownerproductdetails"
             android:label="@string/title_activity_shopownerproductddetails"
@@ -40,12 +44,12 @@
             android:name=".shopownerorderdetails"
             android:label="@string/title_activity_orderdetaildisplay"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".shopownerordershistory"
             android:label="@string/title_activity_shopownerordershistory"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".shopownerhome"
             android:label="@string/title_activity_home"

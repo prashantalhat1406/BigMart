@@ -274,6 +274,31 @@ public class login extends AppCompatActivity {
             }
         });
 
+        TextView txtforgotPassword = findViewById(R.id.txt_forgotpassword);
+        txtforgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if(isMobileValid(edtMobile.getText().toString())){
+                    if (isUserExist(edtMobile.getText().toString()))
+                    {
+                        Intent registerIntent = new Intent(login.this, forgotpassword.class);
+                        Bundle extras = new Bundle();
+                        extras.putLong("userID", Long.parseLong(edtMobile.getText().toString()));
+                        registerIntent.putExtras(extras);
+                        startActivity(registerIntent);
+                        finish();
+                    }else{
+                        edtMobile.setError("User does not exists!");
+                        edtMobile.requestFocus();
+                    }
+                }
+
+
+            }
+        });
+
         Button butRegister = findViewById(R.id.but_login_register);
         butRegister.setOnClickListener(new View.OnClickListener() {
             @Override

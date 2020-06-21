@@ -126,24 +126,27 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout android:layout_weight="0.5" android:visibility="gone"
+    <LinearLayout android:layout_weight="0.46" android:visibility="visible"
         android:layout_width="match_parent" android:orientation="vertical"
-        android:paddingEnd="10dp"
+        android:paddingEnd="10dp" android:paddingStart="10dp"
         android:layout_height="match_parent">
-        <TextView android:layout_weight="0.5"        android:layout_width="match_parent"
-            android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
+        <TextView android:layout_weight="0.68"        android:layout_width="match_parent"
+            android:textSize="@dimen/profileLabel" android:padding="10dp"
+            android:layout_gravity="bottom" android:gravity="bottom"
+
             android:layout_height="match_parent" android:text="Security Question :" />
-        <LinearLayout android:layout_weight="0.5"
-            android:layout_width="match_parent" android:orientation="horizontal"
+        <LinearLayout android:layout_weight="0.32"
+            android:layout_width="match_parent" android:orientation="vertical"
             android:layout_height="match_parent">
 
 
-            <Spinner android:layout_weight="0.4"
+            <Spinner android:layout_weight="0.5" android:id="@+id/spn_register_security"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"></Spinner>
-            <EditText android:layout_weight="0.4"
+            <EditText android:layout_weight="0.5" android:id="@+id/edt_register_secAnswer"
                 android:background="@drawable/profiletextbox"
                 android:layout_width="match_parent"
+                android:maxLines="1" android:nextFocusDown="@id/but_register_save"
                 android:layout_height="match_parent"></EditText>
 
 
@@ -159,11 +162,7 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
             android:layout_height="50dp" android:text="Register" android:textColor="#ffffff" ></Button>
     </LinearLayout>
 
-    <LinearLayout android:layout_weight="0.5"
-        android:layout_width="match_parent" android:orientation="vertical"
-        android:layout_height="match_parent">
 
-    </LinearLayout>
 
 </LinearLayout>
 

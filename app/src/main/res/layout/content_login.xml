@@ -78,9 +78,16 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:layout_gravity="center" android:gravity="center"
-        android:layout_weight="0.25">
-        <TextView
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:layout_weight="0.25"
+        android:layout_gravity="center" android:gravity="center"        >
+
+        <TextView android:layout_weight="0.5" android:id="@+id/txt_forgotpassword"
+            android:layout_width="match_parent" android:layout_gravity="center" android:gravity="top|center"
+            android:textColor="#ffffff"
+            android:layout_height="match_parent"
+            android:text="Forgot Password ?"/>
+
+        <TextView android:layout_weight="0.5"
             android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center" android:textColor="#ffffff"
             android:layout_height="match_parent" android:text=" Copyright 2020. Developed by PS Software Solutions"/>
 

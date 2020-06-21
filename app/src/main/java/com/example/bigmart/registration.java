@@ -22,8 +22,10 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -34,8 +36,10 @@ public class registration extends AppCompatActivity {
     private  Long userID;
     public List<User> usersDB;
     private  String password;
-    EditText edtName, edtMobile,edtPassword,edtAddress1, edtAddress2;
+    EditText edtName, edtMobile,edtPassword,edtAddress1, edtAddress2, edtSecurityAns;
     FirebaseDatabase database;
+    Spinner spnSecurityQ;
+    ArrayAdapter<String> SQadapter;
 
     public void showErrorMessage(String message){
         Toast error = Toast.makeText(registration.this, message,Toast.LENGTH_SHORT);
@@ -186,6 +190,13 @@ public class registration extends AppCompatActivity {
         edtAddress1 = findViewById(R.id.edt_register_Address1);
         edtAddress2 = findViewById(R.id.edt_register_Address2);
 
+        edtSecurityAns = findViewById(R.id.edt_register_secAnswer);
+        spnSecurityQ = findViewById(R.id.spn_register_security);
+
+        String[] securityQArray = getResources().getStringArray(R.array.securityquestions);
+        SQadapter =  new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, securityQArray);
+        spnSecurityQ.setAdapter(SQadapter);
+
         Button butRegister = findViewById(R.id.but_register_save);
         butRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -194,6 +205,7 @@ public class registration extends AppCompatActivity {
                         && isPinValid(edtPassword.getText().toString())
                         && isFieldEmpty(edtAddress1)
                         && isFieldEmpty(edtAddress2)
+                        && isFieldEmpty(edtSecurityAns)
                 )
                 {
                     User user = new User();
@@ -203,6 +215,8 @@ public class registration extends AppCompatActivity {
                     user.setAddress1(edtAddress1.getText().toString());
                     user.setAddress2(edtAddress2.getText().toString());
                     user.setEmail("");
+                    user.setSecurityQ(spnSecurityQ.getSelectedItemPosition());
+                    user.setAnswer(edtSecurityAns.getText().toString());
 
                     DatabaseReference databaseReference = database.getReference("Users");
                     databaseReference.child("" + user.Mobile).setValue(user);
