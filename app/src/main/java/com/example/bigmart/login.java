@@ -285,7 +285,10 @@ public class login extends AppCompatActivity {
                     {
                         Intent registerIntent = new Intent(login.this, forgotpassword.class);
                         Bundle extras = new Bundle();
-                        extras.putLong("userID", Long.parseLong(edtMobile.getText().toString()));
+                        if (edtMobile.getText().toString().length() > 0)
+                            extras.putLong("userID", Long.parseLong(edtMobile.getText().toString()));
+                        else
+                            extras.putLong("userID", Long.parseLong("0"));
                         registerIntent.putExtras(extras);
                         startActivity(registerIntent);
                         finish();
