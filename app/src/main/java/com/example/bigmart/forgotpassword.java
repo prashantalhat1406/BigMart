@@ -18,7 +18,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -39,6 +42,7 @@ public class forgotpassword extends AppCompatActivity {
     FirebaseDatabase database;
     private long userID;
     User user;
+    private Integer showpassword = 0;
 
     public void showErrorMessage(String message){
         Toast error = Toast.makeText(forgotpassword.this, message,Toast.LENGTH_SHORT);
@@ -101,6 +105,34 @@ public class forgotpassword extends AppCompatActivity {
 
 
         edtPassword.setVisibility(View.GONE);
+        edtPassword.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (edtPassword.getRight() - edtPassword.getCompoundDrawables()[2].getBounds().width())) {
+                        if (showpassword == 0)
+                        {
+                            edtPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            showpassword = 1;
+                            edtPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye, 0);
+                        }else
+                        {
+                            edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            showpassword = 0;
+
+                            edtPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_off, 0);
+                        }
+
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+
+        });
+
 
         String[] securityQArray = getResources().getStringArray(R.array.securityquestions);
         SQadapter =  new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, securityQArray);
