@@ -37,7 +37,8 @@
     <string name="title_activity_shopownerproductdisplay">Products</string>
     <string name="title_activity_shopownerproductddetails">Product Details</string>
     <string name="title_activity_customerdeliverypayment">Delivery Type</string>
-    <string name="redasterisk"><span style="color:red;">*</span></string>
+    <string name="securityquestion">Security Question <font fgcolor='#FF0000'>*</font></string>
+    <string name="pin">Pin <font fgcolor='#FF0000'>*</font></string>
 
     <string name="pickup">
 <![CDATA[
