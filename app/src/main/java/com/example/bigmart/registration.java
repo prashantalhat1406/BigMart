@@ -3,6 +3,7 @@ package com.example.bigmart;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.firebase.database.ChildEventListener;
@@ -170,6 +171,7 @@ public class registration extends AppCompatActivity {
 
 
         edtName = findViewById(R.id.edt_register_Name);
+        edtName.requestFocus();
         edtPassword = findViewById(R.id.edt_register_pin);
         edtPassword.setLongClickable(false);
         edtPassword.setOnTouchListener(new View.OnTouchListener() {
@@ -264,7 +266,14 @@ public class registration extends AppCompatActivity {
                         dialog.cancel();
                     }
                 });
-        AlertDialog alertLogout = logoutAlertBuilder.create();
+        final AlertDialog alertLogout = logoutAlertBuilder.create();
+        alertLogout.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                alertLogout.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
+                alertLogout.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
+            }
+        });
         alertLogout.show();
     }
 

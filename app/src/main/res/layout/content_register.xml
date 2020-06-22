@@ -17,10 +17,11 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
             android:layout_width="match_parent" android:orientation="horizontal"
             android:layout_height="match_parent">
 
+            <!--android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM "-->
             <EditText android:id="@+id/edt_register_Name"
                 android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
                 android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="text"
-                android:tag="Name" android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM "
+                android:tag="Name"
                 android:nextFocusDown="@id/edt_register_mobile" android:imeOptions="actionNext"
                 android:layout_height="match_parent" android:hint="Name"/>
 
@@ -162,7 +163,7 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
         android:layout_width="match_parent" android:orientation="vertical" android:layout_gravity="center" android:gravity="center"
         android:layout_height="match_parent">
         <Button android:id="@+id/but_register_save"
-            android:layout_width="260dp" android:background="@drawable/roundbutton" android:backgroundTint="@color/orangeColorButton"
+            android:layout_width="200dp" android:background="@drawable/roundbutton" android:backgroundTint="@color/orangeColorButton"
             android:layout_gravity="center" android:gravity="center"
             android:layout_height="50dp" android:text="Register" android:textColor="#ffffff" ></Button>
     </LinearLayout>
