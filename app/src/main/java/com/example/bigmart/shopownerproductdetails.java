@@ -45,59 +45,78 @@ public class shopownerproductdetails extends AppCompatActivity {
     }
 
 
+    public boolean isFieldEmpty(EditText field){
+        boolean flag = false;
+
+        if (field.getText().toString().trim().length() == 0)
+        {
+            field.setError(field.getHint() + " should not be empty");
+            flag = false;
+        }else
+            flag = true;
+
+        return flag;
+    }
+
     public boolean fieldValidated(){
         boolean flag = true;
 
         if (edtName.getText().toString().trim().length() == 0)
         {
             flag = false;
-            showErrorMessage("Name should not be empty");
+            edtName.setError("Name should not be empty");
+
         }else
             if (edtMRP.getText().toString().trim().length() == 0)
             {
                 flag = false;
-                showErrorMessage("MRP should not be empty");
+                edtMRP.setError("MRP should not be empty");
             }else
                 if (edtDiscount.getText().toString().length() == 0)
                 {
                     flag = false;
-                    showErrorMessage("Discount should not be empty");
+                    edtDiscount.setError("Discount should not be empty");
                 }else
                     if (edtGST.getText().toString().length() == 0)
                     {
                         flag = false;
-                        showErrorMessage("GST should not be empty");
+                        edtGST.setError("GST should not be empty");
                     }else
                         if (edtQTY.getText().toString().length() == 0)
                         {
                             flag = false;
-                            showErrorMessage("Quantity should not be empty");
+                            edtQTY.setError("Quantity should not be empty");
                         }else
                             if (edtHSN.getText().toString().length() == 0)
                             {
                                 flag = false;
-                                showErrorMessage("HSN should not be empty");
+                                edtHSN.setError("HSN should not be empty");
                             }else
                                 if (edtMaxStock.getText().toString().length() == 0)
                                 {
                                     flag = false;
-                                    showErrorMessage("Max Stock should not be empty");
+                                    edtMaxStock.setError("Max Stock should not be empty");
                                 }else
                                     if (edtMinStock.getText().toString().length() == 0)
                                     {
                                         flag = false;
-                                        showErrorMessage("Minimum Stock should not be empty");
+                                        edtMinStock.setError("Minimum Stock should not be empty");
                                     }else
                                         if (Integer.parseInt(edtQTY.getText().toString()) < Integer.parseInt(edtMinStock.getText().toString()) )
                                         {
                                             flag = false;
-                                            showErrorMessage("Quantity should not be less than Minimum Stock");
+                                            edtQTY.setError("Quantity should not be less than Minimum Stock");
                                         }else
                                             if (Integer.parseInt(edtDiscount.getText().toString()) > 25 )
                                             {
                                                 flag = false;
-                                                showErrorMessage("Discount can not be greater than 25%");
-                                            }
+                                                edtDiscount.setError("Discount can not be greater than 25%");
+                                            }else
+                                                if (Integer.parseInt(edtGST.getText().toString()) > 30 )
+                                                {
+                                                    flag = false;
+                                                    edtGST.setError("GST can not be greater than 30%");
+                                                }
 
         return flag;
     }
