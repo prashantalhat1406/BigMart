@@ -39,6 +39,10 @@
     <string name="title_activity_customerdeliverypayment">Delivery Type</string>
     <string name="securityquestion">Security Question <font fgcolor='#FF0000'>*</font></string>
     <string name="pin">Pin <font fgcolor='#FF0000'>*</font></string>
+    <string name="fullname">Full Name <font fgcolor='#FF0000'>*</font></string>
+    <string name="mobile">Mobile <font fgcolor='#FF0000'>*</font></string>
+    <string name="address1">Address 1 <font fgcolor='#FF0000'>*</font></string>
+    <string name="address2">Address 2 <font fgcolor='#FF0000'>*</font></string>
 
     <string name="pickup">
 <![CDATA[
