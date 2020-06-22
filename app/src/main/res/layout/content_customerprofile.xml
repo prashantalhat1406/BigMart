@@ -9,8 +9,8 @@
     <LinearLayout android:layout_weight="0.5"
         android:layout_width="match_parent" android:orientation="vertical"
         android:layout_height="match_parent">
-        <TextView android:layout_weight="0.5" android:layout_width="match_parent"
-            android:layout_height="match_parent" android:text="Name :"
+        <TextView android:layout_weight="0.5" android:layout_width="match_parent" android:textColor="@color/blacklabels"
+            android:layout_height="match_parent" android:text="@string/fullname"
             android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
         <LinearLayout android:layout_weight="0.5"
             android:layout_width="match_parent" android:orientation="horizontal"
@@ -32,9 +32,9 @@
     <LinearLayout android:layout_weight="0.5"
         android:layout_width="match_parent" android:orientation="vertical"
         android:layout_height="match_parent">
-        <TextView android:layout_weight="0.5"        android:layout_width="match_parent"
+        <TextView android:layout_weight="0.5"        android:layout_width="match_parent" android:textColor="@color/blacklabels"
             android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
-            android:layout_height="match_parent" android:text="Mobile :" />
+            android:layout_height="match_parent" android:text="@string/mobile" />
         <LinearLayout android:layout_weight="0.5"
             android:layout_width="match_parent" android:orientation="horizontal"
             android:layout_height="match_parent">
@@ -58,9 +58,9 @@
     <LinearLayout android:layout_weight="0.5"
         android:layout_width="match_parent" android:orientation="vertical"
         android:layout_height="match_parent">
-        <TextView android:layout_weight="0.5"        android:layout_width="match_parent"
+        <TextView android:layout_weight="0.5"        android:layout_width="match_parent" android:textColor="@color/blacklabels"
             android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
-            android:layout_height="match_parent" android:text="Address 1 :" />
+            android:layout_height="match_parent" android:text="@string/address1" />
         <LinearLayout android:layout_weight="0.5"
             android:layout_width="match_parent" android:orientation="horizontal"
             android:layout_height="match_parent">
@@ -84,9 +84,9 @@
     <LinearLayout android:layout_weight="0.5"
         android:layout_width="match_parent" android:orientation="vertical"
         android:layout_height="match_parent">
-        <TextView android:layout_weight="0.5"        android:layout_width="match_parent"
+        <TextView android:layout_weight="0.5"        android:layout_width="match_parent" android:textColor="@color/blacklabels"
             android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
-            android:layout_height="match_parent" android:text="Address 2 :" />
+            android:layout_height="match_parent" android:text="@string/address2" />
         <LinearLayout android:layout_weight="0.5"
             android:layout_width="match_parent" android:orientation="horizontal"
             android:layout_height="match_parent">
@@ -137,7 +137,7 @@
         android:layout_width="match_parent" android:orientation="vertical" android:layout_gravity="center" android:gravity="center"
         android:layout_height="match_parent">
         <Button android:id="@+id/but_profile_save"
-            android:layout_width="260dp" android:background="@drawable/status_complete" android:layout_gravity="center" android:gravity="center"
+            android:layout_width="200dp" android:background="@drawable/status_complete" android:layout_gravity="center" android:gravity="center"
             android:layout_height="50dp" android:text="Save Changes" android:textColor="#ffffff" ></Button>
     </LinearLayout>
 
