@@ -43,6 +43,18 @@
     <string name="mobile">Mobile <font fgcolor='#FF0000'>*</font></string>
     <string name="address1">Address 1 <font fgcolor='#FF0000'>*</font></string>
     <string name="address2">Address 2 <font fgcolor='#FF0000'>*</font></string>
+    <string name="maxstock">Max Stock <font fgcolor='#FF0000'>*</font></string>
+    <string name="minstock">Min Stock <font fgcolor='#FF0000'>*</font></string>
+    <string name="hsn">HSN <font fgcolor='#FF0000'>*</font></string>
+    <string name="gst">GST <font fgcolor='#FF0000'>*</font></string>
+    <string name="quantity">Quantity <font fgcolor='#FF0000'>*</font></string>
+    <string name="mrp">MRP <font fgcolor='#FF0000'>*</font></string>
+    <string name="discount">Discount <font fgcolor='#FF0000'>*</font></string>
+    <string name="type">Type <font fgcolor='#FF0000'>*</font></string>
+    <string name="name">Product Name <font fgcolor='#FF0000'>*</font></string>
+    <string name="name2">Product Name 2 <font fgcolor='#FF0000'>*</font></string>
+    <string name="category">Category <font fgcolor='#FF0000'>*</font></string>
+    <string name="subcategory">Sub-Category <font fgcolor='#FF0000'>*</font></string>
 
     <string name="pickup">
 <![CDATA[

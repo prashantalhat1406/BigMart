@@ -55,7 +55,7 @@ public class login extends AppCompatActivity {
 
         if (mobileNumber.length() == 0)
         {
-            edtMobile.setError("Mobile Should not be empty");
+            edtMobile.setError("Mobile Number Should not be empty");
             edtMobile.requestFocus();
         }
         else
