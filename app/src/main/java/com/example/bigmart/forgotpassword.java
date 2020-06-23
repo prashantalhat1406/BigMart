@@ -1,6 +1,9 @@
 package com.example.bigmart;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -79,6 +82,41 @@ public class forgotpassword extends AppCompatActivity {
         }
 
         return flag;
+    }
+
+    public void showLogoutAlertDialog(){
+
+        AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(forgotpassword.this);
+        logoutAlertBuilder.setMessage("Are you sure to Logout ?");
+        logoutAlertBuilder.setCancelable(false);
+        logoutAlertBuilder.setPositiveButton(
+                "YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent logoutIntent = new Intent(forgotpassword.this, login.class);
+                        logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(logoutIntent);
+                        finish();
+                    }
+                });
+        logoutAlertBuilder.setNegativeButton(
+                "NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alertLogout = logoutAlertBuilder.create();
+
+        alertLogout.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                alertLogout.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
+                alertLogout.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
+            }
+        });
+
+        alertLogout.show();
     }
 
 
@@ -188,12 +226,12 @@ public class forgotpassword extends AppCompatActivity {
             }
         });
 
+    }
 
+    @Override
+    public void onBackPressed() {
 
-
-
-
-
+        showLogoutAlertDialog();
 
     }
 }
