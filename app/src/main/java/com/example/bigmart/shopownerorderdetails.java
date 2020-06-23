@@ -1,7 +1,10 @@
 package com.example.bigmart;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.firebase.database.DataSnapshot;
@@ -16,9 +19,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -122,6 +127,77 @@ public class shopownerorderdetails extends AppCompatActivity {
                 intent.putExtra("position",position);
                 setResult(Activity.RESULT_OK, intent);
                 finish();
+            }
+        });
+
+
+        productList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerorderdetails.this);
+                logoutAlertBuilder.setMessage("Dp you want to delete Product ?");
+                logoutAlertBuilder.setCancelable(false);
+                logoutAlertBuilder.setPositiveButton(
+                        "YES", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Product product = products.get(position);
+
+                                DatabaseReference databaseReference = database.getReference("Orders/"+orderID+"/Products/"+products.get(position).ID);
+                                databaseReference.removeValue();
+
+                                DatabaseReference orderReference = database.getReference("Orders/"+orderID);
+                                orderReference.child("amount").setValue(orderDetail.amount - (product.QtyNos * ( product.MRP - product.Discount)));
+
+                                products.remove(position);
+
+                                if (products.size() > 0) {
+                                    adapterShopownerOrderDetails productAdaper = new adapterShopownerOrderDetails(shopownerorderdetails.this, R.layout.itemorderdetails, products, databaseProducts);
+                                    productList.setAdapter(productAdaper);
+                                }else{
+                                    orderReference.removeValue();
+                                }
+                            }
+                        });
+                logoutAlertBuilder.setNegativeButton(
+                        "NO", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                final AlertDialog alertLogout = logoutAlertBuilder.create();
+
+                alertLogout.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialog) {
+                        alertLogout.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
+                        alertLogout.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
+                    }
+                });
+
+                alertLogout.show();
+
+
+                /*Product product = products.get(position);
+
+                DatabaseReference databaseReference = database.getReference("Orders/"+orderID+"/Products/"+products.get(position).ID);
+                databaseReference.removeValue();
+
+                DatabaseReference orderReference = database.getReference("Orders/"+orderID);
+                orderReference.child("amount").setValue(orderDetail.amount - (product.QtyNos * ( product.MRP - product.Discount)));
+
+                products.remove(position);
+
+                if (products.size() > 0) {
+                    adapterShopownerOrderDetails productAdaper = new adapterShopownerOrderDetails(shopownerorderdetails.this, R.layout.itemorderdetails, products, databaseProducts);
+                    productList.setAdapter(productAdaper);
+                }else{
+                    orderReference.removeValue();
+                }*/
+
+                return false;
             }
         });
 

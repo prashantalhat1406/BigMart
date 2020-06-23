@@ -291,7 +291,7 @@ public class customercartdisplay extends AppCompatActivity {
 
                             for (Product product : products) {
                                 DatabaseReference productReference = database.getReference("Orders/" + orderID + "/Products");
-                                productReference.push().setValue(product);
+                                productReference.child(""+product.ID).setValue(product);
                             }
 
                             //updateStoreQuantity(products);

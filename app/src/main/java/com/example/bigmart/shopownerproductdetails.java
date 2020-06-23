@@ -226,7 +226,6 @@ public class shopownerproductdetails extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-
                 if (fieldValidated()) {
                     Product product = new Product();
                     product.setName("" + edtName.getText().toString());
@@ -265,8 +264,6 @@ public class shopownerproductdetails extends AppCompatActivity {
                 }
             }
         });
-
-
 
         if (action.equals("edit"))
         {
