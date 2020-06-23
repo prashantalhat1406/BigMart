@@ -90,33 +90,33 @@ public class customerproductdisplay extends AppCompatActivity {
 
         setTitle(subcategoryName);
 
-        switch (subcategoryName){
-            case "DetergentsFabric": setTitle("Detergents & Fabric"); break;
-            case "HomeUtility": setTitle("Home Utility"); break;
-            case "UtensilCleaners": setTitle("Utensil Cleaners"); break;
-            case "ReadyToCook": setTitle("Ready To Cook"); break;
-            case "OralCare": setTitle("Oral Care"); break;
-            case "PersonalHygiene": setTitle("Personal Hygiene"); break;
-            case "SanitaryNapkins": setTitle("Sanitary Napkins"); break;
-            case "CookingOil": setTitle("Cooking Oil"); break;
-            case "FaceCare": setTitle("Face Care"); break;
-            case "ShowerGel": setTitle("Shower Gel"); break;
-            case "SunScreen": setTitle("Sunscreen"); break;
-            case "TalcomPowder": setTitle("Talcom Powder"); break;
-            case "DryFruits": setTitle("Dry Fruits"); break;
-            case "Deos": setTitle("Deos & Perfumes"); break;
-            case "Health": setTitle("Health & Wellness"); break;
-            case "Shaving": setTitle("Shaving Needs"); break;
-            case "Jams": setTitle("Jams & Spreads"); break;
-            case "Pasta": setTitle("Pasta & Noodles"); break;
-            case "Ketchup": setTitle("Ketchup & Sauce"); break;
-            case "Freshner": setTitle("Freshener & Repellents"); break;
-            case "Masala": setTitle("Masala & Spices"); break;
-            case "Salt": setTitle("Salt/Sugar/Jaggery"); break;
-            case "Flours": setTitle("Flours & Grains"); break;
-            case "Ghee": setTitle("Ghee & Vanaspati"); break;
-            case "Rice": setTitle("Rice & Rice Products"); break;
-            case "Dairy": setTitle("Dairy Products"); break;
+        switch (subcategoryName.toLowerCase()){
+            case "detergentsfabric": setTitle("Detergents & Fabric"); break;
+            case "homeutility": setTitle("Home Utility"); break;
+            case "htensilcleaners": setTitle("Utensil Cleaners"); break;
+            case "readytocook": setTitle("Ready To Cook"); break;
+            case "oralcare": setTitle("Oral Care"); break;
+            case "personalhygiene": setTitle("Personal Hygiene"); break;
+            case "sanitarynapkins": setTitle("Sanitary Napkins"); break;
+            case "cookingoil": setTitle("Cooking Oil"); break;
+            case "facecare": setTitle("Face Care"); break;
+            case "showergel": setTitle("Shower Gel"); break;
+            case "sunscreen": setTitle("Sunscreen"); break;
+            case "talcompowder": setTitle("Talcom Powder"); break;
+            case "dryfruits": setTitle("Dry Fruits"); break;
+            case "deos": setTitle("Deos & Perfumes"); break;
+            case "health": setTitle("Health & Wellness"); break;
+            case "shaving": setTitle("Shaving Needs"); break;
+            case "jams": setTitle("Jams & Spreads"); break;
+            case "pasta": setTitle("Pasta & Noodles"); break;
+            case "ketchup": setTitle("Ketchup & Sauce"); break;
+            case "freshner": setTitle("Freshener & Repellents"); break;
+            case "masala": setTitle("Masala & Spices"); break;
+            case "salt": setTitle("Salt/Sugar/Jaggery"); break;
+            case "flours": setTitle("Flours & Grains"); break;
+            case "ghee": setTitle("Ghee & Vanaspati"); break;
+            case "rice": setTitle("Rice & Rice Products"); break;
+            case "dairy": setTitle("Dairy Products"); break;
         }
 
         products = new ArrayList<Product>();

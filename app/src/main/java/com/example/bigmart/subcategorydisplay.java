@@ -86,7 +86,7 @@ public class subcategorydisplay extends AppCompatActivity {
 
         switch(categoryName){
             case "Dairy" : setTitle("Dairy & Beverages"); break;
-            case "Grovery" : setTitle("Grocery"); break;
+            case "Grocery" : setTitle("Grocery"); break;
             case "HomeKitchen" : setTitle("Home & Kitchen"); break;
             case "SkinCare" : setTitle("Skin Care"); break;
             case "PersonalCare" : setTitle("Personal Care"); break;
