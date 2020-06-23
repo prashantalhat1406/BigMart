@@ -240,9 +240,9 @@
                 android:layout_weight="0.5" android:layout_width="match_parent" android:orientation="horizontal"
                 android:layout_height="match_parent">
 
-                <LinearLayout android:paddingEnd="5dp"
+                <LinearLayout android:paddingEnd="5dp" android:layout_weight="0.5"
                     android:layout_width="match_parent" android:orientation="vertical"
-                    android:layout_height="match_parent" android:layout_weight="0.5">
+                    android:layout_height="match_parent" >
 
 
                     <TextView android:textColor="@color/blacklabels"
@@ -258,10 +258,10 @@
                         android:layout_height="match_parent" android:hint="Max Stock"/>
                 </LinearLayout>
 
-                <LinearLayout android:paddingEnd="5dp"
+                <LinearLayout android:paddingEnd="5dp" android:layout_weight="0.5"
                     android:layout_width="match_parent" android:orientation="vertical"
 
-                    android:layout_height="match_parent" android:layout_weight="0.5">
+                    android:layout_height="match_parent" >
                     <TextView android:textColor="@color/blacklabels"
                         android:layout_weight="0.5" android:layout_width="match_parent"
                         android:layout_height="match_parent" android:text="@string/minstock"
@@ -276,9 +276,9 @@
                         android:layout_height="match_parent" android:hint="Min Stock"/>
                 </LinearLayout>
 
-                <LinearLayout
+                <LinearLayout android:visibility="gone"
                     android:layout_width="match_parent" android:orientation="vertical"
-                    android:layout_height="match_parent" android:layout_weight="0.5">
+                    android:layout_height="match_parent" android:layout_weight="0.45">
                 </LinearLayout>
 
 

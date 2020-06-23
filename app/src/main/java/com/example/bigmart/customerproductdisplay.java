@@ -93,7 +93,8 @@ public class customerproductdisplay extends AppCompatActivity {
         switch (subcategoryName.toLowerCase()){
             case "detergentsfabric": setTitle("Detergents & Fabric"); break;
             case "homeutility": setTitle("Home Utility"); break;
-            case "htensilcleaners": setTitle("Utensil Cleaners"); break;
+            case "utensilcleaners": setTitle("Utensil Cleaners"); break;
+            case "cleaners": setTitle("Cleaners"); break;
             case "readytocook": setTitle("Ready To Cook"); break;
             case "oralcare": setTitle("Oral Care"); break;
             case "personalhygiene": setTitle("Personal Hygiene"); break;
@@ -101,10 +102,11 @@ public class customerproductdisplay extends AppCompatActivity {
             case "cookingoil": setTitle("Cooking Oil"); break;
             case "facecare": setTitle("Face Care"); break;
             case "showergel": setTitle("Shower Gel"); break;
-            case "sunscreen": setTitle("Sunscreen"); break;
+            case "sunscreen": setTitle("Sun-Screen"); break;
             case "talcompowder": setTitle("Talcom Powder"); break;
             case "dryfruits": setTitle("Dry Fruits"); break;
             case "deos": setTitle("Deos & Perfumes"); break;
+            case "soaps": setTitle("Soaps"); break;
             case "health": setTitle("Health & Wellness"); break;
             case "shaving": setTitle("Shaving Needs"); break;
             case "jams": setTitle("Jams & Spreads"); break;
@@ -117,6 +119,11 @@ public class customerproductdisplay extends AppCompatActivity {
             case "ghee": setTitle("Ghee & Vanaspati"); break;
             case "rice": setTitle("Rice & Rice Products"); break;
             case "milk": setTitle("Dairy Products"); break;
+            case "biscuits": setTitle("Biscuits & Cookies"); break;
+            case "bakery": setTitle("Bakery"); break;
+            case "pickles": setTitle("Pickles"); break;
+            case "dals": setTitle("Dals"); break;
+            case "pulses": setTitle("Pulses"); break;
         }
 
         products = new ArrayList<Product>();
