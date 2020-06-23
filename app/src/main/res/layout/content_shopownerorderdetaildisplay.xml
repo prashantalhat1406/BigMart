@@ -5,7 +5,7 @@
     android:layout_height="match_parent"  android:backgroundTint="#ffffb1" android:background="#ffffb1"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <LinearLayout android:orientation="vertical" android:layout_weight="0.75"
+    <LinearLayout android:orientation="vertical" android:layout_weight="0.7"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout android:orientation="horizontal" android:layout_weight="0.5"
@@ -15,7 +15,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <TextView android:layout_gravity="center" android:gravity="left|center"
-                    android:layout_width="match_parent" android:layout_weight="0.2"
+                    android:layout_width="match_parent" android:layout_weight="0.25"
                     android:layout_height="match_parent" android:text="Name : "></TextView>
                 <TextView android:id="@+id/txt_orderdetails_customerName" android:layout_gravity="center" android:gravity="left|center"
                     android:layout_width="match_parent" android:layout_weight="0.2" android:textStyle="bold"
@@ -40,7 +40,7 @@
                 android:layout_width="match_parent" android:orientation="horizontal"
                 android:layout_height="match_parent">
                 <TextView android:layout_gravity="center" android:gravity="left|center"
-                    android:layout_width="match_parent" android:layout_weight="0.2"
+                    android:layout_width="match_parent" android:layout_weight="0.25"
                     android:layout_height="match_parent" android:text="Order ID : "></TextView>
                 <TextView android:id="@+id/txt_orderdetails_orderID" android:layout_gravity="center" android:gravity="left|center"
                     android:layout_width="match_parent" android:layout_weight="0.2" android:textStyle="bold"
@@ -59,7 +59,7 @@
 
         </LinearLayout>
 
-        <LinearLayout android:orientation="horizontal" android:layout_weight="0.5"
+        <LinearLayout android:orientation="horizontal" android:layout_weight="0.35"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView android:layout_gravity="center" android:gravity="left|center"
@@ -101,7 +101,7 @@
 
     <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@android:color/darker_gray"/>
 
-    <LinearLayout android:layout_weight="0.26"
+    <LinearLayout android:layout_weight="0.3"
         android:layout_width="match_parent"
         android:layout_height="match_parent" android:layout_marginTop="5dp">
         <ListView

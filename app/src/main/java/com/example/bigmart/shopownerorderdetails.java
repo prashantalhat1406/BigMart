@@ -227,7 +227,8 @@ public class shopownerorderdetails extends AppCompatActivity {
 
 
         TextView txtorderID = findViewById(R.id.txt_orderdetails_orderID);
-        txtorderID.setText(""+orderID.substring(orderID.length() - 5).toUpperCase());
+        //txtorderID.setText(""+orderID.substring(orderID.length() - 5).toUpperCase());
+        txtorderID.setText(""+orderID);
 
 
 

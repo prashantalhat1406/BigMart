@@ -23,6 +23,8 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -179,6 +181,7 @@ public class registration extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
 
                 edtPassword.requestFocus();
+                //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
                 if(event.getAction() == MotionEvent.ACTION_UP) {
                     if(event.getRawX() >= (edtPassword.getRight() - edtPassword.getCompoundDrawables()[2].getBounds().width())) {
                         if (showpassword == 0)
