@@ -116,7 +116,7 @@ public class customerproductdisplay extends AppCompatActivity {
             case "flours": setTitle("Flours & Grains"); break;
             case "ghee": setTitle("Ghee & Vanaspati"); break;
             case "rice": setTitle("Rice & Rice Products"); break;
-            case "dairy": setTitle("Dairy Products"); break;
+            case "milk": setTitle("Dairy Products"); break;
         }
 
         products = new ArrayList<Product>();

@@ -125,6 +125,8 @@ public class shopownerproductdetails extends AppCompatActivity {
         return flag;
     }
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
