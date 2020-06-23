@@ -21,7 +21,7 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
             <EditText android:id="@+id/edt_register_Name"
                 android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
                 android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="text"
-                android:tag="Name"
+                android:tag="Name" android:maxLength="50"
                 android:nextFocusDown="@id/edt_register_mobile" android:imeOptions="actionNext"
                 android:layout_height="match_parent" android:hint="Name"/>
 
@@ -102,6 +102,7 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
                 android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
                 android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="text"
                 android:gravity="left|center" android:layout_gravity="center" android:tag="Address 1"
+                android:maxLength="75"
                 android:nextFocusDown="@id/edt_register_Address2" android:imeOptions="actionNext"
                 android:layout_height="match_parent" android:hint="Address 1"/>
 
@@ -126,6 +127,7 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
                 android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
                 android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="text"
                 android:gravity="left|center" android:layout_gravity="center" android:tag="Address 2"
+                android:maxLength="75"
                 android:nextFocusDown="@id/but_register_save" android:imeOptions="actionNext"
                 android:layout_height="match_parent" android:hint="Address 2"/>
         </LinearLayout>
@@ -151,7 +153,7 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
                 android:background="@drawable/profiletextbox"
                 android:layout_width="match_parent"
                 android:hint="Security Answer" android:padding="10dp"
-                android:inputType="text" android:imeOptions="actionNext"
+                android:inputType="text" android:imeOptions="actionNext" android:maxLength="20"
                 android:maxLines="1" android:nextFocusDown="@id/but_register_save"
                 android:layout_height="match_parent"></EditText>
 
