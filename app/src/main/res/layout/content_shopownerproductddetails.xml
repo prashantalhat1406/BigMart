@@ -215,7 +215,7 @@
                     <EditText android:id="@+id/edt_productdetails_HSN"
                         android:layout_weight="0.5" android:visibility="visible" android:background="@drawable/profiletextbox"
                         android:layout_width="match_parent" android:padding="10dp"
-                        android:maxLines="1" android:nextFocusDown="@id/spn_productdetails_type" android:inputType="number"
+                        android:maxLines="1" android:nextFocusDown="@id/edt_productdetails_MaxStock" android:inputType="number"
                         android:layout_height="match_parent" android:hint="HSN"/>
                 </LinearLayout>
 
