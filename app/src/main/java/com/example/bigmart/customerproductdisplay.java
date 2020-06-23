@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
@@ -300,7 +301,14 @@ public class customerproductdisplay extends AppCompatActivity {
                         dialog.cancel();
                     }
                 });
-        AlertDialog alertLogout = logoutAlertBuilder.create();
+        final AlertDialog alertLogout = logoutAlertBuilder.create();
+        alertLogout.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                alertLogout.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
+                alertLogout.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
+            }
+        });
         alertLogout.show();
     }
 

@@ -17,6 +17,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +35,16 @@ public class customerorderhistory extends AppCompatActivity {
     private int count = 0;
     private String orderID = "test";
     private Boolean flag = false;
+    LinearLayout emptyPage, orderListPage;
+
+    public void goToHome(){
+        Intent homeIntent = new Intent(customerorderhistory.this, home.class);
+        Bundle extras = new Bundle();
+        extras.putLong("userID", userID);
+        homeIntent.putExtras(extras);
+        startActivity(homeIntent);
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +56,9 @@ public class customerorderhistory extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         userID = b.getLong("userID");
+
+        emptyPage = findViewById(R.id.layout_orderhistory_empty);
+        orderListPage = findViewById(R.id.layout_orderhistory_list);
 
         orders = new ArrayList<Orders>();
         ordersList = findViewById(R.id.listcustomerOrderHistory);
@@ -62,14 +77,18 @@ public class customerorderhistory extends AppCompatActivity {
                 }
                 Collections.reverse(orders);
                 if(orders.size() != 0){
+                    orderListPage.setVisibility(View.VISIBLE);
+                    emptyPage.setVisibility(View.GONE);
                     adapterOrder orderAdapter = new adapterOrder(customerorderhistory.this, R.layout.itemorder, orders, userID, 2);
                     ordersList.setAdapter(orderAdapter);
                 }else
                 {
-                    Toast error = Toast.makeText(customerorderhistory.this, "No Orders to Show",Toast.LENGTH_SHORT);
+                    emptyPage.setVisibility(View.VISIBLE);
+                    orderListPage.setVisibility(View.GONE);
+                    /*Toast error = Toast.makeText(customerorderhistory.this, "No Orders to Show",Toast.LENGTH_SHORT);
                     error.setGravity(Gravity.TOP, 0, 0);
                     error.show();
-                    finish();
+                    finish();*/
                 }
             }
             @Override
@@ -77,6 +96,14 @@ public class customerorderhistory extends AppCompatActivity {
         });
 
         //ordersList = findViewById(R.id.listShopOwnerOrder);
+
+        Button continueShopping = findViewById(R.id.but_orderhistory_continueShopping);
+        continueShopping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToHome();
+            }
+        });
 
         ordersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

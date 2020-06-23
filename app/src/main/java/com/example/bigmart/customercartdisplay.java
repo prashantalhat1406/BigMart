@@ -407,7 +407,14 @@ public class customercartdisplay extends AppCompatActivity {
                         dialog.cancel();
                     }
                 });
-        AlertDialog alertLogout = logoutAlertBuilder.create();
+        final AlertDialog alertLogout = logoutAlertBuilder.create();
+        alertLogout.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                alertLogout.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
+                alertLogout.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
+            }
+        });
         alertLogout.show();
     }
 
