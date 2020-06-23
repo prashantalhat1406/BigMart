@@ -14,19 +14,19 @@ import androidx.annotation.Nullable;
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class adapterOrderDetails extends ArrayAdapter<Product> {
+public class adapterShopownerOrderDetails extends ArrayAdapter<Product> {
 
     List<Product> products;
-
+    List<Product> databaseProducts;
     Context context;
     Product product;
 
 
-    public adapterOrderDetails(@NonNull Context context, int resource, @NonNull List<Product> objects) {
+    public adapterShopownerOrderDetails(@NonNull Context context, int resource, @NonNull List<Product> objects, @NonNull List<Product> databaseobjects) {
 
         super(context, resource, objects);
         products = objects;
-
+        databaseProducts = databaseobjects;
         this.context = context;
 
     }
@@ -57,9 +57,19 @@ public class adapterOrderDetails extends ArrayAdapter<Product> {
         productNo.setText(""+(position+1));
         productName.setText(""+ product.Name);
 
-
+        for (Product databaseProduct : databaseProducts) {
+            if (databaseProduct.ID.equals(product.ID))
+            {
+                if (databaseProduct.Qty < product.QtyNos)
+                    productQty.setTextColor(getContext().getColor(R.color.redColorButton));
+                else
+                    productQty.setTextColor(getContext().getColor(R.color.greenColorButton));
+                break;
+            }
+        }
 
         productQty.setText(""+ product.QtyNos);
+        productQty.setTextSize(16);
         productMRP.setText(""+ formater.format( product.MRP));
         productDiscount.setText(""+ formater.format( product.Discount));
         productTotal.setText(""+ formater.format(((product.MRP-product.Discount) * product.QtyNos)));

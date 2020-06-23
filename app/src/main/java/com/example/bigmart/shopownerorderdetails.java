@@ -50,11 +50,7 @@ public class shopownerorderdetails extends AppCompatActivity {
                     databaseReference.setValue(updatedProduct) ;
                 }
             }
-            //DatabaseReference databaseReference = database.getReference("Products/" + product.ID);
-            //databaseReference.child("" + product.ID).setValue(product);
         }
-
-
     }
 
     @Override
@@ -110,7 +106,7 @@ public class shopownerorderdetails extends AppCompatActivity {
                 butConfirm.setVisibility(View.GONE);
                 butCancel.setVisibility(View.GONE);
                 updateStoreQuantity(products);
-                //finish();
+
             }
         });
 
@@ -129,24 +125,7 @@ public class shopownerorderdetails extends AppCompatActivity {
             }
         });
 
-        Query query = database.getReference("Orders/"+orderID+"/Products/");
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                products.clear();
 
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    Product product = postSnapshot.getValue(Product.class);
-                    //product.setID(product);
-                    products.add(product);
-                }
-                adapterOrderDetails productAdaper = new adapterOrderDetails(shopownerorderdetails.this, R.layout.itemorderdetails, products);
-                productList.setAdapter(productAdaper);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
 
 
         Query databasequery = database.getReference("Products/");
@@ -161,6 +140,25 @@ public class shopownerorderdetails extends AppCompatActivity {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {            }
+        });
+
+        Query query = database.getReference("Orders/"+orderID+"/Products/");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                products.clear();
+
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Product product = postSnapshot.getValue(Product.class);
+                    //product.setID(product);
+                    products.add(product);
+                }
+                adapterShopownerOrderDetails productAdaper = new adapterShopownerOrderDetails(shopownerorderdetails.this, R.layout.itemorderdetails, products,databaseProducts);
+                productList.setAdapter(productAdaper);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
         });
 
 
