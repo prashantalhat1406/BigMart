@@ -246,7 +246,6 @@ public class home extends AppCompatActivity {
         });
 
 
-
     }
 
     public void displaySubCategory(String categoryName)    {

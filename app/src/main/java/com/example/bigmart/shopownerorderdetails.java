@@ -134,69 +134,57 @@ public class shopownerorderdetails extends AppCompatActivity {
         productList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                if(orderDetail.status.equals("Created")) {
+                    AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerorderdetails.this);
+                    logoutAlertBuilder.setMessage("Dp you want to delete Product ?");
+                    logoutAlertBuilder.setCancelable(false);
+                    logoutAlertBuilder.setPositiveButton(
+                            "YES", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 
-                AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerorderdetails.this);
-                logoutAlertBuilder.setMessage("Dp you want to delete Product ?");
-                logoutAlertBuilder.setCancelable(false);
-                logoutAlertBuilder.setPositiveButton(
-                        "YES", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Product product = products.get(position);
+                                    if (products.size() == 1){
+                                        butCancel.callOnClick();
+                                    }else {
+                                        Product product = products.get(position);
 
-                                DatabaseReference databaseReference = database.getReference("Orders/"+orderID+"/Products/"+products.get(position).ID);
-                                databaseReference.removeValue();
+                                        DatabaseReference databaseReference = database.getReference("Orders/" + orderID + "/Products/" + products.get(position).ID);
+                                        databaseReference.removeValue();
 
-                                DatabaseReference orderReference = database.getReference("Orders/"+orderID);
-                                orderReference.child("amount").setValue(orderDetail.amount - (product.QtyNos * ( product.MRP - product.Discount)));
+                                        DatabaseReference orderReference = database.getReference("Orders/" + orderID);
+                                        orderReference.child("amount").setValue(orderDetail.amount - (product.QtyNos * (product.MRP - product.Discount)));
 
-                                products.remove(position);
+                                        products.remove(position);
 
-                                if (products.size() > 0) {
-                                    adapterShopownerOrderDetails productAdaper = new adapterShopownerOrderDetails(shopownerorderdetails.this, R.layout.itemorderdetails, products, databaseProducts);
-                                    productList.setAdapter(productAdaper);
-                                }else{
-                                    orderReference.removeValue();
+                                        if (products.size() > 0) {
+                                            adapterShopownerOrderDetails productAdaper = new adapterShopownerOrderDetails(shopownerorderdetails.this, R.layout.itemorderdetails, products, databaseProducts);
+                                            productList.setAdapter(productAdaper);
+                                        } else {
+                                            orderReference.removeValue();
+                                        }
+                                    }
+
                                 }
-                            }
-                        });
-                logoutAlertBuilder.setNegativeButton(
-                        "NO", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-                final AlertDialog alertLogout = logoutAlertBuilder.create();
+                            });
+                    logoutAlertBuilder.setNegativeButton(
+                            "NO", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+                    final AlertDialog alertLogout = logoutAlertBuilder.create();
 
-                alertLogout.setOnShowListener(new DialogInterface.OnShowListener() {
-                    @Override
-                    public void onShow(DialogInterface dialog) {
-                        alertLogout.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
-                        alertLogout.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
-                    }
-                });
+                    alertLogout.setOnShowListener(new DialogInterface.OnShowListener() {
+                        @Override
+                        public void onShow(DialogInterface dialog) {
+                            alertLogout.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
+                            alertLogout.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
+                        }
+                    });
 
-                alertLogout.show();
-
-
-                /*Product product = products.get(position);
-
-                DatabaseReference databaseReference = database.getReference("Orders/"+orderID+"/Products/"+products.get(position).ID);
-                databaseReference.removeValue();
-
-                DatabaseReference orderReference = database.getReference("Orders/"+orderID);
-                orderReference.child("amount").setValue(orderDetail.amount - (product.QtyNos * ( product.MRP - product.Discount)));
-
-                products.remove(position);
-
-                if (products.size() > 0) {
-                    adapterShopownerOrderDetails productAdaper = new adapterShopownerOrderDetails(shopownerorderdetails.this, R.layout.itemorderdetails, products, databaseProducts);
-                    productList.setAdapter(productAdaper);
-                }else{
-                    orderReference.removeValue();
-                }*/
-
+                    alertLogout.show();
+                }
                 return false;
             }
         });
