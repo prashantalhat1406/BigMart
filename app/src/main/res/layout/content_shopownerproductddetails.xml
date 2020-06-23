@@ -6,12 +6,13 @@
     android:layout_height="match_parent" android:backgroundTint="#ffffff" android:background="@drawable/roundbutton"
     app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
-    <!--<ScrollView
+    <ScrollView
         android:layout_width="match_parent" android:layout_weight="0.1"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent" android:orientation="vertical"
-            android:layout_height="match_parent">-->
+            android:layout_height="match_parent">
 
             <LinearLayout android:id="@+id/layout_product_Category"
                 android:layout_weight="0.5" android:layout_width="match_parent" android:orientation="horizontal"
@@ -163,7 +164,7 @@
                     <EditText android:id="@+id/edt_productdetails_Discount"
                         android:layout_weight="0.5" android:visibility="visible" android:background="@drawable/profiletextbox"
                         android:layout_width="match_parent" android:padding="10dp"
-                        android:maxLines="1" android:nextFocusDown="@id/edt_productdetails_GST" android:inputType="number"
+                        android:maxLines="1" android:nextFocusDown="@id/edt_productdetails_QTY" android:inputType="number"
                         android:layout_height="match_parent" android:hint="Discount"/>
 
                 </LinearLayout>
@@ -178,7 +179,7 @@
                     <EditText android:id="@+id/edt_productdetails_QTY"
                         android:layout_weight="0.5" android:visibility="visible" android:background="@drawable/profiletextbox"
                         android:layout_width="match_parent" android:padding="10dp"
-                        android:maxLines="1" android:nextFocusDown="@id/edt_productdetails_HSN" android:inputType="number"
+                        android:maxLines="1" android:nextFocusDown="@id/edt_productdetails_GST" android:inputType="number"
                         android:layout_height="match_parent" android:hint="Quantity"/>
 
                 </LinearLayout>
@@ -200,7 +201,7 @@
                         <EditText android:id="@+id/edt_productdetails_GST"
                             android:layout_weight="0.5" android:visibility="visible" android:background="@drawable/profiletextbox"
                             android:layout_width="match_parent" android:padding="10dp"
-                            android:maxLines="1" android:nextFocusDown="@id/edt_productdetails_QTY" android:inputType="number"
+                            android:maxLines="1" android:nextFocusDown="@id/edt_productdetails_HSN" android:inputType="number"
                             android:layout_height="match_parent" android:hint="GST"/>
                     </LinearLayout>
 
@@ -227,7 +228,8 @@
                         android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
 
                     <Spinner android:id="@+id/spn_productdetails_type" android:layout_weight="0.5"
-                        android:layout_width="match_parent" android:paddingLeft="10dp" android:layout_gravity="center" android:gravity="center"
+                        android:layout_width="match_parent" android:paddingLeft="10dp" android:layout_gravity="center"
+                        android:gravity="center" android:nextFocusDown="@id/edt_productdetails_MaxStock"
                         android:layout_height="match_parent"></Spinner>
 
                 </LinearLayout>
@@ -248,17 +250,11 @@
                         android:layout_height="match_parent" android:text="@string/maxstock"
                         android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
 
-                    <!--<EditText android:id="@+id/edt_productdetails_MaxStock"
-                        android:layout_weight="0.5" android:visibility="visible" android:background="@drawable/profiletextbox"
-                        android:layout_width="match_parent"
-                        android:paddingBottom="10dp" android:gravity="center_horizontal"
-                        android:maxLines="1" android:nextFocusDown="@id/edt_productdetails_MinStock" android:inputType="number"
-                        android:layout_height="match_parent" android:hint="Max Limit"/> -->
 
                     <EditText android:id="@+id/edt_productdetails_MaxStock"
                         android:layout_weight="0.5" android:visibility="visible" android:background="@drawable/profiletextbox"
                         android:layout_width="match_parent" android:padding="10dp"
-                        android:maxLines="1" android:nextFocusDown="@id/spn_productdetails_type" android:inputType="number"
+                        android:maxLines="1" android:nextFocusDown="@id/edt_productdetails_MinStock" android:inputType="number"
                         android:layout_height="match_parent" android:hint="Max Stock"/>
                 </LinearLayout>
 
@@ -271,17 +267,12 @@
                         android:layout_height="match_parent" android:text="@string/minstock"
                         android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
 
-                    <!--<EditText android:id="@+id/edt_productdetails_MinStock"
-                        android:layout_weight="0.5" android:visibility="visible" android:background="@drawable/profiletextbox"
-                        android:layout_width="match_parent"
-                        android:paddingBottom="10dp" android:layout_gravity="left|center_horizontal" android:gravity="left|center"
-                        android:maxLines="1" android:nextFocusDown="@id/but_productdetails_save" android:inputType="number"
-                        android:layout_height="match_parent" android:hint="Min Stock"/>-->
+
 
                     <EditText android:id="@+id/edt_productdetails_MinStock"
                         android:layout_weight="0.5" android:visibility="visible" android:background="@drawable/profiletextbox"
                         android:layout_width="match_parent" android:padding="10dp"
-                        android:maxLines="1" android:nextFocusDown="@id/spn_productdetails_type" android:inputType="number"
+                        android:maxLines="1" android:nextFocusDown="@id/but_productdetails_save" android:inputType="number"
                         android:layout_height="match_parent" android:hint="Min Stock"/>
                 </LinearLayout>
 
@@ -294,14 +285,10 @@
             </LinearLayout>
 
 
-        <!--</LinearLayout>
+        </LinearLayout>
 
-    </ScrollView>-->
-
-
-
-
-    <LinearLayout android:layout_weight="0.5"
+    </ScrollView>
+    <LinearLayout android:layout_weight="0.9"
         android:layout_width="match_parent" android:orientation="horizontal" android:layout_gravity="center" android:gravity="center"
         android:layout_height="match_parent">
         <Button android:id="@+id/but_productdetails_save"
