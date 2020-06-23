@@ -178,8 +178,9 @@ public class registration extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
+                edtPassword.requestFocus();
                 if(event.getAction() == MotionEvent.ACTION_UP) {
-                    if(event.getRawX() >= (500+edtPassword.getRight() - edtPassword.getCompoundDrawables()[2].getBounds().width())) {
+                    if(event.getRawX() >= (edtPassword.getRight() - edtPassword.getCompoundDrawables()[2].getBounds().width())) {
                         if (showpassword == 0)
                         {
                             edtPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
