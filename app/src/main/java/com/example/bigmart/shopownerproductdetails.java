@@ -44,7 +44,6 @@ public class shopownerproductdetails extends AppCompatActivity {
         error.show();
     }
 
-
     public boolean isFieldEmpty(EditText field){
         boolean flag = false;
 
@@ -116,7 +115,12 @@ public class shopownerproductdetails extends AppCompatActivity {
                                                 {
                                                     flag = false;
                                                     edtGST.setError("GST can not be greater than 30%");
-                                                }
+                                                }else
+                                                    if (spncategory.getSelectedItemPosition() == 0 )
+                                                    {
+                                                        flag = false;
+                                                        showErrorMessage("Please select correct Category");
+                                                    }
 
         return flag;
     }
@@ -167,6 +171,7 @@ public class shopownerproductdetails extends AppCompatActivity {
                     Categories.add(category);
                     strCategories.add(category.Name);
                 }
+                strCategories.add(0,"Select Category");
                 categoryAdapter = new ArrayAdapter<String>(shopownerproductdetails.this,R.layout.support_simple_spinner_dropdown_item,strCategories);
                 spncategory.setAdapter(categoryAdapter);
             }
@@ -184,6 +189,7 @@ public class shopownerproductdetails extends AppCompatActivity {
                         SubCategories.add(subCategory);
                         strSubCategories.add(subCategory.Name);
                     }
+                    //strSubCategories.add(0,"Select SubCategory");
                     subcategoryAdapter = new ArrayAdapter<String>(shopownerproductdetails.this, R.layout.support_simple_spinner_dropdown_item, strSubCategories);
                     spnsubcategory.setAdapter(subcategoryAdapter);
 
