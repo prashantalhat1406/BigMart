@@ -52,6 +52,7 @@ public class customercartdisplay extends AppCompatActivity {
     private Double TotalPrice = 0.0;
     FirebaseDatabase database;
     LinearLayout emptyCart,list,buttons, price;
+    Integer productCount;
 
     public String getOrderID(){
         String unquieOrderID = "";
@@ -73,6 +74,7 @@ public class customercartdisplay extends AppCompatActivity {
         Intent homeIntent = new Intent(customercartdisplay.this, home.class);
         Bundle extras = new Bundle();
         extras.putLong("userID", userID);
+        extras.putInt("productCount", productCount);
         homeIntent.putExtras(extras);
         startActivity(homeIntent);
         finish();
@@ -316,9 +318,11 @@ public class customercartdisplay extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.clear();
+
         getMenuInflater().inflate(R.menu.asmmenu, menu);
+        //homeMenu = menu;
         MenuItem itemCart = menu.findItem(R.id.menu_viewcart);
         final LayerDrawable icon = (LayerDrawable) itemCart.getIcon();
         Query query = database.getReference("Users/"+userID+"/TempOrder");
@@ -336,6 +340,31 @@ public class customercartdisplay extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {            }
         });
 
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.asmmenu, menu);
+        MenuItem itemCart = menu.findItem(R.id.menu_viewcart);
+        final LayerDrawable icon = (LayerDrawable) itemCart.getIcon();
+        Query query = database.getReference("Users/"+userID+"/TempOrder");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                productCount =0;
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Product product = postSnapshot.getValue(Product.class);
+                    productCount = productCount + product.QtyNos;
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {            }
+        });
+
+        setBadgeCount(getBaseContext(), icon, ""+productCount);
         return true;
     }
 

@@ -21,8 +21,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -51,6 +49,7 @@ public class home extends AppCompatActivity {
     EditText search;
     AutoCompleteTextView txtSearch;
     private List<String> productNames;
+    Integer productCount;
 
     private static final int[] BUTTON_IDS = {
             R.id.but_category_1,
@@ -96,8 +95,9 @@ public class home extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        supportInvalidateOptionsMenu();
+        //supportInvalidateOptionsMenu();
         invalidateOptionsMenu();
+
         EditText search = findViewById(R.id.edt_home_search);
         search.setText("");
         //this.onCreateOptionsMenu(homeMenu);
@@ -115,6 +115,8 @@ public class home extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         userID = b.getLong("userID");
+        productCount = b.getInt("productCount",0);
+
 
 
         productNames = new ArrayList<String>();
@@ -271,16 +273,18 @@ public class home extends AppCompatActivity {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Integer cnt =0;
+                productCount =0;
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     Product product = postSnapshot.getValue(Product.class);
-                    cnt = cnt + product.QtyNos;
+                    productCount = productCount + product.QtyNos;
                 }
-                setBadgeCount(getBaseContext(), icon, ""+cnt);
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {            }
         });
+
+        setBadgeCount(getBaseContext(), icon, ""+ productCount);
         return true;
     }
 
@@ -334,6 +338,32 @@ public class home extends AppCompatActivity {
         });
 
         alertLogout.show();
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.clear();
+
+        getMenuInflater().inflate(R.menu.asmmenu, menu);
+        homeMenu = menu;
+        MenuItem itemCart = menu.findItem(R.id.menu_viewcart);
+        final LayerDrawable icon = (LayerDrawable) itemCart.getIcon();
+        Query query = database.getReference("Users/"+userID+"/TempOrder");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Integer cnt =0;
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Product product = postSnapshot.getValue(Product.class);
+                    cnt = cnt + product.QtyNos;
+                }
+                setBadgeCount(getBaseContext(), icon, ""+cnt);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {            }
+        });
+
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override

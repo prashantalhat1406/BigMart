@@ -136,6 +136,33 @@ public class subcategorydisplay extends AppCompatActivity {
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.clear();
+
+        getMenuInflater().inflate(R.menu.asmmenu, menu);
+        //homeMenu = menu;
+        MenuItem itemCart = menu.findItem(R.id.menu_viewcart);
+        final LayerDrawable icon = (LayerDrawable) itemCart.getIcon();
+        Query query = database.getReference("Users/"+userID+"/TempOrder");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Integer cnt =0;
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Product product = postSnapshot.getValue(Product.class);
+                    cnt = cnt + product.QtyNos;
+                }
+                setBadgeCount(getBaseContext(), icon, ""+cnt);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {            }
+        });
+
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.asmmenu, menu);
