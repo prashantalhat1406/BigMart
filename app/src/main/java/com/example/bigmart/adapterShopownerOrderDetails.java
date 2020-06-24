@@ -57,13 +57,23 @@ public class adapterShopownerOrderDetails extends ArrayAdapter<Product> {
         productNo.setText(""+(position+1));
         productName.setText(""+ product.Name);
 
+        productQty.setTextColor(getContext().getColor(R.color.colorWhite));
+
         for (Product databaseProduct : databaseProducts) {
             if (databaseProduct.ID.equals(product.ID))
             {
                 if (databaseProduct.Qty < product.QtyNos)
-                    productQty.setTextColor(getContext().getColor(R.color.redColorButton));
+                {
+
+                    productQty.setBackgroundColor(getContext().getColor(R.color.redColorButton));
+                }
+
                 else
-                    productQty.setTextColor(getContext().getColor(R.color.greenColorButton));
+                {
+
+                    productQty.setBackgroundColor(getContext().getColor(R.color.greenColorButton));
+                }
+
                 break;
             }
         }
