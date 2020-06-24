@@ -110,26 +110,28 @@
         </ListView>
     </LinearLayout>
 
-    <LinearLayout android:orientation="vertical"
-        android:layout_width="match_parent"
+    <LinearLayout android:orientation="horizontal"
+        android:layout_width="match_parent"  android:paddingStart="5dp" android:paddingEnd="5dp"
         android:layout_height="match_parent" android:layout_weight="0.78">
 
-        <LinearLayout android:orientation="horizontal"
-            android:layout_width="match_parent" android:layout_weight="0.4"
-            android:layout_height="match_parent">
+
             <Button android:id="@+id/but_orderdetail_print" android:layout_weight="0.5"
+                android:paddingStart="5dp" android:paddingEnd="5dp"
                 android:layout_width="match_parent" android:background="@drawable/roundbutton" android:backgroundTint="@color/blueColorButton"
                 android:layout_height="match_parent" android:text="Print" android:visibility="gone"> </Button>
             <Button android:id="@+id/but_orderdetail_complete" android:layout_weight="0.5"
+                android:paddingStart="5dp" android:paddingEnd="5dp"
                 android:layout_width="match_parent" android:background="@drawable/roundbutton" android:backgroundTint="@color/orangeColorButton"
                 android:layout_height="match_parent" android:text="Complete" android:visibility="gone"></Button>
             <Button android:id="@+id/but_orderdetail_cancel" android:layout_weight="0.5"
+                android:paddingStart="5dp" android:paddingEnd="5dp"
                 android:layout_width="match_parent" android:background="@drawable/roundbutton" android:backgroundTint="@color/blueColorButton"
                 android:layout_height="match_parent" android:text="Cancel Order" android:visibility="visible"> </Button>
             <Button android:id="@+id/but_orderdetail_confirm" android:layout_weight="0.5"
+                android:paddingStart="5dp" android:paddingEnd="5dp"
                 android:layout_width="match_parent" android:background="@drawable/roundbutton" android:backgroundTint="@color/orangeColorButton"
                 android:layout_height="match_parent" android:text="Confirm" android:visibility="visible"></Button>
-        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>
