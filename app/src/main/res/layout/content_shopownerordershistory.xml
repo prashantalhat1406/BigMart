@@ -44,7 +44,7 @@
         </EditText>-->
         <AutoCompleteTextView
             android:id="@+id/auto_shopownerorderhistory_orderid" android:hint="Enter Order ID" android:textColorHint="@color/blacklabels"
-            android:layout_width="match_parent" android:paddingLeft="10dp" android:textColor="#ffffff" android:maxLines="1" android:inputType="text"
+            android:layout_width="match_parent" android:paddingLeft="10dp" android:textColor="@color/blacklabels" android:maxLines="1" android:inputType="text"
             android:layout_height="match_parent">
 
         </AutoCompleteTextView>
