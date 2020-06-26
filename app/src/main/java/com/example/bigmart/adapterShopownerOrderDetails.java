@@ -64,13 +64,11 @@ public class adapterShopownerOrderDetails extends ArrayAdapter<Product> {
             {
                 if (databaseProduct.Qty < product.QtyNos)
                 {
-
                     productQty.setBackgroundColor(getContext().getColor(R.color.redColorButton));
                 }
 
                 else
                 {
-
                     productQty.setBackgroundColor(getContext().getColor(R.color.greenColorButton));
                 }
 

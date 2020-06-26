@@ -10,4 +10,5 @@
     <dimen name="textButtonsSmall">14dp</dimen>
     <dimen name="cartItems">12dp</dimen>
     <dimen name="profileLabel">18dp</dimen>
+    <dimen name="shopownerradiobuttons">14dp</dimen>
 </resources>

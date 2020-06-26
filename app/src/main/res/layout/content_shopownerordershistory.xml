@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="@drawable/loginbackground"
+    android:layout_height="match_parent" android:background="#ffffff"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <LinearLayout
@@ -12,19 +12,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <RadioButton android:id="@+id/rdbAll"
-                android:layout_width="match_parent" android:checked="true" android:textColor="#ffffff" android:textSize="@dimen/textButtons"
+                android:layout_width="match_parent" android:checked="true" android:textColor="@color/blacklabels" android:textSize="@dimen/shopownerradiobuttons"
                 android:buttonTint="@color/blacklabels" android:textStyle="bold"
                 android:layout_height="match_parent" android:layout_weight="0.55" android:text="All"></RadioButton>
             <RadioButton android:id="@+id/rdbInProgress"
-                android:layout_width="match_parent"  android:textColor="#ffffff" android:textSize="@dimen/textButtons"
+                android:layout_width="match_parent"  android:textColor="@color/blacklabels" android:textSize="@dimen/shopownerradiobuttons"
                 android:buttonTint="@color/blacklabels" android:textStyle="bold"
-                android:layout_height="match_parent" android:layout_weight="0.43" android:text="In-Progress"></RadioButton>
+                android:layout_height="match_parent" android:layout_weight="0.44" android:text="In-Progress"></RadioButton>
             <RadioButton android:id="@+id/rdbComplete"
-                android:layout_width="match_parent"  android:textColor="#ffffff" android:textSize="@dimen/textButtons"
+                android:layout_width="match_parent"  android:textColor="@color/blacklabels" android:textSize="@dimen/shopownerradiobuttons"
                 android:buttonTint="@color/blacklabels" android:textStyle="bold"
-                android:layout_height="match_parent" android:layout_weight="0.45" android:text="Completed"></RadioButton>
+                android:layout_height="match_parent" android:layout_weight="0.44" android:text="Completed"></RadioButton>
             <RadioButton android:id="@+id/rdbCreated"
-                android:layout_width="match_parent"  android:textColor="#ffffff" android:textSize="@dimen/textButtons"
+                android:layout_width="match_parent"  android:textColor="@color/blacklabels" android:textSize="@dimen/shopownerradiobuttons"
                 android:buttonTint="@color/blacklabels" android:textStyle="bold"
                 android:layout_height="match_parent" android:layout_weight="0.5" android:text="Created"></RadioButton>
 
@@ -43,7 +43,7 @@
 
         </EditText>-->
         <AutoCompleteTextView
-            android:id="@+id/auto_shopownerorderhistory_orderid" android:hint="Enter Order ID" android:textColorHint="#ffffff"
+            android:id="@+id/auto_shopownerorderhistory_orderid" android:hint="Enter Order ID" android:textColorHint="@color/blacklabels"
             android:layout_width="match_parent" android:paddingLeft="10dp" android:textColor="#ffffff" android:maxLines="1" android:inputType="text"
             android:layout_height="match_parent">
 

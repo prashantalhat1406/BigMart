@@ -119,14 +119,42 @@ public class shopownerorderdetails extends AppCompatActivity {
         butCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseReference orderReference = database.getReference("Orders/").child(""+orderID);
-                Map<String, Object> statusUpdate = new HashMap<>();
-                statusUpdate.put("status", "Cancelled");
-                orderReference.updateChildren(statusUpdate);
-                Intent intent=new Intent();
-                intent.putExtra("position",position);
-                setResult(Activity.RESULT_OK, intent);
-                finish();
+                AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerorderdetails.this);
+                logoutAlertBuilder.setMessage("Do you want to Cancel Order ?");
+                logoutAlertBuilder.setCancelable(false);
+                logoutAlertBuilder.setPositiveButton(
+                        "YES", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                DatabaseReference orderReference = database.getReference("Orders/").child(""+orderID);
+                                Map<String, Object> statusUpdate = new HashMap<>();
+                                statusUpdate.put("status", "Cancelled");
+                                orderReference.updateChildren(statusUpdate);
+                                Intent intent=new Intent();
+                                intent.putExtra("position",position);
+                                setResult(Activity.RESULT_OK, intent);
+                                finish();
+                            }
+                        });
+                logoutAlertBuilder.setNegativeButton(
+                        "NO", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                final AlertDialog alertLogout = logoutAlertBuilder.create();
+
+                alertLogout.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialog) {
+                        alertLogout.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
+                        alertLogout.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
+                    }
+                });
+
+                alertLogout.show();
+
             }
         });
 
@@ -136,7 +164,7 @@ public class shopownerorderdetails extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
                 if(orderDetail.status.equals("Created")) {
                     AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerorderdetails.this);
-                    logoutAlertBuilder.setMessage("Dp you want to delete Product ?");
+                    logoutAlertBuilder.setMessage("Do you want to delete Product ?");
                     logoutAlertBuilder.setCancelable(false);
                     logoutAlertBuilder.setPositiveButton(
                             "YES", new DialogInterface.OnClickListener() {

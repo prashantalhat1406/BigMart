@@ -71,7 +71,8 @@ public class shopownerordershistory extends AppCompatActivity {
 
 
         //Collections.reverse(orders_filter);
-        adapterOrder orderAdapter = new adapterOrder(shopownerordershistory.this,R.layout.itemorder,orders_filter, userID,2);
+        //adapterOrder orderAdapter = new adapterOrder(shopownerordershistory.this,R.layout.itemorder,orders_filter, userID,2);
+        adapterShopOwnerOrderHistory orderAdapter = new adapterShopOwnerOrderHistory(shopownerordershistory.this,R.layout.itemordershopowner,orders_filter, userID,2);
         ordersList.setAdapter(orderAdapter);
         ordersList.setSelection(position);
     }
@@ -115,7 +116,7 @@ public class shopownerordershistory extends AppCompatActivity {
                 }
 
                 //Collections.reverse(orders);
-                adapterOrder orderAdapter = new adapterOrder(shopownerordershistory.this,R.layout.itemorder,orders, userID,2);
+                adapterShopOwnerOrderHistory orderAdapter = new adapterShopOwnerOrderHistory(shopownerordershistory.this,R.layout.itemordershopowner,orders, userID,2);
                 ordersList.setAdapter(orderAdapter);
                 RadioGroup rg = findViewById(R.id.rdbGroup);
                 rg.findViewById(R.id.rdbAll).setSelected(true);
@@ -171,7 +172,7 @@ public class shopownerordershistory extends AppCompatActivity {
                 Intent orderIntent = new Intent(shopownerordershistory.this, shopownerorderdetails.class);
                 Bundle extras = new Bundle();
                 //extras.putString("orderID", ""+orders.get(position).ID);
-                String selected = ((TextView) view.findViewById(R.id.txt_order_ID_DUP)).getText().toString();
+                String selected = ((TextView) view.findViewById(R.id.txt_orderN_ID_DUP)).getText().toString();
                 extras.putString("orderID", ""+selected);
                 extras.putInt("position", position);
                 orderIntent.putExtras(extras);
