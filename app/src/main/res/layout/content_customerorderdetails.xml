@@ -70,22 +70,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView android:layout_gravity="center" android:gravity="center" android:textStyle="bold"
-            android:layout_width="match_parent" android:layout_weight="0.28"
+            android:layout_width="match_parent" android:layout_weight="0.28" android:textColor="@color/blacklabels"
             android:layout_height="match_parent" android:text="No"></TextView>
         <TextView android:layout_gravity="center" android:gravity="center" android:textStyle="bold"
-            android:layout_width="match_parent" android:layout_weight="0.2"
+            android:layout_width="match_parent" android:layout_weight="0.2" android:textColor="@color/blacklabels"
             android:layout_height="match_parent" android:text="Product Name"></TextView>
         <TextView android:layout_gravity="center" android:gravity="center" android:textStyle="bold"
-            android:layout_width="match_parent" android:layout_weight="0.25"
+            android:layout_width="match_parent" android:layout_weight="0.25" android:textColor="@color/blacklabels"
             android:layout_height="match_parent" android:text="Qty"></TextView>
         <TextView android:layout_gravity="center" android:gravity="center" android:textStyle="bold"
-            android:layout_width="match_parent" android:layout_weight="0.25"
+            android:layout_width="match_parent" android:layout_weight="0.25" android:textColor="@color/blacklabels"
             android:layout_height="match_parent" android:text="MRP"></TextView>
         <TextView android:layout_gravity="center" android:gravity="center" android:textStyle="bold"
-            android:layout_width="match_parent" android:layout_weight="0.25"
+            android:layout_width="match_parent" android:layout_weight="0.25" android:textColor="@color/blacklabels"
             android:layout_height="match_parent" android:text="Save"></TextView>
         <TextView android:layout_gravity="center" android:gravity="center" android:textStyle="bold"
-            android:layout_width="match_parent" android:layout_weight="0.25"
+            android:layout_width="match_parent" android:layout_weight="0.25" android:textColor="@color/blacklabels"
             android:layout_height="match_parent" android:text="Total"></TextView>
     </LinearLayout>
 
@@ -118,12 +118,19 @@
         <LinearLayout android:orientation="horizontal"
             android:layout_width="match_parent" android:layout_weight="0.4" android:paddingLeft="10dp"
             android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent" android:paddingStart="5dp" android:paddingEnd="5dp" android:paddingBottom="5dp"
+                android:layout_height="match_parent" android:layout_weight="0.65">
 
-            <Button android:id="@+id/but_customer_orderdetail_cancel" android:layout_weight="0.65"
-                android:layout_width="match_parent" android:background="@drawable/roundbutton" android:backgroundTint="@color/blueColorButton"
-                android:layout_height="match_parent" android:text="Cancel Order" android:visibility="visible"
-                android:paddingBottom="2dp"
-                />
+                <Button android:id="@+id/but_customer_orderdetail_cancel" android:layout_weight="0.65"
+                    android:layout_width="match_parent" android:background="@drawable/roundbutton_red" android:textColor="#ffffff"
+                    android:layout_height="match_parent" android:text="Cancel Order" android:visibility="visible"
+
+                    />
+
+            </LinearLayout>
+
+
             <LinearLayout android:id="@+id/layout_custOrderDetails_status" android:layout_weight="0.65"
                 android:layout_width="match_parent"  android:visibility="gone" android:layout_gravity="center"
                 android:gravity="center"
