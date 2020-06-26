@@ -14,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class adapterShopOwnerOrderHistory extends ArrayAdapter<Orders> {
@@ -64,9 +66,11 @@ public class adapterShopOwnerOrderHistory extends ArrayAdapter<Orders> {
         orderID.setText("" + order.ID);
         orderID.setPaintFlags(orderID.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
 
+        convertView.setBackground(context.getDrawable(R.drawable.shopownerorderhistory_homed));
+
         orderIDDUP.setText("" + order.ID);
         if (order.deliveryType.equals("Home Delivery")) {
-            convertView.setBackground(context.getDrawable(R.drawable.shopownerorderhistory_homed));
+            //convertView.setBackground(context.getDrawable(R.drawable.shopownerorderhistory_homed));
             orderdeliverytype.setBackground(context.getDrawable(R.drawable.deliverytypehome));
             orderdeliverytype.setText("H");
             if (order.amount > 2000)
@@ -80,13 +84,30 @@ public class adapterShopOwnerOrderHistory extends ArrayAdapter<Orders> {
             orderdeliverytype.setText("P");
             orderdeliverytype.setBackground(context.getDrawable(R.drawable.deliverytypepickup));
             orderAmount.setText(context.getResources().getString(R.string.Rupee) + " " +  formater.format(Math.round( order.amount)));
-            convertView.setBackground(context.getDrawable(R.drawable.shopownerorderhistory_pickup));
+            //convertView.setBackground(context.getDrawable(R.drawable.shopownerorderhistory_pickup));
         }
 
         orderAmount.setTextColor(ContextCompat.getColor(this.context, R.color.colorPrimaryDark));
 
         orderStatus.setText("" + order.status);
+
+
+
+
         orderDate.setText("" + order.date);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+        try {
+            Date date = sdf.parse(order.date);
+            SimpleDateFormat sdfN=new SimpleDateFormat("dd/MM/yy");
+            orderDate.setText("" +sdfN.format(date.getTime()));
+        }catch (Exception e){
+
+        }
+
+
+
+        //orderDate.setText("" + new SimpleDateFormat("dd/mm/yy").format(order.date));
         //orderdeliverytype.setText("" + order.deliveryType);
 
         orderStatus.setTextColor(ContextCompat.getColor(this.context, R.color.completeStatus));

@@ -14,7 +14,7 @@
             <RadioButton android:id="@+id/rdbAll"
                 android:layout_width="match_parent" android:checked="true" android:textColor="@color/blacklabels" android:textSize="@dimen/shopownerradiobuttons"
                 android:buttonTint="@color/blacklabels" android:textStyle="bold"
-                android:layout_height="match_parent" android:layout_weight="0.55" android:text="All"></RadioButton>
+                android:layout_height="match_parent" android:layout_weight="0.56" android:text="All"></RadioButton>
             <RadioButton android:id="@+id/rdbInProgress"
                 android:layout_width="match_parent"  android:textColor="@color/blacklabels" android:textSize="@dimen/shopownerradiobuttons"
                 android:buttonTint="@color/blacklabels" android:textStyle="bold"
@@ -26,7 +26,7 @@
             <RadioButton android:id="@+id/rdbCreated"
                 android:layout_width="match_parent"  android:textColor="@color/blacklabels" android:textSize="@dimen/shopownerradiobuttons"
                 android:buttonTint="@color/blacklabels" android:textStyle="bold"
-                android:layout_height="match_parent" android:layout_weight="0.5" android:text="Created"></RadioButton>
+                android:layout_height="match_parent" android:layout_weight="0.48" android:text="Created"></RadioButton>
 
         </RadioGroup>
 
@@ -43,7 +43,7 @@
 
         </EditText>-->
         <AutoCompleteTextView
-            android:id="@+id/auto_shopownerorderhistory_orderid" android:hint="Enter Order ID" android:textColorHint="@color/blacklabels"
+            android:id="@+id/auto_shopownerorderhistory_orderid" android:hint="Enter Order ID"
             android:layout_width="match_parent" android:paddingLeft="10dp" android:textColor="@color/blacklabels" android:maxLines="1" android:inputType="text"
             android:layout_height="match_parent">
 
