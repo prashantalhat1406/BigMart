@@ -114,12 +114,15 @@ public class adapterShopOwnerOrderHistory extends ArrayAdapter<Orders> {
         switch (order.status){
             case "Complete": orderStatus.setBackground(context.getDrawable(R.drawable.status_complete));
             //convertView.setBackgroundColor(context.getColor(R.color.lightGreen));
+                orderStatus.setText("Complete");
                 break;
             case "Created": orderStatus.setBackground(context.getDrawable(R.drawable.status_created));
+                orderStatus.setText("  Created  ");
                 break;
             case "InProgress": orderStatus.setBackground(context.getDrawable(R.drawable.status_inprogress));
                 break;
             case "Cancelled": orderStatus.setBackground(context.getDrawable(R.drawable.status_cancelled));
+                orderStatus.setText("   Cancel   ");
                 break;
         }
 

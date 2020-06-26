@@ -11,7 +11,7 @@
             android:layout_width="match_parent" android:layout_weight="0.23" android:orientation="vertical"
             android:layout_height="match_parent">
             <TextView android:id="@+id/txt_orderN_date" android:layout_gravity="center" android:gravity="center|center_horizontal"
-                android:layout_width="match_parent" android:layout_weight="0.6"
+                android:layout_width="match_parent" android:layout_weight="0.6" android:textSize="@dimen/textButtonsSmall"
                 android:text="24-May-2020" android:textColor="@color/blacklabels"
                 android:layout_height="match_parent"></TextView>
         </LinearLayout>
@@ -20,9 +20,9 @@
             android:layout_width="match_parent" android:layout_weight="0.2"
             android:layout_height="match_parent">
             <TextView android:id="@+id/txt_orderN_ID" android:layout_gravity="center" android:gravity="center"
-                android:layout_width="match_parent" android:layout_weight="0.6" android:text="ABCDE"
+                android:layout_width="match_parent" android:layout_weight="0.58" android:text="ABCDE"
                 android:textStyle="italic|bold" android:paddingEnd="2dp"
-                android:textColor="@color/blacklabels"
+                android:textColor="@color/blacklabels" android:textSize="@dimen/textButtonsSmall"
                 android:layout_height="match_parent"></TextView>
             <TextView android:id="@+id/txt_orderN_ID_DUP"
                 android:layout_width="match_parent"
@@ -30,28 +30,30 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent" android:layout_weight="0.26" android:layout_gravity="center_horizontal" android:gravity="center"
+            android:layout_width="match_parent" android:layout_weight="0.26" android:layout_gravity="center" android:gravity="center"
             android:layout_height="match_parent" >
             <TextView android:id="@+id/txt_orderN_type" android:layout_gravity="center"
-                android:gravity="center|center_horizontal"
-                android:layout_width="wrap_content"
-                android:text="H" android:textSize="@dimen/ordersumary1row" android:textColor="@color/colorWhite"
-                android:layout_height="wrap_content"></TextView>
+                android:gravity="center"
+                android:layout_width="24dp"
+                android:text="H" android:textSize="@dimen/cartItems" android:textColor="@color/colorWhite"
+                android:layout_height="24dp"></TextView>
         </LinearLayout>
 
+
         <LinearLayout
-            android:layout_width="match_parent" android:layout_weight="0.21" android:orientation="vertical"
+            android:layout_width="match_parent" android:layout_weight="0.22" android:orientation="vertical"
             android:layout_height="match_parent">
-            <TextView android:id="@+id/txt_orderN_totalamount" android:layout_gravity="center" android:gravity="center|center_horizontal"
-                android:layout_width="match_parent" android:layout_weight="0.6" android:text="125.00" android:textSize="@dimen/ordersumary1row"
+            <TextView android:id="@+id/txt_orderN_totalamount" android:layout_gravity="center" android:gravity="center|center_horizontal|right"
+                android:layout_width="match_parent" android:layout_weight="0.6" android:textStyle="bold"
+                android:text="125.00" android:textSize="@dimen/textButtonsSmall"
                 android:layout_height="match_parent"></TextView>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent" android:layout_weight="0.20" android:layout_gravity="center_horizontal" android:gravity="center"
-            android:layout_height="match_parent">
-            <TextView android:id="@+id/txt_orderN_status" android:layout_gravity="center" android:gravity="right"
-                android:layout_width="wrap_content" android:text="Created"
+            android:layout_width="match_parent" android:layout_weight="0.20" android:layout_gravity="center_horizontal" android:gravity="center|right"
+            android:layout_height="match_parent" android:paddingEnd="5dp">
+            <TextView android:id="@+id/txt_orderN_status" android:layout_gravity="center" android:gravity="center_horizontal"
+                android:layout_width="wrap_content" android:text="Created" android:textSize="@dimen/cartItems"
                 android:layout_height="wrap_content"></TextView>
         </LinearLayout>
     </LinearLayout>

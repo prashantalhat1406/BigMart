@@ -12,19 +12,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <RadioButton android:id="@+id/rdbAll"
-                android:layout_width="match_parent" android:checked="true" android:textColor="@color/blacklabels" android:textSize="@dimen/shopownerradiobuttons"
+                android:layout_width="match_parent" android:checked="true" android:textColor="@color/blacklabels" android:textSize="@dimen/cartItems"
                 android:buttonTint="@color/blacklabels" android:textStyle="bold"
                 android:layout_height="match_parent" android:layout_weight="0.56" android:text="All"></RadioButton>
             <RadioButton android:id="@+id/rdbInProgress"
-                android:layout_width="match_parent"  android:textColor="@color/blacklabels" android:textSize="@dimen/shopownerradiobuttons"
+                android:layout_width="match_parent"  android:textColor="@color/blacklabels" android:textSize="@dimen/cartItems"
                 android:buttonTint="@color/blacklabels" android:textStyle="bold"
-                android:layout_height="match_parent" android:layout_weight="0.44" android:text="In-Progress"></RadioButton>
+                android:layout_height="match_parent" android:layout_weight="0.44" android:text="InProgress"></RadioButton>
             <RadioButton android:id="@+id/rdbComplete"
-                android:layout_width="match_parent"  android:textColor="@color/blacklabels" android:textSize="@dimen/shopownerradiobuttons"
+                android:layout_width="match_parent"  android:textColor="@color/blacklabels" android:textSize="@dimen/cartItems"
                 android:buttonTint="@color/blacklabels" android:textStyle="bold"
                 android:layout_height="match_parent" android:layout_weight="0.44" android:text="Completed"></RadioButton>
             <RadioButton android:id="@+id/rdbCreated"
-                android:layout_width="match_parent"  android:textColor="@color/blacklabels" android:textSize="@dimen/shopownerradiobuttons"
+                android:layout_width="match_parent"  android:textColor="@color/blacklabels" android:textSize="@dimen/cartItems"
                 android:buttonTint="@color/blacklabels" android:textStyle="bold"
                 android:layout_height="match_parent" android:layout_weight="0.48" android:text="Created"></RadioButton>
 

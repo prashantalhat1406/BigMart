@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="match_parent" android:background="@drawable/button_greyborder"
     android:layout_height="match_parent" android:paddingStart="5dp" android:paddingEnd="5dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -10,7 +10,7 @@
         >
         <EditText android:id="@+id/edt_showowner_product_search" android:background="@drawable/productsearch" android:inputType="text"
             android:layout_width="match_parent" android:imeOptions="actionSearch" android:maxLines="1"
-            android:hint="Enter Product Name to search" android:paddingStart="3dp"
+            android:hint="Enter Product Name to search" android:paddingStart="5dp" android:longClickable="false" android:textSize="@dimen/textButtons"
             android:layout_height="match_parent" android:layout_weight="0.15"></EditText>
         <ImageButton android:id="@+id/but_showowner_product_search" android:src="@drawable/ic_search" android:background="@drawable/profiletextbox"
             android:layout_width="match_parent" android:scaleType="center" android:visibility="gone"
@@ -24,19 +24,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView  android:layout_gravity="center" android:gravity="center"
-            android:layout_width="match_parent" android:layout_weight="0.9" android:text="No" android:textStyle="bold"
+            android:layout_width="match_parent" android:layout_weight="0.9" android:text="No" android:textStyle="bold" android:textColor="@color/blacklabels"
             android:layout_height="match_parent"></TextView>
         <View android:layout_width="1dp" android:layout_height="match_parent" android:background="@android:color/darker_gray"/>
         <TextView  android:layout_gravity="center" android:gravity="center"
-            android:layout_width="match_parent" android:layout_weight="0.6" android:text="Product Name" android:textStyle="bold"
+            android:layout_width="match_parent" android:layout_weight="0.6" android:text="Product Name" android:textStyle="bold" android:textColor="@color/blacklabels"
             android:layout_height="match_parent"></TextView>
         <View android:layout_width="1dp" android:layout_height="match_parent" android:background="@android:color/darker_gray"/>
         <TextView  android:layout_gravity="center" android:gravity="center"
-            android:layout_width="match_parent" android:layout_weight="0.8" android:text="MRP" android:textStyle="bold"
+            android:layout_width="match_parent" android:layout_weight="0.8" android:text="MRP" android:textStyle="bold" android:textColor="@color/blacklabels"
             android:layout_height="match_parent"></TextView>
         <View android:layout_width="1dp" android:layout_height="match_parent" android:background="@android:color/darker_gray"/>
         <TextView  android:layout_gravity="center" android:gravity="center"
-            android:layout_width="match_parent" android:layout_weight="0.8" android:text="Stock" android:textStyle="bold"
+            android:layout_width="match_parent" android:layout_weight="0.8" android:text="Stock" android:textStyle="bold" android:textColor="@color/blacklabels"
             android:layout_height="match_parent"></TextView>
     </LinearLayout>
 
