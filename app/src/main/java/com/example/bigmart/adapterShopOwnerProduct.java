@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.text.Layout;
 import android.text.style.StrikethroughSpan;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,8 +58,11 @@ public class adapterShopOwnerProduct extends ArrayAdapter<Product> {
 
         TextView name = (TextView)convertView.findViewById(R.id.txt_shopowner_productname);
         name.setText(""+product.getName());
-        if (product.Name.length() > 50)
-            name.setTextSize(12);
+        if (product.Name.length() > 25)
+            name.setTextSize(TypedValue.COMPLEX_UNIT_DIP,12);
+        else
+            name.setTextSize(TypedValue.COMPLEX_UNIT_DIP,14);
+        //text.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
         TextView mrp = (TextView)convertView.findViewById(R.id.txt_shopowner_productMRP);
         mrp.setText(context.getResources().getString(R.string.Rupee) + " "+product.MRP.toString());
         TextView stock = (TextView)convertView.findViewById(R.id.txt_shopowner_productStock);
