@@ -16,9 +16,12 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -36,6 +39,7 @@ public class shopownerproductdisplay extends AppCompatActivity {
     ListView productList;
     EditText edtsearch;
     private String searchItem="";
+    private Integer showpassword = 0;
 
     @Override
     protected void onResume() {
@@ -59,11 +63,32 @@ public class shopownerproductdisplay extends AppCompatActivity {
         products = new ArrayList<Product>();
         edtsearch = findViewById(R.id.edt_showowner_product_search);
         edtsearch.setText("");
+        edtsearch.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (edtsearch.getText().length() > 0){
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (edtsearch.getRight() - edtsearch.getCompoundDrawables()[2].getBounds().width())) {
+                        edtsearch.setText("");
+                        //edtsearch.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_clear, 0);
+                        edtsearch.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+
+                        return true;
+                    }
+                }}
+                return false;
+            }
+
+
+        });
+
         edtsearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {            }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                edtsearch.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_clear, 0);
                 List<Product> tempList = new ArrayList<Product>();
                 if (edtsearch.getText().length() == 0)
                     tempList = products;
@@ -79,7 +104,7 @@ public class shopownerproductdisplay extends AppCompatActivity {
                 productList.setAdapter(productAdaper);
             }
             @Override
-            public void afterTextChanged(Editable s) {            }
+            public void afterTextChanged(Editable s) {           }
         });
 
         Query query = database.getReference("Products");
