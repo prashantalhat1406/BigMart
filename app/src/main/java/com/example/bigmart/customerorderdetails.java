@@ -1,6 +1,10 @@
 package com.example.bigmart;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -72,11 +76,43 @@ public class customerorderdetails extends AppCompatActivity {
         butCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseReference orderReference = database.getReference("Orders/").child(""+orderID);
-                Map<String, Object> statusUpdate = new HashMap<>();
-                statusUpdate.put("status", "Cancelled");
-                orderReference.updateChildren(statusUpdate);
-                finish();
+
+                AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(customerorderdetails.this);
+                logoutAlertBuilder.setMessage("Do you want to Cancel Order ?");
+                logoutAlertBuilder.setCancelable(false);
+                logoutAlertBuilder.setPositiveButton(
+                        "YES", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                DatabaseReference orderReference = database.getReference("Orders/").child(""+orderID);
+                                Map<String, Object> statusUpdate = new HashMap<>();
+                                statusUpdate.put("status", "Cancelled");
+                                orderReference.updateChildren(statusUpdate);
+                                finish();
+                            }
+                        });
+                logoutAlertBuilder.setNegativeButton(
+                        "NO", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                final AlertDialog alertLogout = logoutAlertBuilder.create();
+
+                alertLogout.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialog) {
+                        alertLogout.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
+                        alertLogout.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
+                    }
+                });
+
+                alertLogout.show();
+
+
+
+
             }
         });
 
