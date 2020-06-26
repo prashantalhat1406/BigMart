@@ -357,7 +357,8 @@ public class login extends AppCompatActivity {
 
                 if (exitingUser)
                 {
-                    showErrorMessage("User already exists.");
+                    //showErrorMessage("User already exists.");
+                    edtPassword.setError("User already exists.");
                     edtPassword.setText("");
                     edtPassword.requestFocus();
                 }else{
