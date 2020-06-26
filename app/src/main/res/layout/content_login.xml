@@ -5,6 +5,8 @@
     android:layout_width="match_parent"  android:background="@drawable/loginbackground"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+    
+
 
     <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:layout_weight="0.25" >
 
@@ -45,7 +47,7 @@
                 android:paddingTop="60dp"
                 android:padding="10dp" android:visibility="visible" android:layout_gravity="center" android:gravity="center"
                 android:id="@+id/but_login_login" android:layout_width="50dp" android:layout_height="45dp"
-                android:layout_weight="0.7" android:text="LogIn"></Button>
+                android:layout_weight="0.7" android:text="Log In"></Button>
             <Button android:background="@drawable/roundbutton" android:backgroundTint="@color/orangeColorButton"
                 android:padding="10dp" android:visibility="invisible"
                  android:layout_width="50dp" android:layout_height="50dp" android:layout_weight="0.3" android:text="Register"></Button>

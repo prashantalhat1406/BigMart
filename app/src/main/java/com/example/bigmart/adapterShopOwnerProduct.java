@@ -57,6 +57,8 @@ public class adapterShopOwnerProduct extends ArrayAdapter<Product> {
 
         TextView name = (TextView)convertView.findViewById(R.id.txt_shopowner_productname);
         name.setText(""+product.getName());
+        if (product.Name.length() > 50)
+            name.setTextSize(12);
         TextView mrp = (TextView)convertView.findViewById(R.id.txt_shopowner_productMRP);
         mrp.setText(context.getResources().getString(R.string.Rupee) + " "+product.MRP.toString());
         TextView stock = (TextView)convertView.findViewById(R.id.txt_shopowner_productStock);

@@ -303,6 +303,40 @@ public class login extends AppCompatActivity {
         });
 
         Button butRegister = findViewById(R.id.but_login_register);
+        /*TextView txtRegister = findViewById(R.id.txt_registerN);
+        txtRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                long userMobile;
+
+                if (edtMobile.getText().toString().length() == 0)
+                    userMobile = 0L;
+                else
+                    userMobile = Long.parseLong(edtMobile.getText().toString());
+
+                boolean exitingUser = false;
+                for (User user : usersDB) {
+                    if (user.Mobile.equals(userMobile))
+                    {
+                        exitingUser = true; break;
+                    }
+                }
+
+                if (exitingUser)
+                {
+                    showErrorMessage("User already exists.");
+                    edtPassword.setText("");
+                    edtPassword.requestFocus();
+                }else{
+                    Intent registerIntent = new Intent(login.this, registration.class);
+                    Bundle extras = new Bundle();
+                    extras.putLong("userID", userMobile);
+                    registerIntent.putExtras(extras);
+                    startActivity(registerIntent);
+                    finish();
+                }
+            }
+        });*/
         butRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
