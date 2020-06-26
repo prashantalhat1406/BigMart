@@ -2,6 +2,7 @@ package com.example.bigmart;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +62,8 @@ public class adapterShopOwnerOrderHistory extends ArrayAdapter<Orders> {
 
         //orderID.setText("" + order.ID.substring(order.ID.length() - 5).toUpperCase());
         orderID.setText("" + order.ID);
+        orderID.setPaintFlags(orderID.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+
         orderIDDUP.setText("" + order.ID);
         if (order.deliveryType.equals("Home Delivery")) {
             convertView.setBackground(context.getDrawable(R.drawable.shopownerorderhistory_homed));
