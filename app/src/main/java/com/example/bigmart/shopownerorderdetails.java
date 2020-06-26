@@ -41,6 +41,7 @@ public class shopownerorderdetails extends AppCompatActivity {
     Button butComplete, butConfirm, butCancel,butPrint;
     User user;
     FirebaseDatabase database;
+    private String searchItem="";
 
     public void updateStoreQuantity(List<Product> products){
 
@@ -58,6 +59,14 @@ public class shopownerorderdetails extends AppCompatActivity {
         }
     }
 
+   /* @Override
+    public void onBackPressed() {
+        Intent intent=new Intent();
+        intent.putExtra("searchItem",searchItem);
+        setResult(Activity.RESULT_OK, intent);
+        super.onBackPressed();
+    }*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +80,7 @@ public class shopownerorderdetails extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         orderID = b.getString("orderID","12");
         position = b.getInt("position",0);
+        searchItem = b.getString("searchItem", "");
 
 
         productList = findViewById(R.id.listOrderDetail);
@@ -93,6 +103,7 @@ public class shopownerorderdetails extends AppCompatActivity {
                 orderReference.updateChildren(statusUpdate);
                 Intent intent=new Intent();
                 intent.putExtra("position",position);
+                intent.putExtra("searchItem",searchItem);
                 setResult(Activity.RESULT_OK, intent);
                 finish();
             }
@@ -132,6 +143,7 @@ public class shopownerorderdetails extends AppCompatActivity {
                                 orderReference.updateChildren(statusUpdate);
                                 Intent intent=new Intent();
                                 intent.putExtra("position",position);
+                                intent.putExtra("searchItem",searchItem);
                                 setResult(Activity.RESULT_OK, intent);
                                 finish();
                             }
@@ -344,6 +356,7 @@ public class shopownerorderdetails extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent=new Intent();
         intent.putExtra("position",position);
+        intent.putExtra("searchItem",searchItem);
         setResult(Activity.RESULT_OK, intent);
         finish();
         super.onBackPressed();

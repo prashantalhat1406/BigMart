@@ -10,6 +10,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -34,10 +35,11 @@ public class shopownerproductdisplay extends AppCompatActivity {
     private List<Product> products;
     ListView productList;
     EditText edtsearch;
+    private String searchItem="";
 
     @Override
     protected void onResume() {
-        edtsearch.setText("");
+        //edtsearch.setText("");
         super.onResume();
     }
 
@@ -108,13 +110,25 @@ public class shopownerproductdisplay extends AppCompatActivity {
                 String selected = ((TextView) view.findViewById(R.id.txt_shopowner_productID)).getText().toString();
                 extras.putString("productID", ""+selected);
                 extras.putString("action", "edit");
+                extras.putString("searchItem", edtsearch.getText().toString());
                 editProductIntent.putExtras(extras);
-                startActivity(editProductIntent);
+                startActivityForResult(editProductIntent,100);
             }
         });
 
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 100)
+        {
+            searchItem = data.getStringExtra("searchItem");
+            edtsearch.setText(""+searchItem);
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

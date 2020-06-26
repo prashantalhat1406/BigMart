@@ -1,5 +1,7 @@
 package com.example.bigmart;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.firebase.database.DataSnapshot;
@@ -37,6 +39,8 @@ public class shopownerproductdetails extends AppCompatActivity {
     String productID, action, productSubCategory;
     ArrayAdapter<String> categoryAdapter, subcategoryAdapter;
     ArrayAdapter<String> PTadapter;
+    private String searchItem="";
+
 
     public void showErrorMessage(String message){
         Toast error = Toast.makeText(shopownerproductdetails.this, message,Toast.LENGTH_SHORT);
@@ -126,6 +130,13 @@ public class shopownerproductdetails extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent();
+        intent.putExtra("searchItem",searchItem);
+        setResult(Activity.RESULT_OK, intent);
+        super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,6 +150,10 @@ public class shopownerproductdetails extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         productID = b.getString("productID", "");
         action = b.getString("action", "add");
+        searchItem = b.getString("searchItem", "");
+
+
+
 
         Categories = new ArrayList<Category>();
         SubCategories = new ArrayList<SubCategory>();
@@ -260,6 +275,9 @@ public class shopownerproductdetails extends AppCompatActivity {
                     }
 
 
+                    Intent intent=new Intent();
+                    intent.putExtra("searchItem",searchItem);
+                    setResult(Activity.RESULT_OK, intent);
                     finish();
                 }
             }

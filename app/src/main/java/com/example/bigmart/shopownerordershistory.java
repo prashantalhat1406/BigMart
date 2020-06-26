@@ -31,6 +31,7 @@ public class shopownerordershistory extends AppCompatActivity {
 
     private List<Orders> orders;
     private Integer position=0;
+    private String searchItem="";
     private List<String> orderIDs;
     ListView ordersList;
     private long userID;
@@ -38,6 +39,7 @@ public class shopownerordershistory extends AppCompatActivity {
     private String orderID = "test";
     private Boolean flag = false;
     private FirebaseDatabase database;
+    AutoCompleteTextView autoCompleteTextView;
 
     public void displayFilteredList(int radioButton)
     {
@@ -129,7 +131,7 @@ public class shopownerordershistory extends AppCompatActivity {
         });
         //orders_filter =orders;
 
-        final AutoCompleteTextView autoCompleteTextView = findViewById(R.id.auto_shopownerorderhistory_orderid);
+        autoCompleteTextView = findViewById(R.id.auto_shopownerorderhistory_orderid);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,orderIDs);
         autoCompleteTextView.setAdapter(adapter);
         autoCompleteTextView.setThreshold(1);
@@ -149,6 +151,7 @@ public class shopownerordershistory extends AppCompatActivity {
                         Bundle extras = new Bundle();
                         extras.putString("orderID", ""+order.ID);
                         extras.putInt("position", position);
+                        extras.putString("searchItem", autoCompleteTextView.getText().toString());
                         orderIntent.putExtras(extras);
                         startActivityForResult(orderIntent,100);
                         autoCompleteTextView.setText("");
@@ -175,6 +178,7 @@ public class shopownerordershistory extends AppCompatActivity {
                 String selected = ((TextView) view.findViewById(R.id.txt_orderN_ID_DUP)).getText().toString();
                 extras.putString("orderID", ""+selected);
                 extras.putInt("position", position);
+                extras.putString("searchItem", autoCompleteTextView.getText().toString());
                 orderIntent.putExtras(extras);
                 startActivityForResult(orderIntent,100);
             }
@@ -196,6 +200,8 @@ public class shopownerordershistory extends AppCompatActivity {
         if(requestCode == 100)
         {
             position = data.getIntExtra("position",0);
+            searchItem = data.getStringExtra("searchItem");
+            autoCompleteTextView.setText("");
             ordersList.setSelection( position);
 
         }
