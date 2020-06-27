@@ -2,6 +2,7 @@ package com.example.bigmart;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,13 +67,21 @@ public class adapterShopownerOrderDetails extends ArrayAdapter<Product> {
             if (databaseProduct.ID.equals(product.ID))
             {
                 //if (databaseProduct.Qty < product.QtyNos)
+
+                //productQty.setH
+                //productQty.setHeight(TypedValue.COMPLEX_UNIT_DIP,28);
+                //productQty.setWidth(TypedValue.COMPLEX_UNIT_DIP,28);
+
                 if (databaseProduct.Qty < databaseProduct.MinStock)
                 {
                     productQty.setBackgroundColor(getContext().getColor(R.color.redColorButton));
+                    //productQty.setBackground(context.getDrawable(R.drawable.circlered));
+
                 }
                 else
                 {
                     productQty.setBackgroundColor(getContext().getColor(R.color.greenColorButton));
+                    //productQty.setBackground(context.getDrawable(R.drawable.deliverytypehome));
                 }
                 break;
             }
