@@ -40,6 +40,7 @@ public class shopownerproductdetails extends AppCompatActivity {
     ArrayAdapter<String> categoryAdapter, subcategoryAdapter;
     ArrayAdapter<String> PTadapter;
     private String searchItem="";
+    private Integer position=0;
 
 
     public void showErrorMessage(String message){
@@ -134,6 +135,7 @@ public class shopownerproductdetails extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent=new Intent();
         intent.putExtra("searchItem",searchItem);
+        intent.putExtra("position",position);
         setResult(Activity.RESULT_OK, intent);
         super.onBackPressed();
     }
@@ -150,6 +152,7 @@ public class shopownerproductdetails extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         productID = b.getString("productID", "");
         action = b.getString("action", "add");
+        position = b.getInt("position",0);
         searchItem = b.getString("searchItem", "");
 
 
@@ -277,6 +280,7 @@ public class shopownerproductdetails extends AppCompatActivity {
 
                     Intent intent=new Intent();
                     intent.putExtra("searchItem",searchItem);
+                    intent.putExtra("position",position);
                     setResult(Activity.RESULT_OK, intent);
                     finish();
                 }

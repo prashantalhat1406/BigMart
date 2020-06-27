@@ -155,6 +155,7 @@ public class shopownerproductdisplay extends AppCompatActivity {
                 String selected = ((TextView) view.findViewById(R.id.txt_shopowner_productID)).getText().toString();
                 extras.putString("productID", ""+selected);
                 extras.putString("action", "edit");
+                extras.putInt("position", position);
                 extras.putString("searchItem", edtsearch.getText().toString());
                 editProductIntent.putExtras(extras);
                 startActivityForResult(editProductIntent,100);
@@ -171,6 +172,10 @@ public class shopownerproductdisplay extends AppCompatActivity {
         {
             searchItem = data.getStringExtra("searchItem");
             edtsearch.setText(""+searchItem);
+            if(searchItem.length() == 0)
+                edtsearch.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+            Integer pos = data.getIntExtra("position",0);
+            productList.setSelection(pos);
         }
     }
 
