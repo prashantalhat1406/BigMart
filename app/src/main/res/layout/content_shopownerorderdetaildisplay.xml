@@ -135,12 +135,12 @@
             android:layout_height="match_parent" android:layout_weight="0.5">
 
             <Button android:id="@+id/but_orderdetail_complete" android:layout_weight="0.5"
-                android:paddingStart="5dp" android:paddingEnd="5dp"
+                android:paddingStart="5dp" android:paddingEnd="5dp" android:textColor="#ffffff"
                 android:layout_width="match_parent" android:background="@drawable/roundbutton_green"
                 android:layout_height="match_parent" android:text="Complete" android:visibility="gone"></Button>
 
             <Button android:id="@+id/but_orderdetail_confirm" android:layout_weight="0.5"
-                android:paddingStart="5dp" android:paddingEnd="5dp"
+                android:paddingStart="5dp" android:paddingEnd="5dp" android:textColor="#ffffff"
                 android:layout_width="match_parent" android:background="@drawable/roundbutton_green"
                 android:layout_height="match_parent" android:text="Confirm" android:visibility="visible"></Button>
 

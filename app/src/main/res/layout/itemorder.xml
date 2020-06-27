@@ -15,7 +15,7 @@
                 android:layout_height="match_parent"></TextView>
             <TextView android:id="@+id/txt_order_ID" android:layout_gravity="center" android:gravity="center"
                 android:layout_width="match_parent" android:layout_weight="0.6" android:text="ABCDE" android:textStyle="bold"
-                android:textColor="@color/blacklabels"
+                android:textColor="@color/blacklabels" android:textSize="@dimen/cartItems"
                 android:layout_height="match_parent"></TextView>
             <TextView android:id="@+id/txt_order_ID_DUP"
                 android:layout_width="match_parent"
@@ -25,7 +25,7 @@
             android:layout_width="match_parent" android:layout_weight="0.6" android:layout_gravity="center_horizontal" android:gravity="center"
             android:layout_height="match_parent">
             <TextView android:id="@+id/txt_order_status" android:layout_gravity="center" android:gravity="right"
-                android:layout_width="wrap_content" android:text="Created"
+                android:layout_width="wrap_content" android:text="Created" android:textSize="@dimen/status"
                 android:layout_height="wrap_content"></TextView>
         </LinearLayout>
     </LinearLayout>

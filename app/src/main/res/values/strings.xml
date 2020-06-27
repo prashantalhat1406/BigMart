@@ -14,14 +14,14 @@
     <string name="title_activity_subcat">Sub Category</string>
     <string name="title_activity_productdisplay">Products</string>
     <string name="title_activity_cartdisplay">Cart Details</string>
-    <string name="title_activity_orderdisplay">Orders</string>
+    <string name="title_activity_orderdisplay">Order History</string>
     <string name="title_activity_shopownerhome">Shop</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="title_activity_shopownerordershistory">Orders</string>
+    <string name="title_activity_shopownerordershistory">Order History</string>
     <string name="title_activity_orderdetaildisplay">Order Details</string>
     <string name="title_activity_login_new">Sign in</string>
     <string name="prompt_email">Email</string>

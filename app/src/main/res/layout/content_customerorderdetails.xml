@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="#ffffff"
+    android:layout_width="match_parent" android:paddingEnd="5dp" android:paddingStart="5dp" android:paddingTop="5dp" android:paddingBottom="5dp"
+    android:layout_height="match_parent" android:background="@drawable/button_greyborder"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <LinearLayout android:orientation="vertical" android:layout_weight="0.75"
@@ -19,7 +19,7 @@
                     android:paddingLeft="5dp"
                     android:layout_height="match_parent" android:text="Name : "></TextView>
                 <TextView android:id="@+id/txt_customer_orderdetails_customerName" android:layout_gravity="center" android:gravity="left|center"
-                    android:layout_width="match_parent" android:layout_weight="0.1" android:textStyle="bold"
+                    android:layout_width="match_parent" android:layout_weight="0.1" android:textStyle="bold" android:textColor="@color/blacklabels"
                     android:layout_height="match_parent" android:text="Name : "></TextView>
             </LinearLayout>
             <LinearLayout android:layout_weight="0.55"
@@ -29,7 +29,7 @@
                     android:layout_width="match_parent" android:layout_weight="0.2"
                     android:layout_height="match_parent" android:text="Mobile : "></TextView>
                 <TextView android:id="@+id/txt_customer_orderdetails_customerMobile" android:layout_gravity="center" android:gravity="left|center"
-                    android:layout_width="match_parent" android:layout_weight="0.1" android:textStyle="bold"
+                    android:layout_width="match_parent" android:layout_weight="0.1" android:textStyle="bold"  android:textColor="@color/blacklabels"
                     android:layout_height="match_parent" android:text="Mobile : "></TextView>
             </LinearLayout>
         </LinearLayout>
@@ -44,7 +44,7 @@
                     android:paddingStart="5dp"
                     android:layout_height="match_parent" android:text="Order ID : "></TextView>
                 <TextView android:id="@+id/txt_customer_orderdetails_orderID" android:layout_gravity="center" android:gravity="left|center"
-                    android:layout_width="match_parent" android:layout_weight="0.12" android:textStyle="bold"
+                    android:layout_width="match_parent" android:layout_weight="0.12" android:textStyle="bold"  android:textColor="@color/blacklabels"
                     android:layout_height="match_parent" android:text="12333 "></TextView>
             </LinearLayout>
 
@@ -55,7 +55,7 @@
                     android:layout_width="match_parent" android:layout_weight="0.2"
                     android:layout_height="match_parent" android:text="Date : "></TextView>
                 <TextView android:id="@+id/txt_customer_orderdetails_orderDate" android:layout_gravity="center" android:gravity="left|center"
-                    android:layout_width="match_parent" android:layout_weight="0.1" android:textStyle="bold"
+                    android:layout_width="match_parent" android:layout_weight="0.1" android:textStyle="bold"  android:textColor="@color/blacklabels"
                     android:layout_height="match_parent" android:text="12333 "></TextView>
             </LinearLayout>
 

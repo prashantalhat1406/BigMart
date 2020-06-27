@@ -98,8 +98,8 @@ public class home extends AppCompatActivity {
         //supportInvalidateOptionsMenu();
         invalidateOptionsMenu();
 
-        EditText search = findViewById(R.id.edt_home_search);
-        search.setText("");
+        //EditText search = findViewById(R.id.edt_home_search);
+        //search.setText("");
         //this.onCreateOptionsMenu(homeMenu);
         super.onResume();
     }
@@ -134,7 +134,7 @@ public class home extends AppCompatActivity {
 
         }
 
-        search = findViewById(R.id.edt_home_search);
+        /*search = findViewById(R.id.edt_home_search);
         search.clearFocus();
         search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -145,7 +145,7 @@ public class home extends AppCompatActivity {
                 }
                 return false;
             }
-        });
+        });*/
 
 
         ImageButton searchBut = findViewById(R.id.but_home_search);

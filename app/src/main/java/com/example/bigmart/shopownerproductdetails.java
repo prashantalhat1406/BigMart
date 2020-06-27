@@ -163,7 +163,7 @@ public class shopownerproductdetails extends AppCompatActivity {
         spnsubcategory = findViewById(R.id.spn_product_subcategory);
         spnsubcategory.setEnabled(false);
         butsave = findViewById(R.id.but_productdetails_save);
-        butdelete = findViewById(R.id.but_productdetails_delete);
+        //butdelete = findViewById(R.id.but_productdetails_delete);
 
         edtDiscount = findViewById(R.id.edt_productdetails_Discount);
         edtDisplayname = findViewById(R.id.edt_productdetails_DisplayName);
