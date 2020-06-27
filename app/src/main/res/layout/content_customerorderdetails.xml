@@ -11,18 +11,18 @@
         <LinearLayout android:orientation="horizontal" android:layout_weight="0.5"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <LinearLayout android:layout_weight="0.45"
+            <LinearLayout android:layout_weight="0.43"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <TextView android:layout_gravity="center" android:gravity="left|center"
-                    android:layout_width="match_parent" android:layout_weight="0.2"
+                    android:layout_width="match_parent" android:layout_weight="0.18"
                     android:paddingLeft="5dp"
                     android:layout_height="match_parent" android:text="Name : "></TextView>
                 <TextView android:id="@+id/txt_customer_orderdetails_customerName" android:layout_gravity="center" android:gravity="left|center"
-                    android:layout_width="match_parent" android:layout_weight="0.1" android:textStyle="bold" android:textColor="@color/blacklabels"
+                    android:layout_width="match_parent" android:layout_weight="0.12" android:textStyle="bold" android:textColor="@color/blacklabels"
                     android:layout_height="match_parent" android:text="Name : "></TextView>
             </LinearLayout>
-            <LinearLayout android:layout_weight="0.55"
+            <LinearLayout android:layout_weight="0.52"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <TextView android:layout_gravity="center" android:gravity="left|center"
@@ -36,7 +36,7 @@
         <LinearLayout android:orientation="horizontal" android:layout_weight="0.5"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <LinearLayout android:layout_weight="0.45"
+            <LinearLayout android:layout_weight="0.43"
                 android:layout_width="match_parent" android:orientation="horizontal"
                 android:layout_height="match_parent">
                 <TextView android:layout_gravity="center" android:gravity="left|center"
@@ -44,11 +44,12 @@
                     android:paddingStart="5dp"
                     android:layout_height="match_parent" android:text="Order ID : "></TextView>
                 <TextView android:id="@+id/txt_customer_orderdetails_orderID" android:layout_gravity="center" android:gravity="left|center"
-                    android:layout_width="match_parent" android:layout_weight="0.12" android:textStyle="bold"  android:textColor="@color/blacklabels"
+                    android:layout_width="match_parent" android:layout_weight="0.12" android:textStyle="bold"
+                    android:textColor="@color/blacklabels" android:textSize="@dimen/cartItems"
                     android:layout_height="match_parent" android:text="12333 "></TextView>
             </LinearLayout>
 
-            <LinearLayout android:layout_weight="0.55"
+            <LinearLayout android:layout_weight="0.52"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
                 <TextView android:layout_gravity="center" android:gravity="left|center"

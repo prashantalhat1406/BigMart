@@ -97,15 +97,45 @@ public class shopownerorderdetails extends AppCompatActivity {
         butComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseReference orderReference = database.getReference("Orders/").child(""+orderID);
-                Map<String, Object> statusUpdate = new HashMap<>();
-                statusUpdate.put("status", "Complete");
-                orderReference.updateChildren(statusUpdate);
-                Intent intent=new Intent();
-                intent.putExtra("position",position);
-                intent.putExtra("searchItem",searchItem);
-                setResult(Activity.RESULT_OK, intent);
-                finish();
+
+                AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerorderdetails.this);
+                logoutAlertBuilder.setMessage("Do you want to Complete Order ?");
+                logoutAlertBuilder.setCancelable(false);
+                logoutAlertBuilder.setPositiveButton(
+                        "YES", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                DatabaseReference orderReference = database.getReference("Orders/").child(""+orderID);
+                                Map<String, Object> statusUpdate = new HashMap<>();
+                                statusUpdate.put("status", "Complete");
+                                orderReference.updateChildren(statusUpdate);
+                                Intent intent=new Intent();
+                                intent.putExtra("position",position);
+                                intent.putExtra("searchItem",searchItem);
+                                setResult(Activity.RESULT_OK, intent);
+                                finish();
+                            }
+                        });
+                logoutAlertBuilder.setNegativeButton(
+                        "NO", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                final AlertDialog alertLogout = logoutAlertBuilder.create();
+
+                alertLogout.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialog) {
+                        alertLogout.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
+                        alertLogout.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
+                    }
+                });
+
+                alertLogout.show();
+
+
             }
         });
 
@@ -113,15 +143,43 @@ public class shopownerorderdetails extends AppCompatActivity {
         butConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseReference orderReference = database.getReference("Orders/").child(""+orderID);
-                Map<String, Object> statusUpdate = new HashMap<>();
-                statusUpdate.put("status", "InProgress");
-                orderReference.updateChildren(statusUpdate);
-                butComplete.setVisibility(View.VISIBLE);
-                butPrint.setVisibility(View.VISIBLE);
-                butConfirm.setVisibility(View.GONE);
-                butCancel.setVisibility(View.GONE);
-                updateStoreQuantity(products);
+
+                AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerorderdetails.this);
+                logoutAlertBuilder.setMessage("Do you want to Confirm Order ?");
+                logoutAlertBuilder.setCancelable(false);
+                logoutAlertBuilder.setPositiveButton(
+                        "YES", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                DatabaseReference orderReference = database.getReference("Orders/").child(""+orderID);
+                                Map<String, Object> statusUpdate = new HashMap<>();
+                                statusUpdate.put("status", "InProgress");
+                                orderReference.updateChildren(statusUpdate);
+                                butComplete.setVisibility(View.VISIBLE);
+                                butPrint.setVisibility(View.VISIBLE);
+                                butConfirm.setVisibility(View.GONE);
+                                butCancel.setVisibility(View.GONE);
+                                updateStoreQuantity(products);
+                            }
+                        });
+                logoutAlertBuilder.setNegativeButton(
+                        "NO", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                final AlertDialog alertLogout = logoutAlertBuilder.create();
+
+                alertLogout.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialog) {
+                        alertLogout.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
+                        alertLogout.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
+                    }
+                });
+
+                alertLogout.show();
 
             }
         });

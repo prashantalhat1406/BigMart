@@ -222,7 +222,7 @@ public class home extends AppCompatActivity {
 
                 if(event.getAction() == MotionEvent.ACTION_UP) {
                     if(event.getRawX() >= (txtSearch.getRight() - txtSearch.getCompoundDrawables()[2].getBounds().width())) {
-                        if (txtSearch.getText().toString().length() == 0){
+                        if (txtSearch.getText().toString().trim().length() == 0){
                             /*Toast error = Toast.makeText(home.this, "Error : Please enter text to search",Toast.LENGTH_SHORT);
                             error.setGravity(Gravity.TOP, 0, 0);
                             error.show();*/
@@ -240,7 +240,7 @@ public class home extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    if (txtSearch.getText().toString().length() == 0)
+                    if (txtSearch.getText().toString().trim().length() == 0)
                         txtSearch.setError("Enter Product Name");
                     else
                     {
