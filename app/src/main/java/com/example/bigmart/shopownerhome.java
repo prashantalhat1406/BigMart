@@ -12,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -60,6 +61,9 @@ public class shopownerhome extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
+
         Button order = findViewById(R.id.but_shop_order);
         order.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,4 +90,12 @@ public class shopownerhome extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

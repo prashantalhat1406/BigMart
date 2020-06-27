@@ -113,6 +113,9 @@ public class home extends AppCompatActivity {
         toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
         toolbar.setOverflowIcon(getDrawable(R.drawable.ic_menuicon));
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
+
         Bundle b = getIntent().getExtras();
         userID = b.getLong("userID");
         productCount = b.getInt("productCount",0);
@@ -378,6 +381,11 @@ public class home extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
+
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.menu_viewcart) {

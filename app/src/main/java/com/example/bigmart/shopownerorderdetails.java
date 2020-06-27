@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -74,6 +75,9 @@ public class shopownerorderdetails extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
 
         database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
 
@@ -255,7 +259,7 @@ public class shopownerorderdetails extends AppCompatActivity {
                                         products.remove(position);
 
                                         if (products.size() > 0) {
-                                            adapterShopownerOrderDetails productAdaper = new adapterShopownerOrderDetails(shopownerorderdetails.this, R.layout.itemorderdetails, products, databaseProducts);
+                                            adapterShopownerOrderDetails productAdaper = new adapterShopownerOrderDetails(shopownerorderdetails.this, R.layout.itemorderdetails, products, databaseProducts, orderDetail.status);
                                             productList.setAdapter(productAdaper);
                                         } else {
                                             orderReference.removeValue();
@@ -286,49 +290,6 @@ public class shopownerorderdetails extends AppCompatActivity {
                 return false;
             }
         });
-
-
-
-
-        Query databasequery = database.getReference("Products/");
-        databasequery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    Product product = postSnapshot.getValue(Product.class);
-                    product.setID(postSnapshot.getKey());
-                    databaseProducts.add(product);
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {            }
-        });
-
-        Query query = database.getReference("Orders/"+orderID+"/Products/");
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                products.clear();
-
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    Product product = postSnapshot.getValue(Product.class);
-                    //product.setID(product);
-                    products.add(product);
-                }
-                adapterShopownerOrderDetails productAdaper = new adapterShopownerOrderDetails(shopownerorderdetails.this, R.layout.itemorderdetails, products,databaseProducts);
-                productList.setAdapter(productAdaper);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
-
-
-        TextView txtorderID = findViewById(R.id.txt_orderdetails_orderID);
-        //txtorderID.setText(""+orderID.substring(orderID.length() - 5).toUpperCase());
-        txtorderID.setText(""+orderID);
-
-
 
         Query queryOrder = database.getReference("/Orders/"+orderID);
         queryOrder.addValueEventListener(new ValueEventListener() {
@@ -383,6 +344,50 @@ public class shopownerorderdetails extends AppCompatActivity {
             }
         });
 
+
+
+        Query databasequery = database.getReference("Products/");
+        databasequery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Product product = postSnapshot.getValue(Product.class);
+                    product.setID(postSnapshot.getKey());
+                    databaseProducts.add(product);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {            }
+        });
+
+        Query query = database.getReference("Orders/"+orderID+"/Products/");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                products.clear();
+
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Product product = postSnapshot.getValue(Product.class);
+                    //product.setID(product);
+                    products.add(product);
+                }
+                adapterShopownerOrderDetails productAdaper = new adapterShopownerOrderDetails(shopownerorderdetails.this, R.layout.itemorderdetails, products,databaseProducts, orderDetail.status);
+                productList.setAdapter(productAdaper);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+
+
+        TextView txtorderID = findViewById(R.id.txt_orderdetails_orderID);
+        //txtorderID.setText(""+orderID.substring(orderID.length() - 5).toUpperCase());
+        txtorderID.setText(""+orderID);
+
+
+
+
+
         final TextView name = findViewById(R.id.txt_orderdetails_customerName);
         final TextView mobile = findViewById(R.id.txt_orderdetails_customerMobile);
         final TextView address = findViewById(R.id.txt_orderdetails_customeraddress);
@@ -419,4 +424,14 @@ public class shopownerorderdetails extends AppCompatActivity {
         finish();
         super.onBackPressed();
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

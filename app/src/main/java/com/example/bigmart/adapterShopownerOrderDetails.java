@@ -20,14 +20,16 @@ public class adapterShopownerOrderDetails extends ArrayAdapter<Product> {
     List<Product> databaseProducts;
     Context context;
     Product product;
+    String orderStatus="";
 
 
-    public adapterShopownerOrderDetails(@NonNull Context context, int resource, @NonNull List<Product> objects, @NonNull List<Product> databaseobjects) {
+    public adapterShopownerOrderDetails(@NonNull Context context, int resource, @NonNull List<Product> objects, @NonNull List<Product> databaseobjects, String status) {
 
         super(context, resource, objects);
         products = objects;
         databaseProducts = databaseobjects;
         this.context = context;
+        orderStatus = status;
 
     }
 
@@ -57,21 +59,21 @@ public class adapterShopownerOrderDetails extends ArrayAdapter<Product> {
         productNo.setText(""+(position+1));
         productName.setText(""+ product.Name);
 
-        productQty.setTextColor(getContext().getColor(R.color.colorWhite));
+        //productQty.setTextColor(getContext().getColor(R.color.colorWhite));
 
+       if (orderStatus.equals("Created"))
         for (Product databaseProduct : databaseProducts) {
             if (databaseProduct.ID.equals(product.ID))
             {
-                if (databaseProduct.Qty < product.QtyNos)
+                //if (databaseProduct.Qty < product.QtyNos)
+                if (databaseProduct.Qty < databaseProduct.MinStock)
                 {
                     productQty.setBackgroundColor(getContext().getColor(R.color.redColorButton));
                 }
-
                 else
                 {
                     productQty.setBackgroundColor(getContext().getColor(R.color.greenColorButton));
                 }
-
                 break;
             }
         }

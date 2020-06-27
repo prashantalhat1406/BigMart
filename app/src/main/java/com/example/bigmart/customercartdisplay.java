@@ -94,8 +94,6 @@ public class customercartdisplay extends AppCompatActivity {
         }
     };
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,6 +102,9 @@ public class customercartdisplay extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
         toolbar.setOverflowIcon(getDrawable(R.drawable.ic_menuicon));
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
 
 
 
@@ -253,8 +254,6 @@ public class customercartdisplay extends AppCompatActivity {
 
 
     }
-
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable final Intent data) {
@@ -424,6 +423,10 @@ public class customercartdisplay extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.menu_viewcart) {

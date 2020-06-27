@@ -19,6 +19,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -126,6 +127,10 @@ public class customerprofile extends AppCompatActivity {
         toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
         toolbar.setOverflowIcon(getDrawable(R.drawable.ic_menuicon));
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
+
+
         Bundle b = getIntent().getExtras();
         userID = b.getLong("userID");
         user = new User();
@@ -197,4 +202,13 @@ public class customerprofile extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

@@ -59,6 +59,9 @@ public class shopownerproductdisplay extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
+
         toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
 
         database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
@@ -193,6 +196,11 @@ public class shopownerproductdisplay extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
+
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.menu_addProduct) {
