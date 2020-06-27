@@ -148,7 +148,7 @@ public class home extends AppCompatActivity {
         });*/
 
 
-        ImageButton searchBut = findViewById(R.id.but_home_search);
+        /*ImageButton searchBut = findViewById(R.id.but_home_search);
         searchBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,7 +160,7 @@ public class home extends AppCompatActivity {
                     gotoProductDisplay();
                 }
             }
-        });
+        });*/
 
         //FirebaseDatabase database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
         database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
@@ -206,9 +206,10 @@ public class home extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object t = parent.getItemAtPosition(position);
                 if (t.toString().length() == 0){
-                    Toast error = Toast.makeText(home.this, "Error : Please enter text to search",Toast.LENGTH_SHORT);
+                    /*Toast error = Toast.makeText(home.this, "Error : Please enter text to search",Toast.LENGTH_SHORT);
                     error.setGravity(Gravity.TOP, 0, 0);
-                    error.show();
+                    error.show();*/
+                    txtSearch.setError("Enter Product Name");
                 }else {
                     gotoProductDisplay(t.toString());
                 }
@@ -222,9 +223,10 @@ public class home extends AppCompatActivity {
                 if(event.getAction() == MotionEvent.ACTION_UP) {
                     if(event.getRawX() >= (txtSearch.getRight() - txtSearch.getCompoundDrawables()[2].getBounds().width())) {
                         if (txtSearch.getText().toString().length() == 0){
-                            Toast error = Toast.makeText(home.this, "Error : Please enter text to search",Toast.LENGTH_SHORT);
+                            /*Toast error = Toast.makeText(home.this, "Error : Please enter text to search",Toast.LENGTH_SHORT);
                             error.setGravity(Gravity.TOP, 0, 0);
-                            error.show();
+                            error.show();*/
+                            txtSearch.setError("Enter Product Name");
                         }else {
                             gotoProductDisplay(txtSearch.getText().toString());
                         }
@@ -238,8 +240,13 @@ public class home extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    gotoProductDisplay(txtSearch.getText().toString());
-                    return true;
+                    if (txtSearch.getText().toString().length() == 0)
+                        txtSearch.setError("Enter Product Name");
+                    else
+                    {
+                        gotoProductDisplay(txtSearch.getText().toString());
+                        return true;
+                    }
                 }
                 return false;
             }

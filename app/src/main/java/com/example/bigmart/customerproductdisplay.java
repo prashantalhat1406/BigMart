@@ -125,6 +125,7 @@ public class customerproductdisplay extends AppCompatActivity {
             case "pickles": setTitle("Pickles"); break;
             case "dals": setTitle("Dals"); break;
             case "pulses": setTitle("Pulses"); break;
+            default : setTitle("Products");
         }
 
         products = new ArrayList<Product>();

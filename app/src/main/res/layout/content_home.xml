@@ -19,9 +19,9 @@
             android:hint="Enter Product Name"
             android:layout_height="match_parent"></AutoCompleteTextView>
 
-        <ImageButton android:id="@+id/but_home_search" android:src="@drawable/ic_search" android:background="@drawable/searchbutton"
+        <!--<ImageButton android:id="@+id/but_home_search" android:src="@drawable/ic_search" android:background="@drawable/searchbutton"
             android:layout_width="match_parent" android:scaleType="center" android:visibility="gone"
-            android:layout_height="match_parent" android:layout_weight="0.9"></ImageButton>
+            android:layout_height="match_parent" android:layout_weight="0.9"></ImageButton>-->
 
     </LinearLayout>
 
