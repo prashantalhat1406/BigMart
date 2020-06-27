@@ -30,7 +30,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -157,6 +159,15 @@ public class customerorderdetails extends AppCompatActivity {
                 orderDetail = dataSnapshot.getValue(Orders.class);
                 TextView orderDate = findViewById(R.id.txt_customer_orderdetails_orderDate);
                 orderDate.setText(""+orderDetail.date);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+                try {
+                    Date date = sdf.parse(orderDetail.date);
+                    SimpleDateFormat sdfN=new SimpleDateFormat("dd/MM/yy");
+                    orderDate.setText("" +sdfN.format(date.getTime()));
+                }catch (Exception e){
+
+                }
 
                 TextView totalAmount = findViewById(R.id.txt_customer_orderdetails_totoalAmount);
 
