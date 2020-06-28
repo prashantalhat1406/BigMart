@@ -25,7 +25,10 @@ import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class reportorderstatus extends AppCompatActivity {
@@ -36,12 +39,29 @@ public class reportorderstatus extends AppCompatActivity {
     private List<String> orderIDs;
     ListView ordersList;
     private long userID;
-    private int count = 0;
-    private String orderID = "test";
+    private int period = 0;
+    private String baseDate = "test";
     private Boolean flag = false;
     private FirebaseDatabase database;
     AutoCompleteTextView autoCompleteTextView;
     String orderStatus = "";
+
+
+    public boolean isDateInCurrentWeek(Date date,String baseDate) {
+
+        Calendar currentCalendar = Calendar.getInstance();
+
+        try {
+            currentCalendar.setTime(new SimpleDateFormat("dd-MMM-yyyy").parse(baseDate));
+        }catch (Exception e){}
+
+        Date min, max;
+        min = currentCalendar.getTime();
+        currentCalendar.add(Calendar.DAY_OF_MONTH, 7);
+        max = currentCalendar.getTime();
+        return date.compareTo(min) >= 0 && date.compareTo(max) <= 0;
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +77,8 @@ public class reportorderstatus extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         orderStatus = b.getString("orderStatus","12");
+        baseDate = b.getString("baseDate","");
+        period = b.getInt("period",-1);
 
         setTitle(getTitle() + " : " + orderStatus.toUpperCase());
 
@@ -89,7 +111,33 @@ public class reportorderstatus extends AppCompatActivity {
 
                 }
 
-                adapterReportOrderHistory orderAdapter = new adapterReportOrderHistory(reportorderstatus.this,R.layout.itemordershopowner,orders);
+                List<Orders> tempOrders = new ArrayList<>();
+
+                switch (period){
+                    case 0:
+                        for (Orders order : orders) {
+                            if (order.date.equals(baseDate))
+                                tempOrders.add(order);
+                        }
+                        break;
+                    case 1:
+                        for (Orders order : orders) {
+                            try{
+                                if (isDateInCurrentWeek(new SimpleDateFormat("dd-MMM-yyyy").parse(order.date),baseDate)) {
+                                    tempOrders.add(order);
+                                }
+                            }catch (Exception e){}
+                        }
+                        break;
+                    case 2:
+                        for (Orders order : orders) {
+                            if (order.date.split("-")[1].equals(baseDate.split("-")[1]))
+                                tempOrders.add(order);
+                        }
+                        break;
+                }
+
+                adapterReportOrderHistory orderAdapter = new adapterReportOrderHistory(reportorderstatus.this,R.layout.itemordershopowner,tempOrders);
                 ordersList.setAdapter(orderAdapter);
 
             }

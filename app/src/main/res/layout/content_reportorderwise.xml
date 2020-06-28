@@ -50,7 +50,8 @@
     <LinearLayout android:layout_weight="0.85"
         android:layout_width="match_parent" android:orientation="horizontal"
         android:layout_height="match_parent">
-        <Button android:layout_weight="0.6"
+        <Button android:id="@+id/but_reportorderwise_back"
+            android:layout_weight="0.6"
             android:layout_width="match_parent"
             android:layout_height="match_parent" android:text="Back">
 
@@ -62,7 +63,8 @@
             android:layout_height="match_parent" android:text="22-27 June">
 
         </TextView>
-        <Button android:layout_weight="0.6"
+        <Button android:id="@+id/but_reportorderwise_next"
+            android:layout_weight="0.6"
             android:layout_width="match_parent"
             android:layout_height="match_parent" android:text="Next">
 

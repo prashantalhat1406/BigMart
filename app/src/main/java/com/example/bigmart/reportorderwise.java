@@ -18,6 +18,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -35,9 +36,34 @@ public class reportorderwise extends AppCompatActivity {
     Integer count_created=0,count_cancelled=0,count_inprogress=0,count_completed=0;
     TextView txtCreated, txtCancelled, txtCompleted,txtInProgress, txtTotal, txtCurrentSelection;
     boolean dailyFlag = false, weeklyFlag = false, monthlyFlag = false;
+    Button back, next;
+    String baseDate="";
 
-    public static boolean isDateInCurrentWeek(Date date) {
+    public void showReportOrderList(String status){
+        Intent orderstatusIntent = new Intent(reportorderwise.this, reportorderstatus.class);
+        Bundle extras = new Bundle();
+        extras.putString("orderStatus", status);
+        extras.putString("baseDate", baseDate);
+
+        if (dailyFlag)
+            extras.putInt("period", 0);
+
+        if (weeklyFlag)
+            extras.putInt("period", 1);
+
+        if (monthlyFlag)
+            extras.putInt("period", 2);
+
+        orderstatusIntent.putExtras(extras);
+        startActivity(orderstatusIntent);
+    }
+
+    public static boolean isDateInCurrentWeek(Date date,String baseDate) {
         Calendar currentCalendar = Calendar.getInstance();
+        try {
+            currentCalendar.setTime(new SimpleDateFormat("dd-MMM-yyyy").parse(baseDate));
+        }catch (Exception e){}
+
         int week = currentCalendar.get(Calendar.WEEK_OF_YEAR);
         int year = currentCalendar.get(Calendar.YEAR);
         Calendar targetCalendar = Calendar.getInstance();
@@ -47,9 +73,30 @@ public class reportorderwise extends AppCompatActivity {
         return week == targetWeek && year == targetYear;
     }
 
-    public String getCurrentWeek(){
+    public boolean isDateInCurrentWeekN(Date date,String baseDate) {
+
+        Calendar currentCalendar = Calendar.getInstance();
+
+        try {
+            currentCalendar.setTime(new SimpleDateFormat("dd-MMM-yyyy").parse(baseDate));
+        }catch (Exception e){}
+
+        Date min, max;
+        min = currentCalendar.getTime();
+        currentCalendar.add(Calendar.DAY_OF_MONTH, 7);
+        max = currentCalendar.getTime();
+        return date.compareTo(min) >= 0 && date.compareTo(max) <= 0;
+
+    }
+
+    public String getCurrentWeek(String baseDate){
         String currWeek = "";
         Calendar currentCalendar = Calendar.getInstance();
+
+        try {
+            currentCalendar.setTime(new SimpleDateFormat("dd-MMM-yyyy").parse(baseDate));
+        }catch (Exception e){}
+
         currWeek = "" + new SimpleDateFormat("dd-MMM").format(currentCalendar.getTime());
         currentCalendar.add(Calendar.DAY_OF_MONTH, 7);
         currWeek = currWeek +" to "+ new SimpleDateFormat("dd-MMM").format(currentCalendar.getTime());
@@ -78,6 +125,14 @@ public class reportorderwise extends AppCompatActivity {
         txtTotal = findViewById(R.id.txt_report_orderwise_total);
         txtCurrentSelection = findViewById(R.id.txt_report_currentselection);
 
+        baseDate = new SimpleDateFormat("dd-MMM-yyyy").format(Calendar.getInstance().getTime());
+        dailyFlag = true;
+        weeklyFlag = false;
+        monthlyFlag = false;
+        txtCurrentSelection.setText(baseDate);
+
+
+        final TextView txtDaily = findViewById(R.id.txt_report_orderwise_daily);
         database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
         DatabaseReference productReference = database.getReference("Orders/");
         Query query = productReference.orderByKey();
@@ -89,7 +144,7 @@ public class reportorderwise extends AppCompatActivity {
                 {
                     Orders order = postSnapshot.getValue(Orders.class);
                     orders.add(order);
-                    switch (order.status){
+                    /*switch (order.status){
                         case "Complete": count_completed = count_completed + 1;
                             break;
                         case "Created": count_created = count_created + 1;
@@ -98,13 +153,14 @@ public class reportorderwise extends AppCompatActivity {
                             break;
                         case "Cancelled": count_cancelled = count_cancelled + 1;
                             break;
-                    }
+                    }*/
                 }
-                txtCancelled.setText("" + count_cancelled);
+                txtDaily.callOnClick();
+                /*txtCancelled.setText("" + count_cancelled);
                 txtCompleted.setText("" + count_completed);
                 txtCreated.setText("" + count_created);
                 txtInProgress.setText("" + count_inprogress);
-                txtTotal.setText("" + (count_completed+count_created+count_inprogress+count_cancelled));
+                txtTotal.setText("" + (count_completed+count_created+count_inprogress+count_cancelled));*/
 
             }
             @Override
@@ -113,14 +169,16 @@ public class reportorderwise extends AppCompatActivity {
             }
         });
 
-        TextView txtMonthly = findViewById(R.id.txt_report_orderwise_monthly);
+
+
+        final TextView txtMonthly = findViewById(R.id.txt_report_orderwise_monthly);
         txtMonthly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dailyFlag = false;
                 weeklyFlag = false;
                 monthlyFlag = true;
-                String currentMonth = new SimpleDateFormat("MMM").format(Calendar.getInstance().getTime());
+                String currentMonth = baseDate.split("-")[1];
                 count_cancelled=0;
                 count_completed =0;
                 count_created =0 ;
@@ -157,7 +215,7 @@ public class reportorderwise extends AppCompatActivity {
             }
         });
 
-        TextView txtWeekly = findViewById(R.id.txt_report_orderwise_weekly);
+        final TextView txtWeekly = findViewById(R.id.txt_report_orderwise_weekly);
         txtWeekly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -171,11 +229,11 @@ public class reportorderwise extends AppCompatActivity {
                 count_inprogress =0;
 
 
-                txtCurrentSelection.setText(getCurrentWeek());
+                txtCurrentSelection.setText(getCurrentWeek(baseDate));
 
                 try{
                 for (Orders order : orders) {
-                        if (isDateInCurrentWeek(new SimpleDateFormat("dd-MMM-yyyy").parse(order.date))) {
+                        if (isDateInCurrentWeekN(new SimpleDateFormat("dd-MMM-yyyy").parse(order.date),baseDate)) {
                             switch (order.status) {
                                 case "Complete":
                                     count_completed = count_completed + 1;
@@ -202,7 +260,7 @@ public class reportorderwise extends AppCompatActivity {
             }
         });
 
-        TextView txtDaily = findViewById(R.id.txt_report_orderwise_daily);
+
         txtDaily.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -210,16 +268,17 @@ public class reportorderwise extends AppCompatActivity {
                 dailyFlag = true;
                 weeklyFlag = false;
                 monthlyFlag = false;
-                String currentDate = new SimpleDateFormat("dd-MMM-yyyy").format(Calendar.getInstance().getTime());
+                //String currentDate = new SimpleDateFormat("dd-MMM-yyyy").format(Calendar.getInstance().getTime());
                 count_cancelled=0;
                 count_completed =0;
                 count_created =0 ;
                 count_inprogress =0;
 
-                txtCurrentSelection.setText("" + currentDate);
+                txtCurrentSelection.setText("" + baseDate);
+                ///baseDate = currentDate;
 
                 for (Orders order : orders) {
-                    if (order.date.equals(currentDate)){
+                    if (order.date.equals(baseDate)){
                         switch (order.status){
                             case "Complete": count_completed = count_completed + 1;
                                 break;
@@ -242,15 +301,75 @@ public class reportorderwise extends AppCompatActivity {
             }
         });
 
+        back = findViewById(R.id.but_reportorderwise_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar currentCalendar = Calendar.getInstance();
+
+                try {
+                    currentCalendar.setTime(new SimpleDateFormat("dd-MMM-yyyy").parse(baseDate));
+                }catch (Exception e){}
+
+                if (dailyFlag)
+                {
+                    currentCalendar.add(Calendar.DAY_OF_MONTH,-1);
+                    baseDate = new SimpleDateFormat("dd-MMM-yyyy").format(currentCalendar.getTime());
+                    txtDaily.callOnClick();
+
+                }
+                if (weeklyFlag)
+                {
+                    currentCalendar.add(Calendar.DAY_OF_MONTH,-7);
+                    baseDate = new SimpleDateFormat("dd-MMM-yyyy").format(currentCalendar.getTime());
+                    txtWeekly.callOnClick();
+                }
+                if (monthlyFlag)
+                {
+                    currentCalendar.add(Calendar.MONTH,-1);
+                    baseDate = new SimpleDateFormat("dd-MMM-yyyy").format(currentCalendar.getTime());
+                    txtMonthly.callOnClick();
+                }
+            }
+        });
+
+        next = findViewById(R.id.but_reportorderwise_next);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar currentCalendar = Calendar.getInstance();
+
+                try {
+                    currentCalendar.setTime(new SimpleDateFormat("dd-MMM-yyyy").parse(baseDate));
+                }catch (Exception e){}
+
+                if (dailyFlag)
+                {
+                    currentCalendar.add(Calendar.DAY_OF_MONTH,1);
+                    baseDate = new SimpleDateFormat("dd-MMM-yyyy").format(currentCalendar.getTime());
+                    txtDaily.callOnClick();
+
+                }
+                if (weeklyFlag)
+                {
+                    currentCalendar.add(Calendar.DAY_OF_MONTH,7);
+                    baseDate = new SimpleDateFormat("dd-MMM-yyyy").format(currentCalendar.getTime());
+                    txtWeekly.callOnClick();
+                }
+                if (monthlyFlag)
+                {
+                    currentCalendar.add(Calendar.MONTH,1);
+                    baseDate = new SimpleDateFormat("dd-MMM-yyyy").format(currentCalendar.getTime());
+                    txtMonthly.callOnClick();
+                }
+            }
+        });
+
         LinearLayout llcreated = findViewById(R.id.layout_report_created);
         llcreated.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent orderstatusIntent = new Intent(reportorderwise.this, reportorderstatus.class);
-                Bundle extras = new Bundle();
-                extras.putString("orderStatus", "Created");
-                orderstatusIntent.putExtras(extras);
-                startActivity(orderstatusIntent);
+                showReportOrderList("Created");
             }
         });
 
@@ -258,11 +377,7 @@ public class reportorderwise extends AppCompatActivity {
         llcompleted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent orderstatusIntent = new Intent(reportorderwise.this, reportorderstatus.class);
-                Bundle extras = new Bundle();
-                extras.putString("orderStatus", "Complete");
-                orderstatusIntent.putExtras(extras);
-                startActivity(orderstatusIntent);
+                showReportOrderList("Complete");
             }
         });
 
@@ -270,11 +385,7 @@ public class reportorderwise extends AppCompatActivity {
         llcancelled.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent orderstatusIntent = new Intent(reportorderwise.this, reportorderstatus.class);
-                Bundle extras = new Bundle();
-                extras.putString("orderStatus", "Cancelled");
-                orderstatusIntent.putExtras(extras);
-                startActivity(orderstatusIntent);
+                showReportOrderList("Cancelled");
             }
         });
 
@@ -282,11 +393,7 @@ public class reportorderwise extends AppCompatActivity {
         llinprogress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent orderstatusIntent = new Intent(reportorderwise.this, reportorderstatus.class);
-                Bundle extras = new Bundle();
-                extras.putString("orderStatus", "InProgress");
-                orderstatusIntent.putExtras(extras);
-                startActivity(orderstatusIntent);
+                showReportOrderList("InProgress");
             }
         });
 
@@ -294,11 +401,7 @@ public class reportorderwise extends AppCompatActivity {
         lltotal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent orderstatusIntent = new Intent(reportorderwise.this, reportorderstatus.class);
-                Bundle extras = new Bundle();
-                extras.putString("orderStatus", "All");
-                orderstatusIntent.putExtras(extras);
-                startActivity(orderstatusIntent);
+                showReportOrderList("All");
             }
         });
 
