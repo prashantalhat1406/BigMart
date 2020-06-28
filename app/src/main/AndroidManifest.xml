@@ -12,28 +12,34 @@
         <activity
             android:name=".forgotpassword"
             android:label="@string/title_activity_forgotpassword"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".customerdeliverypayment"
             android:label="@string/title_activity_customerdeliverypayment"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".shopownerproductdetails"
             android:label="@string/title_activity_shopownerproductddetails"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".shopownerproductdisplay"
             android:label="@string/title_activity_shopownerproductdisplay"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".customerprofile"
             android:label="@string/title_activity_customerprofile"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".customerorderdetails"
             android:label="@string/title_activity_customerorderdetails"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <!--
 <activity
@@ -43,45 +49,55 @@
         <activity
             android:name=".shopownerorderdetails"
             android:label="@string/title_activity_orderdetaildisplay"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".shopownerordershistory"
             android:label="@string/title_activity_shopownerordershistory"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".shopownerhome"
             android:label="@string/title_activity_home"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".customerorderhistory"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_orderdisplay"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".customercartdisplay"
             android:label="@string/title_activity_cartdisplay"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".customerproductdisplay"
             android:label="@string/title_activity_productdisplay"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".subcategorydisplay"
             android:label="@string/title_activity_home"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".home"
             android:label="@string/title_activity_home"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".registration"
             android:label="@string/title_activity_login_register"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".login"
             android:label="@string/title_activity_home"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

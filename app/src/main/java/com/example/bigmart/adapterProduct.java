@@ -19,8 +19,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -31,6 +35,8 @@ public class adapterProduct extends ArrayAdapter<Product> {
     Long userID;
     Product product;
     Integer type;
+    FirebaseDatabase database;
+    Integer productCount =0;
 
     public adapterProduct(@NonNull Context context, int resource, @NonNull List<Product> objects, Long userID, Integer type) {
         super(context, resource, objects);
@@ -39,6 +45,27 @@ public class adapterProduct extends ArrayAdapter<Product> {
         this.userID = userID;
         this.type = type;
     }
+
+    /*public Integer getTempOrderProductCount(){
+        productCount =0;
+
+        Query query = database.getReference("Users/"+userID+"/TempOrder");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Integer cnt =0;
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Product product = postSnapshot.getValue(Product.class);
+                    cnt = cnt + product.QtyNos;
+                }
+                productCount = cnt;
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {            }
+        });
+
+        return productCount;
+    }*/
 
     @NonNull
     @Override
@@ -59,6 +86,8 @@ public class adapterProduct extends ArrayAdapter<Product> {
 
         final LinearLayout incrementor = (LinearLayout) convertView.findViewById(R.id.layout_product_incrementor);
         incrementor.setVisibility(View.GONE);
+
+        database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
 
 
         product = products.get(position);
@@ -113,44 +142,47 @@ public class adapterProduct extends ArrayAdapter<Product> {
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent bintIntent = new Intent("message_subject_intent");
-                bintIntent.putExtra("position", position);
-                LocalBroadcastManager.getInstance(context).sendBroadcast(bintIntent);
+                /*int t = getTempOrderProductCount();
+                if (getTempOrderProductCount() < 90){*/
+                    Intent bintIntent = new Intent("message_subject_intent");
+                    bintIntent.putExtra("position", position);
+                    LocalBroadcastManager.getInstance(context).sendBroadcast(bintIntent);
 
 
-                final FirebaseDatabase database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
-                product = products.get((Integer) v.getTag());
-                if(product.QtyNos < 5) {
-                    product.setQtyNos(product.getQtyNos() + 1);
-                    DatabaseReference databaseReference = database.getReference("Users/" + userID + "/TempOrder");
-                    databaseReference.child("" + product.ID).setValue(product);
-                    itemNos.setText("" + product.QtyNos);
-                    incrementor.setVisibility(View.VISIBLE);
-                    savedamount.setText(context.getResources().getString(R.string.Rupee) + " " + formater.format((product.Discount * product.QtyNos)));
-                    bmaamount.setText(context.getResources().getString(R.string.Rupee) + " " + formater.format(((product.MRP - product.Discount) * product.QtyNos)));
-                }else{
 
-                    AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
-                    builder1.setMessage("Max Limit Reached");
-                    builder1.setCancelable(false);
-                    builder1.setPositiveButton(
-                            "Ok", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
-                                }
-                            });
-                    final AlertDialog alert11 = builder1.create();
-                    alert11.setOnShowListener(new DialogInterface.OnShowListener() {
-                        @Override
-                        public void onShow(DialogInterface dialog) {
-                            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
-                            //alert11.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(Color.BLACK);
-                        }
-                    });
-                    alert11.show();
+                    product = products.get((Integer) v.getTag());
+                    if(product.QtyNos < 5) {
+                        product.setQtyNos(product.getQtyNos() + 1);
+                        DatabaseReference databaseReference = database.getReference("Users/" + userID + "/TempOrder");
+                        databaseReference.child("" + product.ID).setValue(product);
+                        itemNos.setText("" + product.QtyNos);
+                        incrementor.setVisibility(View.VISIBLE);
+                        savedamount.setText(context.getResources().getString(R.string.Rupee) + " " + formater.format((product.Discount * product.QtyNos)));
+                        bmaamount.setText(context.getResources().getString(R.string.Rupee) + " " + formater.format(((product.MRP - product.Discount) * product.QtyNos)));
+                    }else{
 
-                }
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+                        builder1.setMessage("Max Limit Reached");
+                        builder1.setCancelable(false);
+                        builder1.setPositiveButton(
+                                "Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                });
+                        final AlertDialog alert11 = builder1.create();
+                        alert11.setOnShowListener(new DialogInterface.OnShowListener() {
+                            @Override
+                            public void onShow(DialogInterface dialog) {
+                                alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+                                //alert11.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(Color.BLACK);
+                            }
+                        });
+                        alert11.show();
+
+                    }
+                //}
 
             }
         });
@@ -164,7 +196,7 @@ public class adapterProduct extends ArrayAdapter<Product> {
                 bintIntent.putExtra("position", position);
                 LocalBroadcastManager.getInstance(context).sendBroadcast(bintIntent);
 
-                final FirebaseDatabase database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
+                //final FirebaseDatabase database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
                 product = products.get((Integer) v.getTag());
                 product.setQtyNos(product.getQtyNos() - 1);
                 DatabaseReference databaseReference = database.getReference("Users/"+userID+"/TempOrder");
@@ -203,7 +235,7 @@ public class adapterProduct extends ArrayAdapter<Product> {
         atc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final FirebaseDatabase database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
+                //final FirebaseDatabase database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
                 product = products.get((Integer) v.getTag());
                 product.setQtyNos(1);
                 DatabaseReference databaseReference = database.getReference("Users/"+userID+"/TempOrder");
