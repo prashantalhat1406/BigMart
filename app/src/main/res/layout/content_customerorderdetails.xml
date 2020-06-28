@@ -5,10 +5,10 @@
     android:layout_height="match_parent" android:background="@drawable/button_greyborder"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <LinearLayout android:orientation="vertical" android:layout_weight="0.75"
+    <LinearLayout android:orientation="vertical" android:layout_weight="0.8"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout android:orientation="horizontal" android:layout_weight="0.5"
+        <LinearLayout android:orientation="horizontal" android:layout_weight="0.5" android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <LinearLayout android:layout_weight="0.43"
@@ -71,13 +71,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView android:layout_gravity="center" android:gravity="center" android:textStyle="bold"
-            android:layout_width="match_parent" android:layout_weight="0.28" android:textColor="@color/blacklabels"
+            android:layout_width="match_parent" android:layout_weight="0.27" android:textColor="@color/blacklabels"
             android:layout_height="match_parent" android:text="No"></TextView>
         <TextView android:layout_gravity="center" android:gravity="center" android:textStyle="bold"
             android:layout_width="match_parent" android:layout_weight="0.2" android:textColor="@color/blacklabels"
             android:layout_height="match_parent" android:text="Product Name"></TextView>
         <TextView android:layout_gravity="center" android:gravity="center" android:textStyle="bold"
-            android:layout_width="match_parent" android:layout_weight="0.25" android:textColor="@color/blacklabels"
+            android:layout_width="match_parent" android:layout_weight="0.26" android:textColor="@color/blacklabels"
             android:layout_height="match_parent" android:text="Qty"></TextView>
         <TextView android:layout_gravity="center" android:gravity="center" android:textStyle="bold"
             android:layout_width="match_parent" android:layout_weight="0.25" android:textColor="@color/blacklabels"
@@ -102,7 +102,7 @@
     </LinearLayout>
 
     <LinearLayout android:orientation="vertical" android:layout_weight="0.73"
-        android:layout_width="match_parent" android:background="#ebebff"
+        android:layout_width="match_parent" android:background="@drawable/button_greyborder" android:backgroundTint="#ebebff"
         android:layout_height="match_parent" >
 
         <LinearLayout android:orientation="horizontal"
