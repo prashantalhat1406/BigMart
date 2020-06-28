@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"  android:background="@drawable/button_greyborder"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+
+    <LinearLayout android:layout_weight="0.5"
+    android:layout_width="match_parent" android:orientation="vertical"
+    android:layout_height="match_parent" >
+        <TextView android:layout_weight="0.5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </TextView>
+        <LinearLayout android:layout_weight="0.5" android:paddingStart="5dp" android:paddingEnd="5dp"
+            android:paddingBottom="5dp" android:paddingTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView android:layout_weight="0.5" android:id="@+id/txt_report_orderwise"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/button_redborder" android:textStyle="bold"
+                android:layout_gravity="center" android:gravity="center" android:text="OrderWise Report" android:textSize="@dimen/productName">
+
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout android:layout_weight="0.5" android:paddingBottom="5dp" android:paddingTop="5dp"
+            android:layout_width="match_parent" android:paddingStart="5dp" android:paddingEnd="5dp"
+            android:layout_height="match_parent">
+            <TextView android:layout_weight="0.5" android:paddingBottom="2dp" android:paddingTop="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/button_greenborder" android:textStyle="bold"
+                android:layout_gravity="center" android:gravity="center" android:text="ProductWise Report" android:textSize="@dimen/productName">
+
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout android:layout_weight="0.5" android:paddingBottom="5dp" android:paddingTop="5dp"
+            android:layout_width="match_parent" android:paddingStart="5dp" android:paddingEnd="5dp"
+            android:layout_height="match_parent">
+            <TextView android:layout_weight="0.5" android:paddingBottom="2dp" android:paddingTop="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/button_blueborder" android:textStyle="bold"
+                android:layout_gravity="center" android:gravity="center" android:text="UserWise Report" android:textSize="@dimen/productName">
+
+            </TextView>
+        </LinearLayout>
+
+
+
+        <TextView android:layout_weight="0.5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout android:layout_weight="0.5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+    </LinearLayout>
+
+</LinearLayout>
+

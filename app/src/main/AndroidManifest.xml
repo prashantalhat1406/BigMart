@@ -10,10 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".reportorderstatus"
+            android:label="@string/title_activity_reportorderstatus"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".reportorderwise"
+            android:label="@string/title_activity_reportorderwise"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".shopownerreporthome"
+            android:label="@string/title_activity_reprothome"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".forgotpassword"
             android:label="@string/title_activity_forgotpassword"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".customerdeliverypayment"
             android:label="@string/title_activity_customerdeliverypayment"
@@ -65,8 +77,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".customerorderhistory"
-            android:screenOrientation="portrait"
             android:label="@string/title_activity_orderdisplay"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".customercartdisplay"

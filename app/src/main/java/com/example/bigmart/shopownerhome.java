@@ -82,6 +82,15 @@ public class shopownerhome extends AppCompatActivity {
             }
         });
 
+        Button reports = findViewById(R.id.but_shop_report);
+        reports.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent shopIntent = new Intent(shopownerhome.this, shopownerreporthome.class);
+                startActivity(shopIntent);
+            }
+        });
+
 
     }
     @Override

@@ -90,5 +90,8 @@
         <item>Which Credit Card you have ?</item>
     </string-array>
     <string name="title_activity_forgotpassword">Reset Password</string>
+    <string name="title_activity_reprothome">Reports</string>
+    <string name="title_activity_reportorderwise">OrderWise Report</string>
+    <string name="title_activity_reportorderstatus">Orders By Status</string>
 
 </resources>
