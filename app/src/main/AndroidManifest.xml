@@ -12,10 +12,12 @@
         <activity
             android:name=".reportorderstatus"
             android:label="@string/title_activity_reportorderstatus"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".reportorderwise"
             android:label="@string/title_activity_reportorderwise"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".shopownerreporthome"

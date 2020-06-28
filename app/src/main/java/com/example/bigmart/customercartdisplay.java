@@ -111,7 +111,7 @@ public class customercartdisplay extends AppCompatActivity {
         LocalBroadcastManager.getInstance(this).registerReceiver(positionMes,new IntentFilter("message_subject_intent"));
 
 
-                Bundle b = getIntent().getExtras();
+        Bundle b = getIntent().getExtras();
         userID = b.getLong("userID");
 
         products = new ArrayList<Product>();

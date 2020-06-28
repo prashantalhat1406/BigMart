@@ -57,7 +57,7 @@ public class reportorderstatus extends AppCompatActivity {
 
         Date min, max;
         min = currentCalendar.getTime();
-        currentCalendar.add(Calendar.DAY_OF_MONTH, 7);
+        currentCalendar.add(Calendar.DAY_OF_MONTH, 6);
         max = currentCalendar.getTime();
         return date.compareTo(min) >= 0 && date.compareTo(max) <= 0;
 
@@ -175,6 +175,8 @@ public class reportorderstatus extends AppCompatActivity {
 
             }
         });
+
+        autoCompleteTextView.clearFocus();
 
 
         ordersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -6,7 +6,8 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <LinearLayout android:orientation="vertical" android:layout_weight="0.7"
-        android:layout_width="match_parent"
+        android:paddingStart="2dp" android:paddingEnd="2dp"
+        android:layout_width="match_parent" android:background="@drawable/button_greyborder"
         android:layout_height="match_parent">
         <LinearLayout android:orientation="horizontal" android:layout_weight="0.5"
             android:layout_width="match_parent"
@@ -77,7 +78,8 @@
     <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@android:color/darker_gray"/>
 
     <LinearLayout android:orientation="horizontal" android:layout_weight="0.8"
-        android:layout_width="match_parent"
+        android:layout_width="match_parent" android:background="@drawable/button_greyborder"
+        android:paddingStart="2dp" android:paddingEnd="2dp"
         android:layout_height="match_parent">
         <TextView android:layout_gravity="center" android:gravity="center" android:textStyle="bold"
             android:layout_width="match_parent" android:layout_weight="0.28"
@@ -99,18 +101,17 @@
             android:layout_height="match_parent" android:text="Total"></TextView>
     </LinearLayout>
 
-    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@android:color/darker_gray"/>
 
-    <LinearLayout android:layout_weight="0.3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" android:layout_marginTop="5dp">
+    <LinearLayout android:layout_weight="0.3" android:paddingStart="2dp" android:paddingEnd="2dp"
+        android:layout_width="match_parent" android:background="@drawable/button_greyborder"
+        android:layout_height="match_parent" >
         <ListView
             android:layout_width="match_parent" android:id="@+id/listOrderDetail"
             android:layout_height="match_parent" >
         </ListView>
     </LinearLayout>
 
-    <LinearLayout android:orientation="horizontal"
+    <LinearLayout android:orientation="horizontal" android:background="@drawable/button_greyborder"
         android:layout_width="match_parent"  android:paddingBottom="5dp" android:paddingTop="5dp"
         android:paddingStart="5dp" android:paddingEnd="5dp" android:layout_gravity="center" android:gravity="center"
         android:layout_height="match_parent" android:layout_weight="0.78">
