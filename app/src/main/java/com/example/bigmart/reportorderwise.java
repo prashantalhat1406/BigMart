@@ -16,12 +16,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,6 +40,12 @@ public class reportorderwise extends AppCompatActivity {
     boolean dailyFlag = false, weeklyFlag = false, monthlyFlag = false;
     Button back, next;
     String baseDate="";
+
+    public void showErrorMessage(String message){
+        Toast error = Toast.makeText(reportorderwise.this, message,Toast.LENGTH_SHORT);
+        error.setGravity(Gravity.TOP, 0, 0);
+        error.show();
+    }
 
     public void showReportOrderList(String status){
         Intent orderstatusIntent = new Intent(reportorderwise.this, reportorderstatus.class);
@@ -133,6 +141,9 @@ public class reportorderwise extends AppCompatActivity {
 
 
         final TextView txtDaily = findViewById(R.id.txt_report_orderwise_daily);
+        final TextView txtMonthly = findViewById(R.id.txt_report_orderwise_monthly);
+        final TextView txtWeekly = findViewById(R.id.txt_report_orderwise_weekly);
+
         database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
         DatabaseReference productReference = database.getReference("Orders/");
         Query query = productReference.orderByKey();
@@ -171,10 +182,18 @@ public class reportorderwise extends AppCompatActivity {
 
 
 
-        final TextView txtMonthly = findViewById(R.id.txt_report_orderwise_monthly);
+
         txtMonthly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                txtMonthly.setBackground(getDrawable(R.drawable.button_bluefull));
+                txtMonthly.setTextColor(getColor(R.color.colorWhite));
+                txtWeekly.setBackground(getDrawable(R.drawable.button_blueborder));
+                txtWeekly.setTextColor(getColor(R.color.blacklabels));
+                txtDaily.setBackground(getDrawable(R.drawable.button_blueborder));
+                txtDaily.setTextColor(getColor(R.color.blacklabels));
+
                 dailyFlag = false;
                 weeklyFlag = false;
                 monthlyFlag = true;
@@ -215,10 +234,18 @@ public class reportorderwise extends AppCompatActivity {
             }
         });
 
-        final TextView txtWeekly = findViewById(R.id.txt_report_orderwise_weekly);
+
         txtWeekly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                txtWeekly.setBackground(getDrawable(R.drawable.button_bluefull));
+                txtWeekly.setTextColor(getColor(R.color.colorWhite));
+                txtMonthly.setBackground(getDrawable(R.drawable.button_blueborder));
+                txtMonthly.setTextColor(getColor(R.color.blacklabels));
+                txtDaily.setBackground(getDrawable(R.drawable.button_blueborder));
+                txtDaily.setTextColor(getColor(R.color.blacklabels));
+
                 dailyFlag = false;
                 weeklyFlag = true;
                 monthlyFlag = false;
@@ -265,6 +292,14 @@ public class reportorderwise extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+
+                txtDaily.setBackground(getDrawable(R.drawable.button_bluefull));
+                txtDaily.setTextColor(getColor(R.color.colorWhite));
+                txtWeekly.setBackground(getDrawable(R.drawable.button_blueborder));
+                txtWeekly.setTextColor(getColor(R.color.blacklabels));
+                txtMonthly.setBackground(getDrawable(R.drawable.button_blueborder));
+                txtMonthly.setTextColor(getColor(R.color.blacklabels));
+
                 dailyFlag = true;
                 weeklyFlag = false;
                 monthlyFlag = false;
@@ -369,7 +404,10 @@ public class reportorderwise extends AppCompatActivity {
         llcreated.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showReportOrderList("Created");
+                if (Integer.parseInt( txtCreated.getText().toString()) > 0)
+                    showReportOrderList("Created");
+                else
+                    showErrorMessage("No Orders to show !");
             }
         });
 
@@ -377,7 +415,11 @@ public class reportorderwise extends AppCompatActivity {
         llcompleted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showReportOrderList("Complete");
+
+                if (Integer.parseInt( txtCompleted.getText().toString()) > 0)
+                    showReportOrderList("Complete");
+                else
+                    showErrorMessage("No Orders to show !");
             }
         });
 
@@ -385,7 +427,11 @@ public class reportorderwise extends AppCompatActivity {
         llcancelled.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showReportOrderList("Cancelled");
+
+                if (Integer.parseInt( txtCancelled.getText().toString()) > 0)
+                    showReportOrderList("Cancelled");
+                else
+                    showErrorMessage("No Orders to show !");
             }
         });
 
@@ -393,7 +439,11 @@ public class reportorderwise extends AppCompatActivity {
         llinprogress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showReportOrderList("InProgress");
+
+                if (Integer.parseInt( txtInProgress.getText().toString()) > 0)
+                    showReportOrderList("InProgress");
+                else
+                    showErrorMessage("No Orders to show !");
             }
         });
 
@@ -401,7 +451,11 @@ public class reportorderwise extends AppCompatActivity {
         lltotal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showReportOrderList("All");
+
+                if (Integer.parseInt( txtTotal.getText().toString()) > 0)
+                    showReportOrderList("All");
+                else
+                    showErrorMessage("No Orders to show !");
             }
         });
 

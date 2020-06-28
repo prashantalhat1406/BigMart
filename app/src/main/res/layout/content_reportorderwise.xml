@@ -16,7 +16,7 @@
                 android:layout_weight="0.5" android:paddingBottom="2dp" android:paddingTop="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/button_blueborder" android:textStyle="bold"
+                android:background="@drawable/button_bluefull" android:textStyle="bold" android:textColor="#ffffff"
                 android:layout_gravity="center" android:gravity="center" android:text="Daily" android:textSize="@dimen/productName">
 
             </TextView>
@@ -47,26 +47,31 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout android:layout_weight="0.85"
+    <LinearLayout android:layout_weight="0.85" android:paddingStart="5dp" android:paddingEnd="5dp"
         android:layout_width="match_parent" android:orientation="horizontal"
         android:layout_height="match_parent">
         <Button android:id="@+id/but_reportorderwise_back"
-            android:layout_weight="0.6"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" android:text="Back">
+            android:layout_weight="0.6" android:background="@drawable/button_blueborder"
+            android:layout_width="match_parent" android:layout_gravity="center"
+            android:layout_height="40dp" android:text="Back">
 
         </Button>
-        <TextView android:id="@+id/txt_report_currentselection"
-            android:layout_weight="0.4"
-            android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
-            android:textSize="@dimen/productName"
-            android:layout_height="match_parent" android:text="22-27 June">
+        <LinearLayout android:layout_weight="0.4"
+            android:layout_width="match_parent" android:paddingEnd="5dp" android:paddingStart="5dp"
+            android:layout_height="match_parent">
+            <TextView android:id="@+id/txt_report_currentselection"
 
-        </TextView>
+                android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
+                android:textSize="@dimen/productName" android:background="@drawable/button_greenborder"
+                android:layout_height="match_parent" android:text="22-27 June">
+
+            </TextView>
+        </LinearLayout>
+
         <Button android:id="@+id/but_reportorderwise_next"
-            android:layout_weight="0.6"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" android:text="Next">
+            android:layout_weight="0.6" android:background="@drawable/button_blueborder"
+            android:layout_width="match_parent" android:layout_gravity="center"
+            android:layout_height="40dp" android:text="Next">
 
         </Button>
 
@@ -81,6 +86,7 @@
         <LinearLayout android:layout_weight="0.1"
             android:layout_width="match_parent" android:orientation="horizontal"
             android:layout_height="match_parent">
+
             <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_created"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_orangeborder"
                 android:layout_height="match_parent" >
@@ -118,19 +124,25 @@
             <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_inprogress"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_blueborder"
                 android:layout_height="match_parent" >
-                <TextView android:layout_weight="0.5" android:paddingBottom="10dp" android:paddingTop="2dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textStyle="bold"
-                    android:layout_gravity="center" android:gravity="bottom|center" android:text="InProgress" android:textSize="@dimen/productName">
 
-                </TextView>
+
+                <LinearLayout android:layout_weight="0.5"
+                    android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
+                    android:layout_height="match_parent">
+                    <TextView  android:paddingBottom="10dp" android:paddingTop="2dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:textColor="@color/colorWhite"
+                        android:textStyle="bold" android:background="@drawable/status_inprogress"
+                        android:layout_gravity="center_vertical" android:gravity="center_vertical|center" android:text="InProgress" android:textSize="@dimen/productName">
+
+                    </TextView>
+                </LinearLayout>
 
                 <TextView android:id="@+id/txt_report_orderwise_inprogress"
                     android:layout_weight="0.5" android:paddingBottom="2dp" android:paddingTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textStyle="bold"
+                    android:textStyle="bold" android:textColor="@color/blacklabels"
                     android:layout_gravity="center" android:gravity="top|center" android:text="0" android:textSize="@dimen/productName">
 
                 </TextView>
@@ -152,13 +164,17 @@
             <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_total"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_blackborder"
                 android:layout_height="match_parent" >
-                <TextView android:layout_weight="0.5" android:paddingBottom="10dp" android:paddingTop="2dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textStyle="bold"
-                    android:layout_gravity="center" android:gravity="bottom|center" android:text="Total" android:textSize="@dimen/productName">
+                <LinearLayout android:layout_weight="0.5"
+                    android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
+                    android:layout_height="match_parent">
+                    <TextView  android:paddingBottom="10dp" android:paddingTop="2dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:textColor="@color/colorWhite"
+                        android:textStyle="bold" android:background="@drawable/status_total"
+                        android:layout_gravity="center" android:gravity="center" android:text="  Total  " android:textSize="@dimen/productName">
 
-                </TextView>
+                    </TextView>
+                </LinearLayout>
 
                 <TextView android:id="@+id/txt_report_orderwise_total"
                     android:layout_weight="0.5" android:paddingBottom="2dp" android:paddingTop="10dp"
@@ -186,19 +202,23 @@
             <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_completed"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_greenborder"
                 android:layout_height="match_parent" >
-                <TextView android:layout_weight="0.5" android:paddingBottom="10dp" android:paddingTop="2dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textStyle="bold"
-                    android:layout_gravity="center" android:gravity="bottom|center" android:text="Completed" android:textSize="@dimen/productName">
+                <LinearLayout android:layout_weight="0.5"
+                    android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
+                    android:layout_height="match_parent">
+                    <TextView  android:paddingBottom="10dp" android:paddingTop="2dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:textColor="@color/colorWhite"
+                        android:textStyle="bold" android:background="@drawable/status_complete"
+                        android:layout_gravity="center_vertical" android:gravity="center_vertical|center" android:text="Completed" android:textSize="@dimen/productName">
 
-                </TextView>
+                    </TextView>
+                </LinearLayout>
 
                 <TextView android:id="@+id/txt_report_orderwise_completed"
                     android:layout_weight="0.5" android:paddingBottom="2dp" android:paddingTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textStyle="bold"
+                    android:textStyle="bold" android:textColor="@color/blacklabels"
                     android:layout_gravity="center" android:gravity="top|center" android:text="375" android:textSize="@dimen/productName">
 
                 </TextView>
@@ -215,19 +235,23 @@
             <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_cancelled"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_redborder"
                 android:layout_height="match_parent" >
-                <TextView android:layout_weight="0.5" android:paddingBottom="10dp" android:paddingTop="2dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textStyle="bold"
-                    android:layout_gravity="center" android:gravity="bottom|center" android:text="Cancelled" android:textSize="@dimen/productName">
+                <LinearLayout android:layout_weight="0.5"
+                    android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
+                    android:layout_height="match_parent">
+                    <TextView  android:paddingBottom="10dp" android:paddingTop="2dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:textColor="@color/colorWhite"
+                        android:textStyle="bold" android:background="@drawable/status_cancelled"
+                        android:layout_gravity="center_vertical" android:gravity="center_vertical|center" android:text="Cancelled" android:textSize="@dimen/productName">
 
-                </TextView>
+                    </TextView>
+                </LinearLayout>
 
                 <TextView android:id="@+id/txt_report_orderwise_cancelled"
                     android:layout_weight="0.5" android:paddingBottom="2dp" android:paddingTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textStyle="bold"
+                    android:textStyle="bold" android:textColor="@color/blacklabels"
                     android:layout_gravity="center" android:gravity="top|center" android:text="0" android:textSize="@dimen/productName">
 
                 </TextView>
