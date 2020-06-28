@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -57,6 +58,8 @@ public class reportorderstatus extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         orderStatus = b.getString("orderStatus","12");
 
+        setTitle(getTitle() + " : " + orderStatus.toUpperCase());
+
 
         orders = new ArrayList<Orders>();
         orderIDs = new ArrayList<String>();
@@ -71,11 +74,19 @@ public class reportorderstatus extends AppCompatActivity {
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren())
                 {
                     Orders order = postSnapshot.getValue(Orders.class);
-                    if (order.status.equals(orderStatus))
+                    if (orderStatus.equals("All"))
                     {
                         orders.add(order);
                         orderIDs.add(order.ID);
+                    }else
+                    {
+                        if (order.status.equals(orderStatus))
+                        {
+                            orders.add(order);
+                            orderIDs.add(order.ID);
+                        }
                     }
+
                 }
 
                 adapterReportOrderHistory orderAdapter = new adapterReportOrderHistory(reportorderstatus.this,R.layout.itemordershopowner,orders);
@@ -133,5 +144,16 @@ public class reportorderstatus extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

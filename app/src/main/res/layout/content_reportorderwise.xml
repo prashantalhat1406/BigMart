@@ -91,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                      android:textStyle="bold"
-                    android:layout_gravity="center" android:gravity="top|center" android:text="251" android:textSize="@dimen/productName">
+                    android:layout_gravity="center" android:gravity="top|center" android:text="0" android:textSize="@dimen/productName">
 
                 </TextView>
 
@@ -104,7 +104,7 @@
 
             </LinearLayout>
 
-            <LinearLayout android:layout_weight="0.1"
+            <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_inprogress"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_blueborder"
                 android:layout_height="match_parent" >
                 <TextView android:layout_weight="0.5" android:paddingBottom="10dp" android:paddingTop="2dp"
@@ -120,7 +120,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textStyle="bold"
-                    android:layout_gravity="center" android:gravity="top|center" android:text="75" android:textSize="@dimen/productName">
+                    android:layout_gravity="center" android:gravity="top|center" android:text="0" android:textSize="@dimen/productName">
 
                 </TextView>
 
@@ -138,7 +138,7 @@
 
             </LinearLayout>
 
-            <LinearLayout android:layout_weight="0.1"
+            <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_total"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_blackborder"
                 android:layout_height="match_parent" >
                 <TextView android:layout_weight="0.5" android:paddingBottom="10dp" android:paddingTop="2dp"
@@ -154,7 +154,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textStyle="bold"
-                    android:layout_gravity="center" android:gravity="top|center" android:text="500" android:textSize="@dimen/productName">
+                    android:layout_gravity="center" android:gravity="top|center" android:text="0" android:textSize="@dimen/productName">
 
                 </TextView>
 
@@ -166,12 +166,13 @@
                 android:layout_height="match_parent" >
 
             </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout android:layout_weight="0.1"
             android:layout_width="match_parent" android:orientation="horizontal"
             android:layout_height="match_parent">
-            <LinearLayout android:layout_weight="0.1"
+            <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_completed"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_greenborder"
                 android:layout_height="match_parent" >
                 <TextView android:layout_weight="0.5" android:paddingBottom="10dp" android:paddingTop="2dp"
@@ -200,7 +201,7 @@
 
             </LinearLayout>
 
-            <LinearLayout android:layout_weight="0.1"
+            <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_cancelled"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_redborder"
                 android:layout_height="match_parent" >
                 <TextView android:layout_weight="0.5" android:paddingBottom="10dp" android:paddingTop="2dp"
@@ -216,7 +217,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textStyle="bold"
-                    android:layout_gravity="center" android:gravity="top|center" android:text="25" android:textSize="@dimen/productName">
+                    android:layout_gravity="center" android:gravity="top|center" android:text="0" android:textSize="@dimen/productName">
 
                 </TextView>
 

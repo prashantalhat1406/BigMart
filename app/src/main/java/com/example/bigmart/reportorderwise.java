@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
@@ -37,6 +38,11 @@ public class reportorderwise extends AppCompatActivity {
         setContentView(R.layout.activity_reportorderwise);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
 
 
         orders = new ArrayList<Orders>();
@@ -93,5 +99,64 @@ public class reportorderwise extends AppCompatActivity {
             }
         });
 
+        LinearLayout llcompleted = findViewById(R.id.layout_report_completed);
+        llcompleted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent orderstatusIntent = new Intent(reportorderwise.this, reportorderstatus.class);
+                Bundle extras = new Bundle();
+                extras.putString("orderStatus", "Complete");
+                orderstatusIntent.putExtras(extras);
+                startActivity(orderstatusIntent);
+            }
+        });
+
+        LinearLayout llcancelled = findViewById(R.id.layout_report_cancelled);
+        llcancelled.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent orderstatusIntent = new Intent(reportorderwise.this, reportorderstatus.class);
+                Bundle extras = new Bundle();
+                extras.putString("orderStatus", "Cancelled");
+                orderstatusIntent.putExtras(extras);
+                startActivity(orderstatusIntent);
+            }
+        });
+
+        LinearLayout llinprogress = findViewById(R.id.layout_report_inprogress);
+        llinprogress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent orderstatusIntent = new Intent(reportorderwise.this, reportorderstatus.class);
+                Bundle extras = new Bundle();
+                extras.putString("orderStatus", "InProgress");
+                orderstatusIntent.putExtras(extras);
+                startActivity(orderstatusIntent);
+            }
+        });
+
+        LinearLayout lltotal = findViewById(R.id.layout_report_total);
+        lltotal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent orderstatusIntent = new Intent(reportorderwise.this, reportorderstatus.class);
+                Bundle extras = new Bundle();
+                extras.putString("orderStatus", "All");
+                orderstatusIntent.putExtras(extras);
+                startActivity(orderstatusIntent);
+            }
+        });
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
