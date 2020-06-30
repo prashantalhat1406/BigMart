@@ -73,6 +73,8 @@ public class reportproductwise extends AppCompatActivity {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                count_outostock = 0;
+
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren())
                 {
                     Product product = postSnapshot.getValue(Product.class);
