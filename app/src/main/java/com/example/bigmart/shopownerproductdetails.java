@@ -138,39 +138,35 @@ public class shopownerproductdetails extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        /*AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerproductdetails.this);
-        logoutAlertBuilder.setMessage("Are you sure to Save Product Details ? ?");
-        logoutAlertBuilder.setCancelable(false);
-        logoutAlertBuilder.setPositiveButton(
-                "YES", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+        if(butsave.getText().toString().toLowerCase().equals("edit")){
+            Intent intent=new Intent();
+            intent.putExtra("searchItem",searchItem);
+            intent.putExtra("position",position);
+            setResult(Activity.RESULT_OK, intent);
+            super.onBackPressed();
+        }else{
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(shopownerproductdetails.this);
+            builder1.setMessage("Please Save details.");
+            builder1.setCancelable(false);
+            builder1.setPositiveButton(
+                    "Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            final AlertDialog alert11 = builder1.create();
+            alert11.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialog) {
+                    alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.GREEN);
+                }
+            });
+            alert11.show();
+        }
 
-                    }
-                });
-        logoutAlertBuilder.setNegativeButton(
-                "NO", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-        final AlertDialog alertLogout = logoutAlertBuilder.create();
 
-        alertLogout.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialog) {
-                alertLogout.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
-                alertLogout.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
-            }
-        });
-        alertLogout.show();*/
-
-        Intent intent=new Intent();
-        intent.putExtra("searchItem",searchItem);
-        intent.putExtra("position",position);
-        setResult(Activity.RESULT_OK, intent);
-        super.onBackPressed();
+        /**/
     }
 
     @Override
@@ -429,7 +425,12 @@ public class shopownerproductdetails extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
-            onBackPressed();
+            //onBackPressed();
+            Intent intent=new Intent();
+            intent.putExtra("searchItem",searchItem);
+            intent.putExtra("position",position);
+            setResult(Activity.RESULT_OK, intent);
+            super.onBackPressed();
         }
 
         return super.onOptionsItemSelected(item);
