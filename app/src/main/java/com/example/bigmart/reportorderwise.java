@@ -1,5 +1,6 @@
 package com.example.bigmart;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -20,6 +21,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -31,7 +33,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class reportorderwise extends AppCompatActivity {
+public class reportorderwise extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     private List<Orders> orders;
     private FirebaseDatabase database;
@@ -40,6 +42,26 @@ public class reportorderwise extends AppCompatActivity {
     boolean dailyFlag = false, weeklyFlag = false, monthlyFlag = false;
     Button back, next;
     String baseDate="";
+    TextView txtDaily,txtMonthly,txtWeekly;
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        //btnDate.setText(ConverterDate.ConvertDate(year, month + 1, day));
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year,month,dayOfMonth);
+        //showErrorMessage("" + dayOfMonth + "/" + (month+1) + "/" + year);
+        txtCurrentSelection.setText(new SimpleDateFormat("dd-MMM-yyyy").format(calendar.getTime()));
+        baseDate = new SimpleDateFormat("dd-MMM-yyyy").format(calendar.getTime());
+
+        if (dailyFlag)
+            txtDaily.callOnClick();
+        if (monthlyFlag)
+            txtMonthly.callOnClick();
+        if (weeklyFlag)
+            txtWeekly.callOnClick();
+
+
+    }
 
     public void showErrorMessage(String message){
         Toast error = Toast.makeText(reportorderwise.this, message,Toast.LENGTH_SHORT);
@@ -112,6 +134,8 @@ public class reportorderwise extends AppCompatActivity {
         return  currWeek;
     }
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,16 +157,33 @@ public class reportorderwise extends AppCompatActivity {
         txtTotal = findViewById(R.id.txt_report_orderwise_total);
         txtCurrentSelection = findViewById(R.id.txt_report_currentselection);
 
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+
+        final DatePickerDialog datePickerDialog = new DatePickerDialog(
+                reportorderwise.this, reportorderwise.this, year, month, day);
+
+
+
         baseDate = new SimpleDateFormat("dd-MMM-yyyy").format(Calendar.getInstance().getTime());
         dailyFlag = true;
         weeklyFlag = false;
         monthlyFlag = false;
         txtCurrentSelection.setText(baseDate);
 
+        txtCurrentSelection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datePickerDialog.show();
+            }
+        });
 
-        final TextView txtDaily = findViewById(R.id.txt_report_orderwise_daily);
-        final TextView txtMonthly = findViewById(R.id.txt_report_orderwise_monthly);
-        final TextView txtWeekly = findViewById(R.id.txt_report_orderwise_weekly);
+
+        txtDaily = findViewById(R.id.txt_report_orderwise_daily);
+        txtMonthly = findViewById(R.id.txt_report_orderwise_monthly);
+        txtWeekly = findViewById(R.id.txt_report_orderwise_weekly);
 
         database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
         DatabaseReference productReference = database.getReference("Orders/");
