@@ -84,7 +84,7 @@ public class adapterOrder extends ArrayAdapter<Orders> {
         orderStatus.setTextColor(ContextCompat.getColor(this.context, R.color.completeStatus));
         switch (order.status){
             case "Complete": orderStatus.setBackground(context.getDrawable(R.drawable.status_complete));
-                orderStatus.setText(" Complete ");
+                orderStatus.setText(" Completed ");
             //convertView.setBackgroundColor(context.getColor(R.color.lightGreen));
                 break;
             case "Created": orderStatus.setBackground(context.getDrawable(R.drawable.status_created));
@@ -93,7 +93,7 @@ public class adapterOrder extends ArrayAdapter<Orders> {
             case "InProgress": orderStatus.setBackground(context.getDrawable(R.drawable.status_inprogress));
                 break;
             case "Cancelled": orderStatus.setBackground(context.getDrawable(R.drawable.status_cancelled));
-                orderStatus.setText("    Cancel    ");
+                orderStatus.setText("   Cancelled   ");
                 break;
         }
 

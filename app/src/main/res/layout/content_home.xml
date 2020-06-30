@@ -16,7 +16,7 @@
         <AutoCompleteTextView android:id="@+id/txt_auto_search"
             android:layout_width="match_parent" android:layout_weight="0.1" android:maxLines="1" android:inputType="text"
             android:imeOptions="actionSearch" android:drawableRight="@drawable/ic_search"
-            android:hint="Enter Product Name"
+            android:hint="Search Product Name"
             android:layout_height="match_parent"></AutoCompleteTextView>
 
         <!--<ImageButton android:id="@+id/but_home_search" android:src="@drawable/ic_search" android:background="@drawable/searchbutton"
