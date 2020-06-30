@@ -93,5 +93,7 @@
     <string name="title_activity_reprothome">Reports</string>
     <string name="title_activity_reportorderwise">OrderWise Report</string>
     <string name="title_activity_reportorderstatus">Orders By Status</string>
+    <string name="title_activity_reportproductstatus">Product Report</string>
+    <string name="title_activity_reportproductwise">Product Report</string>
 
 </resources>

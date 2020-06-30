@@ -3,9 +3,6 @@ package com.example.bigmart;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -13,7 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-public class shopownerreporthome extends AppCompatActivity {
+public class reporthome extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +28,16 @@ public class shopownerreporthome extends AppCompatActivity {
         orderwise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent shopIntent = new Intent(shopownerreporthome.this, reportorderwise.class);
+                Intent shopIntent = new Intent(reporthome.this, reportorderwise.class);
+                startActivity(shopIntent);
+            }
+        });
+
+        TextView productwise = findViewById(R.id.txt_report_productwise);
+        productwise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent shopIntent = new Intent(reporthome.this, reportproductwise.class);
                 startActivity(shopIntent);
             }
         });
