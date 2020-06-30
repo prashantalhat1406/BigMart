@@ -103,7 +103,6 @@ public class shopownerordershistory extends AppCompatActivity {
 
         orders = new ArrayList<Orders>();
         orderIDs = new ArrayList<String>();
-        //orders_filter = new ArrayList<Orders>();
         ordersList = findViewById(R.id.listShopOwnerOrder);
         database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
         DatabaseReference productReference = database.getReference("Orders/");
@@ -116,9 +115,7 @@ public class shopownerordershistory extends AppCompatActivity {
                 {
                     Orders order = postSnapshot.getValue(Orders.class);
                     orders.add(order);
-                    //orderIDs.add(order.ID.substring(order.ID.length() - 5).toUpperCase());
                     orderIDs.add(order.ID);
-                    //orders_filter.add(order);
                 }
 
                 //Collections.reverse(orders);
@@ -133,13 +130,11 @@ public class shopownerordershistory extends AppCompatActivity {
 
             }
         });
-        //orders_filter =orders;
 
         autoCompleteTextView = findViewById(R.id.auto_shopownerorderhistory_orderid);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,orderIDs);
         autoCompleteTextView.setAdapter(adapter);
         autoCompleteTextView.setThreshold(1);
-        //autoCompleteTextView.setTextColor(Color.RED);
 
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -147,9 +142,8 @@ public class shopownerordershistory extends AppCompatActivity {
 
 
                 Object t = parent.getItemAtPosition(position);
-                //Toast.makeText(shopownerordershistory.this,t.toString(),Toast.LENGTH_SHORT).show();
+
                 for (Orders order : orders) {
-                    //if( order.ID.substring(order.ID.length() - 5).toUpperCase().equals(t.toString())){
                     if( order.ID.equals(t.toString())){
                         Intent orderIntent = new Intent(shopownerordershistory.this, shopownerorderdetails.class);
                         Bundle extras = new Bundle();
@@ -162,12 +156,7 @@ public class shopownerordershistory extends AppCompatActivity {
                         break;
                     }
                 }
-                /*Intent orderIntent = new Intent(shopownerordershistory.this, shopownerorderdetails.class);
-                Bundle extras = new Bundle();
-                String selected = ((TextView) view.findViewById(R.id.txt_order_ID_DUP)).getText().toString();
-                extras.putString("orderID", ""+selected);
-                orderIntent.putExtras(extras);
-                startActivity(orderIntent);*/
+
 
             }
         });
@@ -178,7 +167,6 @@ public class shopownerordershistory extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent orderIntent = new Intent(shopownerordershistory.this, shopownerorderdetails.class);
                 Bundle extras = new Bundle();
-                //extras.putString("orderID", ""+orders.get(position).ID);
                 String selected = ((TextView) view.findViewById(R.id.txt_orderN_ID_DUP)).getText().toString();
                 extras.putString("orderID", ""+selected);
                 extras.putInt("position", position);

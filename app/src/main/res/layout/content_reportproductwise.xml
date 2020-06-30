@@ -97,7 +97,7 @@
 
             <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_product_outofstock"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_orangeborder"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent" android:foreground="?attr/selectableItemBackground">
                 <LinearLayout android:layout_weight="0.5"
                     android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
                     android:layout_height="match_parent">
@@ -132,7 +132,7 @@
 
             <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_product_total"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_blackborder"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent" android:foreground="?attr/selectableItemBackground">
                 <LinearLayout android:layout_weight="0.5"
                     android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
                     android:layout_height="match_parent">

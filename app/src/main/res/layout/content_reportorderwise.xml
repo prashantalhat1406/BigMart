@@ -52,7 +52,7 @@
         android:layout_height="match_parent">
         <Button android:id="@+id/but_reportorderwise_back"
             android:layout_weight="0.6" android:background="@drawable/button_blueborder"
-            android:layout_width="match_parent" android:layout_gravity="center"
+            android:layout_width="match_parent" android:layout_gravity="center" android:foreground="?attr/selectableItemBackground"
             android:layout_height="40dp" android:text="Prev">
 
         </Button>
@@ -62,7 +62,7 @@
             <TextView android:id="@+id/txt_report_currentselection"
 
                 android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
-                android:textSize="@dimen/profileLabel" android:background="@drawable/button_greenborder"
+                android:textSize="@dimen/profileLabel" android:background="@drawable/button_greenborder" android:foreground="?attr/selectableItemBackground"
                 android:layout_height="match_parent" android:text="22-27 June">
 
             </TextView>
@@ -70,7 +70,7 @@
 
         <Button android:id="@+id/but_reportorderwise_next"
             android:layout_weight="0.6" android:background="@drawable/button_blueborder"
-            android:layout_width="match_parent" android:layout_gravity="center"
+            android:layout_width="match_parent" android:layout_gravity="center" android:foreground="?attr/selectableItemBackground"
             android:layout_height="40dp" android:text="Next">
 
         </Button>
@@ -87,7 +87,7 @@
             android:layout_width="match_parent" android:orientation="horizontal"
             android:layout_height="match_parent">
 
-            <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_created"
+            <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_created" android:foreground="?attr/selectableItemBackground"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_orangeborder"
                 android:layout_height="match_parent" >
                 <LinearLayout android:layout_weight="0.5"
@@ -124,7 +124,7 @@
 
             <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_inprogress"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_blueborder"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent" android:foreground="?attr/selectableItemBackground" >
 
 
                 <LinearLayout android:layout_weight="0.5"
@@ -165,7 +165,7 @@
 
             <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_total"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_blackborder"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent"  android:foreground="?attr/selectableItemBackground">
                 <LinearLayout android:layout_weight="0.5"
                     android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
                     android:layout_height="match_parent">
@@ -204,7 +204,7 @@
             android:layout_height="match_parent">
             <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_completed"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_greenborder"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent" android:foreground="?attr/selectableItemBackground">
                 <LinearLayout android:layout_weight="0.5"
                     android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
                     android:layout_height="match_parent">
@@ -238,7 +238,7 @@
 
             <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_cancelled"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_redborder"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent" android:foreground="?attr/selectableItemBackground">
                 <LinearLayout android:layout_weight="0.5"
                     android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
                     android:layout_height="match_parent">
