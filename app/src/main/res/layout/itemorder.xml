@@ -46,6 +46,7 @@
         <View android:layout_width="1dp" android:padding="15dp" android:layout_height="100dp" android:background="@color/blacklabels"/>
         <LinearLayout
             android:layout_width="match_parent" android:layout_weight="0.2" android:orientation="vertical"
+            android:paddingStart="2dp" android:paddingEnd="2dp"
             android:layout_height="match_parent">
             <TextView  android:layout_gravity="center" android:gravity="center" android:textSize="@dimen/ordersumary1row"
                 android:layout_width="match_parent" android:layout_weight="0.6" android:text="DELIVERY TYPE" android:textColor="@color/blacklabels"

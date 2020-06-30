@@ -114,6 +114,8 @@ public class adapterProduct extends ArrayAdapter<Product> {
 
         TextView Name = (TextView)convertView.findViewById(R.id.txt_product_product_Name);
         Name.setText(""+product.getName());
+        TextView productQuantity = (TextView)convertView.findViewById(R.id.txt_product_product_QTY);
+        productQuantity.setText(""+product.getName2().toLowerCase());
         TextView mrp = (TextView)convertView.findViewById(R.id.txt_product_product_MRP);
         mrp.setText(context.getResources().getString(R.string.Rupee) + " "+ formater.format( product.MRP));
         mrp.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
