@@ -23,7 +23,7 @@
             <TextView
                 android:layout_width="wrap_content" android:textStyle="bold"
                 android:layout_height="wrap_content" android:text="Your Cart is Empty" android:layout_gravity="center"></TextView>
-            <Button android:id="@+id/but_cart_continueShopping"
+            <Button android:id="@+id/but_cart_continueShopping" android:foreground="?attr/selectableItemBackground"
                 android:layout_width="wrap_content" android:layout_weight="0.3" android:paddingLeft="20dp" android:paddingRight="20dp"
                 android:layout_height="match_parent" android:layout_gravity="center" android:text="Continue Shopping"
                 android:background="@color/darkgreenColorButton" android:textColor="#ffffff">
@@ -81,7 +81,7 @@
                 <LinearLayout
                     android:layout_width="match_parent" android:layout_weight="0.4" android:layout_gravity="center" android:gravity="left"
                     android:layout_height="match_parent" android:paddingLeft="10dp">
-                    <TextView android:id="@+id/txt_cart_removeall"
+                    <TextView android:id="@+id/txt_cart_removeall" android:foreground="?attr/selectableItemBackground"
                         android:layout_width="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/redColorButton"
                         android:layout_height="wrap_content"  android:text="REMOVE ALL" android:textSize="@dimen/textButtonsSmall"
                         android:background="@drawable/button_redborder">
@@ -94,7 +94,7 @@
                     <TextView android:id="@+id/txt_cart_continue"
                         android:layout_width="wrap_content" android:layout_gravity="center" android:gravity="center"
                         android:textColor="@color/greenColorButton"
-                        android:layout_height="wrap_content"
+                        android:layout_height="wrap_content" android:foreground="?attr/selectableItemBackground"
                         android:background="@drawable/button_greenborder"
                         android:text="CONTINUE SHOPPING" android:textSize="@dimen/textButtonsSmall"></TextView>
 

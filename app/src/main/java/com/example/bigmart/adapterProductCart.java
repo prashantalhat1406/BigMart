@@ -57,7 +57,7 @@ public class adapterProductCart extends ArrayAdapter<Product> {
         atc.setTag(position);
 
         Button qtyEdit = (Button) convertView.findViewById(R.id.but_item_qtyedit);
-        final LinearLayout subQty = (LinearLayout) convertView.findViewById(R.id.layout_subQty);
+        //final LinearLayout subQty = (LinearLayout) convertView.findViewById(R.id.layout_subQty);
         final LinearLayout incrementor = (LinearLayout) convertView.findViewById(R.id.layout_incrementor);
 
         TextView remove = (TextView)convertView.findViewById(R.id.txt_item_remove);
@@ -76,12 +76,12 @@ public class adapterProductCart extends ArrayAdapter<Product> {
         switch (type){
             case 1:
                 qtyEdit.setVisibility(View.INVISIBLE);
-                subQty.setVisibility(View.GONE);
+                //subQty.setVisibility(View.GONE);
                 remove.setVisibility(View.INVISIBLE);
                 break;
             case 2:
                 qtyEdit.setVisibility(View.INVISIBLE);
-                subQty.setVisibility(View.GONE);
+                //subQty.setVisibility(View.GONE);
                 remove.setVisibility(View.VISIBLE);
                 incrementor.setVisibility(View.VISIBLE);
                 break;
@@ -251,7 +251,7 @@ public class adapterProductCart extends ArrayAdapter<Product> {
         });
 
 
-        Button subCat1 = (Button) convertView.findViewById(R.id.but_product_subcat1);
+        /*Button subCat1 = (Button) convertView.findViewById(R.id.but_product_subcat1);
         Button subCat2 = (Button) convertView.findViewById(R.id.but_product_subcat2);
         if(product.Type.equals("LQ"))
         {
@@ -263,7 +263,7 @@ public class adapterProductCart extends ArrayAdapter<Product> {
         {
             subCat1.setText("0.5 kg");
             subCat2.setText("1 kg");
-        }
+        }*/
 
         return convertView;
     }
