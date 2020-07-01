@@ -128,7 +128,7 @@ public class reportorderwise extends AppCompatActivity implements DatePickerDial
         }catch (Exception e){}
 
         currWeek = "" + new SimpleDateFormat("dd-MMM").format(currentCalendar.getTime());
-        currentCalendar.add(Calendar.DAY_OF_MONTH, 7);
+        currentCalendar.add(Calendar.DAY_OF_MONTH, 6);
         currWeek = currWeek +" to "+ new SimpleDateFormat("dd-MMM").format(currentCalendar.getTime());
 
         return  currWeek;
