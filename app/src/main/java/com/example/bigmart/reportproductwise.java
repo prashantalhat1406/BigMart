@@ -74,10 +74,12 @@ public class reportproductwise extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 count_outostock = 0;
+                products.clear();
 
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren())
                 {
                     Product product = postSnapshot.getValue(Product.class);
+                    product.setID(postSnapshot.getKey());
                     products.add(product);
                     if (product.Qty < product.MinStock)
                         count_outostock = count_outostock + 1;

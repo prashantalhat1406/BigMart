@@ -49,6 +49,9 @@ public class shopownerproductdisplay extends AppCompatActivity {
     @Override
     protected void onResume() {
         //edtsearch.setText("");
+
+
+
         super.onResume();
     }
 

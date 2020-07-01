@@ -82,9 +82,11 @@ public class reportproductstatus extends AppCompatActivity {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                products.clear();
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren())
                 {
                     Product product = postSnapshot.getValue(Product.class);
+                    product.setID(postSnapshot.getKey());
                     if (productStatus.equals("ALL"))
                         products.add(product);
                     else
