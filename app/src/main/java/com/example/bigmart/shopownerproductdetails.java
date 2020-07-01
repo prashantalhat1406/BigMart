@@ -316,7 +316,7 @@ public class shopownerproductdetails extends AppCompatActivity {
                 else{
 
                 AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerproductdetails.this);
-                logoutAlertBuilder.setMessage("Are you sure to Save Product Details ? ?");
+                logoutAlertBuilder.setMessage("Are you sure to Save Product Details ?");
                 logoutAlertBuilder.setCancelable(false);
                 logoutAlertBuilder.setPositiveButton(
                         "YES", new DialogInterface.OnClickListener() {
@@ -367,7 +367,9 @@ public class shopownerproductdetails extends AppCompatActivity {
                         "NO", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
+                                //dialog.cancel();
+                                butsave.setText("Edit");
+                                onBackPressed();
                             }
                         });
                 final AlertDialog alertLogout = logoutAlertBuilder.create();
