@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -13,6 +14,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -31,7 +33,36 @@ public class reportproductwise extends AppCompatActivity {
     TextView txtOutOfStock, txtNoDiscount, txtTotal;
     private List<Product> products;
     private FirebaseDatabase database;
+    String categoryNames[];
     Integer count_outostock=0,count_nodiscount=0;
+    Integer count_cat1=0,count_cat2=0,count_cat3=0,count_cat4=0,count_cat5=0,count_cat6=0;
+    private  int count = 0;
+    private static final int[] LAYOUT_IDS = {
+            R.id.layout_report_product_category1,
+            R.id.layout_report_product_category2,
+            R.id.layout_report_product_category3,
+            R.id.layout_report_product_category4,
+            R.id.layout_report_product_category5,
+            R.id.layout_report_product_category6
+    };
+
+    private static final int[] CATEGORYNAME_IDS = {
+            R.id.txt_report_product_category1,
+            R.id.txt_report_product_category2,
+            R.id.txt_report_product_category3,
+            R.id.txt_report_product_category4,
+            R.id.txt_report_product_category5,
+            R.id.txt_report_product_category6
+    };
+
+    private static final int[] CATEGORYNAMECOUNT_IDS = {
+            R.id.txt_report_product_category1_no,
+            R.id.txt_report_product_category2_no,
+            R.id.txt_report_product_category3_no,
+            R.id.txt_report_product_category4_no,
+            R.id.txt_report_product_category5_no,
+            R.id.txt_report_product_category6_no
+    };
 
 
 
@@ -68,12 +99,30 @@ public class reportproductwise extends AppCompatActivity {
 
 
         database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
+
+        /*Query categoryQuery = database.getReference("/Categories");
+        categoryQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                Category category = dataSnapshot.getValue(Category.class);
+                categoryNames[count] = category.Name;
+                count++;
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {       }
+        });*/
+
+
+
         DatabaseReference productReference = database.getReference("Products/");
         Query query = productReference.orderByKey();
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 count_outostock = 0;
+                count_cat1=count_cat2=count_cat3=count_cat4=count_cat5=count_cat6=0;
                 products.clear();
 
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren())
@@ -86,7 +135,34 @@ public class reportproductwise extends AppCompatActivity {
 
                     if (product.Discount == 0)
                         count_nodiscount = count_nodiscount + 1;
+
+                    switch(product.Category){
+                        case "Dairy" : count_cat1++; break;
+                        case "Grocery" : count_cat2++; break;
+                        case "HomeKitchen" : count_cat3++; break;
+                        case "SkinCare" : count_cat4++; break;
+                        case "PersonalCare" : count_cat5++; break;
+                        case "PackagedFoods" : count_cat6++; break;
+                    }
                 }
+
+                TextView txtDairy = findViewById(R.id.txt_report_product_category1_no);
+                txtDairy.setText("" + count_cat1);
+
+                TextView txtGrocery = findViewById(R.id.txt_report_product_category2_no);
+                txtGrocery.setText("" + count_cat2);
+
+                TextView txtHomeKitchen = findViewById(R.id.txt_report_product_category3_no);
+                txtHomeKitchen.setText("" + count_cat3);
+
+                TextView txtSkinCare = findViewById(R.id.txt_report_product_category4_no);
+                txtSkinCare.setText("" + count_cat4);
+
+                TextView txtPersonalCare = findViewById(R.id.txt_report_product_category5_no);
+                txtPersonalCare.setText("" + count_cat5);
+
+                TextView txtPackagedFoods = findViewById(R.id.txt_report_product_category6_no);
+                txtPackagedFoods.setText("" + count_cat6);
 
                 txtOutOfStock.setText(""+count_outostock);
                 //txtNoDiscount.setText(""+count_nodiscount);

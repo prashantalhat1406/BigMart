@@ -17,106 +17,6 @@
             android:layout_width="match_parent" android:orientation="horizontal"
             android:layout_height="match_parent">
 
-            <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_product_category1"
-                android:layout_width="match_parent" android:orientation="vertical" android:paddingEnd="5dp"
-                android:background="@drawable/button_blueborder"
-                android:layout_height="match_parent" android:foreground="?attr/selectableItemBackground">
-                <LinearLayout android:layout_weight="0.5"
-                    android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
-                    android:layout_height="match_parent">
-                    <TextView  android:id="@+id/txt_report_product_category1"
-                        android:paddingBottom="10dp" android:paddingTop="2dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:textColor="@color/colorWhite"
-                        android:textStyle="bold" android:background="@drawable/status_inprogress"
-                        android:layout_gravity="center_vertical" android:gravity="center_vertical|center"
-                        android:text="Out Of Stock" android:textSize="@dimen/textButtons">
-
-                    </TextView>
-                </LinearLayout>
-
-
-                <TextView  android:id="@+id/txt_report_product_category1_no"
-                    android:layout_weight="0.5" android:paddingBottom="2dp" android:paddingTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textStyle="bold" android:textColor="@color/blacklabels"
-                    android:layout_gravity="center" android:gravity="top|center" android:text="0" android:textSize="@dimen/productName">
-
-                </TextView>
-
-
-            </LinearLayout>
-
-            <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_product_category2"
-                android:layout_width="match_parent" android:orientation="vertical"
-                android:background="@drawable/button_greenborder" android:paddingEnd="5dp" android:paddingStart="5dp"
-                android:layout_height="match_parent" android:foreground="?attr/selectableItemBackground">
-                <LinearLayout android:layout_weight="0.5"
-                    android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
-                    android:layout_height="match_parent">
-                    <TextView  android:id="@+id/txt_report_product_category2"
-                        android:paddingBottom="10dp" android:paddingTop="2dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:textColor="@color/colorWhite"
-                        android:textStyle="bold" android:background="@drawable/status_complete"
-                        android:layout_gravity="center_vertical" android:gravity="center_vertical|center"
-                        android:text="Out Of Stock" android:textSize="@dimen/textButtons">
-
-                    </TextView>
-                </LinearLayout>
-
-
-                <TextView  android:id="@+id/txt_report_product_category2_no"
-                    android:layout_weight="0.5" android:paddingBottom="2dp" android:paddingTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textStyle="bold" android:textColor="@color/blacklabels"
-                    android:layout_gravity="center" android:gravity="top|center" android:text="0" android:textSize="@dimen/productName">
-
-                </TextView>
-
-
-            </LinearLayout>
-
-            <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_product_category3"
-                android:layout_width="match_parent" android:orientation="vertical"
-                android:background="@drawable/button_redborder"
-                android:layout_height="match_parent" android:foreground="?attr/selectableItemBackground">
-                <LinearLayout android:layout_weight="0.5"
-                    android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
-                    android:layout_height="match_parent">
-                    <TextView  android:id="@+id/txt_report_product_category3"
-                        android:paddingBottom="10dp" android:paddingTop="2dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:textColor="@color/colorWhite"
-                        android:textStyle="bold" android:background="@drawable/status_cancelled"
-                        android:layout_gravity="center_vertical" android:gravity="center_vertical|center"
-                        android:text="Out Of Stock" android:textSize="@dimen/textButtons">
-
-                    </TextView>
-                </LinearLayout>
-
-
-                <TextView  android:id="@+id/txt_report_product_category3_no"
-                    android:layout_weight="0.5" android:paddingBottom="2dp" android:paddingTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textStyle="bold" android:textColor="@color/blacklabels"
-                    android:layout_gravity="center" android:gravity="top|center" android:text="0" android:textSize="@dimen/productName">
-
-                </TextView>
-
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout android:layout_weight="0.1"
-            android:layout_width="match_parent" android:orientation="horizontal"
-            android:layout_height="match_parent">
-
             <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_product_outofstock"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_orangeborder"
                 android:layout_height="match_parent" android:foreground="?attr/selectableItemBackground">
@@ -124,11 +24,11 @@
                     android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
                     android:layout_height="match_parent">
                     <TextView  android:paddingBottom="10dp" android:paddingTop="2dp"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:textColor="@color/colorWhite"
                         android:textStyle="bold" android:background="@drawable/status_created"
                         android:layout_gravity="center_vertical" android:gravity="center_vertical|center"
-                        android:text="Out Of Stock" android:textSize="@dimen/textButtons">
+                        android:text="Out Of Stock" android:textSize="@dimen/textButtonsSmall">
 
                     </TextView>
                 </LinearLayout>
@@ -159,11 +59,11 @@
                     android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
                     android:layout_height="match_parent">
                     <TextView  android:paddingBottom="10dp" android:paddingTop="2dp"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:textColor="@color/colorWhite"
                         android:textStyle="bold" android:background="@drawable/status_total"
                         android:layout_gravity="center" android:gravity="center" android:text="Total Products"
-                        android:textSize="@dimen/textButtons">
+                        android:textSize="@dimen/textButtonsSmall">
 
                     </TextView>
                 </LinearLayout>
@@ -188,6 +88,106 @@
             android:layout_width="match_parent" android:orientation="horizontal"
             android:layout_height="match_parent">
 
+            <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_product_category1"
+                android:layout_width="match_parent" android:orientation="vertical" android:paddingEnd="5dp"
+                android:background="@drawable/button_blueborder"
+                android:layout_height="match_parent" android:foreground="?attr/selectableItemBackground">
+                <LinearLayout android:layout_weight="0.5"
+                    android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
+                    android:layout_height="match_parent">
+                    <TextView  android:id="@+id/txt_report_product_category1"
+                        android:paddingBottom="10dp" android:paddingTop="2dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:textColor="@color/colorWhite"
+                        android:textStyle="bold" android:background="@drawable/status_inprogress"
+                        android:layout_gravity="center_vertical" android:gravity="center_vertical|center"
+                        android:text="Dairy" android:textSize="@dimen/textButtonsSmall">
+
+                    </TextView>
+                </LinearLayout>
+
+
+                <TextView  android:id="@+id/txt_report_product_category1_no"
+                    android:layout_weight="0.5" android:paddingBottom="2dp" android:paddingTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textStyle="bold" android:textColor="@color/blacklabels"
+                    android:layout_gravity="center" android:gravity="top|center" android:text="0" android:textSize="@dimen/productName">
+
+                </TextView>
+
+
+            </LinearLayout>
+
+            <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_product_category2"
+                android:layout_width="match_parent" android:orientation="vertical"
+                android:background="@drawable/button_greenborder" android:paddingEnd="5dp" android:paddingStart="5dp"
+                android:layout_height="match_parent" android:foreground="?attr/selectableItemBackground">
+                <LinearLayout android:layout_weight="0.5"
+                    android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
+                    android:layout_height="match_parent">
+                    <TextView  android:id="@+id/txt_report_product_category2"
+                        android:paddingBottom="10dp" android:paddingTop="2dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:textColor="@color/colorWhite"
+                        android:textStyle="bold" android:background="@drawable/status_complete"
+                        android:layout_gravity="center" android:gravity="center"
+                        android:text="Grocery" android:textSize="@dimen/textButtonsSmall">
+
+                    </TextView>
+                </LinearLayout>
+
+
+                <TextView  android:id="@+id/txt_report_product_category2_no"
+                    android:layout_weight="0.5" android:paddingBottom="2dp" android:paddingTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textStyle="bold" android:textColor="@color/blacklabels"
+                    android:layout_gravity="center" android:gravity="top|center" android:text="0" android:textSize="@dimen/productName">
+
+                </TextView>
+
+
+            </LinearLayout>
+
+            <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_product_category3"
+                android:layout_width="match_parent" android:orientation="vertical"
+                android:background="@drawable/button_redborder"
+                android:layout_height="match_parent" android:foreground="?attr/selectableItemBackground">
+                <LinearLayout android:layout_weight="0.5"
+                    android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
+                    android:layout_height="match_parent">
+                    <TextView  android:id="@+id/txt_report_product_category3"
+                        android:paddingBottom="10dp" android:paddingTop="2dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:textColor="@color/colorWhite"
+                        android:textStyle="bold" android:background="@drawable/status_cancelled"
+                        android:layout_gravity="center_vertical" android:gravity="center_vertical|center"
+                        android:text="Home_Kitchen" android:textSize="@dimen/textButtonsSmall">
+
+                    </TextView>
+                </LinearLayout>
+
+
+                <TextView  android:id="@+id/txt_report_product_category3_no"
+                    android:layout_weight="0.5" android:paddingBottom="2dp" android:paddingTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textStyle="bold" android:textColor="@color/blacklabels"
+                    android:layout_gravity="center" android:gravity="top|center" android:text="0" android:textSize="@dimen/productName">
+
+                </TextView>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout android:layout_weight="0.1"
+            android:layout_width="match_parent" android:orientation="horizontal"
+            android:layout_height="match_parent">
+
             <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_product_category4"
                 android:layout_width="match_parent" android:orientation="vertical" android:paddingEnd="5dp"
                 android:background="@drawable/button_blueborder"
@@ -197,11 +197,11 @@
                     android:layout_height="match_parent">
                     <TextView  android:id="@+id/txt_report_product_category4"
                         android:paddingBottom="10dp" android:paddingTop="2dp"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:textColor="@color/colorWhite"
                         android:textStyle="bold" android:background="@drawable/status_inprogress"
                         android:layout_gravity="center_vertical" android:gravity="center_vertical|center"
-                        android:text="Out Of Stock" android:textSize="@dimen/textButtons">
+                        android:text="Skin Care" android:textSize="@dimen/textButtonsSmall">
 
                     </TextView>
                 </LinearLayout>
@@ -228,11 +228,11 @@
                     android:layout_height="match_parent">
                     <TextView  android:id="@+id/txt_report_product_category5"
                         android:paddingBottom="10dp" android:paddingTop="2dp"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:textColor="@color/colorWhite"
                         android:textStyle="bold" android:background="@drawable/status_complete"
                         android:layout_gravity="center_vertical" android:gravity="center_vertical|center"
-                        android:text="Out Of Stock" android:textSize="@dimen/textButtons">
+                        android:text="Personal Care" android:textSize="@dimen/textButtonsSmall">
 
                     </TextView>
                 </LinearLayout>
@@ -259,11 +259,11 @@
                     android:layout_height="match_parent">
                     <TextView  android:id="@+id/txt_report_product_category6"
                         android:paddingBottom="10dp" android:paddingTop="2dp"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:textColor="@color/colorWhite"
                         android:textStyle="bold" android:background="@drawable/status_cancelled"
                         android:layout_gravity="center_vertical" android:gravity="center_vertical|center"
-                        android:text="Out Of Stock" android:textSize="@dimen/textButtons">
+                        android:text="Packaged Foods" android:textSize="@dimen/textButtonsSmall">
 
                     </TextView>
                 </LinearLayout>
