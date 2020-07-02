@@ -292,6 +292,7 @@ public class shopownerproductdetails extends AppCompatActivity {
         butsave.setText("Edit");
 
 
+
         butsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -388,6 +389,24 @@ public class shopownerproductdetails extends AppCompatActivity {
                 /**/
             }
         });
+
+        if  (action.equals("add")){
+            butsave.setText("Save Changes");
+
+            edtName.setEnabled(true);
+            edtName2.setEnabled(true);
+            edtDisplayname.setEnabled(true);
+            edtDiscount.setEnabled(true);
+            edtMaxStock.setEnabled(true);
+            edtMinStock.setEnabled(true);
+            edtMRP.setEnabled(true);
+            edtHSN.setEnabled(true);
+            edtGST.setEnabled(true);
+            edtQTY.setEnabled(true);
+            spnType.setEnabled(true);
+            spncategory.setEnabled(true);
+            spnsubcategory.setEnabled(true);
+        }
 
         if (action.equals("edit"))
         {
