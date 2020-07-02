@@ -23,9 +23,9 @@
         <Button android:id="@+id/but_shop_report"
             android:layout_width="match_parent" android:layout_weight="0.5" android:background="@drawable/roundbutton_blue"
             android:layout_height="match_parent" android:text="Reports"></Button>
-        <Button android:id="@+id/but_shop_temp" android:visibility="invisible"
+        <Button android:id="@+id/but_shop_user" android:visibility="visible"
             android:layout_width="match_parent" android:layout_weight="0.5" android:background="@drawable/roundbutton_green"
-            android:layout_height="match_parent" android:text="Temp"></Button>
+            android:layout_height="match_parent" android:text="Users"></Button>
     </LinearLayout>
 
 

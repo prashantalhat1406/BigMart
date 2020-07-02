@@ -96,5 +96,7 @@
     <string name="title_activity_reportproductstatus">Product Report</string>
     <string name="title_activity_reportproductwise">Product Report</string>
     <string name="title_activity_reportuserwise">User Report</string>
+    <string name="title_activity_shopowneruserdisplay">Users</string>
+    <string name="title_activity_shopowneruserdetails">Order History</string>
 
 </resources>

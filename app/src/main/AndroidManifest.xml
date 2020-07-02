@@ -10,9 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".shopowneruserdetails"
+            android:label="@string/title_activity_shopowneruserdetails"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".shopowneruserdisplay"
+            android:label="@string/title_activity_shopowneruserdisplay"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".reportuserwise"
             android:label="@string/title_activity_reportuserwise"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".reportproductwise"
             android:label="@string/title_activity_reportproductwise"

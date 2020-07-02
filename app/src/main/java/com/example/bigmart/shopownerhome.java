@@ -88,6 +88,15 @@ public class shopownerhome extends AppCompatActivity {
             }
         });
 
+        Button users = findViewById(R.id.but_shop_user);
+        users.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent userIntent = new Intent(shopownerhome.this, shopowneruserdisplay.class);
+                startActivity(userIntent);
+            }
+        });
+
 
     }
     @Override
