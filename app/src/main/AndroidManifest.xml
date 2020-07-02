@@ -10,14 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".reportuserwise"
+            android:label="@string/title_activity_reportuserwise"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".reportproductwise"
             android:label="@string/title_activity_reportproductwise"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".reportproductstatus"
             android:label="@string/title_activity_reportproductstatus"
-            android:windowSoftInputMode="adjustPan"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".reportorderstatus"
             android:label="@string/title_activity_reportorderstatus"

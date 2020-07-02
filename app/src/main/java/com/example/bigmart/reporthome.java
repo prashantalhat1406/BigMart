@@ -45,6 +45,15 @@ public class reporthome extends AppCompatActivity {
             }
         });
 
+        TextView userwise = findViewById(R.id.txt_report_userwise);
+        userwise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent shopIntent = new Intent(reporthome.this, reportuserwise.class);
+                startActivity(shopIntent);
+            }
+        });
+
 
     }
 

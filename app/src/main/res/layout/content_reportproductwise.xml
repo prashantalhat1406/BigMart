@@ -163,7 +163,7 @@
                         android:layout_height="wrap_content" android:textColor="@color/colorWhite"
                         android:textStyle="bold" android:background="@drawable/status_cancelled"
                         android:layout_gravity="center_vertical" android:gravity="center_vertical|center"
-                        android:text="Home_Kitchen" android:textSize="@dimen/textButtonsSmall">
+                        android:text="Home &amp; Kitchen" android:textSize="@dimen/textButtonsSmall">
 
                     </TextView>
                 </LinearLayout>
@@ -263,7 +263,7 @@
                         android:layout_height="wrap_content" android:textColor="@color/colorWhite"
                         android:textStyle="bold" android:background="@drawable/status_cancelled"
                         android:layout_gravity="center_vertical" android:gravity="center_vertical|center"
-                        android:text="Packaged Foods" android:textSize="@dimen/textButtonsSmall">
+                        android:text="Pack Foods" android:textSize="@dimen/textButtonsSmall">
 
                     </TextView>
                 </LinearLayout>
