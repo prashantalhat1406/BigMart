@@ -29,7 +29,7 @@
 
             </LinearLayout>
 
-            <LinearLayout android:layout_weight="0.1"
+            <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_userwise"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_blueborder"
                 android:layout_height="match_parent"  android:foreground="?attr/selectableItemBackground">
                 <LinearLayout android:layout_weight="0.5"

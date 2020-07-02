@@ -1,5 +1,6 @@
 package com.example.bigmart;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -15,9 +16,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +30,14 @@ public class reportuserwise extends AppCompatActivity {
 
     private FirebaseDatabase database;
     List<User> users;
+    TextView total;
+
+    public void showErrorMessage(String message){
+        Toast error = Toast.makeText(reportuserwise.this, message,Toast.LENGTH_SHORT);
+        error.setGravity(Gravity.TOP, 0, 0);
+        error.show();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +50,7 @@ public class reportuserwise extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
+        total = findViewById(R.id.txt_report_userwise_total);
 
         database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
         DatabaseReference productReference = database.getReference("Users/");
@@ -52,11 +65,27 @@ public class reportuserwise extends AppCompatActivity {
                     users.add(user);
                 }
 
-                TextView total = findViewById(R.id.txt_report_userwise_total);
+
                 total.setText("" + users.size());
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {}
+        });
+
+        LinearLayout llcreated = findViewById(R.id.layout_report_userwise);
+        llcreated.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Integer.parseInt( total.getText().toString()) > 0)
+                {
+                    Intent orderstatusIntent = new Intent(reportuserwise.this, shopowneruserdisplay.class);
+                    //Bundle extras = new Bundle();
+                    //orderstatusIntent.putExtras(extras);
+                    startActivity(orderstatusIntent);
+                }
+                else
+                    showErrorMessage("No Users to show !");
+            }
         });
 
 
