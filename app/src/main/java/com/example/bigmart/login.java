@@ -42,6 +42,7 @@ public class login extends AppCompatActivity {
     EditText edtMobile,edtPassword;
     Button butLogin ;
     private FirebaseAuth mAuth;
+    private User user;
 
 
     public void showErrorMessage(String message){
@@ -105,7 +106,11 @@ public class login extends AppCompatActivity {
 
         for (User u : usersDB) {
             if (u.Mobile.equals(Long.parseLong(mobileNumber)))
-            {flag = true;break;}
+            {
+                flag = true;
+                user = u;
+                break;
+            }
         }
         return flag;
     }
@@ -131,7 +136,8 @@ public class login extends AppCompatActivity {
                 long userID = Long.parseLong(edtMobile.getText().toString());
                 if (pin == Integer.parseInt(edtPassword.getText().toString()))
                 {
-                    if (userID == 9999999999.0) {
+                    //if (userID == 9999999999.0) {
+                    if (user.Access.equals("Admin")) {
                         Intent shopIntent = new Intent(login.this, shopownerhome.class);
                         startActivity(shopIntent);
 

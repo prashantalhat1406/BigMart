@@ -10,6 +10,7 @@ public class User {
     String Address2;
     Integer securityQ;
     String Answer;
+    String Access;
 
     public User() {
     }
@@ -29,6 +30,14 @@ public class User {
         Name = name;
         Password = password;
         Address1 = address1;
+    }
+
+    public String getAccess() {
+        return Access;
+    }
+
+    public void setAccess(String access) {
+        Access = access;
     }
 
     public Integer getSecurityQ() {
