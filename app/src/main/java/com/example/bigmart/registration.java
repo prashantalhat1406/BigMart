@@ -235,6 +235,7 @@ public class registration extends AppCompatActivity {
                     user.setEmail("");
                     user.setSecurityQ(spnSecurityQ.getSelectedItemPosition());
                     user.setAnswer(edtSecurityAns.getText().toString());
+                    user.setAccess("Normal");
 
                     DatabaseReference databaseReference = database.getReference("Users");
                     databaseReference.child("" + user.Mobile).setValue(user);
