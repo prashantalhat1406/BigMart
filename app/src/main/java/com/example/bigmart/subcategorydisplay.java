@@ -245,6 +245,7 @@ public class subcategorydisplay extends AppCompatActivity {
                 alertLogout.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
             }
         });
+        alertLogout.setTitle("LOGOUT");
         alertLogout.show();
     }
 

@@ -47,6 +47,7 @@ public class shopownerhome extends AppCompatActivity {
             }
         });
 
+        alertLogout.setTitle("LOGOUT");
         alertLogout.show();
     }
 

@@ -346,7 +346,10 @@ public class home extends AppCompatActivity {
             }
         });
 
+        alertLogout.setTitle("LOGOUT");
+
         alertLogout.show();
+
     }
 
     @Override
