@@ -226,25 +226,29 @@ public class registration extends AppCompatActivity {
                         && isSecurityQuestionSelected()
                 )
                 {
-                    User user = new User();
-                    user.setName(edtName.getText().toString());
-                    user.setMobile(Long.parseLong(edtMobile.getText().toString()));
-                    user.setPassword(Integer.parseInt((edtPassword.getText().toString())));
-                    user.setAddress1(edtAddress1.getText().toString());
-                    user.setAddress2(edtAddress2.getText().toString());
-                    user.setEmail("");
-                    user.setSecurityQ(spnSecurityQ.getSelectedItemPosition());
-                    user.setAnswer(edtSecurityAns.getText().toString());
-                    user.setAccess("Normal");
+                    try {
+                        User user = new User();
+                        user.setName(CryptUtil.encrypt( edtName.getText().toString()));
+                        user.setMobile(Long.parseLong(edtMobile.getText().toString()));
+                        user.setPassword(Integer.parseInt((edtPassword.getText().toString())));
+                        user.setAddress1(CryptUtil.encrypt( edtAddress1.getText().toString()));
+                        user.setAddress2(CryptUtil.encrypt(edtAddress2.getText().toString()));
+                        user.setEmail("");
+                        user.setSecurityQ( spnSecurityQ.getSelectedItemPosition());
+                        user.setAnswer(CryptUtil.encrypt(edtSecurityAns.getText().toString()));
+                        user.setAccess("Normal");
 
-                    DatabaseReference databaseReference = database.getReference("Users");
-                    databaseReference.child("" + user.Mobile).setValue(user);
-                    Intent homeIntent = new Intent(registration.this, home.class);
-                    Bundle extras = new Bundle();
-                    extras.putLong("userID", user.Mobile);
-                    homeIntent.putExtras(extras);
-                    startActivity(homeIntent);
-                    finish();
+                        DatabaseReference databaseReference = database.getReference("Users");
+                        databaseReference.child("" + user.Mobile).setValue(user);
+                        Intent homeIntent = new Intent(registration.this, home.class);
+                        Bundle extras = new Bundle();
+                        extras.putLong("userID", user.Mobile);
+                        homeIntent.putExtras(extras);
+                        startActivity(homeIntent);
+                        finish();
+                    }catch (Exception e){}
+
+
                 }
             }
         });

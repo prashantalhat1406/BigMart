@@ -57,8 +57,11 @@ public class forgotpassword extends AppCompatActivity {
     public boolean isSecurityAnswerCorrect(String secAnswer){
         boolean flag = false;
 
-        if (user.Answer.toUpperCase().equals(secAnswer.toUpperCase()))
-            flag = true;
+        try {
+            if (CryptUtil.decrypt(user.Answer.toUpperCase()).equals(secAnswer.toUpperCase()))
+                flag = true;
+
+        }catch (Exception e) {}
 
         return flag;
     }

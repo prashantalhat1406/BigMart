@@ -150,15 +150,17 @@ public class customerprofile extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                user = dataSnapshot.getValue(User.class);
-                name.setText("" + user.Name);
-                mobile.setText("" + user.Mobile);
-                address1.setText("" + user.Address1);
-                address2.setText("" + user.Address2);
-                email.setText("" + user.Email);
-                password = user.Password;
-                save.setEnabled(false);
-                save.setBackground(getDrawable(R.drawable.status_complete_disable));
+                try {
+                    user = dataSnapshot.getValue(User.class);
+                    name.setText("" + CryptUtil.decrypt(user.Name));
+                    mobile.setText("" + user.Mobile);
+                    address1.setText("" + CryptUtil.decrypt(user.Address1));
+                    address2.setText("" + CryptUtil.decrypt(user.Address2));
+                    email.setText("" + CryptUtil.decrypt(user.Email));
+                    password = user.Password;
+                    save.setEnabled(false);
+                    save.setBackground(getDrawable(R.drawable.status_complete_disable));
+                }catch (Exception e) {}
             }
 
             @Override
@@ -175,20 +177,22 @@ public class customerprofile extends AppCompatActivity {
             public void onClick(View v) {
                 if (isAddress1Empty()  && isAddress2Empty()  && isNameEmpty())
                 {
-                    DatabaseReference databaseReference = database.getReference("Users/" + userID);
-                    User user = new User();
-                    user.setName("" + name.getText().toString());
-                    user.setMobile(Long.parseLong(mobile.getText().toString()));
-                    user.setAddress1("" + address1.getText().toString());
-                    user.setAddress2("" + address2.getText().toString());
-                    user.setEmail("" + email.getText().toString());
-                    user.setPassword(password);
-                    databaseReference.child("name").setValue(user.Name);
-                    databaseReference.child("address1").setValue(user.Address1);
-                    databaseReference.child("address2").setValue(user.Address2);
-                    databaseReference.child("email").setValue(user.Email);
-                    databaseReference.child("password").setValue(user.Password);
-                    databaseReference.child("mobile").setValue(user.Mobile);
+                    try {
+                        DatabaseReference databaseReference = database.getReference("Users/" + userID);
+                        User user = new User();
+                        user.setName("" + CryptUtil.encrypt(name.getText().toString()));
+                        user.setMobile(Long.parseLong(mobile.getText().toString()));
+                        user.setAddress1("" + CryptUtil.encrypt(address1.getText().toString()));
+                        user.setAddress2("" + CryptUtil.encrypt(address2.getText().toString()));
+                        user.setEmail("" + CryptUtil.encrypt(email.getText().toString()));
+                        user.setPassword(password);
+                        databaseReference.child("name").setValue(user.Name);
+                        databaseReference.child("address1").setValue(user.Address1);
+                        databaseReference.child("address2").setValue(user.Address2);
+                        databaseReference.child("email").setValue(user.Email);
+                        databaseReference.child("password").setValue(user.Password);
+                        databaseReference.child("mobile").setValue(user.Mobile);
+                    }catch (Exception e) {}
 
                     Toast error = Toast.makeText(customerprofile.this, "Changes Saved", Toast.LENGTH_SHORT);
                     error.setGravity(Gravity.CENTER, 0, 0);
