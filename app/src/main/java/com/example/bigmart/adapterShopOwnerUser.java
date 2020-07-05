@@ -44,12 +44,14 @@ public class adapterShopOwnerUser extends ArrayAdapter<User> {
         else
             convertView.setBackgroundColor(context.getColor(R.color.lighgrey));
 
-        TextView name = (TextView)convertView.findViewById(R.id.txt_shopowner_userName);
-        name.setText(""+user.getName());
-        TextView mobile = (TextView)convertView.findViewById(R.id.txt_shopowner_userMobile);
-        mobile.setText(" "+user.getMobile());
-        TextView userID = (TextView)convertView.findViewById(R.id.txt_shopowner_userID);
-        userID.setText(""+user.getID());
+        try {
+            TextView name = (TextView) convertView.findViewById(R.id.txt_shopowner_userName);
+            name.setText("" + CryptUtil.decrypt(user.getName()));
+            TextView mobile = (TextView) convertView.findViewById(R.id.txt_shopowner_userMobile);
+            mobile.setText(" " + user.getMobile());
+            TextView userID = (TextView) convertView.findViewById(R.id.txt_shopowner_userID);
+            userID.setText("" + user.getID());
+        }catch (Exception e){}
 
         return convertView;
     }
