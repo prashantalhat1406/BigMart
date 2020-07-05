@@ -8,24 +8,24 @@
 
 
     <LinearLayout android:orientation="horizontal"
-        android:layout_width="match_parent" android:layout_weight="0.5"
+        android:layout_width="match_parent" android:layout_weight="0.5" android:gravity="bottom"
         android:layout_height="match_parent">
         <Button android:id="@+id/but_shop_order"
-            android:layout_width="match_parent" android:layout_weight="0.5" android:background="@drawable/roundbutton_yellow"
-            android:layout_height="match_parent" android:text="Orders"></Button>
+            android:layout_width="200dp" android:layout_weight="0.5" android:background="@drawable/orangecirclebutton"
+            android:layout_height="200dp" android:text="Orders" android:textSize="@dimen/productName" android:foreground="?attr/selectableItemBackground"></Button>
         <Button android:id="@+id/but_shop_products"
-            android:layout_width="match_parent" android:layout_weight="0.5" android:background="@drawable/roundbutton_orange"
-            android:layout_height="match_parent" android:text="Products"></Button>
+            android:layout_width="200dp" android:layout_weight="0.5" android:background="@drawable/bluecirclebutton"
+            android:layout_height="200dp" android:text="Products" android:textSize="@dimen/productName" android:foreground="?attr/selectableItemBackground"></Button>
     </LinearLayout>
     <LinearLayout android:orientation="horizontal"
-        android:layout_width="match_parent" android:layout_weight="0.5"
+        android:layout_width="match_parent" android:layout_weight="0.5" android:gravity="top"
         android:layout_height="match_parent">
         <Button android:id="@+id/but_shop_report"
-            android:layout_width="match_parent" android:layout_weight="0.5" android:background="@drawable/roundbutton_blue"
-            android:layout_height="match_parent" android:text="Reports"></Button>
+            android:layout_width="200dp" android:layout_weight="0.5" android:background="@drawable/greencirclebutton"
+            android:layout_height="200dp" android:text="Reports" android:textSize="@dimen/productName" android:foreground="?attr/selectableItemBackground"></Button>
         <Button android:id="@+id/but_shop_user" android:visibility="visible"
-            android:layout_width="match_parent" android:layout_weight="0.5" android:background="@drawable/roundbutton_green"
-            android:layout_height="match_parent" android:text="Users"></Button>
+            android:layout_width="200dp" android:layout_weight="0.5" android:background="@drawable/redcirclebutton"
+            android:layout_height="200dp" android:text="Users" android:textSize="@dimen/productName" android:foreground="?attr/selectableItemBackground"></Button>
     </LinearLayout>
 
 
