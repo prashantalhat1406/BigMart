@@ -434,10 +434,12 @@ public class shopownerorderdetails extends AppCompatActivity {
                     User u = postSnapshot.getValue(User.class);
                     if(u.Mobile.equals( orderDetail.userID))
                     {
-                        name.setText("" + u.Name);
-                        mobile.setText("" + u.Mobile);
-                        address.setText("" + u.Address1 + " , " + u.Address2);
-                        break;
+                        try {
+                            name.setText("" + CryptUtil.decrypt(u.Name));
+                            mobile.setText("" + u.Mobile);
+                            address.setText("" + CryptUtil.decrypt(u.Address1) + " , " + CryptUtil.decrypt(u.Address2));
+                            break;
+                        }catch (Exception e) {}
                     }
                 }
             }

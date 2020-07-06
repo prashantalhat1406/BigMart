@@ -86,6 +86,39 @@ public class customercartdisplay extends AppCompatActivity {
         //super.onBackPressed();
     }
 
+    public void showOrderConfirmDialog(){
+
+        AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(customercartdisplay.this);
+        logoutAlertBuilder.setMessage("Have you added all items ?");
+        logoutAlertBuilder.setCancelable(false);
+        logoutAlertBuilder.setPositiveButton(
+                "YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        flag = true;
+                        Intent intent = new Intent(customercartdisplay.this,customerdeliverypayment.class);
+                        startActivityForResult(intent, 100);
+                    }
+                });
+        logoutAlertBuilder.setNegativeButton(
+                "NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alertLogout = logoutAlertBuilder.create();
+        alertLogout.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                alertLogout.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
+                alertLogout.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
+            }
+        });
+        alertLogout.setTitle("CONFIRM");
+        alertLogout.show();
+    }
+
     public BroadcastReceiver positionMes = new BroadcastReceiver()
     {
         @Override
@@ -127,9 +160,7 @@ public class customercartdisplay extends AppCompatActivity {
         butConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                flag = true;
-                Intent intent = new Intent(customercartdisplay.this,customerdeliverypayment.class);
-                startActivityForResult(intent, 100);
+                showOrderConfirmDialog();
             }
         });
 
