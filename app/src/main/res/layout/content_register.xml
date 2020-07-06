@@ -128,7 +128,7 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
                 android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="text"
                 android:gravity="left|center" android:layout_gravity="center" android:tag="Address 2"
                 android:maxLength="75"
-                android:nextFocusDown="@id/but_register_save" android:imeOptions="actionNext"
+                android:nextFocusDown="@id/spn_register_security" android:imeOptions="actionNext"
                 android:layout_height="match_parent" android:hint="Address 2"/>
         </LinearLayout>
     </LinearLayout>
@@ -147,7 +147,7 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
 
             <Spinner android:layout_weight="0.5" android:id="@+id/spn_register_security"
-                android:layout_width="match_parent"
+                android:layout_width="match_parent" android:nextFocusDown="@id/edt_register_secAnswer"
                 android:layout_height="match_parent"></Spinner>
             <EditText android:layout_weight="0.5" android:id="@+id/edt_register_secAnswer"
                 android:background="@drawable/profiletextbox"
