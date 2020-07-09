@@ -56,7 +56,7 @@ public class zretireadapterProductCart extends ArrayAdapter<Product> {
         final Button atc = (Button) convertView.findViewById(R.id.but_addToCart);
         atc.setTag(position);
 
-        Button qtyEdit = (Button) convertView.findViewById(R.id.but_item_qtyedit);
+
         //final LinearLayout subQty = (LinearLayout) convertView.findViewById(R.id.layout_subQty);
         final LinearLayout incrementor = (LinearLayout) convertView.findViewById(R.id.layout_incrementor);
 
@@ -73,20 +73,7 @@ public class zretireadapterProductCart extends ArrayAdapter<Product> {
         });
 
         //type mean Cart=2, Product=1, Order=3
-        switch (type){
-            case 1:
-                qtyEdit.setVisibility(View.INVISIBLE);
-                //subQty.setVisibility(View.GONE);
-                remove.setVisibility(View.INVISIBLE);
-                break;
-            case 2:
-                qtyEdit.setVisibility(View.INVISIBLE);
-                //subQty.setVisibility(View.GONE);
-                remove.setVisibility(View.VISIBLE);
-                incrementor.setVisibility(View.VISIBLE);
-                break;
-
-        }
+        
 
         product = products.get(position);
 

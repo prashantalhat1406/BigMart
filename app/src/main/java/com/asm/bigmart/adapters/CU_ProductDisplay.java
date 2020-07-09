@@ -43,7 +43,7 @@ public class CU_ProductDisplay extends ArrayAdapter<Product> {
     Product product;
     Integer type;
     FirebaseDatabase database;
-    private StorageReference mStorageRef;
+
     //Integer productCount =0;
 
     public CU_ProductDisplay(@NonNull Context context, int resource, @NonNull List<Product> objects, Long userID, Integer type) {
@@ -52,7 +52,7 @@ public class CU_ProductDisplay extends ArrayAdapter<Product> {
         this.context= context;
         this.userID = userID;
         this.type = type;
-        mStorageRef = FirebaseStorage.getInstance().getReference();
+
     }
 
     private static class ViewHolder{
@@ -131,8 +131,6 @@ public class CU_ProductDisplay extends ArrayAdapter<Product> {
 
 
             String imageName = product.getName().replace(" ","_") +"_"+ product.getName2().toLowerCase() + ".png";
-            mStorageRef.child("Products").child(imageName);
-
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageReference = storage.getReference().child("Products").child(imageName);
 

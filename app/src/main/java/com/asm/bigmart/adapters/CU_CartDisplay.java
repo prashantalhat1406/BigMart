@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
@@ -22,8 +24,12 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.asm.bigmart.Product;
 import com.asm.bigmart.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -106,10 +112,29 @@ public class CU_CartDisplay extends ArrayAdapter<Product> {
         int id_ = context.getResources().getIdentifier(product.getID().toLowerCase(), "drawable", context.getPackageName());
         int noimage = context.getResources().getIdentifier("imagenotavailable", "drawable", context.getPackageName());
 
-        if (id_ == 0)
+        /*if (id_ == 0)
             viewHolder.productImage.setImageResource(noimage);
         else
-            viewHolder.productImage.setImageResource(id_);
+            viewHolder.productImage.setImageResource(id_);*/
+
+        String imageName = product.getName().replace(" ","_") +"_"+ product.getName2().toLowerCase() + ".png";
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageReference = storage.getReference().child("Products").child(imageName);
+
+        storageReference.getBytes(1024 * 512).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                viewHolder.productImage.setImageBitmap(bitmap);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                int noimage = context.getResources().getIdentifier("imagenotavailable", "drawable", context.getPackageName());
+                viewHolder.productImage.setImageResource(noimage);
+            }
+        });
+
 
         int outofstock = context.getResources().getIdentifier("outofstock", "drawable", context.getPackageName());
         if (product.getQty() < product.getMinStock())
@@ -186,6 +211,8 @@ public class CU_CartDisplay extends ArrayAdapter<Product> {
                     alert11.show();
 
                 }
+                viewHolder.bmaamount.setText("ASM " + viewHolder.bmaamount.getText());
+                viewHolder.savedamount.setText("Save " + viewHolder.savedamount.getText());
 
             }
         });
@@ -218,6 +245,8 @@ public class CU_CartDisplay extends ArrayAdapter<Product> {
                     viewHolder.savedamount.setText(context.getResources().getString(R.string.Rupee) + " " + formater.format((product.getDiscount() * product.getQtyNos())));
                     viewHolder.bmaamount.setText(context.getResources().getString(R.string.Rupee) + " " + formater.format(((product.getMRP() - product.getDiscount() ) * product.getQtyNos())));
                 }
+                viewHolder.bmaamount.setText("ASM " + viewHolder.bmaamount.getText());
+                viewHolder.savedamount.setText("Save " + viewHolder.savedamount.getText());
             }
         });
 
@@ -244,8 +273,14 @@ public class CU_CartDisplay extends ArrayAdapter<Product> {
                 viewHolder.incrementor.setVisibility(View.VISIBLE);
                 viewHolder.savedamount.setText(context.getResources().getString(R.string.Rupee) + " " + formater.format((product.getDiscount() * product.getQtyNos())));
                 viewHolder.bmaamount.setText(context.getResources().getString(R.string.Rupee) + " " + formater.format(((product.getMRP() - product.getDiscount() ))));
+                viewHolder.bmaamount.setText("ASM " + viewHolder.bmaamount.getText());
+                viewHolder.savedamount.setText("Save " + viewHolder.savedamount.getText());
             }
         });
+
+        viewHolder.bmaamount.setText("ASM " + viewHolder.bmaamount.getText());
+        viewHolder.savedamount.setText("Save " + viewHolder.savedamount.getText());
+        viewHolder.mrp.setText("MRP " + viewHolder.mrp.getText());
 
         return convertView;
     }

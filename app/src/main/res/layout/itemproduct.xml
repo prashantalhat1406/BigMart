@@ -48,9 +48,6 @@
                         <LinearLayout
                             android:layout_width="match_parent" android:layout_weight="0.1"
                             android:layout_height="match_parent">
-                            <!--<TextView android:layout_gravity="center" android:gravity="right|center" android:paddingRight="10dp"
-                                android:layout_width="match_parent" android:layout_weight="0.1"
-                                android:layout_height="match_parent" android:text="MRP"></TextView> -->
                             <TextView android:id="@+id/txt_product_product_MRP" android:layout_gravity="center"
                                 android:gravity="right|center" android:paddingEnd="15dp"
                                 android:layout_width="match_parent" android:layout_weight="0.1"
@@ -60,9 +57,6 @@
                         <LinearLayout
                             android:layout_width="match_parent" android:layout_weight="0.1"
                             android:layout_height="match_parent">
-                            <!--<TextView android:layout_gravity="center" android:gravity="right|center" android:paddingRight="10dp"
-                                android:layout_width="match_parent" android:layout_weight="0.1"
-                                android:layout_height="match_parent" android:text="ASM"></TextView> -->
                             <TextView android:id="@+id/txt_product_product_BMA" android:layout_gravity="center"
                                 android:gravity="right|center" android:paddingEnd="15dp"
                                 android:layout_width="match_parent" android:layout_weight="0.1" style="@style/BMAAmount"
@@ -72,9 +66,6 @@
                         <LinearLayout
                             android:layout_width="match_parent" android:layout_weight="0.1"
                             android:layout_height="match_parent">
-                            <!--<TextView android:layout_gravity="center" android:gravity="right|center" android:paddingRight="10dp"
-                                android:layout_width="match_parent" android:layout_weight="0.1"
-                                android:layout_height="match_parent" android:text="Save"></TextView>-->
                             <TextView android:id="@+id/txt_product_product_Save" android:layout_gravity="center"
                                 android:gravity="right|center" android:paddingEnd="15dp"
                                 android:layout_width="match_parent" android:layout_weight="0.1" style="@style/saveAmount"
