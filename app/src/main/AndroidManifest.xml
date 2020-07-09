@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.bigmart">
+    package="com.asm.bigmart">
 
     <application
         android:allowBackup="true"
@@ -10,70 +10,70 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".shopowneruserdetails"
+            android:name="com.asm.bigmart.shopowneruserdetails"
             android:label="@string/title_activity_shopowneruserdetails"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".shopowneruserdisplay"
+            android:name="com.asm.bigmart.shopowneruserdisplay"
             android:label="@string/title_activity_shopowneruserdisplay"
             android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".reportuserwise"
+            android:name="com.asm.bigmart.reportuserwise"
             android:label="@string/title_activity_reportuserwise"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".reportproductwise"
+            android:name="com.asm.bigmart.reportproductwise"
             android:label="@string/title_activity_reportproductwise"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".reportproductstatus"
+            android:name="com.asm.bigmart.reportproductstatus"
             android:label="@string/title_activity_reportproductstatus"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".reportorderstatus"
+            android:name="com.asm.bigmart.reportorderstatus"
             android:label="@string/title_activity_reportorderstatus"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".reportorderwise"
+            android:name="com.asm.bigmart.reportorderwise"
             android:label="@string/title_activity_reportorderwise"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".reporthome"
+            android:name="com.asm.bigmart.reporthome"
             android:label="@string/title_activity_reprothome"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".forgotpassword"
+            android:name="com.asm.bigmart.forgotpassword"
             android:label="@string/title_activity_forgotpassword"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".customerdeliverypayment"
+            android:name="com.asm.bigmart.customerdeliverypayment"
             android:label="@string/title_activity_customerdeliverypayment"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".shopownerproductdetails"
+            android:name="com.asm.bigmart.shopownerproductdetails"
             android:label="@string/title_activity_shopownerproductddetails"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".shopownerproductdisplay"
+            android:name="com.asm.bigmart.shopownerproductdisplay"
             android:label="@string/title_activity_shopownerproductdisplay"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".customerprofile"
+            android:name="com.asm.bigmart.customerprofile"
             android:label="@string/title_activity_customerprofile"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".customerorderdetails"
+            android:name="com.asm.bigmart.customerorderdetails"
             android:label="@string/title_activity_customerorderdetails"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -83,55 +83,55 @@
             android:label="@string/title_activity_login_new" />
         -->
         <activity
-            android:name=".shopownerorderdetails"
+            android:name="com.asm.bigmart.shopownerorderdetails"
             android:label="@string/title_activity_orderdetaildisplay"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".shopownerordershistory"
+            android:name="com.asm.bigmart.shopownerordershistory"
             android:label="@string/title_activity_shopownerordershistory"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".shopownerhome"
+            android:name="com.asm.bigmart.shopownerhome"
             android:label="@string/title_activity_home"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".customerorderhistory"
+            android:name="com.asm.bigmart.customerorderhistory"
             android:label="@string/title_activity_orderdisplay"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".customercartdisplay"
+            android:name="com.asm.bigmart.customercartdisplay"
             android:label="@string/title_activity_cartdisplay"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".customerproductdisplay"
+            android:name="com.asm.bigmart.customerproductdisplay"
             android:label="@string/title_activity_productdisplay"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".subcategorydisplay"
+            android:name="com.asm.bigmart.subcategorydisplay"
             android:label="@string/title_activity_home"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".home"
+            android:name="com.asm.bigmart.home"
             android:label="@string/title_activity_home"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".registration"
+            android:name="com.asm.bigmart.registration"
             android:label="@string/title_activity_login_register"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".login"
+            android:name="com.asm.bigmart.login"
             android:label="@string/title_activity_home"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
