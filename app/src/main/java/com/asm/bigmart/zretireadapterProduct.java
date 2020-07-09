@@ -26,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class adapterProduct extends ArrayAdapter<Product> {
+public class zretireadapterProduct extends ArrayAdapter<Product> {
     List<Product> products;
     Context context;
     Long userID;
@@ -35,7 +35,7 @@ public class adapterProduct extends ArrayAdapter<Product> {
     FirebaseDatabase database;
     Integer productCount =0;
 
-    public adapterProduct(@NonNull Context context, int resource, @NonNull List<Product> objects, Long userID, Integer type) {
+    public zretireadapterProduct(@NonNull Context context, int resource, @NonNull List<Product> objects, Long userID, Integer type) {
         super(context, resource, objects);
         products = objects;
         this.context= context;

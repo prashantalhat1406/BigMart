@@ -100,4 +100,7 @@
     <string name="title_activity_shopowneruserdisplay">Users</string>
     <string name="title_activity_shopowneruserdetails">Order History</string>
 
+    <string name="statusCancelled">Cancelled</string>
+    <string name="statusCreated">Created</string>
+
 </resources>

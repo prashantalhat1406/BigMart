@@ -14,20 +14,22 @@ import androidx.annotation.Nullable;
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class adapterOrderDetails extends ArrayAdapter<Product> {
+public class zretireadapterShopownerOrderDetails extends ArrayAdapter<Product> {
 
     List<Product> products;
-
+    List<Product> databaseProducts;
     Context context;
     Product product;
+    String orderStatus="";
 
 
-    public adapterOrderDetails(@NonNull Context context, int resource, @NonNull List<Product> objects) {
+    public zretireadapterShopownerOrderDetails(@NonNull Context context, int resource, @NonNull List<Product> objects, @NonNull List<Product> databaseobjects, String status) {
 
         super(context, resource, objects);
         products = objects;
-
+        databaseProducts = databaseobjects;
         this.context = context;
+        orderStatus = status;
 
     }
 
@@ -57,9 +59,35 @@ public class adapterOrderDetails extends ArrayAdapter<Product> {
         productNo.setText(""+(position+1));
         productName.setText(""+ product.Name);
 
+        //productQty.setTextColor(getContext().getColor(R.color.colorWhite));
 
+       if (orderStatus.equals("Created"))
+        for (Product databaseProduct : databaseProducts) {
+            if (databaseProduct.ID.equals(product.ID))
+            {
+                //if (databaseProduct.Qty < product.QtyNos)
+
+                //productQty.setH
+                //productQty.setHeight(TypedValue.COMPLEX_UNIT_DIP,28);
+                //productQty.setWidth(TypedValue.COMPLEX_UNIT_DIP,28);
+
+                if (databaseProduct.Qty < databaseProduct.MinStock)
+                {
+                    productQty.setBackgroundColor(getContext().getColor(R.color.redColorButton));
+                    //productQty.setBackground(context.getDrawable(R.drawable.circlered));
+
+                }
+                else
+                {
+                    productQty.setBackgroundColor(getContext().getColor(R.color.greenColorButton));
+                    //productQty.setBackground(context.getDrawable(R.drawable.deliverytypehome));
+                }
+                break;
+            }
+        }
 
         productQty.setText(""+ product.QtyNos);
+        productQty.setTextSize(16);
         productMRP.setText(""+ formater.format( product.MRP));
         productDiscount.setText(""+ formater.format( product.Discount));
         productTotal.setText(""+ formater.format(((product.MRP-product.Discount) * product.QtyNos)));

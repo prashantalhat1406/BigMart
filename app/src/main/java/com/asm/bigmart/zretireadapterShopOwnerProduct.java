@@ -13,13 +13,13 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
-public class adapterShopOwnerProduct extends ArrayAdapter<Product> {
+public class zretireadapterShopOwnerProduct extends ArrayAdapter<Product> {
     List<Product> products;
     Context context;
     Product product;
 
 
-    public adapterShopOwnerProduct(@NonNull Context context, int resource, @NonNull List<Product> objects) {
+    public zretireadapterShopOwnerProduct(@NonNull Context context, int resource, @NonNull List<Product> objects) {
         super(context, resource, objects);
         products = objects;
         this.context= context;
