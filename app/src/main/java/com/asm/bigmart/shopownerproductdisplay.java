@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.asm.bigmart.adapters.SO_ProductDisplay;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -121,7 +122,8 @@ public class shopownerproductdisplay extends AppCompatActivity {
                     }
                 }
 
-                adapterShopOwnerProduct productAdaper = new adapterShopOwnerProduct(shopownerproductdisplay.this, R.layout.itemshopownerproduct, tempList);
+                //adapterShopOwnerProduct productAdaper = new adapterShopOwnerProduct(shopownerproductdisplay.this, R.layout.itemshopownerproduct, tempList);
+                SO_ProductDisplay productAdaper = new SO_ProductDisplay(shopownerproductdisplay.this, R.layout.itemshopownerproduct, tempList);
                 productList.setAdapter(productAdaper);
             }
             @Override
@@ -139,7 +141,8 @@ public class shopownerproductdisplay extends AppCompatActivity {
                     product.setID(postSnapshot.getKey());
                     products.add(product);
                 }
-                adapterShopOwnerProduct productAdaper = new adapterShopOwnerProduct(shopownerproductdisplay.this, R.layout.itemshopownerproduct, products);
+                //adapterShopOwnerProduct productAdaper = new adapterShopOwnerProduct(shopownerproductdisplay.this, R.layout.itemshopownerproduct, products);
+                SO_ProductDisplay productAdaper = new SO_ProductDisplay(shopownerproductdisplay.this, R.layout.itemshopownerproduct, products);
                 productList.setAdapter(productAdaper);
             }
             @Override
