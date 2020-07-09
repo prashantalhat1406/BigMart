@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import com.asm.bigmart.adapters.CU_OrderDetails;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -134,7 +135,8 @@ public class customerorderdetails extends AppCompatActivity {
                     //TotalPrice = (Double) Math.round(TotalPrice);
                 }
                 //TotalPrice =  Math.round(TotalPrice);
-                adapterOrderDetails productAdaper = new adapterOrderDetails(customerorderdetails.this, R.layout.itemorderdetails, products);
+                //adapterOrderDetails productAdaper = new adapterOrderDetails(customerorderdetails.this, R.layout.itemorderdetails, products);
+                CU_OrderDetails productAdaper = new CU_OrderDetails(customerorderdetails.this, R.layout.itemorderdetails, products);
                 productList.setAdapter(productAdaper);
             }
             @Override
