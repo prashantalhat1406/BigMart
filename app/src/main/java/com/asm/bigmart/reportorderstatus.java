@@ -3,6 +3,7 @@ package com.asm.bigmart;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.asm.bigmart.adapters.SO_Report_OrderDisplay;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -134,7 +135,8 @@ public class reportorderstatus extends AppCompatActivity {
                         break;
                 }
 
-                adapterReportOrderHistory orderAdapter = new adapterReportOrderHistory(reportorderstatus.this,R.layout.itemordershopowner,tempOrders);
+                //adapterReportOrderHistory orderAdapter = new adapterReportOrderHistory(reportorderstatus.this,R.layout.itemordershopowner,tempOrders);
+                SO_Report_OrderDisplay orderAdapter = new SO_Report_OrderDisplay(reportorderstatus.this,R.layout.itemordershopowner,tempOrders);
                 ordersList.setAdapter(orderAdapter);
 
             }
