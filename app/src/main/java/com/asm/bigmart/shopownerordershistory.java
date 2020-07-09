@@ -3,7 +3,7 @@ package com.asm.bigmart;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.asm.bigmart.adapters.SO_OrderHistory;
+import com.asm.bigmart.adapters.SO_OrderDisplay;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -76,7 +76,7 @@ public class shopownerordershistory extends AppCompatActivity {
         //Collections.reverse(orders_filter);
         //adapterOrder orderAdapter = new adapterOrder(shopownerordershistory.this,R.layout.itemorder,orders_filter, userID,2);
         //adapterShopOwnerOrderHistory orderAdapter = new adapterShopOwnerOrderHistory(shopownerordershistory.this,R.layout.itemordershopowner,orders_filter, userID,2);
-        SO_OrderHistory orderAdapter = new SO_OrderHistory(shopownerordershistory.this,R.layout.itemordershopowner,orders_filter, userID,2);
+        SO_OrderDisplay orderAdapter = new SO_OrderDisplay(shopownerordershistory.this,R.layout.itemordershopowner,orders_filter, userID,2);
         ordersList.setAdapter(orderAdapter);
         ordersList.setSelection(position);
     }
@@ -121,7 +121,7 @@ public class shopownerordershistory extends AppCompatActivity {
 
                 //Collections.reverse(orders);
                 //adapterShopOwnerOrderHistory orderAdapter = new adapterShopOwnerOrderHistory(shopownerordershistory.this,R.layout.itemordershopowner,orders, userID,2);
-                SO_OrderHistory orderAdapter = new SO_OrderHistory(shopownerordershistory.this,R.layout.itemordershopowner,orders, userID,2);
+                SO_OrderDisplay orderAdapter = new SO_OrderDisplay(shopownerordershistory.this,R.layout.itemordershopowner,orders, userID,2);
                 ordersList.setAdapter(orderAdapter);
                 RadioGroup rg = findViewById(R.id.rdbGroup);
                 rg.findViewById(R.id.rdbAll).setSelected(true);

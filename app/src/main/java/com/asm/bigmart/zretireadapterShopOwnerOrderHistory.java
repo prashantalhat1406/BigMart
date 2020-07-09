@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class adapterShopOwnerOrderHistory extends ArrayAdapter<Orders> {
+public class zretireadapterShopOwnerOrderHistory extends ArrayAdapter<Orders> {
 
     List<Orders> orders;
     Context context;
@@ -26,7 +26,7 @@ public class adapterShopOwnerOrderHistory extends ArrayAdapter<Orders> {
     Orders order;
     Integer type;
 
-    public adapterShopOwnerOrderHistory(@NonNull Context context, int resource, @NonNull List<Orders> objects, Long userID, Integer type) {
+    public zretireadapterShopOwnerOrderHistory(@NonNull Context context, int resource, @NonNull List<Orders> objects, Long userID, Integer type) {
 
         super(context, resource, objects);
         orders = objects;

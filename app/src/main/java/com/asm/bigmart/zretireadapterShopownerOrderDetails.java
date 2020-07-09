@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class adapterShopownerOrderDetails extends ArrayAdapter<Product> {
+public class zretireadapterShopownerOrderDetails extends ArrayAdapter<Product> {
 
     List<Product> products;
     List<Product> databaseProducts;
@@ -23,7 +23,7 @@ public class adapterShopownerOrderDetails extends ArrayAdapter<Product> {
     String orderStatus="";
 
 
-    public adapterShopownerOrderDetails(@NonNull Context context, int resource, @NonNull List<Product> objects, @NonNull List<Product> databaseobjects, String status) {
+    public zretireadapterShopownerOrderDetails(@NonNull Context context, int resource, @NonNull List<Product> objects, @NonNull List<Product> databaseobjects, String status) {
 
         super(context, resource, objects);
         products = objects;

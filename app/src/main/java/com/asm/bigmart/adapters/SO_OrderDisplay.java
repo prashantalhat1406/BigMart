@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class SO_OrderHistory extends ArrayAdapter<Orders> {
+public class SO_OrderDisplay extends ArrayAdapter<Orders> {
 
     List<Orders> orders;
     Context context;
@@ -30,15 +30,13 @@ public class SO_OrderHistory extends ArrayAdapter<Orders> {
     Integer type;
 
 
-    public SO_OrderHistory(@NonNull Context context, int resource, @NonNull List<Orders> objects, Long userID, Integer type) {
+    public SO_OrderDisplay(@NonNull Context context, int resource, @NonNull List<Orders> objects, Long userID, Integer type) {
 
         super(context, resource, objects);
-        orders = objects;
+        this.orders = objects;
         this.context= context;
         this.userID = userID;
         this.type = type;
-
-
     }
 
     private class ViewHolder {
@@ -51,16 +49,7 @@ public class SO_OrderHistory extends ArrayAdapter<Orders> {
         return orders.size();
     }
 
-    @Nullable
-    @Override
-    public Orders getItem(int position) {
-        return super.getItem(position);
-    }
 
-    @Override
-    public long getItemId(int position) {
-        return super.getItemId(position);
-    }
 
     @SuppressLint("ResourceAsColor")
     @NonNull
