@@ -18,14 +18,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class adapterReportOrderHistory extends ArrayAdapter<Orders> {
+public class zretireadapterReportOrderHistory extends ArrayAdapter<Orders> {
 
     List<Orders> orders;
     Context context;
 
     Orders order;
 
-    public adapterReportOrderHistory(@NonNull Context context, int resource, @NonNull List<Orders> objects) {
+    public zretireadapterReportOrderHistory(@NonNull Context context, int resource, @NonNull List<Orders> objects) {
 
         super(context, resource, objects);
         orders = objects;

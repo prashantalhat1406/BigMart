@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 
+import com.asm.bigmart.adapters.CU_ProductDisplay;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -181,7 +182,8 @@ public class customerproductdisplay extends AppCompatActivity {
                             products.add(product);
                     }
                 }
-                adapterProduct productAdaper;
+                //adapterProduct productAdaper;
+                CU_ProductDisplay productAdaper;
                 if (products.size() == 0)
                 {
                     /*Toast error = Toast.makeText(customerproductdisplay.this, "No Match found. Showing all Products.",Toast.LENGTH_SHORT);
@@ -195,7 +197,7 @@ public class customerproductdisplay extends AppCompatActivity {
                 else {
                     empty.setVisibility(View.GONE);
                     normal.setVisibility(View.VISIBLE);
-                    productAdaper = new adapterProduct(customerproductdisplay.this, R.layout.itemproduct, products, userID, 1);
+                    productAdaper = new CU_ProductDisplay(customerproductdisplay.this, R.layout.itemproduct, products, userID, 1);
                     productList.setAdapter(productAdaper);
                 }
 
