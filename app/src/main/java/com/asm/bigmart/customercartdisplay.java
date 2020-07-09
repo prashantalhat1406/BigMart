@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 
+import com.asm.bigmart.adapters.CU_CartDisplay;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -259,7 +260,8 @@ public class customercartdisplay extends AppCompatActivity {
                     butRemoveAll.setVisibility(View.VISIBLE);
                 }
 
-                    adapterProductCart productAdaper = new adapterProductCart(customercartdisplay.this, R.layout.itemproductcart, products, userID, 2);
+                    //adapterProductCart productAdaper = new adapterProductCart(customercartdisplay.this, R.layout.itemproductcart, products, userID, 2);
+                    CU_CartDisplay productAdaper = new CU_CartDisplay(customercartdisplay.this, R.layout.itemproductcart, products, userID, 2);
                     productList.setAdapter(productAdaper);
                     productList.setSelection(listPosition);
 

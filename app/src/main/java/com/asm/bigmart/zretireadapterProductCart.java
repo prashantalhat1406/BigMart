@@ -25,14 +25,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class adapterProductCart extends ArrayAdapter<Product> {
+public class zretireadapterProductCart extends ArrayAdapter<Product> {
     List<Product> products;
     Context context;
     Long userID;
     Product product;
     Integer type;
 
-    public adapterProductCart(@NonNull Context context, int resource, @NonNull List<Product> objects, Long userID, Integer type) {
+    public zretireadapterProductCart(@NonNull Context context, int resource, @NonNull List<Product> objects, Long userID, Integer type) {
         super(context, resource, objects);
         products = objects;
         this.context= context;
