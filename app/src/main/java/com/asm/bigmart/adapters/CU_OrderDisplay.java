@@ -17,11 +17,9 @@ import com.asm.bigmart.Orders;
 import com.asm.bigmart.R;
 
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
-public class SO_OrderDisplay extends ArrayAdapter<Orders> {
+public class CU_OrderDisplay extends ArrayAdapter<Orders> {
 
     List<Orders> orders;
     Context context;
@@ -29,17 +27,16 @@ public class SO_OrderDisplay extends ArrayAdapter<Orders> {
     Orders order;
     Integer type;
 
-
-    public SO_OrderDisplay(@NonNull Context context, int resource, @NonNull List<Orders> objects, Long userID, Integer type) {
+    public CU_OrderDisplay(@NonNull Context context, int resource, @NonNull List<Orders> objects, Long userID, Integer type) {
 
         super(context, resource, objects);
-        this.orders = objects;
+        orders = objects;
         this.context= context;
         this.userID = userID;
         this.type = type;
     }
 
-    private class ViewHolder {
+    private class ViewHolder{
         TextView orderID,orderIDDUP,orderAmount,orderStatus,orderDate,orderdeliverytype;
     }
 
@@ -56,61 +53,47 @@ public class SO_OrderDisplay extends ArrayAdapter<Orders> {
         ViewHolder viewHolder;
 
         if (convertView == null) {
+
             viewHolder = new ViewHolder();
-
             convertView = LayoutInflater.from(getContext()).
-                    inflate(R.layout.itemordershopowner, parent, false);
+                    inflate(R.layout.itemorder, parent, false);
 
-            viewHolder.orderID = (TextView) convertView.findViewById(R.id.txt_orderN_ID);
-            viewHolder.orderIDDUP = (TextView) convertView.findViewById(R.id.txt_orderN_ID_DUP);
-            viewHolder.orderAmount = (TextView) convertView.findViewById(R.id.txt_orderN_totalamount);
-            viewHolder.orderStatus = (TextView) convertView.findViewById(R.id.txt_orderN_status);
-            viewHolder.orderDate = (TextView) convertView.findViewById(R.id.txt_orderN_date);
-            viewHolder.orderdeliverytype = (TextView) convertView.findViewById(R.id.txt_orderN_type);
+            viewHolder.orderID = (TextView) convertView.findViewById(R.id.txt_order_ID);
+            viewHolder.orderIDDUP = (TextView) convertView.findViewById(R.id.txt_order_ID_DUP);
+            viewHolder.orderAmount = (TextView) convertView.findViewById(R.id.txt_order_totalamount);
+            viewHolder.orderStatus = (TextView) convertView.findViewById(R.id.txt_order_status);
+            viewHolder.orderDate = (TextView) convertView.findViewById(R.id.txt_order_date);
+            viewHolder.orderdeliverytype = (TextView) convertView.findViewById(R.id.txt_order_deliverytype);
 
             convertView.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder)convertView.getTag();
         }
 
-
-
         order = orders.get(position);
+
+        if (position%2 == 0)
+            convertView.setBackground(context.getDrawable(R.drawable.orderhistory));
+        else
+            convertView.setBackground(context.getDrawable(R.drawable.orderhistory_grey));
 
         final DecimalFormat formater = new DecimalFormat("0.00");
         viewHolder.orderID.setText("" + order.getID());
         viewHolder.orderID.setPaintFlags(viewHolder.orderID.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
-
-        convertView.setBackground(context.getDrawable(R.drawable.shopownerorderhistory_homed));
-
         viewHolder.orderIDDUP.setText("" + order.getID());
-        if (order.getDeliveryType().equals("Home Delivery")) {
-            viewHolder.orderdeliverytype.setBackground(context.getDrawable(R.drawable.deliverytypehome));
-            viewHolder.orderdeliverytype.setText("H");
+        if (order.getDeliveryType().equals("Home Delivery"))
             if (order.getAmount() > 2000)
-                viewHolder.orderAmount.setText(context.getResources().getString(R.string.Rupee) + " " + formater.format(Math.round(order.getAmount() + (order.getAmount() * 0.02))));
+                viewHolder.orderAmount.setText(context.getResources().getString(R.string.Rupee) + " " + formater.format(Math.round( order.getAmount() + (order.getAmount()*0.02))));
             else
-                viewHolder.orderAmount.setText(context.getResources().getString(R.string.Rupee) + " " + formater.format(Math.round(order.getAmount() + 50)));
-        }
+                viewHolder.orderAmount.setText(context.getResources().getString(R.string.Rupee) + " " +  formater.format(Math.round( order.getAmount() + 50)));
         else
-        {
-            viewHolder.orderdeliverytype.setText("P");
-            viewHolder.orderdeliverytype.setBackground(context.getDrawable(R.drawable.deliverytypepickup));
             viewHolder.orderAmount.setText(context.getResources().getString(R.string.Rupee) + " " +  formater.format(Math.round( order.getAmount())));
-        }
 
         viewHolder.orderAmount.setTextColor(ContextCompat.getColor(this.context, R.color.colorPrimaryDark));
+
         viewHolder.orderStatus.setText("" + order.getStatus());
         viewHolder.orderDate.setText("" + order.getDate());
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
-        try {
-            Date date = sdf.parse(order.getDate());
-            SimpleDateFormat sdfN=new SimpleDateFormat("dd/MM/yy");
-            viewHolder.orderDate.setText("" +sdfN.format(date.getTime()));
-        }catch (Exception e){
-
-        }
+        viewHolder.orderdeliverytype.setText("" + order.getDeliveryType());
 
         viewHolder.orderStatus.setTextColor(ContextCompat.getColor(this.context, R.color.completeStatus));
         switch (order.getStatus()){
@@ -120,16 +103,18 @@ public class SO_OrderDisplay extends ArrayAdapter<Orders> {
                 break;
             case "Created":
                 viewHolder.orderStatus.setBackground(context.getDrawable(R.drawable.status_created));
-                viewHolder.orderStatus.setText("   Created   ");
+                //viewHolder.orderStatus.setText("   Created   ");
+                viewHolder.orderStatus.setText(R.string.statusCreated);
                 break;
             case "InProgress":
                 viewHolder.orderStatus.setBackground(context.getDrawable(R.drawable.status_inprogress));
                 break;
             case "Cancelled":
                 viewHolder.orderStatus.setBackground(context.getDrawable(R.drawable.status_cancelled));
-                viewHolder.orderStatus.setText("  Cancelled  ");
+                viewHolder.orderStatus.setText("   Cancelled   ");
                 break;
         }
+
         return convertView;
     }
 }

@@ -16,7 +16,7 @@ import androidx.core.content.ContextCompat;
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class adapterOrder extends ArrayAdapter<Orders> {
+public class zretireadapterOrder extends ArrayAdapter<Orders> {
 
     List<Orders> orders;
     Context context;
@@ -24,7 +24,7 @@ public class adapterOrder extends ArrayAdapter<Orders> {
     Orders order;
     Integer type;
 
-    public adapterOrder(@NonNull Context context, int resource, @NonNull List<Orders> objects, Long userID, Integer type) {
+    public zretireadapterOrder(@NonNull Context context, int resource, @NonNull List<Orders> objects, Long userID, Integer type) {
 
         super(context, resource, objects);
         orders = objects;

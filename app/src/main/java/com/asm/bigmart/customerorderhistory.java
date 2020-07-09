@@ -3,6 +3,7 @@ package com.asm.bigmart;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.asm.bigmart.adapters.CU_OrderDisplay;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -81,7 +82,8 @@ public class customerorderhistory extends AppCompatActivity {
                 if(orders.size() != 0){
                     orderListPage.setVisibility(View.VISIBLE);
                     emptyPage.setVisibility(View.GONE);
-                    adapterOrder orderAdapter = new adapterOrder(customerorderhistory.this, R.layout.itemorder, orders, userID, 2);
+                    //adapterOrder orderAdapter = new adapterOrder(customerorderhistory.this, R.layout.itemorder, orders, userID, 2);
+                    CU_OrderDisplay orderAdapter = new CU_OrderDisplay(customerorderhistory.this, R.layout.itemorder, orders, userID, 2);
                     ordersList.setAdapter(orderAdapter);
                 }else
                 {
