@@ -5,8 +5,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,8 +26,12 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.asm.bigmart.Product;
 import com.asm.bigmart.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -36,6 +43,7 @@ public class CU_ProductDisplay extends ArrayAdapter<Product> {
     Product product;
     Integer type;
     FirebaseDatabase database;
+    private StorageReference mStorageRef;
     //Integer productCount =0;
 
     public CU_ProductDisplay(@NonNull Context context, int resource, @NonNull List<Product> objects, Long userID, Integer type) {
@@ -44,6 +52,7 @@ public class CU_ProductDisplay extends ArrayAdapter<Product> {
         this.context= context;
         this.userID = userID;
         this.type = type;
+        mStorageRef = FirebaseStorage.getInstance().getReference();
     }
 
     private static class ViewHolder{
@@ -118,13 +127,33 @@ public class CU_ProductDisplay extends ArrayAdapter<Product> {
 
             viewHolder.productImage = (ImageView) convertView.findViewById(R.id.img_product_image);
             int id_ = context.getResources().getIdentifier(product.getID().toLowerCase(), "drawable", context.getPackageName());
-            int noimage = context.getResources().getIdentifier("imagenotavailable", "drawable", context.getPackageName());
             int outofstock = context.getResources().getIdentifier("outofstock", "drawable", context.getPackageName());
 
-            if (id_ == 0)
+
+            String imageName = product.getName().replace(" ","_") +"_"+ product.getName2().toLowerCase() + ".png";
+            mStorageRef.child("Products").child(imageName);
+
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageReference = storage.getReference().child("Products").child(imageName);
+
+            storageReference.getBytes(1024 * 512).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                @Override
+                public void onSuccess(byte[] bytes) {
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                    viewHolder.productImage.setImageBitmap(bitmap);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    int noimage = context.getResources().getIdentifier("imagenotavailable", "drawable", context.getPackageName());
+                    viewHolder.productImage.setImageResource(noimage);
+                }
+            });
+
+            /*if (id_ == 0)
                 viewHolder.productImage.setImageResource(noimage);
             else
-                viewHolder.productImage.setImageResource(id_);
+                viewHolder.productImage.setImageResource(id_);*/
 
             //Check if Product is OutOfStock
             if (product.getQty() < product.getMinStock()) {
@@ -197,6 +226,8 @@ public class CU_ProductDisplay extends ArrayAdapter<Product> {
                         alert11.show();
 
                     }
+                    viewHolder.bmaamount.setText("ASM " + viewHolder.bmaamount.getText());
+                    viewHolder.savedamount.setText("Save " + viewHolder.savedamount.getText());
                     //}
 
                 }
@@ -227,6 +258,8 @@ public class CU_ProductDisplay extends ArrayAdapter<Product> {
                         viewHolder.savedamount.setText(context.getResources().getString(R.string.Rupee) + " " + formater.format((product.getDiscount() * product.getQtyNos())));
                         viewHolder.bmaamount.setText(context.getResources().getString(R.string.Rupee) + " " + formater.format(((product.getMRP() - product.getDiscount()) * product.getQtyNos())));
                     }
+                    viewHolder.bmaamount.setText("ASM " + viewHolder.bmaamount.getText());
+                    viewHolder.savedamount.setText("Save " + viewHolder.savedamount.getText());
                 }
             });
 
@@ -253,8 +286,14 @@ public class CU_ProductDisplay extends ArrayAdapter<Product> {
                     viewHolder.incrementor.setVisibility(View.VISIBLE);
                     viewHolder.savedamount.setText(context.getResources().getString(R.string.Rupee) + " " + formater.format((product.getDiscount() * product.getQtyNos())));
                     viewHolder.bmaamount.setText(context.getResources().getString(R.string.Rupee) + " " + formater.format(((product.getMRP() - product.getDiscount()))));
+                    viewHolder.bmaamount.setText("ASM " + viewHolder.bmaamount.getText());
+                    viewHolder.savedamount.setText("Save " + viewHolder.savedamount.getText());
                 }
             });
+
+            viewHolder.bmaamount.setText("ASM " + viewHolder.bmaamount.getText());
+            viewHolder.savedamount.setText("Save " + viewHolder.savedamount.getText());
+            viewHolder.mrp.setText("MRP " + viewHolder.mrp.getText());
 
 
 
