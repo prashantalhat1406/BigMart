@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="240dp"
+android:layout_height="120dp"
+android:background="@drawable/button_redborder"
+android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:text="LOGOUT"
+        android:textColor="@android:color/black"
+        android:textSize="18dp"
+        android:textStyle="bold"/>
+
+<TextView
+    android:id="@+id/dialog_message"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="10dp"
+    android:text="Do you realy want to Logout ?"
+    android:textColor="@android:color/black"
+    android:textSize="15dp"
+    android:textStyle="normal"/>
+
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="#fff" android:paddingBottom="5dp"
+    android:orientation="horizontal" >
+
+    <Button
+        android:id="@+id/dialog_btn_yes"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:background="@drawable/button_redborder"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:text="Logout"
+        android:textColor="#FF0000"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/dialog_btn_no"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/button_greenborder"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:text="Cancel"
+        android:textColor="#309A58"
+        android:textStyle="bold" />
+</LinearLayout>
+
+</LinearLayout>

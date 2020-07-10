@@ -1,6 +1,7 @@
 package com.asm.bigmart;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -17,7 +18,7 @@ public class shopownerhome extends AppCompatActivity {
 
     public void showLogoutAlertDialog(){
 
-        AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerhome.this);
+        /*AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerhome.this);
         logoutAlertBuilder.setMessage("Are you sure to Logout ?");
         logoutAlertBuilder.setCancelable(false);
         logoutAlertBuilder.setPositiveButton(
@@ -48,7 +49,30 @@ public class shopownerhome extends AppCompatActivity {
         });
 
         alertLogout.setTitle("LOGOUT");
-        alertLogout.show();
+        alertLogout.show();*/
+
+        final Dialog dialog = new Dialog(shopownerhome.this);
+        dialog.setContentView(R.layout.logoutdialog);
+        dialog.setCancelable(false);
+
+        Button yes = dialog.findViewById(R.id.dialog_btn_yes);
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent logoutIntent = new Intent(shopownerhome.this, login.class);
+                logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(logoutIntent);
+                finish();
+            }
+        });
+        Button no = dialog.findViewById(R.id.dialog_btn_no);
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
     @Override

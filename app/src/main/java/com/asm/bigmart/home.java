@@ -1,6 +1,7 @@
 package com.asm.bigmart;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -32,6 +33,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -326,7 +328,9 @@ public class home extends AppCompatActivity {
 
     public void showLogoutAlertDialog(){
 
-        AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(home.this);
+        /*LogoutDialog logoutDialog = new LogoutDialog(home.this);
+        logoutDialog.show();*/
+        /*AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(home.this);
         logoutAlertBuilder.setMessage("Are you sure to Logout ?");
         logoutAlertBuilder.setCancelable(false);
         logoutAlertBuilder.setPositiveButton(
@@ -358,7 +362,32 @@ public class home extends AppCompatActivity {
 
         alertLogout.setTitle("LOGOUT");
 
-        alertLogout.show();
+        alertLogout.show();*/
+
+        //final Dialog dialog = new Dialog(mContext);
+        //AlertDialog dialog = new AlertDialog.Builder(home.this).create();
+        final Dialog dialog = new Dialog(home.this);
+        dialog.setContentView(R.layout.logoutdialog);
+        dialog.setCancelable(false);
+
+        Button yes = dialog.findViewById(R.id.dialog_btn_yes);
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent logoutIntent = new Intent(home.this, login.class);
+                logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(logoutIntent);
+                finish();
+            }
+        });
+        Button no = dialog.findViewById(R.id.dialog_btn_no);
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
 
     }
 

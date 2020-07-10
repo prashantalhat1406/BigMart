@@ -1,6 +1,7 @@
 package com.asm.bigmart;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,6 +26,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -219,7 +221,7 @@ public class subcategorydisplay extends AppCompatActivity {
 
     public void showLogoutAlertDialog(){
 
-        AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(subcategorydisplay.this);
+        /*AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(subcategorydisplay.this);
         logoutAlertBuilder.setMessage("Are you sure to Logout ?");
         logoutAlertBuilder.setCancelable(false);
         logoutAlertBuilder.setPositiveButton(
@@ -249,7 +251,30 @@ public class subcategorydisplay extends AppCompatActivity {
             }
         });
         alertLogout.setTitle("LOGOUT");
-        alertLogout.show();
+        alertLogout.show();*/
+
+        final Dialog dialog = new Dialog(subcategorydisplay.this);
+        dialog.setContentView(R.layout.logoutdialog);
+        dialog.setCancelable(false);
+
+        Button yes = dialog.findViewById(R.id.dialog_btn_yes);
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent logoutIntent = new Intent(subcategorydisplay.this, login.class);
+                logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(logoutIntent);
+                finish();
+            }
+        });
+        Button no = dialog.findViewById(R.id.dialog_btn_no);
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
     @Override
