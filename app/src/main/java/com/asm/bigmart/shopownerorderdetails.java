@@ -1,5 +1,6 @@
 package com.asm.bigmart;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -104,7 +105,45 @@ public class shopownerorderdetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerorderdetails.this);
+                final Dialog dialog = new Dialog(shopownerorderdetails.this);
+                dialog.setContentView(R.layout.logoutdialog);
+                dialog.setCancelable(false);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                TextView dialogTitle = dialog.findViewById(R.id.dialog_title);
+                dialogTitle.setText("COMPLETE ORDER");
+
+                TextView dialogMessage = dialog.findViewById(R.id.dialog_message);
+                dialogMessage.setText("Do you want to Complete Order  ?");
+
+                Button yes = dialog.findViewById(R.id.dialog_btn_yes);
+                yes.setText("Complete");
+                yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DatabaseReference orderReference = database.getReference("Orders/").child(""+orderID);
+                        Map<String, Object> statusUpdate = new HashMap<>();
+                        statusUpdate.put("status", "Complete");
+                        orderReference.updateChildren(statusUpdate);
+                        Intent intent=new Intent();
+                        intent.putExtra("position",position);
+                        intent.putExtra("searchItem",searchItem);
+                        setResult(Activity.RESULT_OK, intent);
+                        finish();
+                        dialog.dismiss();
+                    }
+                });
+
+                Button no = dialog.findViewById(R.id.dialog_btn_no);
+                no.setText("Cancel");
+                no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+                /*AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerorderdetails.this);
                 logoutAlertBuilder.setMessage("Do you want to Complete Order ?");
                 logoutAlertBuilder.setCancelable(false);
                 logoutAlertBuilder.setPositiveButton(
@@ -139,7 +178,7 @@ public class shopownerorderdetails extends AppCompatActivity {
                     }
                 });
 
-                alertLogout.show();
+                alertLogout.show();*/
 
 
             }
@@ -147,6 +186,7 @@ public class shopownerorderdetails extends AppCompatActivity {
 
         butConfirm = findViewById(R.id.but_orderdetail_confirm);
         butConfirm.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 boolean oosFlag = false;
@@ -183,7 +223,45 @@ public class shopownerorderdetails extends AppCompatActivity {
                     alert11.show();
 
                 }else {
-                    AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerorderdetails.this);
+                    final Dialog dialog = new Dialog(shopownerorderdetails.this);
+                    dialog.setContentView(R.layout.logoutdialog);
+                    dialog.setCancelable(false);
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                    TextView dialogTitle = dialog.findViewById(R.id.dialog_title);
+                    dialogTitle.setText("CONFIRM ORDER");
+
+                    TextView dialogMessage = dialog.findViewById(R.id.dialog_message);
+                    dialogMessage.setText("Do you want to Confirm Order ?");
+
+                    Button yes = dialog.findViewById(R.id.dialog_btn_yes);
+                    yes.setText("Confirm");
+                    yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            DatabaseReference orderReference = database.getReference("Orders/").child(""+orderID);
+                            Map<String, Object> statusUpdate = new HashMap<>();
+                            statusUpdate.put("status", "InProgress");
+                            orderReference.updateChildren(statusUpdate);
+                            butComplete.setVisibility(View.VISIBLE);
+                            butPrint.setVisibility(View.VISIBLE);
+                            butConfirm.setVisibility(View.GONE);
+                            butCancel.setVisibility(View.GONE);
+                            updateStoreQuantity(products);
+                            dialog.dismiss();
+                        }
+                    });
+
+                    Button no = dialog.findViewById(R.id.dialog_btn_no);
+                    no.setText("Cancel");
+                    no.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+                    dialog.show();
+                    /*AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerorderdetails.this);
                     logoutAlertBuilder.setMessage("Do you want to Confirm Order ?");
                     logoutAlertBuilder.setCancelable(false);
                     logoutAlertBuilder.setPositiveButton(
@@ -218,7 +296,7 @@ public class shopownerorderdetails extends AppCompatActivity {
                         }
                     });
 
-                    alertLogout.show();
+                    alertLogout.show();*/
                 }
 
             }
@@ -226,9 +304,48 @@ public class shopownerorderdetails extends AppCompatActivity {
 
         butCancel = findViewById(R.id.but_orderdetail_cancel);
         butCancel.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerorderdetails.this);
+                final Dialog dialog = new Dialog(shopownerorderdetails.this);
+                dialog.setContentView(R.layout.logoutdialog);
+                dialog.setCancelable(false);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                TextView dialogTitle = dialog.findViewById(R.id.dialog_title);
+                dialogTitle.setText("CANCEL ORDER");
+
+                TextView dialogMessage = dialog.findViewById(R.id.dialog_message);
+                dialogMessage.setText("Do you want to Cancel Order ?");
+
+                Button yes = dialog.findViewById(R.id.dialog_btn_yes);
+                yes.setText("Cancel");
+                yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DatabaseReference orderReference = database.getReference("Orders/").child(""+orderID);
+                        Map<String, Object> statusUpdate = new HashMap<>();
+                        statusUpdate.put("status", "Cancelled");
+                        orderReference.updateChildren(statusUpdate);
+                        Intent intent=new Intent();
+                        intent.putExtra("position",position);
+                        intent.putExtra("searchItem",searchItem);
+                        setResult(Activity.RESULT_OK, intent);
+                        finish();
+                        dialog.dismiss();
+                    }
+                });
+
+                Button no = dialog.findViewById(R.id.dialog_btn_no);
+                no.setText("No");
+                no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+                /*AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerorderdetails.this);
                 logoutAlertBuilder.setMessage("Do you want to Cancel Order ?");
                 logoutAlertBuilder.setCancelable(false);
                 logoutAlertBuilder.setPositiveButton(
@@ -263,13 +380,14 @@ public class shopownerorderdetails extends AppCompatActivity {
                     }
                 });
 
-                alertLogout.show();
+                alertLogout.show();*/
 
             }
         });
 
 
         productList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
                 if(orderDetail.status.equals("Created")) {

@@ -1,5 +1,6 @@
 package com.asm.bigmart;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
@@ -42,7 +43,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class customercartdisplay extends AppCompatActivity {
     public Integer listPosition = 0;
@@ -92,7 +95,39 @@ public class customercartdisplay extends AppCompatActivity {
 
     public void showOrderConfirmDialog(){
 
-        AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(customercartdisplay.this);
+        final Dialog dialog = new Dialog(customercartdisplay.this);
+        dialog.setContentView(R.layout.logoutdialog);
+        dialog.setCancelable(false);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        TextView dialogTitle = dialog.findViewById(R.id.dialog_title);
+        dialogTitle.setText("CONFIRM");
+
+        TextView dialogMessage = dialog.findViewById(R.id.dialog_message);
+        dialogMessage.setText("Have you added all items ?");
+
+        Button yes = dialog.findViewById(R.id.dialog_btn_yes);
+        yes.setText("Yes");
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flag = true;
+                Intent intent = new Intent(customercartdisplay.this,customerdeliverypayment.class);
+                startActivityForResult(intent, 100);
+                dialog.dismiss();
+            }
+        });
+
+        Button no = dialog.findViewById(R.id.dialog_btn_no);
+        no.setText("No");
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        /*AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(customercartdisplay.this);
         logoutAlertBuilder.setMessage("Have you added all items ?");
         logoutAlertBuilder.setCancelable(false);
         logoutAlertBuilder.setPositiveButton(
@@ -121,6 +156,7 @@ public class customercartdisplay extends AppCompatActivity {
         });
         alertLogout.setTitle("CONFIRM");
         alertLogout.show();
+        */
     }
 
     public BroadcastReceiver positionMes = new BroadcastReceiver()
@@ -190,7 +226,43 @@ public class customercartdisplay extends AppCompatActivity {
         butRemoveAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder removeAllAlertBuilder = new AlertDialog.Builder(customercartdisplay.this);
+                final Dialog dialog = new Dialog(customercartdisplay.this);
+                dialog.setContentView(R.layout.logoutdialog);
+                dialog.setCancelable(false);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                TextView dialogTitle = dialog.findViewById(R.id.dialog_title);
+                dialogTitle.setText("REMOVE ALL");
+
+                TextView dialogMessage = dialog.findViewById(R.id.dialog_message);
+                dialogMessage.setText("Are you sure to Remove All items ?");
+
+                Button yes = dialog.findViewById(R.id.dialog_btn_yes);
+                yes.setText("Remove");
+                yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DatabaseReference databaseReference = database.getReference("Users/"+userID+"/TempOrder");
+                        databaseReference.removeValue();
+                        //goToHome();
+                        price.setVisibility(View.GONE);
+                        list.setVisibility(View.GONE);
+                        buttons.setVisibility(View.GONE);
+                        emptyCart.setVisibility(View.VISIBLE);
+                        dialog.dismiss();
+                    }
+                });
+
+                Button no = dialog.findViewById(R.id.dialog_btn_no);
+                no.setText("Cancel");
+                no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+                /*AlertDialog.Builder removeAllAlertBuilder = new AlertDialog.Builder(customercartdisplay.this);
                 removeAllAlertBuilder.setMessage("Are you sure to Remove All items ?");
                 removeAllAlertBuilder.setCancelable(false);
                 removeAllAlertBuilder.setPositiveButton(
@@ -221,7 +293,7 @@ public class customercartdisplay extends AppCompatActivity {
                         alertRemoveall.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
                     }
                 });
-                alertRemoveall.show();
+                alertRemoveall.show();*/
 
 
 

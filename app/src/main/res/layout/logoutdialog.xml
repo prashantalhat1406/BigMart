@@ -2,7 +2,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="300dp"
-android:layout_height="120dp"
+android:layout_height="130dp"
 android:background="@drawable/logoutdialog"
 android:orientation="vertical" >
 
@@ -12,7 +12,7 @@ android:orientation="vertical" >
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:paddingStart="5dp"
         android:text="LOGOUT"
         android:textColor="@android:color/black"
