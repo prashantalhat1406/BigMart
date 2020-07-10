@@ -2,9 +2,11 @@ package com.asm.bigmart;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import com.asm.bigmart.adapters.SO_OrderDetails;
@@ -271,7 +273,56 @@ public class shopownerorderdetails extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
                 if(orderDetail.status.equals("Created")) {
-                    AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerorderdetails.this);
+                    final Dialog dialog = new Dialog(shopownerorderdetails.this);
+                    dialog.setContentView(R.layout.logoutdialog);
+                    dialog.setCancelable(false);
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                    TextView dialogTitle = dialog.findViewById(R.id.dialog_title);
+                    dialogTitle.setText("DELETE PRODUCT");
+
+                    TextView dialogMessage = dialog.findViewById(R.id.dialog_message);
+                    dialogMessage.setText("Do you want to Delete Product ?");
+
+                    Button yes = dialog.findViewById(R.id.dialog_btn_yes);
+                    yes.setText("Delete");
+                    yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (products.size() == 1){
+                                butCancel.callOnClick();
+                            }else {
+                                Product product = products.get(position);
+
+                                DatabaseReference databaseReference = database.getReference("Orders/" + orderID + "/Products/" + products.get(position).ID);
+                                databaseReference.removeValue();
+
+                                DatabaseReference orderReference = database.getReference("Orders/" + orderID);
+                                orderReference.child("amount").setValue(orderDetail.amount - (product.QtyNos * (product.MRP - product.Discount)));
+
+                                products.remove(position);
+
+                                if (products.size() > 0) {
+                                    SO_OrderDetails productAdaper = new SO_OrderDetails(shopownerorderdetails.this, R.layout.itemorderdetails, products, databaseProducts, orderDetail.status);
+                                    productList.setAdapter(productAdaper);
+                                } else {
+                                    orderReference.removeValue();
+                                }
+                            }
+                            dialog.dismiss();
+                        }
+                    });
+
+                    Button no = dialog.findViewById(R.id.dialog_btn_no);
+                    no.setText("Cancel");
+                    no.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+                    dialog.show();
+                    /*AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerorderdetails.this);
                     logoutAlertBuilder.setMessage("Do you want to delete Product ?");
                     logoutAlertBuilder.setCancelable(false);
                     logoutAlertBuilder.setPositiveButton(
@@ -320,7 +371,7 @@ public class shopownerorderdetails extends AppCompatActivity {
                         }
                     });
 
-                    alertLogout.show();
+                    alertLogout.show();*/
                 }
                 return false;
             }

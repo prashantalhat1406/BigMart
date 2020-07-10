@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import com.google.firebase.database.DataSnapshot;
@@ -121,6 +122,7 @@ public class forgotpassword extends AppCompatActivity {
         final Dialog dialog = new Dialog(forgotpassword.this);
         dialog.setContentView(R.layout.logoutdialog);
         dialog.setCancelable(false);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         Button yes = dialog.findViewById(R.id.dialog_btn_yes);
         yes.setOnClickListener(new View.OnClickListener() {

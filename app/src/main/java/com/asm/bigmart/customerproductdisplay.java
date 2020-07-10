@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
@@ -327,6 +328,7 @@ public class customerproductdisplay extends AppCompatActivity {
         final Dialog dialog = new Dialog(customerproductdisplay.this);
         dialog.setContentView(R.layout.logoutdialog);
         dialog.setCancelable(false);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         Button yes = dialog.findViewById(R.id.dialog_btn_yes);
         yes.setOnClickListener(new View.OnClickListener() {
