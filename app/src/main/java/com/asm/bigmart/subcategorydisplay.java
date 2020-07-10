@@ -39,6 +39,7 @@ public class subcategorydisplay extends AppCompatActivity {
     private  int count = 0;
     FirebaseDatabase database;
     String categoryName;
+    Double cartAmount;
     private static final int[] BUTTON_IDS = {
             R.id.but_subcat_1,
             R.id.but_subcat_2,
@@ -156,11 +157,13 @@ public class subcategorydisplay extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Integer cnt =0;
+                cartAmount = 0.0;
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     Product product = postSnapshot.getValue(Product.class);
                     cnt = cnt + product.QtyNos;
+                    cartAmount = cartAmount + ((product.MRP - product.Discount) * product.QtyNos);
                 }
-                setBadgeCount(getBaseContext(), icon, ""+cnt);
+                setBadgeCount(getBaseContext(), icon, ""+cnt,""+cartAmount);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {            }
@@ -182,11 +185,13 @@ public class subcategorydisplay extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Integer cnt =0;
+                cartAmount = 0.0;
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     Product product = postSnapshot.getValue(Product.class);
                     cnt = cnt + product.QtyNos;
+                    cartAmount = cartAmount + ((product.MRP - product.Discount) * product.QtyNos);
                 }
-                setBadgeCount(getBaseContext(), icon, ""+cnt);
+                setBadgeCount(getBaseContext(), icon, ""+cnt,""+cartAmount);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {            }
@@ -195,7 +200,7 @@ public class subcategorydisplay extends AppCompatActivity {
         return true;
     }
 
-    public static void setBadgeCount(Context context, LayerDrawable icon, String count) {
+    public static void setBadgeCount(Context context, LayerDrawable icon, String count, String amount) {
 
         BadgeDrawable badge;
 
@@ -207,7 +212,7 @@ public class subcategorydisplay extends AppCompatActivity {
             badge = new BadgeDrawable(context);
         }
 
-        badge.setCount(count);
+        badge.setCount(count,amount);
         icon.mutate();
         icon.setDrawableByLayerId(R.id.ic_badge, badge);
     }

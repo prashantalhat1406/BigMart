@@ -14,20 +14,25 @@ import android.graphics.drawable.Drawable;
 
 import androidx.core.content.ContextCompat;
 
+import java.text.DecimalFormat;
+
 //import com.webkul.mobikul.R;
 
 class BadgeDrawable extends Drawable {
 
     private Paint mBadgePaint;
     private Paint mBadgePaint1;
-    private Paint mTextPaint;
+    private Paint mTextPaint,mTextAmount;
     private Rect mTxtRect = new Rect();
 
     private String mCount = "";
+    private String mAmount = "";
+    private  String rupee = "";
     private boolean mWillDraw;
 
     public BadgeDrawable(Context context) {
         float mTextSize = context.getResources().getDimension(R.dimen.cartItems);
+        rupee =  context.getResources().getString(R.string.Rupee);
 
         mBadgePaint = new Paint();
         mBadgePaint.setColor(Color.RED);
@@ -44,6 +49,13 @@ class BadgeDrawable extends Drawable {
         mTextPaint.setTextSize(mTextSize);
         mTextPaint.setAntiAlias(true);
         mTextPaint.setTextAlign(Paint.Align.CENTER);
+
+        mTextAmount = new Paint();
+        mTextAmount.setColor(ContextCompat.getColor(context.getApplicationContext(), R.color.darkgreenColorButton));
+        mTextAmount.setTypeface(Typeface.DEFAULT);
+        mTextAmount.setTextSize(mTextSize);
+        mTextAmount.setAntiAlias(true);
+        mTextAmount.setTextAlign(Paint.Align.CENTER);
     }
 
     @Override
@@ -63,15 +75,16 @@ class BadgeDrawable extends Drawable {
         /*Using Math.max rather than Math.min */
 
         float radius = ((Math.max(width, height) / 2)) / 2;
-        float centerX = (width - radius - 1) +5;
-        float centerY = radius -5;
+        float centerX = (width - radius - 1) +5+15;
+        float centerY = radius -5-15;
+        radius = (float) (radius * (1.8));
         if(mCount.length() <= 2){
             // Draw badge circle.
-            canvas.drawCircle(centerX, centerY, (int)(radius+7.5), mBadgePaint1);
+            //canvas.drawCircle(centerX, centerY, (int)(radius+7.5), mBadgePaint1);
             canvas.drawCircle(centerX, centerY, (int)(radius+5.5), mBadgePaint);
         }
         else{
-            canvas.drawCircle(centerX, centerY, (int)(radius+8.5), mBadgePaint1);
+            //canvas.drawCircle(centerX, centerY, (int)(radius+8.5), mBadgePaint1);
             canvas.drawCircle(centerX, centerY, (int)(radius+6.5), mBadgePaint);
 //	        	canvas.drawRoundRect(radius, radius, radius, radius, 10, 10, mBadgePaint);
         }
@@ -83,13 +96,18 @@ class BadgeDrawable extends Drawable {
             canvas.drawText("99+", centerX, textY, mTextPaint);
         else
             canvas.drawText(mCount, centerX, textY, mTextPaint);
+
+        //canvas.drawText(rupee + "12345.00", centerX-0, textY+75, mTextAmount);
+        DecimalFormat formater = new DecimalFormat("0.00");
+        canvas.drawText(rupee + formater.format( Double.parseDouble( mAmount)), centerX-30, textY+75, mTextAmount);
     }
 
     /*
     Sets the count (i.e notifications) to display.
      */
-    public void setCount(String count) {
+    public void setCount(String count, String amount) {
         mCount = count;
+        mAmount = amount;
 
         // Only draw a badge if there are notifications.
         mWillDraw = !count.equalsIgnoreCase("0");

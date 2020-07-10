@@ -54,6 +54,7 @@ public class customercartdisplay extends AppCompatActivity {
     FirebaseDatabase database;
     LinearLayout emptyCart,list,buttons, price;
     Integer productCount;
+    Double cartAmount;
 
     public String getOrderID(){
         String unquieOrderID = "";
@@ -362,11 +363,13 @@ public class customercartdisplay extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Integer cnt =0;
+                cartAmount = 0.0;
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     Product product = postSnapshot.getValue(Product.class);
                     cnt = cnt + product.QtyNos;
+                    cartAmount = cartAmount + ((product.MRP - product.Discount) * product.QtyNos);
                 }
-                setBadgeCount(getBaseContext(), icon, ""+cnt);
+                setBadgeCount(getBaseContext(), icon, ""+cnt,""+cartAmount);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {            }
@@ -386,9 +389,11 @@ public class customercartdisplay extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 productCount =0;
+                cartAmount = 0.0;
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     Product product = postSnapshot.getValue(Product.class);
                     productCount = productCount + product.QtyNos;
+                    cartAmount = cartAmount + ((product.MRP - product.Discount) * product.QtyNos);
                 }
 
             }
@@ -396,11 +401,11 @@ public class customercartdisplay extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {            }
         });
 
-        setBadgeCount(getBaseContext(), icon, ""+productCount);
+        setBadgeCount(getBaseContext(), icon, ""+productCount, ""+cartAmount);
         return true;
     }
 
-    public static void setBadgeCount(Context context, LayerDrawable icon, String count) {
+    public static void setBadgeCount(Context context, LayerDrawable icon, String count, String amount) {
 
         BadgeDrawable badge;
 
@@ -412,7 +417,7 @@ public class customercartdisplay extends AppCompatActivity {
             badge = new BadgeDrawable(context);
         }
 
-        badge.setCount(count);
+        badge.setCount(count,amount);
         icon.mutate();
         icon.setDrawableByLayerId(R.id.ic_badge, badge);
     }

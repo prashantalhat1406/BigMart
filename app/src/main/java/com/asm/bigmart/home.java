@@ -27,6 +27,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -50,6 +51,7 @@ public class home extends AppCompatActivity {
     AutoCompleteTextView txtSearch;
     private List<String> productNames;
     Integer productCount;
+    Double cartAmount;
 
     private static final int[] BUTTON_IDS = {
             R.id.but_category_1,
@@ -112,6 +114,12 @@ public class home extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
         toolbar.setOverflowIcon(getDrawable(R.drawable.ic_menuicon));
+
+        /*ViewGroup.LayoutParams params = (ViewGroup.LayoutParams)toolbar.getLayoutParams();
+        params.height = 160;
+        toolbar.setLayoutParams(params);*/
+
+
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
@@ -283,9 +291,11 @@ public class home extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 productCount =0;
+                cartAmount = 0.0;
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     Product product = postSnapshot.getValue(Product.class);
                     productCount = productCount + product.QtyNos;
+                    cartAmount = cartAmount + ((product.MRP - product.Discount) * product.QtyNos);
                 }
 
             }
@@ -293,11 +303,11 @@ public class home extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {            }
         });
 
-        setBadgeCount(getBaseContext(), icon, ""+ productCount);
+        setBadgeCount(getBaseContext(), icon, ""+ productCount, "" + cartAmount);
         return true;
     }
 
-    public static void setBadgeCount(Context context, LayerDrawable icon, String count) {
+    public static void setBadgeCount(Context context, LayerDrawable icon, String count, String amount) {
 
         BadgeDrawable badge;
 
@@ -309,7 +319,7 @@ public class home extends AppCompatActivity {
             badge = new BadgeDrawable(context);
         }
 
-        badge.setCount(count);
+        badge.setCount(count, amount);
         icon.mutate();
         icon.setDrawableByLayerId(R.id.ic_badge, badge);
     }
@@ -365,11 +375,13 @@ public class home extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Integer cnt =0;
+                cartAmount = 0.0;
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     Product product = postSnapshot.getValue(Product.class);
                     cnt = cnt + product.QtyNos;
+                    cartAmount = cartAmount + ((product.MRP - product.Discount) * product.QtyNos);
                 }
-                setBadgeCount(getBaseContext(), icon, ""+cnt);
+                setBadgeCount(getBaseContext(), icon, ""+cnt, ""+cartAmount);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {            }
