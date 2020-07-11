@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
@@ -408,9 +409,14 @@ public class customercartdisplay extends AppCompatActivity {
                             DatabaseReference databaseReference = database.getReference("Users/" + userID + "/TempOrder");
                             databaseReference.removeValue();
                             flag = false;
-                            Toast error = Toast.makeText(customercartdisplay.this, "Thank you. Order placed", Toast.LENGTH_SHORT);
+                            Toast error = Toast.makeText(customercartdisplay.this, "Thank you. Order placed", Toast.LENGTH_LONG);
                             error.setGravity(Gravity.TOP, 0, 0);
                             error.show();
+                            View view =error.getView();
+                            //view.setBackground(getDrawable(R.drawable.roundbutton_green));
+                            view.getBackground().setColorFilter(getResources().getColor(R.color.darkgreenColorButton), PorterDuff.Mode.SRC_IN);
+                            TextView text = view.findViewById(android.R.id.message);
+                            text.setTextColor(Color.WHITE);
                             goToHome();
                             finish();
                         }
