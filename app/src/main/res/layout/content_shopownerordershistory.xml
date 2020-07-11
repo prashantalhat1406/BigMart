@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="match_parent" android:weightSum="100"
     android:layout_height="match_parent" android:background="#ffffff"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <LinearLayout
+    <LinearLayout android:layout_weight="7" android:layout_height="0dp"
         android:layout_width="match_parent" android:orientation="horizontal"
-        android:layout_height="match_parent" android:layout_weight="0.89">
+        >
         <RadioGroup android:orientation="horizontal" android:id="@+id/rdbGroup"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -17,31 +17,58 @@
                 android:layout_height="match_parent" android:layout_weight="0.55" android:text="All"></RadioButton>
             <RadioButton android:id="@+id/rdbInProgress"
                 android:layout_width="match_parent"  android:textColor="@color/blacklabels" android:textSize="@dimen/cartItems"
-                android:buttonTint="@color/blacklabels" android:textStyle="bold"
+                android:buttonTint="@color/colorPrimaryDark" android:textStyle="bold"
                 android:layout_height="match_parent" android:layout_weight="0.45" android:text="InProgress"></RadioButton>
             <RadioButton android:id="@+id/rdbComplete"
                 android:layout_width="match_parent"  android:textColor="@color/blacklabels" android:textSize="@dimen/cartItems"
-                android:buttonTint="@color/blacklabels" android:textStyle="bold"
+                android:buttonTint="@color/darkgreenColorButton" android:textStyle="bold"
                 android:layout_height="match_parent" android:layout_weight="0.44" android:text="Completed"></RadioButton>
             <RadioButton android:id="@+id/rdbCreated"
                 android:layout_width="match_parent"  android:textColor="@color/blacklabels" android:textSize="@dimen/cartItems"
-                android:buttonTint="@color/blacklabels" android:textStyle="bold"
+                android:buttonTint="@color/orangeColorButton" android:textStyle="bold"
                 android:layout_height="match_parent" android:layout_weight="0.48" android:text="Created"></RadioButton>
 
         </RadioGroup>
 
     </LinearLayout>
 
-    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@android:color/darker_gray"/>
+    <LinearLayout android:layout_weight="7" android:layout_height="0dp"
+        android:paddingStart="5dp" android:paddingEnd="5dp"
+        android:layout_width="match_parent" android:orientation="horizontal"
+        >
+        <Button android:id="@+id/but_soorderhistory_back"
+            android:layout_weight="0.6" android:background="@drawable/button_blueborder"
+            android:layout_width="match_parent" android:layout_gravity="center" android:foreground="?attr/selectableItemBackground"
+            android:layout_height="35dp" android:text="Prev">
 
-    <LinearLayout
-        android:layout_width="match_parent" android:layout_weight="0.87"
-        android:layout_height="match_parent">
-        <!--<EditText
-            android:layout_width="match_parent" android:hint="Order Id"
+        </Button>
+        <LinearLayout android:layout_weight="0.4"
+            android:layout_width="match_parent" android:paddingEnd="5dp" android:paddingStart="5dp"
             android:layout_height="match_parent">
+            <TextView android:id="@+id/txt_soorderhistory_currentselection"
 
-        </EditText>-->
+                android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
+                android:textSize="@dimen/profileLabel" android:background="@drawable/button_greenborder" android:foreground="?attr/selectableItemBackground"
+                android:layout_height="match_parent" android:text="22Jun2020">
+
+            </TextView>
+        </LinearLayout>
+
+        <Button android:id="@+id/but_soorderhistory_next"
+            android:layout_weight="0.6" android:background="@drawable/button_blueborder"
+            android:layout_width="match_parent" android:layout_gravity="center" android:foreground="?attr/selectableItemBackground"
+            android:layout_height="35dp" android:text="Next">
+
+        </Button>
+
+
+    </LinearLayout>
+
+    <!--<View android:layout_width="match_parent" android:layout_height="1dp" android:background="@android:color/darker_gray"/>-->
+
+    <LinearLayout android:layout_weight="8" android:layout_height="0dp"
+        android:layout_width="match_parent"
+        >
         <AutoCompleteTextView
             android:id="@+id/auto_shopownerorderhistory_orderid" android:hint="Enter Order ID"
             android:layout_width="match_parent" android:paddingLeft="10dp" android:textColor="@color/blacklabels" android:maxLines="1" android:inputType="text"
@@ -50,11 +77,41 @@
         </AutoCompleteTextView>
     </LinearLayout>
 
-    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@android:color/darker_gray"/>
+    <!--<View android:layout_width="match_parent" android:layout_height="1dp" android:background="@android:color/darker_gray"/>-->
 
-    <LinearLayout
-        android:layout_width="match_parent" android:layout_weight="0.15"
-        android:layout_height="match_parent" android:layout_marginTop="5dp">
+    <LinearLayout android:layout_height="0dp" android:layout_weight="78"
+        android:id="@+id/layout_so_orderhistory_empty"
+        android:layout_width="match_parent" android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_weight="0.3"
+            android:layout_height="match_parent">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_weight="0.4" android:orientation="vertical"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="match_parent" android:layout_weight="0.2"
+                android:layout_height="match_parent" android:src="@drawable/ic_orderlist"> </ImageView>
+            <TextView
+                android:layout_width="wrap_content" android:textStyle="bold" android:textColor="@color/blacklabels"
+                android:layout_height="wrap_content" android:text="No Orders to show" android:layout_gravity="center"></TextView>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_weight="0.3"
+            android:layout_height="match_parent">
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout android:layout_weight="78" android:layout_height="0dp"
+        android:layout_width="match_parent" android:id="@+id/layout_so_orderhistory_list"
+         android:layout_marginTop="5dp">
         <ListView
             android:layout_width="match_parent" android:id="@+id/listShopOwnerOrder" android:divider="@android:color/transparent"
             android:dividerHeight="5.0dp" android:paddingRight="5dp" android:paddingLeft="5dp"

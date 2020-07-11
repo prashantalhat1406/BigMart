@@ -78,7 +78,7 @@ public class home extends AppCompatActivity {
 
     }
 
-    public void gotoProductDisplay(){
+    /*public void gotoProductDisplay(){
         Intent productdispalyIntent = new Intent(home.this, customerproductdisplay.class);
         Bundle extras = new Bundle();
         extras.putString("searchItem", search.getText().toString().trim());
@@ -86,7 +86,7 @@ public class home extends AppCompatActivity {
         productdispalyIntent.putExtras(extras);
         startActivity(productdispalyIntent);
         finish();
-    }
+    }*/
 
     public void gotoProductDisplay(String productName){
         Intent productdispalyIntent = new Intent(home.this, customerproductdisplay.class);
@@ -128,6 +128,7 @@ public class home extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
 
         Bundle b = getIntent().getExtras();
+
         userID = b.getLong("userID");
         productCount = b.getInt("productCount",0);
 
@@ -289,7 +290,8 @@ public class home extends AppCompatActivity {
 
         MenuItem itemCart = menu.findItem(R.id.menu_viewcart);
         final LayerDrawable icon = (LayerDrawable) itemCart.getIcon();
-        Query query = database.getReference("Users/"+userID+"/TempOrder");
+        Query query;
+        query = database.getReference("Users/"+userID+"/TempOrder");
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -316,7 +318,7 @@ public class home extends AppCompatActivity {
 
         // Reuse drawable if possible
         Drawable reuse = icon.findDrawableByLayerId(R.id.ic_badge);
-        if (reuse != null && reuse instanceof BadgeDrawable) {
+        if (reuse instanceof BadgeDrawable) {
             badge = (BadgeDrawable) reuse;
         } else {
             badge = new BadgeDrawable(context);
@@ -367,7 +369,8 @@ public class home extends AppCompatActivity {
 
         //final Dialog dialog = new Dialog(mContext);
         //AlertDialog dialog = new AlertDialog.Builder(home.this).create();
-        final Dialog dialog = new Dialog(home.this);
+        final Dialog dialog;
+        dialog = new Dialog(home.this);
         dialog.setContentView(R.layout.logoutdialog);
         dialog.setCancelable(false);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -405,7 +408,7 @@ public class home extends AppCompatActivity {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Integer cnt =0;
+                int cnt =0;
                 cartAmount = 0.0;
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     Product product = postSnapshot.getValue(Product.class);

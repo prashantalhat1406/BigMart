@@ -1,5 +1,6 @@
 package com.asm.bigmart;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -21,14 +22,19 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-public class shopownerordershistory extends AppCompatActivity {
+public class shopownerordershistory extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     private List<Orders> orders;
     private Integer position=0;
@@ -40,43 +46,61 @@ public class shopownerordershistory extends AppCompatActivity {
     private String orderID = "test";
     private Boolean flag = false;
     private FirebaseDatabase database;
+    Button back, next;
     AutoCompleteTextView autoCompleteTextView;
+    String baseDate="";
+    RadioGroup statusRadioGroup;
+    TextView txtCurrentSelection;
+    LinearLayout empty,orderslist;
 
-    public void displayFilteredList(int radioButton)
+    public void displayFilteredList(int radioButton, String  baseDate)
     {
 
-        List<Orders> orders_filter;
-        orders_filter = new ArrayList<Orders>();
+        List<Orders> orders_statuswise;
+        orders_statuswise = new ArrayList<Orders>();
         switch (radioButton){
             case R.id.rdbAll:
-                orders_filter =orders;
+                orders_statuswise =orders;
 
                 break;
             case R.id.rdbInProgress:
                 for (Orders order : orders) {
                     if (order.status.equals("InProgress"))
-                        orders_filter.add(order);
+                        orders_statuswise.add(order);
                 }
                 break;
             case R.id.rdbComplete:
                 for (Orders order : orders) {
                     if (order.status.equals("Complete"))
-                        orders_filter.add(order);
+                        orders_statuswise.add(order);
                 }
                 break;
             case R.id.rdbCreated:
                 for (Orders order : orders) {
                     if (order.status.equals("Created"))
-                        orders_filter.add(order);
+                        orders_statuswise.add(order);
                 }
                 break;
         }
 
+        List<Orders> orders_datewise;
+        orders_datewise = new ArrayList<Orders>();
+        for (Orders order : orders_statuswise) {
+            if (order.getDate().equals(baseDate))
+                orders_datewise.add(order);
+        }
 
-        //Collections.reverse(orders_filter);
-        //adapterOrder orderAdapter = new adapterOrder(shopownerordershistory.this,R.layout.itemorder,orders_filter, userID,2);
-        //adapterShopOwnerOrderHistory orderAdapter = new adapterShopOwnerOrderHistory(shopownerordershistory.this,R.layout.itemordershopowner,orders_filter, userID,2);
-        SO_OrderDisplay orderAdapter = new SO_OrderDisplay(shopownerordershistory.this,R.layout.itemordershopowner,orders_filter, userID,2);
+
+        if (orders_datewise.size() > 0)
+        {
+            orderslist.setVisibility(View.VISIBLE);
+            empty.setVisibility(View.GONE);
+        }else {
+            orderslist.setVisibility(View.GONE);
+            empty.setVisibility(View.VISIBLE);
+        }
+
+        SO_OrderDisplay orderAdapter = new SO_OrderDisplay(shopownerordershistory.this,R.layout.itemordershopowner,orders_datewise, userID,2);
         ordersList.setAdapter(orderAdapter);
         ordersList.setSelection(position);
     }
@@ -84,7 +108,7 @@ public class shopownerordershistory extends AppCompatActivity {
     @Override
     protected void onResume() {
         RadioGroup rg = findViewById(R.id.rdbGroup);
-        displayFilteredList(rg.getCheckedRadioButtonId());
+        displayFilteredList(rg.getCheckedRadioButtonId(),baseDate);
         super.onResume();
     }
 
@@ -105,6 +129,10 @@ public class shopownerordershistory extends AppCompatActivity {
         orders = new ArrayList<Orders>();
         orderIDs = new ArrayList<String>();
         ordersList = findViewById(R.id.listShopOwnerOrder);
+
+        empty = findViewById(R.id.layout_so_orderhistory_empty);
+        orderslist = findViewById(R.id.layout_so_orderhistory_list);
+
         database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
         DatabaseReference productReference = database.getReference("Orders/");
         Query query = productReference.orderByKey();
@@ -112,19 +140,28 @@ public class shopownerordershistory extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 orders = new ArrayList<Orders>();
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren())
-                {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Orders order = postSnapshot.getValue(Orders.class);
                     orders.add(order);
                     orderIDs.add(order.ID);
                 }
 
-                //Collections.reverse(orders);
-                //adapterShopOwnerOrderHistory orderAdapter = new adapterShopOwnerOrderHistory(shopownerordershistory.this,R.layout.itemordershopowner,orders, userID,2);
+
+
+                if (orders.size() > 0)
+                {
+                    orderslist.setVisibility(View.VISIBLE);
+                    empty.setVisibility(View.GONE);
+                }else {
+                    orderslist.setVisibility(View.GONE);
+                    empty.setVisibility(View.VISIBLE);
+                }
+
                 SO_OrderDisplay orderAdapter = new SO_OrderDisplay(shopownerordershistory.this,R.layout.itemordershopowner,orders, userID,2);
                 ordersList.setAdapter(orderAdapter);
                 RadioGroup rg = findViewById(R.id.rdbGroup);
                 rg.findViewById(R.id.rdbAll).setSelected(true);
+                displayFilteredList(statusRadioGroup.getCheckedRadioButtonId(), baseDate);
             }
 
             @Override
@@ -178,14 +215,70 @@ public class shopownerordershistory extends AppCompatActivity {
             }
         });
 
-        RadioGroup rg = findViewById(R.id.rdbGroup);
+        statusRadioGroup = findViewById(R.id.rdbGroup);
 
-        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        statusRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                displayFilteredList(checkedId);
+                displayFilteredList(checkedId, baseDate);
             }
         });
+
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        final DatePickerDialog datePickerDialog = new DatePickerDialog(
+                shopownerordershistory.this, shopownerordershistory.this, year, month, day);
+
+
+        baseDate = new SimpleDateFormat("dd-MMM-yyyy").format(Calendar.getInstance().getTime());
+        txtCurrentSelection = findViewById(R.id.txt_soorderhistory_currentselection);
+        txtCurrentSelection.setText(baseDate);
+
+        txtCurrentSelection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datePickerDialog.show();
+            }
+        });
+
+        back = findViewById(R.id.but_soorderhistory_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar currentCalendar = Calendar.getInstance();
+
+                try {
+                    currentCalendar.setTime(new SimpleDateFormat("dd-MMM-yyyy").parse(baseDate));
+                    currentCalendar.add(Calendar.DAY_OF_MONTH,-1);
+                    baseDate = new SimpleDateFormat("dd-MMM-yyyy").format(currentCalendar.getTime());
+                    txtCurrentSelection.setText(baseDate);
+                    displayFilteredList(statusRadioGroup.getCheckedRadioButtonId(),baseDate);
+                }catch (Exception e){}
+
+            }
+        });
+
+        next = findViewById(R.id.but_soorderhistory_next);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar currentCalendar = Calendar.getInstance();
+
+                try {
+                    currentCalendar.setTime(new SimpleDateFormat("dd-MMM-yyyy").parse(baseDate));
+                    currentCalendar.add(Calendar.DAY_OF_MONTH,1);
+                    baseDate = new SimpleDateFormat("dd-MMM-yyyy").format(currentCalendar.getTime());
+                    txtCurrentSelection.setText(baseDate);
+
+                    displayFilteredList(statusRadioGroup.getCheckedRadioButtonId(),baseDate);
+                }catch (Exception e){}
+
+            }
+        });
+
+
     }
 
     @Override
@@ -208,5 +301,17 @@ public class shopownerordershistory extends AppCompatActivity {
             onBackPressed();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year,month,dayOfMonth);
+        txtCurrentSelection.setText(new SimpleDateFormat("dd-MMM-yyyy").format(calendar.getTime()));
+        baseDate = new SimpleDateFormat("dd-MMM-yyyy").format(calendar.getTime());
+
+        displayFilteredList(statusRadioGroup.getCheckedRadioButtonId(),baseDate);
     }
 }
