@@ -46,6 +46,7 @@ android:orientation="vertical" >
         android:foreground="?attr/selectableItemBackground"
         android:clickable="true"
         android:text="Logout"
+        android:layout_marginRight="20dp"
         android:textColor="#FF0000"
         android:textStyle="bold" />
 
@@ -53,7 +54,7 @@ android:orientation="vertical" >
         android:id="@+id/dialog_btn_no"
         android:layout_width="100dp"
         android:layout_height="30dp"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="20dp"
         android:background="@drawable/button_greenborder"
         android:foreground="?attr/selectableItemBackground"
         android:clickable="true"

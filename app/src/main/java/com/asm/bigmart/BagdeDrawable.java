@@ -98,7 +98,7 @@ class BadgeDrawable extends Drawable {
             canvas.drawText(mCount, centerX, textY, mTextPaint);
 
         //canvas.drawText(rupee + "12345.00", centerX-0, textY+75, mTextAmount);
-        DecimalFormat formater = new DecimalFormat("0.00");
+        DecimalFormat formater = new DecimalFormat("0.0");
         canvas.drawText(rupee + formater.format( Double.parseDouble( mAmount)), centerX-30, textY+75, mTextAmount);
     }
 
