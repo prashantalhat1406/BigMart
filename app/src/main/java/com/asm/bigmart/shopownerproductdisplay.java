@@ -28,6 +28,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class shopownerproductdisplay extends AppCompatActivity {
     EditText edtsearch;
     private String searchItem="";
     private Integer showpassword = 0;
+    SO_ProductDisplay productAdaper;
 
     @Override
     protected void onResume() {
@@ -65,8 +67,13 @@ public class shopownerproductdisplay extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
 
+        final ProgressBar progressBar = findViewById(R.id.progressbar);
+        progressBar.setIndeterminate(true);
+        progressBar.setVisibility(View.VISIBLE);
+
 
         productList = findViewById(R.id.listShopOwnerProduct);
+        productList.setVisibility(View.GONE);
         products = new ArrayList<Product>();
         edtsearch = findViewById(R.id.edt_showowner_product_search);
         edtsearch.setText("");
@@ -110,6 +117,7 @@ public class shopownerproductdisplay extends AppCompatActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {            }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+
                 edtsearch.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_clear, 0);
                 List<Product> tempList = new ArrayList<Product>();
                 if (edtsearch.getText().length() == 0)
@@ -121,9 +129,7 @@ public class shopownerproductdisplay extends AppCompatActivity {
                             tempList.add(product);
                     }
                 }
-
-                //adapterShopOwnerProduct productAdaper = new adapterShopOwnerProduct(shopownerproductdisplay.this, R.layout.itemshopownerproduct, tempList);
-                SO_ProductDisplay productAdaper = new SO_ProductDisplay(shopownerproductdisplay.this, R.layout.itemshopownerproduct, tempList);
+                productAdaper = new SO_ProductDisplay(shopownerproductdisplay.this, R.layout.itemshopownerproduct, tempList);
                 productList.setAdapter(productAdaper);
             }
             @Override
@@ -142,8 +148,10 @@ public class shopownerproductdisplay extends AppCompatActivity {
                     products.add(product);
                 }
                 //adapterShopOwnerProduct productAdaper = new adapterShopOwnerProduct(shopownerproductdisplay.this, R.layout.itemshopownerproduct, products);
-                SO_ProductDisplay productAdaper = new SO_ProductDisplay(shopownerproductdisplay.this, R.layout.itemshopownerproduct, products);
+                productAdaper = new SO_ProductDisplay(shopownerproductdisplay.this, R.layout.itemshopownerproduct, products);
                 productList.setAdapter(productAdaper);
+                progressBar.setVisibility(View.GONE);
+                productList.setVisibility(View.VISIBLE);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
