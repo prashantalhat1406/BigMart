@@ -26,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -502,6 +503,8 @@ public class shopownerorderdetails extends AppCompatActivity {
                 orderDetail = dataSnapshot.getValue(Orders.class);
                 TextView orderDate = findViewById(R.id.txt_orderdetails_orderDate);
                 orderDate.setText(""+orderDetail.date);
+                LinearLayout buttons = findViewById(R.id.layout_soorderdetails_buttons);
+                buttons.setVisibility(View.VISIBLE);
                 switch (orderDetail.status)
                 {
                     case "Complete":
@@ -533,6 +536,7 @@ public class shopownerorderdetails extends AppCompatActivity {
                         butPrint.setVisibility(View.GONE);
                         butConfirm.setVisibility(View.GONE);
                         butCancel.setVisibility(View.GONE);
+                        buttons.setVisibility(View.GONE);
                         butCancel.setEnabled(false);
                         butConfirm.setEnabled(false);
                         break;

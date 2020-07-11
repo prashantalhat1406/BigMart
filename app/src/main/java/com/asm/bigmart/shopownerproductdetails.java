@@ -2,9 +2,11 @@ package com.asm.bigmart;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import com.google.firebase.database.DataSnapshot;
@@ -26,6 +28,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -316,7 +319,81 @@ public class shopownerproductdetails extends AppCompatActivity {
                 }
                 else{
 
-                AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerproductdetails.this);
+                    final Dialog dialog = new Dialog(shopownerproductdetails.this);
+                    dialog.setContentView(R.layout.logoutdialog);
+                    dialog.setCancelable(false);
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                    TextView dialogTitle = dialog.findViewById(R.id.dialog_title);
+                    dialogTitle.setText("SAVE PRODUCT");
+
+                    TextView dialogMessage = dialog.findViewById(R.id.dialog_message);
+                    dialogMessage.setText("Are you sure to Save Product Details ?");
+
+                    Button yes = dialog.findViewById(R.id.dialog_btn_yes);
+                    yes.setText("Save");
+                    yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (fieldValidated()) {
+                                Product product = new Product();
+                                product.setName("" + edtName.getText().toString());
+                                product.setName2("" + edtName2.getText().toString());
+                                product.setQtyNos(0);
+                                product.setQty(Integer.parseInt(edtQTY.getText().toString()));
+                                product.setMinStock(Integer.parseInt(edtMinStock.getText().toString()));
+                                product.setMaxStock(Integer.parseInt(edtMaxStock.getText().toString()));
+                                product.setMRP(Double.parseDouble(edtMRP.getText().toString()));
+                                product.setDisplayName("" + edtDisplayname.getText().toString());
+                                product.setDiscount(Integer.parseInt(edtDiscount.getText().toString()));
+                                product.setCategory(spncategory.getSelectedItem().toString());
+                                product.setSubCategory(spnsubcategory.getSelectedItem().toString());
+                                product.setHSN(Integer.parseInt(edtHSN.getText().toString()));
+                                product.setType(spnType.getSelectedItem().toString());
+                                product.setGST(Integer.parseInt(edtGST.getText().toString()));
+
+
+                                if (action.equals("edit")) {
+                                    DatabaseReference databaseReference = database.getReference("Products/");
+                                    databaseReference.child("" + productID).setValue(product);
+                                    Toast t = Toast.makeText(shopownerproductdetails.this, "Product Details Edited", Toast.LENGTH_SHORT);
+                                    t.setGravity(Gravity.TOP, 0, 0);
+                                    t.show();
+                                } else {
+                                    DatabaseReference databaseReference = database.getReference("Products/");
+                                    databaseReference.push().setValue(product);
+                                    Toast t = Toast.makeText(shopownerproductdetails.this, "New Product Added", Toast.LENGTH_SHORT);
+                                    t.setGravity(Gravity.TOP, 0, 0);
+                                    t.show();
+                                }
+
+
+                                Intent intent = new Intent();
+                                intent.putExtra("searchItem", searchItem);
+                                intent.putExtra("position", position);
+                                setResult(Activity.RESULT_OK, intent);
+                                finish();
+                            }else{
+                                dialog.dismiss();
+                            }
+                        }
+                    });
+
+                    Button no = dialog.findViewById(R.id.dialog_btn_no);
+                    no.setText("Cancel");
+                    no.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            butsave.setText("Edit");
+                            dialog.dismiss();
+                            onBackPressed();
+                        }
+                    });
+                    dialog.show();
+
+
+
+                /*AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerproductdetails.this);
                 logoutAlertBuilder.setMessage("Are you sure to Save Product Details ?");
                 logoutAlertBuilder.setCancelable(false);
                 logoutAlertBuilder.setPositiveButton(
@@ -383,7 +460,7 @@ public class shopownerproductdetails extends AppCompatActivity {
                     }
                 });
 
-                alertLogout.show();
+                alertLogout.show();*/
             }
 
                 /**/

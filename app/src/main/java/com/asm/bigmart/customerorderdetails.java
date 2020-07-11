@@ -160,14 +160,16 @@ public class customerorderdetails extends AppCompatActivity {
                 TextView orderDate = findViewById(R.id.txt_customer_orderdetails_orderDate);
                 orderDate.setText(""+orderDetail.date);
 
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
-                try {
+                //SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+                //orderDate.setText("" +sdf.format(orderDetail.date));
+                //orderDate.setText("" +orderDetail.date);
+                /*try {
                     Date date = sdf.parse(orderDetail.date);
                     SimpleDateFormat sdfN=new SimpleDateFormat("dd/MM/yy");
                     orderDate.setText("" +sdfN.format(date.getTime()));
                 }catch (Exception e){
 
-                }
+                }*/
 
                 TextView totalAmount = findViewById(R.id.txt_customer_orderdetails_totoalAmount);
 

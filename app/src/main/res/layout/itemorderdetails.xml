@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent" android:foreground="?attr/selectableItemBackground"
-    android:layout_height="75dp">
+    android:layout_height="75dp" android:paddingStart="5dp" android:paddingEnd="5dp">
 
     <!--<View android:layout_width="match_parent" android:layout_height="1dp" android:background="@android:color/darker_gray"/>-->
 
+    <View android:layout_width="1dp" android:layout_height="match_parent" android:background="@android:color/darker_gray"/>
     <TextView android:id="@+id/txt_order_detail_productNo" android:layout_gravity="center" android:gravity="center"
         android:layout_width="match_parent" android:layout_weight="0.27" android:textColor="@color/blacklabels"
         android:layout_height="match_parent"></TextView>
@@ -28,5 +29,6 @@
     <TextView android:id="@+id/txt_order_detail_productTotal" android:layout_gravity="center" android:gravity="center"
         android:layout_width="match_parent" android:layout_weight="0.25" android:textColor="@color/blacklabels"
         android:layout_height="match_parent"></TextView>
+    <View android:layout_width="1dp" android:layout_height="match_parent" android:background="@android:color/darker_gray"/>
 
 </LinearLayout>

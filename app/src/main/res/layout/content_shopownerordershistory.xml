@@ -70,7 +70,7 @@
         android:layout_width="match_parent"
         >
         <AutoCompleteTextView
-            android:id="@+id/auto_shopownerorderhistory_orderid" android:hint="Enter Order ID"
+            android:id="@+id/auto_shopownerorderhistory_orderid" android:hint="Enter Order ID to Search"
             android:layout_width="match_parent" android:paddingLeft="10dp" android:textColor="@color/blacklabels" android:maxLines="1" android:inputType="text"
             android:layout_height="match_parent">
 

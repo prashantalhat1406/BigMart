@@ -6,8 +6,8 @@
     android:layout_height="match_parent"  android:background="@drawable/button_greyborder"
     app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
-    <ScrollView
-        android:layout_width="match_parent" android:layout_weight="0.1" android:background="@drawable/button_greyborder"
+    <ScrollView android:layout_weight="0.09"
+        android:layout_width="match_parent"  android:background="@drawable/button_greyborder"
         android:layout_height="match_parent"
         android:paddingBottom="5dp">
 
@@ -291,10 +291,11 @@
     </ScrollView>
 
     <LinearLayout
-        android:layout_width="match_parent" android:paddingStart="5dp" android:paddingEnd="5dp" android:paddingBottom="5dp"
-        android:layout_height="match_parent" android:layout_weight="0.9">
+        android:layout_width="match_parent" android:paddingStart="5dp" android:paddingEnd="5dp"
+        android:paddingBottom="5dp" android:layout_gravity="center" android:gravity="center"
+        android:layout_height="match_parent" android:layout_weight="0.91">
 
-        <Button android:id="@+id/but_productdetails_save" android:layout_weight="0.5"
+        <Button android:id="@+id/but_productdetails_save"
             android:paddingStart="5dp" android:paddingEnd="5dp" android:textColor="#ffffff"
             android:layout_width="150dp" android:background="@drawable/roundbutton_green"
             android:layout_height="50dp" android:text="Save" ></Button>
