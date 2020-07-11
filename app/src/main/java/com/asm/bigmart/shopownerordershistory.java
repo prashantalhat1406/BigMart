@@ -38,7 +38,7 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
 
     private List<Orders> orders;
     private Integer position=0;
-    //private String searchItem="";
+    private String searchItem="";
     private List<String> orderIDs;
     ListView ordersList;
 
@@ -293,7 +293,7 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
         if(requestCode == 100)
         {
             position = data.getIntExtra("position",0);
-            //searchItem = data.getStringExtra("searchItem");
+            searchItem = data.getStringExtra("searchItem");
             autoCompleteTextView.setText("");
             ordersList.setSelection( position);
 
