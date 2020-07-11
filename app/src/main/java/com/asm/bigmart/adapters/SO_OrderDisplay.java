@@ -25,17 +25,17 @@ public class SO_OrderDisplay extends ArrayAdapter<Orders> {
 
     List<Orders> orders;
     Context context;
-    Long userID;
+
     Orders order;
     Integer type;
 
 
-    public SO_OrderDisplay(@NonNull Context context, int resource, @NonNull List<Orders> objects, Long userID, Integer type) {
+    public SO_OrderDisplay(@NonNull Context context, int resource, @NonNull List<Orders> objects,  Integer type) {
 
         super(context, resource, objects);
         this.orders = objects;
         this.context= context;
-        this.userID = userID;
+
         this.type = type;
     }
 

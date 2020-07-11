@@ -38,14 +38,14 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
 
     private List<Orders> orders;
     private Integer position=0;
-    private String searchItem="";
+    //private String searchItem="";
     private List<String> orderIDs;
     ListView ordersList;
-    private long userID;
-    private int count = 0;
-    private String orderID = "test";
-    private Boolean flag = false;
-    private FirebaseDatabase database;
+
+
+
+    SimpleDateFormat dateFormat;
+
     Button back, next;
     AutoCompleteTextView autoCompleteTextView;
     String baseDate="";
@@ -57,7 +57,7 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
     {
 
         List<Orders> orders_statuswise;
-        orders_statuswise = new ArrayList<Orders>();
+        orders_statuswise = new ArrayList<>();
         switch (radioButton){
             case R.id.rdbAll:
                 orders_statuswise =orders;
@@ -84,7 +84,7 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
         }
 
         List<Orders> orders_datewise;
-        orders_datewise = new ArrayList<Orders>();
+        orders_datewise = new ArrayList<>();
         for (Orders order : orders_statuswise) {
             if (order.getDate().equals(baseDate))
                 orders_datewise.add(order);
@@ -100,7 +100,7 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
             empty.setVisibility(View.VISIBLE);
         }
 
-        SO_OrderDisplay orderAdapter = new SO_OrderDisplay(shopownerordershistory.this,R.layout.itemordershopowner,orders_datewise, userID,2);
+        SO_OrderDisplay orderAdapter = new SO_OrderDisplay(shopownerordershistory.this,R.layout.itemordershopowner,orders_datewise, 2);
         ordersList.setAdapter(orderAdapter);
         ordersList.setSelection(position);
     }
@@ -125,6 +125,8 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
 
 
+        dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+
 
         orders = new ArrayList<Orders>();
         orderIDs = new ArrayList<String>();
@@ -133,13 +135,13 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
         empty = findViewById(R.id.layout_so_orderhistory_empty);
         orderslist = findViewById(R.id.layout_so_orderhistory_list);
 
-        database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
         DatabaseReference productReference = database.getReference("Orders/");
         Query query = productReference.orderByKey();
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                orders = new ArrayList<Orders>();
+                orders = new ArrayList<>();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Orders order = postSnapshot.getValue(Orders.class);
                     orders.add(order);
@@ -157,7 +159,7 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
                     empty.setVisibility(View.VISIBLE);
                 }
 
-                SO_OrderDisplay orderAdapter = new SO_OrderDisplay(shopownerordershistory.this,R.layout.itemordershopowner,orders, userID,2);
+                SO_OrderDisplay orderAdapter = new SO_OrderDisplay(shopownerordershistory.this,R.layout.itemordershopowner,orders, 2);
                 ordersList.setAdapter(orderAdapter);
                 RadioGroup rg = findViewById(R.id.rdbGroup);
                 rg.findViewById(R.id.rdbAll).setSelected(true);
@@ -171,7 +173,7 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
         });
 
         autoCompleteTextView = findViewById(R.id.auto_shopownerorderhistory_orderid);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,orderIDs);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,orderIDs);
         autoCompleteTextView.setAdapter(adapter);
         autoCompleteTextView.setThreshold(1);
 
@@ -232,7 +234,7 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
                 shopownerordershistory.this, shopownerordershistory.this, year, month, day);
 
 
-        baseDate = new SimpleDateFormat("dd-MMM-yyyy").format(Calendar.getInstance().getTime());
+        baseDate = dateFormat.format(Calendar.getInstance().getTime());
         txtCurrentSelection = findViewById(R.id.txt_soorderhistory_currentselection);
         txtCurrentSelection.setText(baseDate);
 
@@ -250,12 +252,14 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
                 Calendar currentCalendar = Calendar.getInstance();
 
                 try {
-                    currentCalendar.setTime(new SimpleDateFormat("dd-MMM-yyyy").parse(baseDate));
+                    currentCalendar.setTime(dateFormat.parse(baseDate));
                     currentCalendar.add(Calendar.DAY_OF_MONTH,-1);
-                    baseDate = new SimpleDateFormat("dd-MMM-yyyy").format(currentCalendar.getTime());
+                    baseDate = dateFormat.format(currentCalendar.getTime());
                     txtCurrentSelection.setText(baseDate);
                     displayFilteredList(statusRadioGroup.getCheckedRadioButtonId(),baseDate);
-                }catch (Exception e){}
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
 
             }
         });
@@ -267,13 +271,15 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
                 Calendar currentCalendar = Calendar.getInstance();
 
                 try {
-                    currentCalendar.setTime(new SimpleDateFormat("dd-MMM-yyyy").parse(baseDate));
+                    currentCalendar.setTime(dateFormat.parse(baseDate));
                     currentCalendar.add(Calendar.DAY_OF_MONTH,1);
-                    baseDate = new SimpleDateFormat("dd-MMM-yyyy").format(currentCalendar.getTime());
+                    baseDate = dateFormat.format(currentCalendar.getTime());
                     txtCurrentSelection.setText(baseDate);
 
                     displayFilteredList(statusRadioGroup.getCheckedRadioButtonId(),baseDate);
-                }catch (Exception e){}
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
 
             }
         });
@@ -287,7 +293,7 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
         if(requestCode == 100)
         {
             position = data.getIntExtra("position",0);
-            searchItem = data.getStringExtra("searchItem");
+            //searchItem = data.getStringExtra("searchItem");
             autoCompleteTextView.setText("");
             ordersList.setSelection( position);
 
@@ -309,8 +315,8 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(year,month,dayOfMonth);
-        txtCurrentSelection.setText(new SimpleDateFormat("dd-MMM-yyyy").format(calendar.getTime()));
-        baseDate = new SimpleDateFormat("dd-MMM-yyyy").format(calendar.getTime());
+        txtCurrentSelection.setText(dateFormat.format(calendar.getTime()));
+        baseDate = dateFormat.format(calendar.getTime());
 
         displayFilteredList(statusRadioGroup.getCheckedRadioButtonId(),baseDate);
     }
