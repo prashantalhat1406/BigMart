@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -43,6 +45,7 @@ public class CU_ProductDisplay extends ArrayAdapter<Product> {
     Product product;
     Integer type;
     FirebaseDatabase database;
+    int lastPosition =-1;
 
     //Integer productCount =0;
 
@@ -298,6 +301,12 @@ public class CU_ProductDisplay extends ArrayAdapter<Product> {
         }catch (Exception e){
             Log.d("Ts",e.getMessage());
         }
+
+        Animation animation = AnimationUtils.loadAnimation(context,
+                (position > lastPosition) ? R.anim.loaddownanim : R.anim.loadupanim);
+        convertView.startAnimation(animation);
+        lastPosition = position;
+
         return convertView;
     }
 }

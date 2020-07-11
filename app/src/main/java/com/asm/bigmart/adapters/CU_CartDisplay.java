@@ -12,6 +12,8 @@ import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -40,6 +42,7 @@ public class CU_CartDisplay extends ArrayAdapter<Product> {
     Long userID;
     Product product;
     Integer type;
+    int lastPosition = -1;
 
     public CU_CartDisplay(@NonNull Context context, int resource, @NonNull List<Product> objects, Long userID, Integer type) {
         super(context, resource, objects);
@@ -281,6 +284,11 @@ public class CU_CartDisplay extends ArrayAdapter<Product> {
         viewHolder.bmaamount.setText("ASM " + viewHolder.bmaamount.getText());
         viewHolder.savedamount.setText("Save " + viewHolder.savedamount.getText());
         viewHolder.mrp.setText("MRP " + viewHolder.mrp.getText());
+
+        Animation animation = AnimationUtils.loadAnimation(context,
+                (position > lastPosition) ? R.anim.loaddownanim : R.anim.loadupanim);
+        convertView.startAnimation(animation);
+        lastPosition = position;
 
         return convertView;
     }
