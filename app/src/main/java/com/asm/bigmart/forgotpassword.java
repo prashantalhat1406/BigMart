@@ -22,6 +22,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -56,7 +57,7 @@ public class forgotpassword extends AppCompatActivity {
         boolean flag = false;
 
         try {
-            if (CryptUtil.decrypt(user.Answer.toUpperCase()).equals(secAnswer.toUpperCase()))
+            if (CryptUtil.decrypt(user.Answer).toUpperCase().equals(secAnswer.toUpperCase()))
                 flag = true;
 
         }catch (Exception e) {}
@@ -156,6 +157,9 @@ public class forgotpassword extends AppCompatActivity {
         toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
         setTitle("Reset Password");
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
+
         Bundle b = getIntent().getExtras();
         userID = b.getLong("userID",0);
         usersDB = new ArrayList<>();
@@ -226,6 +230,7 @@ public class forgotpassword extends AppCompatActivity {
                         edtPassword.setVisibility(View.VISIBLE);
                         edtPassword.requestFocus();
                         butValidate.setText("Save Pin");
+                        butValidate.setBackground(getDrawable(R.drawable.roundbutton_green));
                     } else {
                         edtSecurityAnswer.setError("InCorrect Answer, Please enter correct answer.");
                         edtSecurityAnswer.setText("");
@@ -255,8 +260,16 @@ public class forgotpassword extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        //showLogoutAlertDialog();
+        super.onBackPressed();
+    }
 
-        showLogoutAlertDialog();
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

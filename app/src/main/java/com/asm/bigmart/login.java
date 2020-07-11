@@ -297,7 +297,7 @@ public class login extends AppCompatActivity {
                             extras.putLong("userID", Long.parseLong("0"));
                         registerIntent.putExtras(extras);
                         startActivity(registerIntent);
-                        finish();
+                        //finish();
                     }else{
                         edtMobile.setError("User does not exists!");
                         edtMobile.requestFocus();
@@ -390,6 +390,7 @@ public class login extends AppCompatActivity {
     protected void onResume() {
         edtPassword.setText("");
         edtMobile.setText("");
+        edtMobile.requestFocus();
         super.onResume();
     }
 

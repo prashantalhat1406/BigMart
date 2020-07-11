@@ -104,7 +104,7 @@ public class customerprofile extends AppCompatActivity {
         @Override
         public void afterTextChanged(Editable s) {
             save.setEnabled(true);
-            save.setBackground(getDrawable(R.drawable.status_complete));
+            save.setBackground(getDrawable(R.drawable.roundbutton_green));
         }
     };
 
