@@ -37,26 +37,26 @@ android:orientation="vertical" >
     android:orientation="horizontal" >
 
     <Button
-        android:id="@+id/dialog_btn_yes"
+        android:id="@+id/dialog_btn_red"
         android:layout_width="100dp"
         android:layout_height="30dp"
         android:background="@drawable/button_redborder"
         android:foreground="?attr/selectableItemBackground"
         android:clickable="true"
-        android:text="Logout"
+        android:text="No"
         android:layout_marginRight="20dp"
         android:textColor="#FF0000"
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/dialog_btn_no"
+        android:id="@+id/dialog_btn_green"
         android:layout_width="100dp"
         android:layout_height="30dp"
         android:layout_marginLeft="20dp"
         android:background="@drawable/button_greenborder"
         android:foreground="?attr/selectableItemBackground"
         android:clickable="true"
-        android:text="Cancel"
+        android:text="Yes"
         android:textColor="#309A58"
         android:textStyle="bold" />
 </LinearLayout>

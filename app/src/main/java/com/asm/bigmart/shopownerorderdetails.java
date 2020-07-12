@@ -117,9 +117,19 @@ public class shopownerorderdetails extends AppCompatActivity {
                 TextView dialogMessage = dialog.findViewById(R.id.dialog_message);
                 dialogMessage.setText("Do you want to Complete Order  ?");
 
-                Button yes = dialog.findViewById(R.id.dialog_btn_yes);
-                yes.setText("Complete");
-                yes.setOnClickListener(new View.OnClickListener() {
+                Button redbutton = dialog.findViewById(R.id.dialog_btn_red);
+                redbutton.setText("No");
+                redbutton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        dialog.dismiss();
+                    }
+                });
+
+                Button greenbutton = dialog.findViewById(R.id.dialog_btn_green);
+                greenbutton.setText("Yes");
+                greenbutton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         DatabaseReference orderReference = database.getReference("Orders/").child(""+orderID);
@@ -131,15 +141,6 @@ public class shopownerorderdetails extends AppCompatActivity {
                         intent.putExtra("searchItem",searchItem);
                         setResult(Activity.RESULT_OK, intent);
                         finish();
-                        dialog.dismiss();
-                    }
-                });
-
-                Button no = dialog.findViewById(R.id.dialog_btn_no);
-                no.setText("Cancel");
-                no.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
                         dialog.dismiss();
                     }
                 });
@@ -235,9 +236,18 @@ public class shopownerorderdetails extends AppCompatActivity {
                     TextView dialogMessage = dialog.findViewById(R.id.dialog_message);
                     dialogMessage.setText("Do you want to Confirm Order ?");
 
-                    Button yes = dialog.findViewById(R.id.dialog_btn_yes);
-                    yes.setText("Confirm");
-                    yes.setOnClickListener(new View.OnClickListener() {
+                    Button redbutton = dialog.findViewById(R.id.dialog_btn_red);
+                    redbutton.setText("No");
+                    redbutton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    Button greenbutton = dialog.findViewById(R.id.dialog_btn_green);
+                    greenbutton.setText("Yes");
+                    greenbutton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             DatabaseReference orderReference = database.getReference("Orders/").child(""+orderID);
@@ -249,15 +259,6 @@ public class shopownerorderdetails extends AppCompatActivity {
                             butConfirm.setVisibility(View.GONE);
                             butCancel.setVisibility(View.GONE);
                             updateStoreQuantity(products);
-                            dialog.dismiss();
-                        }
-                    });
-
-                    Button no = dialog.findViewById(R.id.dialog_btn_no);
-                    no.setText("Cancel");
-                    no.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
                             dialog.dismiss();
                         }
                     });
@@ -319,9 +320,18 @@ public class shopownerorderdetails extends AppCompatActivity {
                 TextView dialogMessage = dialog.findViewById(R.id.dialog_message);
                 dialogMessage.setText("Do you want to Cancel Order ?");
 
-                Button yes = dialog.findViewById(R.id.dialog_btn_yes);
-                yes.setText("Cancel");
-                yes.setOnClickListener(new View.OnClickListener() {
+                Button redbutton = dialog.findViewById(R.id.dialog_btn_red);
+                redbutton.setText("No");
+                redbutton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                Button greenbutton = dialog.findViewById(R.id.dialog_btn_green);
+                greenbutton.setText("Yes");
+                greenbutton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         DatabaseReference orderReference = database.getReference("Orders/").child(""+orderID);
@@ -333,15 +343,6 @@ public class shopownerorderdetails extends AppCompatActivity {
                         intent.putExtra("searchItem",searchItem);
                         setResult(Activity.RESULT_OK, intent);
                         finish();
-                        dialog.dismiss();
-                    }
-                });
-
-                Button no = dialog.findViewById(R.id.dialog_btn_no);
-                no.setText("No");
-                no.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
                         dialog.dismiss();
                     }
                 });
@@ -403,9 +404,19 @@ public class shopownerorderdetails extends AppCompatActivity {
                     TextView dialogMessage = dialog.findViewById(R.id.dialog_message);
                     dialogMessage.setText("Do you want to Delete Product ?");
 
-                    Button yes = dialog.findViewById(R.id.dialog_btn_yes);
-                    yes.setText("Delete");
+                    Button yes = dialog.findViewById(R.id.dialog_btn_red);
+                    yes.setText("No");
                     yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            dialog.dismiss();
+                        }
+                    });
+
+                    Button no = dialog.findViewById(R.id.dialog_btn_green);
+                    no.setText("Yes");
+                    no.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             if (products.size() == 1){
@@ -428,15 +439,6 @@ public class shopownerorderdetails extends AppCompatActivity {
                                     orderReference.removeValue();
                                 }
                             }
-                            dialog.dismiss();
-                        }
-                    });
-
-                    Button no = dialog.findViewById(R.id.dialog_btn_no);
-                    no.setText("Cancel");
-                    no.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
                             dialog.dismiss();
                         }
                     });

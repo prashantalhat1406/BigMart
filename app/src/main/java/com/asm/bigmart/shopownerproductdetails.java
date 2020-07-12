@@ -332,9 +332,23 @@ public class shopownerproductdetails extends AppCompatActivity {
                     TextView dialogMessage = dialog.findViewById(R.id.dialog_message);
                     dialogMessage.setText("Are you sure to Save Product Details ?");
 
-                    Button yes = dialog.findViewById(R.id.dialog_btn_yes);
-                    yes.setText("Save");
-                    yes.setOnClickListener(new View.OnClickListener() {
+                    Button redbutton = dialog.findViewById(R.id.dialog_btn_red);
+                    redbutton.setText("No");
+                    redbutton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            butsave.setText("Edit");
+                            dialog.dismiss();
+                            onBackPressed();
+
+
+                        }
+                    });
+
+                    Button greenbutton = dialog.findViewById(R.id.dialog_btn_green);
+                    greenbutton.setText("Yes");
+                    greenbutton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             if (fieldValidated()) {
@@ -378,17 +392,6 @@ public class shopownerproductdetails extends AppCompatActivity {
                             }else{
                                 dialog.dismiss();
                             }
-                        }
-                    });
-
-                    Button no = dialog.findViewById(R.id.dialog_btn_no);
-                    no.setText("Cancel");
-                    no.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            butsave.setText("Edit");
-                            dialog.dismiss();
-                            onBackPressed();
                         }
                     });
                     dialog.show();

@@ -1,9 +1,7 @@
 package com.asm.bigmart;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -375,21 +373,22 @@ public class home extends AppCompatActivity {
         dialog.setCancelable(false);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        Button yes = dialog.findViewById(R.id.dialog_btn_yes);
-        yes.setOnClickListener(new View.OnClickListener() {
+        Button redbutton = dialog.findViewById(R.id.dialog_btn_red);
+        redbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        Button greenbutton = dialog.findViewById(R.id.dialog_btn_green);
+        greenbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
                 Intent logoutIntent = new Intent(home.this, login.class);
                 logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(logoutIntent);
                 finish();
-            }
-        });
-        Button no = dialog.findViewById(R.id.dialog_btn_no);
-        no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
             }
         });
         dialog.show();

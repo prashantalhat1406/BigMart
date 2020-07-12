@@ -40,6 +40,8 @@ public class reportorderwise extends AppCompatActivity implements DatePickerDial
     Button back, next;
     String baseDate="";
     TextView txtDaily,txtMonthly,txtWeekly;
+    DatePickerDialog datePickerDialog;
+    Calendar c;
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -154,13 +156,15 @@ public class reportorderwise extends AppCompatActivity implements DatePickerDial
         txtTotal = findViewById(R.id.txt_report_orderwise_total);
         txtCurrentSelection = findViewById(R.id.txt_report_currentselection);
 
-        final Calendar c = Calendar.getInstance();
+        c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
 
-        final DatePickerDialog datePickerDialog = new DatePickerDialog(
+        datePickerDialog = new DatePickerDialog(
                 reportorderwise.this, reportorderwise.this, year, month, day);
+
+
 
 
 
@@ -173,6 +177,7 @@ public class reportorderwise extends AppCompatActivity implements DatePickerDial
         txtCurrentSelection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
                 datePickerDialog.show();
             }
         });

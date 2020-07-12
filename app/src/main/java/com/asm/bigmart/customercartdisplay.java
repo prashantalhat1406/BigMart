@@ -1,11 +1,8 @@
 package com.asm.bigmart;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
@@ -45,9 +42,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class customercartdisplay extends AppCompatActivity {
     public Integer listPosition = 0;
@@ -112,7 +107,7 @@ public class customercartdisplay extends AppCompatActivity {
         TextView dialogMessage = dialog.findViewById(R.id.dialog_message);
         dialogMessage.setText("Have you added all items ?");
 
-        Button yes = dialog.findViewById(R.id.dialog_btn_yes);
+        Button yes = dialog.findViewById(R.id.dialog_btn_red);
         yes.setText("Yes");
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +119,7 @@ public class customercartdisplay extends AppCompatActivity {
             }
         });
 
-        Button no = dialog.findViewById(R.id.dialog_btn_no);
+        Button no = dialog.findViewById(R.id.dialog_btn_green);
         no.setText("No");
         no.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -247,9 +242,19 @@ public class customercartdisplay extends AppCompatActivity {
                 TextView dialogMessage = dialog.findViewById(R.id.dialog_message);
                 dialogMessage.setText("Are you sure to Remove All items ?");
 
-                Button yes = dialog.findViewById(R.id.dialog_btn_yes);
-                yes.setText("Remove");
-                yes.setOnClickListener(new View.OnClickListener() {
+                Button redbutton = dialog.findViewById(R.id.dialog_btn_red);
+                redbutton.setText("No");
+                redbutton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        dialog.dismiss();
+                    }
+                });
+
+                Button greenbutton = dialog.findViewById(R.id.dialog_btn_green);
+                greenbutton.setText("Yes");
+                greenbutton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         DatabaseReference databaseReference = database.getReference("Users/"+userID+"/TempOrder");
@@ -259,15 +264,6 @@ public class customercartdisplay extends AppCompatActivity {
                         list.setVisibility(View.GONE);
                         buttons.setVisibility(View.GONE);
                         emptyCart.setVisibility(View.VISIBLE);
-                        dialog.dismiss();
-                    }
-                });
-
-                Button no = dialog.findViewById(R.id.dialog_btn_no);
-                no.setText("Cancel");
-                no.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
                         dialog.dismiss();
                     }
                 });
@@ -554,7 +550,7 @@ public class customercartdisplay extends AppCompatActivity {
         dialog.setCancelable(false);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        Button yes = dialog.findViewById(R.id.dialog_btn_yes);
+        Button yes = dialog.findViewById(R.id.dialog_btn_red);
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -564,7 +560,7 @@ public class customercartdisplay extends AppCompatActivity {
                 finish();
             }
         });
-        Button no = dialog.findViewById(R.id.dialog_btn_no);
+        Button no = dialog.findViewById(R.id.dialog_btn_green);
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

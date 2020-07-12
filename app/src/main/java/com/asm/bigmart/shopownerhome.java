@@ -1,8 +1,6 @@
 package com.asm.bigmart;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -57,7 +55,7 @@ public class shopownerhome extends AppCompatActivity {
         dialog.setCancelable(false);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        Button yes = dialog.findViewById(R.id.dialog_btn_yes);
+        Button yes = dialog.findViewById(R.id.dialog_btn_red);
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,7 +65,7 @@ public class shopownerhome extends AppCompatActivity {
                 finish();
             }
         });
-        Button no = dialog.findViewById(R.id.dialog_btn_no);
+        Button no = dialog.findViewById(R.id.dialog_btn_green);
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

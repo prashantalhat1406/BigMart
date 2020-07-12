@@ -1,8 +1,10 @@
 package com.asm.bigmart;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import com.asm.bigmart.adapters.CU_OrderDetails;
@@ -83,7 +85,42 @@ public class customerorderdetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(customerorderdetails.this);
+                final Dialog dialog = new Dialog(customerorderdetails.this);
+                dialog.setContentView(R.layout.logoutdialog);
+                dialog.setCancelable(false);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                TextView dialogTitle = dialog.findViewById(R.id.dialog_title);
+                dialogTitle.setText("CANCEL ORDER");
+
+                TextView dialogMessage = dialog.findViewById(R.id.dialog_message);
+                dialogMessage.setText("Do you want to Cancel Order ?");
+
+                Button redbutton = dialog.findViewById(R.id.dialog_btn_red);
+                redbutton.setText("No");
+                redbutton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        dialog.dismiss();
+                    }
+                });
+
+                Button greenbutton = dialog.findViewById(R.id.dialog_btn_green);
+                greenbutton.setText("Yes");
+                greenbutton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DatabaseReference orderReference = database.getReference("Orders/").child(""+orderID);
+                        Map<String, Object> statusUpdate = new HashMap<>();
+                        statusUpdate.put("status", "Cancelled");
+                        orderReference.updateChildren(statusUpdate);
+                        finish();
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+                /*AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(customerorderdetails.this);
                 logoutAlertBuilder.setMessage("Do you want to Cancel Order ?");
                 logoutAlertBuilder.setCancelable(false);
                 logoutAlertBuilder.setPositiveButton(
@@ -114,7 +151,7 @@ public class customerorderdetails extends AppCompatActivity {
                     }
                 });
 
-                alertLogout.show();
+                alertLogout.show();*/
 
 
 

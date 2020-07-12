@@ -252,6 +252,7 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
         txtCurrentSelection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
                 datePickerDialog.show();
             }
         });
