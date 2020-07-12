@@ -31,6 +31,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -496,10 +497,14 @@ public class shopownerproductdetails extends AppCompatActivity {
                     edtName.setText(product.Name);
                     edtName2.setText(product.Name2);
                     edtDisplayname.setText(product.DisplayName);
-                    edtDiscount.setText("" + product.Discount);
+
                     edtMaxStock.setText("" + product.MaxStock);
                     edtMinStock.setText("" + product.MinStock);
-                    edtMRP.setText("" + product.MRP);
+
+                    edtMRP.setText("" + ( product.MRP));
+                    edtDiscount.setText("" + (product.Discount));
+                    edtMRP.setText("" + ( product.MRP));
+                    edtDiscount.setText("" + (product.Discount));
                     edtHSN.setText("" + product.HSN);
                     edtGST.setText("" + product.GST);
                     edtQTY.setText("" + product.Qty);
