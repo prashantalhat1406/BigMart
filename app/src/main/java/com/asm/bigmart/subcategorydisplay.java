@@ -31,6 +31,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.List;
@@ -44,6 +46,8 @@ public class subcategorydisplay extends AppCompatActivity {
     FirebaseDatabase database;
     String categoryName;
     Double cartAmount;
+    ProgressBar progressBar;
+    LinearLayout subcategoriesLayout;
     private static final int[] BUTTON_IDS = {
             R.id.but_subcat_1,
             R.id.but_subcat_2,
@@ -101,6 +105,11 @@ public class subcategorydisplay extends AppCompatActivity {
         categoryName = b.getString("categoryName");
         userID = b.getLong("userID");
 
+        progressBar = findViewById(R.id.progressbarSubCategories);
+        subcategoriesLayout = findViewById(R.id.layout_subcategories);
+        progressBar.setIndeterminate(true);
+        progressBar.setVisibility(View.VISIBLE);
+
         switch(categoryName){
             case "Dairy" : setTitle("Dairy & Beverages"); break;
             case "Grocery" : setTitle("Grocery"); break;
@@ -140,6 +149,8 @@ public class subcategorydisplay extends AppCompatActivity {
                     showButton(subCategory.Name,count);
                     count++;
                 }
+                progressBar.setVisibility(View.GONE);
+                subcategoriesLayout.setVisibility(View.VISIBLE);
             }
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) { }

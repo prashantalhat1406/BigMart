@@ -31,6 +31,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -46,7 +48,9 @@ public class customerproductdisplay extends AppCompatActivity {
     FirebaseDatabase database;
     Integer productQty;
     Double cartAmount;
-    LinearLayout empty, normal;
+    LinearLayout empty;
+    RelativeLayout normal;
+    ProgressBar progressBar;
 
     public Integer isProductInCart(final String productID)
     {
@@ -147,6 +151,9 @@ public class customerproductdisplay extends AppCompatActivity {
 
         empty = findViewById(R.id.layout_productdisplay_empty);
         normal = findViewById(R.id.layout_productdisplay_list);
+        progressBar = findViewById(R.id.cuatomerProductsDisplayProgressbar);
+        progressBar.setIndeterminate(true);
+        progressBar.setVisibility(View.VISIBLE);
 
         database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
 
@@ -159,13 +166,9 @@ public class customerproductdisplay extends AppCompatActivity {
                     product.setID(postSnapshot.getKey());
                     cartProducts.add(product);
                 }
-
             }
-
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) {     }
         });
 
         Query query = database.getReference("/Products");
@@ -201,10 +204,13 @@ public class customerproductdisplay extends AppCompatActivity {
                     productAdaper = new adapterProduct(customerproductdisplay.this,R.layout.itemproduct,tempproducts, userID,1);*/
                     empty.setVisibility(View.VISIBLE);
                     normal.setVisibility(View.GONE);
+                    progressBar.setVisibility(View.GONE);
                 }
                 else {
                     empty.setVisibility(View.GONE);
                     normal.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                    //productList.setVisibility(View.VISIBLE);
                     productAdaper = new CU_ProductDisplay(customerproductdisplay.this, R.layout.itemproduct, products, userID, 1);
                     productList.setAdapter(productAdaper);
                 }

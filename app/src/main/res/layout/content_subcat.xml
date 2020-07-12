@@ -7,54 +7,70 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
 
-    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" >
-        <LinearLayout
+    <RelativeLayout android:layout_weight="0.14"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ProgressBar android:id="@+id/progressbarSubCategories"
+            android:indeterminateTint="@color/colorPrimaryDark"
+            android:layout_width="80dp" android:layout_gravity="center"
+            android:layout_height="80dp" android:layout_centerInParent="true">
+
+        </ProgressBar>
+
+        <LinearLayout android:id="@+id/layout_subcategories"
             android:layout_width="match_parent"
-            android:layout_height="200dp" android:layout_weight="0.1" android:orientation="horizontal">
-            <ImageButton android:id="@+id/but_subcat_1" android:foreground="?attr/selectableItemBackground"
+            android:layout_height="match_parent" android:orientation="vertical" >
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
-            <ImageButton android:id="@+id/but_subcat_2" android:foreground="?attr/selectableItemBackground"
+                android:layout_height="200dp" android:layout_weight="0.1" android:orientation="horizontal">
+                <ImageButton android:id="@+id/but_subcat_1" android:foreground="?attr/selectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
+                <ImageButton android:id="@+id/but_subcat_2" android:foreground="?attr/selectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
+                <ImageButton android:id="@+id/but_subcat_3" android:foreground="?attr/selectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
-            <ImageButton android:id="@+id/but_subcat_3" android:foreground="?attr/selectableItemBackground"
+                android:layout_height="200dp" android:layout_weight="0.1" android:orientation="horizontal">
+                <ImageButton android:id="@+id/but_subcat_4" android:foreground="?attr/selectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
+                <ImageButton android:id="@+id/but_subcat_5" android:foreground="?attr/selectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
+                <ImageButton android:id="@+id/but_subcat_6" android:foreground="?attr/selectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp" android:layout_weight="0.1" android:orientation="horizontal">
-            <ImageButton android:id="@+id/but_subcat_4" android:foreground="?attr/selectableItemBackground"
+                android:layout_height="200dp" android:layout_weight="0.1" android:orientation="horizontal">
+                <ImageButton android:id="@+id/but_subcat_7" android:foreground="?attr/selectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
+                <ImageButton android:id="@+id/but_subcat_8" android:foreground="?attr/selectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
+                <ImageButton android:id="@+id/but_subcat_9" android:foreground="?attr/selectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
-            <ImageButton android:id="@+id/but_subcat_5" android:foreground="?attr/selectableItemBackground"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
-            <ImageButton android:id="@+id/but_subcat_6" android:foreground="?attr/selectableItemBackground"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp" android:layout_weight="0.1" android:orientation="horizontal">
-            <ImageButton android:id="@+id/but_subcat_7" android:foreground="?attr/selectableItemBackground"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
-            <ImageButton android:id="@+id/but_subcat_8" android:foreground="?attr/selectableItemBackground"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
-            <ImageButton android:id="@+id/but_subcat_9" android:foreground="?attr/selectableItemBackground"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp" android:layout_weight="0.1" android:orientation="horizontal">
+                android:layout_height="200dp" android:layout_weight="0.1" android:orientation="horizontal">
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
 
-    </LinearLayout>
+    </RelativeLayout>
+
 
 
 
