@@ -49,6 +49,7 @@ public class shopownerproductdetails extends AppCompatActivity {
     ArrayAdapter<String> PTadapter;
     private String searchItem="";
     private Integer position=0;
+    Product product;
 
 
     public void showErrorMessage(String message){
@@ -194,10 +195,10 @@ public class shopownerproductdetails extends AppCompatActivity {
 
 
 
-        Categories = new ArrayList<Category>();
-        SubCategories = new ArrayList<SubCategory>();
-        strCategories = new ArrayList<String>();
-        strSubCategories = new ArrayList<String>();
+        Categories = new ArrayList<>();
+        SubCategories = new ArrayList<>();
+        strCategories = new ArrayList<>();
+        strSubCategories = new ArrayList<>();
         spncategory = findViewById(R.id.spn_product_category);
         spnsubcategory = findViewById(R.id.spn_product_subcategory);
         spnsubcategory.setEnabled(false);
@@ -277,7 +278,7 @@ public class shopownerproductdetails extends AppCompatActivity {
                             strSubCategories.add(subCategory.Name);
                         }
                     }
-                    subcategoryAdapter = new ArrayAdapter<String>(shopownerproductdetails.this, R.layout.support_simple_spinner_dropdown_item, strSubCategories);
+                    subcategoryAdapter = new ArrayAdapter<>(shopownerproductdetails.this, R.layout.support_simple_spinner_dropdown_item, strSubCategories);
                     spnsubcategory.setAdapter(subcategoryAdapter);
                     if (butsave.getText().toString().equals("Edit"))
                         spnsubcategory.setEnabled(false);
@@ -493,7 +494,7 @@ public class shopownerproductdetails extends AppCompatActivity {
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    Product product = dataSnapshot.getValue(Product.class);
+                    product = dataSnapshot.getValue(Product.class);
                     edtName.setText(product.Name);
                     edtName2.setText(product.Name2);
                     edtDisplayname.setText(product.DisplayName);
@@ -501,9 +502,10 @@ public class shopownerproductdetails extends AppCompatActivity {
                     edtMaxStock.setText("" + product.MaxStock);
                     edtMinStock.setText("" + product.MinStock);
 
-                    edtMRP.setText("" + ( product.MRP));
-                    edtDiscount.setText("" + (product.Discount));
-                    edtMRP.setText("" + ( product.MRP));
+                    DecimalFormat formater = new DecimalFormat("0.00");
+                    edtMRP.setText("" + formater.format( product.MRP));
+                    //edtDiscount.setText("" + (product.Discount));
+                    //edtMRP.setText("" + ( product.MRP));
                     edtDiscount.setText("" + (product.Discount));
                     edtHSN.setText("" + product.HSN);
                     edtGST.setText("" + product.GST);
@@ -519,6 +521,8 @@ public class shopownerproductdetails extends AppCompatActivity {
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {                }
             });
+
+
 
         }
 

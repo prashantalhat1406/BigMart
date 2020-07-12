@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import com.asm.bigmart.Product;
 import com.asm.bigmart.R;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class SO_ProductDisplay extends ArrayAdapter<Product> {
@@ -65,8 +66,10 @@ public class SO_ProductDisplay extends ArrayAdapter<Product> {
         else
             convertView.setBackgroundColor(context.getColor(R.color.lighgrey));
 
+        DecimalFormat formater = new DecimalFormat("0.00");
+
         viewHolder.name.setText(""+product.getName());
-        viewHolder.mrp.setText(context.getResources().getString(R.string.Rupee) + " "+product.getMRP().toString());
+        viewHolder.mrp.setText(context.getResources().getString(R.string.Rupee) + " "+ formater.format( product.getMRP()));
         viewHolder.stock.setText(""+product.getQty());
         viewHolder.productID.setText(""+product.getID());
 

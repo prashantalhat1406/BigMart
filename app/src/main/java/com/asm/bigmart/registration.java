@@ -21,6 +21,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -103,7 +104,7 @@ public class registration extends AppCompatActivity {
     public Boolean isFieldEmpty(EditText field){
         Boolean flag = false;
 
-        if (field.getText().length() == 0)
+        if (field.getText().toString().trim().length() == 0)
         {
             field.setError(field.getTag().toString() + " should not be empty");
             field.requestFocus();
@@ -134,6 +135,9 @@ public class registration extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
 
         Bundle b = getIntent().getExtras();
         userID = b.getLong("userID");
@@ -287,7 +291,20 @@ public class registration extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        showLogoutAlertDialog();
-        //super.onBackPressed();
+        //showLogoutAlertDialog();
+        Intent logoutIntent = new Intent(registration.this, login.class);
+        logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(logoutIntent);
+        finish();
+        super.onBackPressed();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

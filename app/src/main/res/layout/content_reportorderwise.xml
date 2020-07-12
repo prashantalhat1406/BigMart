@@ -83,11 +83,12 @@
         android:paddingStart="5dp" android:paddingEnd="5dp" android:paddingBottom="5dp" android:paddingTop="5dp"
         android:layout_height="match_parent">
 
-        <LinearLayout android:layout_weight="0.1"
+        <LinearLayout android:layout_weight="0.1" android:paddingBottom="5dp" android:paddingTop="5dp"
             android:layout_width="match_parent" android:orientation="horizontal"
             android:layout_height="match_parent">
 
-            <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_created" android:foreground="?attr/selectableItemBackground"
+            <LinearLayout android:layout_weight="0.1" android:layout_marginEnd="5dp" android:layout_marginStart="5dp"
+                android:id="@+id/layout_report_created" android:foreground="?attr/selectableItemBackground"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_orangeborder"
                 android:layout_height="match_parent" >
                 <LinearLayout android:layout_weight="0.5"
@@ -122,7 +123,8 @@
 
             </LinearLayout>
 
-            <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_inprogress"
+            <LinearLayout android:layout_weight="0.1" android:layout_marginEnd="5dp"
+                android:id="@+id/layout_report_inprogress"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_blueborder"
                 android:layout_height="match_parent" android:foreground="?attr/selectableItemBackground" >
 
@@ -164,6 +166,7 @@
             </LinearLayout>
 
             <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_total"
+                android:layout_marginEnd="5dp" android:layout_marginStart="5dp"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_blackborder"
                 android:layout_height="match_parent"  android:foreground="?attr/selectableItemBackground">
                 <LinearLayout android:layout_weight="0.5"
@@ -199,10 +202,12 @@
 
         </LinearLayout>
 
-        <LinearLayout android:layout_weight="0.1"
+        <LinearLayout android:layout_weight="0.1" android:paddingBottom="5dp" android:paddingTop="5dp"
             android:layout_width="match_parent" android:orientation="horizontal"
             android:layout_height="match_parent">
-            <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_completed"
+
+            <LinearLayout android:layout_weight="0.1"
+                android:layout_marginEnd="5dp" android:layout_marginStart="5dp" android:id="@+id/layout_report_completed"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_greenborder"
                 android:layout_height="match_parent" android:foreground="?attr/selectableItemBackground">
                 <LinearLayout android:layout_weight="0.5"
@@ -236,7 +241,8 @@
 
             </LinearLayout>
 
-            <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_cancelled"
+            <LinearLayout android:layout_weight="0.1" android:layout_marginEnd="5dp" android:layout_marginStart="5dp"
+                android:id="@+id/layout_report_cancelled"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_redborder"
                 android:layout_height="match_parent" android:foreground="?attr/selectableItemBackground">
                 <LinearLayout android:layout_weight="0.5"
@@ -263,6 +269,7 @@
 
 
             </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>

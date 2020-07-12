@@ -8,16 +8,20 @@
 
 
 
-    <LinearLayout android:layout_weight="0.15"
+    <LinearLayout
         android:layout_width="match_parent" android:orientation="vertical"
         android:paddingStart="5dp" android:paddingEnd="5dp" android:paddingBottom="5dp" android:paddingTop="5dp"
         android:layout_height="match_parent">
 
         <LinearLayout android:layout_weight="0.1"
+            android:paddingStart="0dp" android:paddingEnd="0dp" android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:layout_width="match_parent" android:orientation="horizontal"
             android:layout_height="match_parent">
 
             <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_product_outofstock"
+                android:layout_marginStart="5dp" android:layout_marginEnd="5dp"
+                android:paddingStart="5dp" android:paddingEnd="5dp"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_orangeborder"
                 android:layout_height="match_parent" android:foreground="?attr/selectableItemBackground">
                 <LinearLayout android:layout_weight="0.5"
@@ -46,13 +50,15 @@
 
             </LinearLayout>
 
-            <LinearLayout android:layout_weight="0.1"
+            <LinearLayout android:layout_weight="0.1" android:layout_marginStart="5dp" android:layout_marginEnd="5dp"
+                android:paddingStart="5dp" android:paddingEnd="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
             </LinearLayout>
 
             <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_product_total"
+                android:layout_marginStart="5dp" android:layout_marginEnd="5dp"
                 android:layout_width="match_parent" android:orientation="vertical" android:background="@drawable/button_blackborder"
                 android:layout_height="match_parent" android:foreground="?attr/selectableItemBackground">
                 <LinearLayout android:layout_weight="0.5"
@@ -84,14 +90,19 @@
 
         </LinearLayout>
 
-        <LinearLayout android:layout_weight="0.1"
+        <LinearLayout android:layout_weight="0.1"  android:paddingEnd="0dp" android:paddingTop="5dp" android:paddingBottom="5dp"
             android:layout_width="match_parent" android:orientation="horizontal"
             android:layout_height="match_parent">
 
-            <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_product_category1"
-                android:layout_width="match_parent" android:orientation="vertical" android:paddingEnd="5dp"
+            <LinearLayout
+                android:layout_marginStart="5dp" android:layout_marginEnd="5dp"
+                android:paddingStart="5dp" android:paddingEnd="5dp"
+                android:layout_weight="0.1" android:layout_width="match_parent" android:layout_height="match_parent"
+                android:id="@+id/layout_report_product_category1"
+                android:orientation="vertical"
                 android:background="@drawable/button_blueborder"
-                android:layout_height="match_parent" android:foreground="?attr/selectableItemBackground">
+                 android:foreground="?attr/selectableItemBackground">
+
                 <LinearLayout android:layout_weight="0.5"
                     android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
                     android:layout_height="match_parent">
@@ -105,8 +116,6 @@
 
                     </TextView>
                 </LinearLayout>
-
-
                 <TextView  android:id="@+id/txt_report_product_category1_no"
                     android:layout_weight="0.5" android:paddingBottom="2dp" android:paddingTop="10dp"
                     android:layout_width="match_parent"
@@ -119,10 +128,13 @@
 
             </LinearLayout>
 
-            <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_product_category2"
-                android:layout_width="match_parent" android:orientation="vertical"
+            <LinearLayout android:layout_marginStart="5dp" android:layout_marginEnd="5dp"
+                android:layout_weight="0.1" android:layout_width="match_parent" android:layout_height="match_parent"
+
+                android:id="@+id/layout_report_product_category2"
+                 android:orientation="vertical"
                 android:background="@drawable/button_greenborder" android:paddingEnd="5dp" android:paddingStart="5dp"
-                android:layout_height="match_parent" android:foreground="?attr/selectableItemBackground">
+                 android:foreground="?attr/selectableItemBackground">
                 <LinearLayout android:layout_weight="0.5"
                     android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
                     android:layout_height="match_parent">
@@ -150,10 +162,12 @@
 
             </LinearLayout>
 
-            <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_product_category3"
-                android:layout_width="match_parent" android:orientation="vertical"
+            <LinearLayout android:layout_marginStart="5dp" android:layout_marginEnd="5dp" android:layout_weight="0.1" android:layout_width="match_parent" android:layout_height="match_parent"
+                android:id="@+id/layout_report_product_category3"
+                 android:orientation="vertical"
                 android:background="@drawable/button_redborder"
-                android:layout_height="match_parent" android:foreground="?attr/selectableItemBackground">
+                android:foreground="?attr/selectableItemBackground">
+
                 <LinearLayout android:layout_weight="0.5"
                     android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
                     android:layout_height="match_parent">
@@ -163,12 +177,10 @@
                         android:layout_height="wrap_content" android:textColor="@color/colorWhite"
                         android:textStyle="bold" android:background="@drawable/status_cancelled"
                         android:layout_gravity="center_vertical" android:gravity="center_vertical|center"
-                        android:text="Home &amp; Kitchen" android:textSize="@dimen/textButtonsSmall">
+                        android:text="Home&amp;Kitchen" android:textSize="@dimen/textButtonsSmall">
 
                     </TextView>
                 </LinearLayout>
-
-
                 <TextView  android:id="@+id/txt_report_product_category3_no"
                     android:layout_weight="0.5" android:paddingBottom="2dp" android:paddingTop="10dp"
                     android:layout_width="match_parent"
@@ -185,10 +197,11 @@
         </LinearLayout>
 
         <LinearLayout android:layout_weight="0.1"
+            android:paddingBottom="5dp" android:paddingTop="5dp" android:paddingEnd="0dp"
             android:layout_width="match_parent" android:orientation="horizontal"
             android:layout_height="match_parent">
 
-            <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_product_category4"
+            <LinearLayout android:layout_marginStart="5dp" android:layout_marginEnd="5dp" android:layout_weight="0.1" android:id="@+id/layout_report_product_category4"
                 android:layout_width="match_parent" android:orientation="vertical" android:paddingEnd="5dp"
                 android:background="@drawable/button_blueborder"
                 android:layout_height="match_parent" android:foreground="?attr/selectableItemBackground">
@@ -219,7 +232,7 @@
 
             </LinearLayout>
 
-            <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_product_category5"
+            <LinearLayout android:layout_marginStart="5dp" android:layout_marginEnd="5dp" android:layout_weight="0.1" android:id="@+id/layout_report_product_category5"
                 android:layout_width="match_parent" android:orientation="vertical"
                 android:background="@drawable/button_greenborder" android:paddingEnd="5dp" android:paddingStart="5dp"
                 android:layout_height="match_parent" android:foreground="?attr/selectableItemBackground">
@@ -250,7 +263,7 @@
 
             </LinearLayout>
 
-            <LinearLayout android:layout_weight="0.1" android:id="@+id/layout_report_product_category6"
+            <LinearLayout android:layout_marginStart="5dp" android:layout_marginEnd="5dp" android:layout_weight="0.1" android:id="@+id/layout_report_product_category6"
                 android:layout_width="match_parent" android:orientation="vertical"
                 android:background="@drawable/button_redborder"
                 android:layout_height="match_parent" android:foreground="?attr/selectableItemBackground">
