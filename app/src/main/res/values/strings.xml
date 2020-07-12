@@ -102,5 +102,6 @@
 
     <string name="statusCancelled">Cancelled</string>
     <string name="statusCreated">Created</string>
+    <string name="title_activity_customerconfirmorder">Confirm Order</string>
 
 </resources>

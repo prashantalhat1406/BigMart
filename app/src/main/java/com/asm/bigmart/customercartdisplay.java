@@ -64,6 +64,8 @@ public class customercartdisplay extends AppCompatActivity {
     Double cartAmount;
     private boolean firstLogin=true;
     CU_CartDisplay productAdaper;
+    int cartProducts= 0;
+
 
     public String getOrderID(){
         String unquieOrderID = "";
@@ -347,23 +349,25 @@ public class customercartdisplay extends AppCompatActivity {
                 }
 
                     //adapterProductCart productAdaper = new adapterProductCart(customercartdisplay.this, R.layout.itemproductcart, products, userID, 2);
+                if (cartProducts != products.size())
                     productAdaper.notifyDataSetChanged();
-                    productList.setSelection(listPosition);
+                cartProducts = products.size();
+                productList.setSelection(listPosition);
 
 
-                    TextView totSave = findViewById(R.id.txt_cartdisplay_totalsavings);
-                    totSave.setText("Savings : " + customercartdisplay.this.getResources().getString(R.string.Rupee) +" "+formater.format(TotalSavings));
-                    if (count == 0){
-                        price.setVisibility(View.GONE);
-                        list.setVisibility(View.GONE);
-                        buttons.setVisibility(View.GONE);
-                        emptyCart.setVisibility(View.VISIBLE);
-                    }else{
-                        price.setVisibility(View.VISIBLE);
-                        list.setVisibility(View.VISIBLE);
-                        buttons.setVisibility(View.VISIBLE);
-                        emptyCart.setVisibility(View.GONE);
-                    }
+                TextView totSave = findViewById(R.id.txt_cartdisplay_totalsavings);
+                totSave.setText("Savings : " + customercartdisplay.this.getResources().getString(R.string.Rupee) +" "+formater.format(TotalSavings));
+                if (count == 0){
+                    price.setVisibility(View.GONE);
+                    list.setVisibility(View.GONE);
+                    buttons.setVisibility(View.GONE);
+                    emptyCart.setVisibility(View.VISIBLE);
+                }else{
+                    price.setVisibility(View.VISIBLE);
+                    list.setVisibility(View.VISIBLE);
+                    buttons.setVisibility(View.VISIBLE);
+                    emptyCart.setVisibility(View.GONE);
+                }
                         //goToHome();
             }
 

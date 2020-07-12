@@ -239,7 +239,6 @@ public class CU_CartDisplay extends ArrayAdapter<Product> {
                 product = products.get((Integer) v.getTag());
                 product.setQtyNos(product.getQtyNos() - 1);
                 DatabaseReference databaseReference = database.getReference("Users/"+userID+"/TempOrder");
-                databaseReference.child(""+product.getID()).setValue(product);
                 viewHolder.itemNos.setText(""+product.getQtyNos());
                 if (product.getQtyNos() == 0)
                 {
@@ -251,6 +250,7 @@ public class CU_CartDisplay extends ArrayAdapter<Product> {
                 }
                 else
                 {
+                    databaseReference.child(""+product.getID()).setValue(product);
                     viewHolder.incrementor.setVisibility(View.VISIBLE);
                     viewHolder.savedamount.setText(context.getResources().getString(R.string.Rupee) + " " + formater.format((product.getDiscount() * product.getQtyNos())));
                     viewHolder.bmaamount.setText(context.getResources().getString(R.string.Rupee) + " " + formater.format(((product.getMRP() - product.getDiscount() ) * product.getQtyNos())));
