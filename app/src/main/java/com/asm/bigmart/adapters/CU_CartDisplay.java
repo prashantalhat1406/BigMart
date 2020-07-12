@@ -43,6 +43,7 @@ public class CU_CartDisplay extends ArrayAdapter<Product> {
     Product product;
     Integer type;
     int lastPosition = -1;
+    boolean firstLogin;
 
     public CU_CartDisplay(@NonNull Context context, int resource, @NonNull List<Product> objects, Long userID, Integer type) {
         super(context, resource, objects);
@@ -50,6 +51,7 @@ public class CU_CartDisplay extends ArrayAdapter<Product> {
         this.context= context;
         this.userID = userID;
         this.type = type;
+
     }
 
     private static class ViewHolder{
@@ -121,34 +123,38 @@ public class CU_CartDisplay extends ArrayAdapter<Product> {
             viewHolder.productImage.setImageResource(id_);*/
 
         String imageName = product.getName().replace(" ","_") +"_"+ product.getName2().toLowerCase() + ".png";
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageReference = storage.getReference().child("Products").child(imageName);
 
-        storageReference.getBytes(1024 * 512).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-                viewHolder.productImage.setImageBitmap(bitmap);
+
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageReference = storage.getReference().child("Products").child(imageName);
+
+            storageReference.getBytes(1024 * 512).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                @Override
+                public void onSuccess(byte[] bytes) {
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                    viewHolder.productImage.setImageBitmap(bitmap);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    int noimage = context.getResources().getIdentifier("imagenotavailable", "drawable", context.getPackageName());
+                    viewHolder.productImage.setImageResource(noimage);
+                }
+            });
+
+
+            int outofstock = context.getResources().getIdentifier("outofstock", "drawable", context.getPackageName());
+            if (product.getQty() < product.getMinStock())
+            {
+                viewHolder.atc.setEnabled(false);
+                viewHolder.atc.setBackground(context.getDrawable(R.drawable.status_complete_disable));
+                viewHolder.productImage.setImageResource(outofstock);
+            }else {
+                viewHolder.atc.setEnabled(true);
+                viewHolder.atc.setBackground(context.getDrawable(R.drawable.roundbutton_green));
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                int noimage = context.getResources().getIdentifier("imagenotavailable", "drawable", context.getPackageName());
-                viewHolder.productImage.setImageResource(noimage);
-            }
-        });
 
 
-        int outofstock = context.getResources().getIdentifier("outofstock", "drawable", context.getPackageName());
-        if (product.getQty() < product.getMinStock())
-        {
-            viewHolder.atc.setEnabled(false);
-            viewHolder.atc.setBackground(context.getDrawable(R.drawable.status_complete_disable));
-            viewHolder.productImage.setImageResource(outofstock);
-        }else {
-            viewHolder.atc.setEnabled(true);
-            viewHolder.atc.setBackground(context.getDrawable(R.drawable.roundbutton_green));
-        }
 
         viewHolder.Name.setText(""+product.getName());
         viewHolder.productQuantity.setText(""+product.getName2().toLowerCase());
@@ -178,6 +184,7 @@ public class CU_CartDisplay extends ArrayAdapter<Product> {
                 Intent bintIntent = new Intent("message_subject_intent");
                 bintIntent.putExtra("position", position);
                 LocalBroadcastManager.getInstance(context).sendBroadcast(bintIntent);
+
 
 
                 final FirebaseDatabase database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");

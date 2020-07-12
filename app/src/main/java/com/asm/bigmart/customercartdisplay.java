@@ -62,6 +62,8 @@ public class customercartdisplay extends AppCompatActivity {
     LinearLayout emptyCart,list,buttons, price;
     Integer productCount;
     Double cartAmount;
+    private boolean firstLogin=true;
+    CU_CartDisplay productAdaper;
 
     public String getOrderID(){
         String unquieOrderID = "";
@@ -305,6 +307,9 @@ public class customercartdisplay extends AppCompatActivity {
 
             }
         });
+        productAdaper = new CU_CartDisplay(customercartdisplay.this, R.layout.itemproductcart, products, userID, 2);
+        productList.setAdapter(productAdaper);
+
 
         Query query = database.getReference("Users/"+userID+"/TempOrder");
         query.addValueEventListener(new ValueEventListener() {
@@ -342,9 +347,9 @@ public class customercartdisplay extends AppCompatActivity {
                 }
 
                     //adapterProductCart productAdaper = new adapterProductCart(customercartdisplay.this, R.layout.itemproductcart, products, userID, 2);
-                    CU_CartDisplay productAdaper = new CU_CartDisplay(customercartdisplay.this, R.layout.itemproductcart, products, userID, 2);
-                    productList.setAdapter(productAdaper);
+                    productAdaper.notifyDataSetChanged();
                     productList.setSelection(listPosition);
+
 
                     TextView totSave = findViewById(R.id.txt_cartdisplay_totalsavings);
                     totSave.setText("Savings : " + customercartdisplay.this.getResources().getString(R.string.Rupee) +" "+formater.format(TotalSavings));
