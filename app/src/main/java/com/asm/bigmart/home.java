@@ -27,7 +27,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -116,9 +115,9 @@ public class home extends AppCompatActivity {
         toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
         toolbar.setOverflowIcon(getDrawable(R.drawable.ic_menuicon));
 
-        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams)toolbar.getLayoutParams();
+        /*ViewGroup.LayoutParams params = (ViewGroup.LayoutParams)toolbar.getLayoutParams();
         params.height = 160;
-        toolbar.setLayoutParams(params);
+        toolbar.setLayoutParams(params);*/
 
 
 
@@ -269,7 +268,7 @@ public class home extends AppCompatActivity {
     }
 
     public void displaySubCategory(String categoryName)    {
-        Intent subcatIntent = new Intent(home.this, subcategorydisplay.class);
+        Intent subcatIntent = new Intent(home.this, customersubcategorydisplay.class);
         Bundle extras = new Bundle();
         extras.putString("categoryName", categoryName);
         extras.putLong("userID", userID);

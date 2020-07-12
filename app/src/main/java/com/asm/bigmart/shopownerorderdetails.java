@@ -22,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.os.Parcelable;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -48,6 +49,7 @@ public class shopownerorderdetails extends AppCompatActivity {
     FirebaseDatabase database;
     private String searchItem="";
     LinearLayout buttons;
+    Parcelable state;;
 
     public void updateStoreQuantity(List<Product> products){
 
@@ -393,6 +395,7 @@ public class shopownerorderdetails extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                state = productList.onSaveInstanceState();
                 if(orderDetail.status.equals("Created")) {
                     final Dialog dialog = new Dialog(shopownerorderdetails.this);
                     dialog.setContentView(R.layout.logoutdialog);
@@ -436,6 +439,8 @@ public class shopownerorderdetails extends AppCompatActivity {
                                 if (products.size() > 0) {
                                     SO_OrderDetails productAdaper = new SO_OrderDetails(shopownerorderdetails.this, R.layout.itemorderdetails, products, databaseProducts, orderDetail.status);
                                     productList.setAdapter(productAdaper);
+                                    //productList.setSelection(position -1);
+                                    productList.onRestoreInstanceState(state);
                                 } else {
                                     orderReference.removeValue();
                                 }
@@ -561,8 +566,6 @@ public class shopownerorderdetails extends AppCompatActivity {
             }
         });
 
-
-
         Query databasequery = database.getReference("Products/");
         databasequery.addValueEventListener(new ValueEventListener() {
             @Override
@@ -599,12 +602,7 @@ public class shopownerorderdetails extends AppCompatActivity {
 
 
         TextView txtorderID = findViewById(R.id.txt_orderdetails_orderID);
-        //txtorderID.setText(""+orderID.substring(orderID.length() - 5).toUpperCase());
         txtorderID.setText(""+orderID);
-
-
-
-
 
         final TextView name = findViewById(R.id.txt_orderdetails_customerName);
         final TextView mobile = findViewById(R.id.txt_orderdetails_customerMobile);

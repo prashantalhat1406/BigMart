@@ -25,7 +25,6 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -71,7 +70,7 @@ public class customerproductdisplay extends AppCompatActivity {
             startActivity(homeIntent);
             finish();
         }else{
-            Intent homeIntent = new Intent(customerproductdisplay.this, subcategorydisplay.class);
+            Intent homeIntent = new Intent(customerproductdisplay.this, customersubcategorydisplay.class);
             Bundle extras = new Bundle();
             extras.putLong("userID", userID);
             extras.putString("categoryName", categoryName);
@@ -93,9 +92,9 @@ public class customerproductdisplay extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
 
-        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams)toolbar.getLayoutParams();
+        /*ViewGroup.LayoutParams params = (ViewGroup.LayoutParams)toolbar.getLayoutParams();
         params.height = 160;
-        toolbar.setLayoutParams(params);
+        toolbar.setLayoutParams(params);*/
 
         Bundle b = getIntent().getExtras();
         userID = b.getLong("userID");

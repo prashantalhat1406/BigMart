@@ -25,7 +25,6 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -35,7 +34,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
-public class subcategorydisplay extends AppCompatActivity {
+public class customersubcategorydisplay extends AppCompatActivity {
 
     private long userID;
 
@@ -59,7 +58,7 @@ public class subcategorydisplay extends AppCompatActivity {
     };
 
     public void goToHome(){
-        Intent homeIntent = new Intent(subcategorydisplay.this, home.class);
+        Intent homeIntent = new Intent(customersubcategorydisplay.this, home.class);
         Bundle extras = new Bundle();
         extras.putLong("userID", userID);
         homeIntent.putExtras(extras);
@@ -91,9 +90,9 @@ public class subcategorydisplay extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
 
-        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams)toolbar.getLayoutParams();
+        /*ViewGroup.LayoutParams params = (ViewGroup.LayoutParams)toolbar.getLayoutParams();
         params.height = 160;
-        toolbar.setLayoutParams(params);
+        toolbar.setLayoutParams(params);*/
 
         /*ActionBar ab = getActionBar();
         ab.setDisplayHomeAsUpEnabled(true);*/
@@ -124,7 +123,7 @@ public class subcategorydisplay extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent productIntent = new Intent(subcategorydisplay.this, customerproductdisplay.class);
+                    Intent productIntent = new Intent(customersubcategorydisplay.this, customerproductdisplay.class);
                     Bundle extras = new Bundle();
                     extras.putLong("userID", userID);
                     extras.putString("subCategoryName", button.getTag().toString());
@@ -268,7 +267,7 @@ public class subcategorydisplay extends AppCompatActivity {
         alertLogout.setTitle("LOGOUT");
         alertLogout.show();*/
 
-        final Dialog dialog = new Dialog(subcategorydisplay.this);
+        final Dialog dialog = new Dialog(customersubcategorydisplay.this);
         dialog.setContentView(R.layout.logoutdialog);
         dialog.setCancelable(false);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -284,7 +283,7 @@ public class subcategorydisplay extends AppCompatActivity {
         greenbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent logoutIntent = new Intent(subcategorydisplay.this, login.class);
+                Intent logoutIntent = new Intent(customersubcategorydisplay.this, login.class);
                 logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(logoutIntent);
                 finish();
@@ -313,7 +312,7 @@ public class subcategorydisplay extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(dataSnapshot.exists())
                     {
-                        Intent viewCartIntent = new Intent(subcategorydisplay.this, customercartdisplay.class);
+                        Intent viewCartIntent = new Intent(customersubcategorydisplay.this, customercartdisplay.class);
                         Bundle extras = new Bundle();
                         extras.putLong("userID", userID);
                         viewCartIntent.putExtras(extras);
@@ -322,7 +321,7 @@ public class subcategorydisplay extends AppCompatActivity {
                     }
                     else
                     {
-                        Toast error = Toast.makeText(subcategorydisplay.this, "No Items In Cart !",Toast.LENGTH_SHORT);
+                        Toast error = Toast.makeText(customersubcategorydisplay.this, "No Items In Cart !",Toast.LENGTH_SHORT);
                         error.setGravity(Gravity.TOP, 0, 0);
                         error.show();
                     }
@@ -336,7 +335,7 @@ public class subcategorydisplay extends AppCompatActivity {
         }
 
         if (id == R.id.menu_orderhistory) {
-            Intent viewCartIntent = new Intent(subcategorydisplay.this, customerorderhistory.class);
+            Intent viewCartIntent = new Intent(customersubcategorydisplay.this, customerorderhistory.class);
             Bundle extras = new Bundle();
             extras.putLong("userID", userID);
             viewCartIntent.putExtras(extras);
@@ -345,7 +344,7 @@ public class subcategorydisplay extends AppCompatActivity {
         }
 
         if (id == R.id.menu_profile) {
-            Intent profileIntent = new Intent(subcategorydisplay.this, customerprofile.class);
+            Intent profileIntent = new Intent(customersubcategorydisplay.this, customerprofile.class);
             Bundle extras = new Bundle();
             extras.putLong("userID", userID);
             profileIntent.putExtras(extras);
