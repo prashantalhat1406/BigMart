@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,6 +28,10 @@ public class customerdeliverypayment extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
+
+        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams)toolbar.getLayoutParams();
+        params.height = 160;
+        toolbar.setLayoutParams(params);
 
         TextView pickup = findViewById(R.id.txt_pickup);
         pickup.setText(Html.fromHtml(getString(R.string.pickup)));

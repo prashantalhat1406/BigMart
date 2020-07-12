@@ -27,6 +27,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -87,6 +88,10 @@ public class subcategorydisplay extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
+
+        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams)toolbar.getLayoutParams();
+        params.height = 160;
+        toolbar.setLayoutParams(params);
 
         /*ActionBar ab = getActionBar();
         ab.setDisplayHomeAsUpEnabled(true);*/

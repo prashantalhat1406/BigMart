@@ -27,6 +27,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -89,6 +90,10 @@ public class customerproductdisplay extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
+
+        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams)toolbar.getLayoutParams();
+        params.height = 160;
+        toolbar.setLayoutParams(params);
 
         Bundle b = getIntent().getExtras();
         userID = b.getLong("userID");

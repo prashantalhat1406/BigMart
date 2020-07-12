@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat;
 
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -56,6 +57,10 @@ public class customerorderdetails extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
+
+        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams)toolbar.getLayoutParams();
+        params.height = 160;
+        toolbar.setLayoutParams(params);
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
 

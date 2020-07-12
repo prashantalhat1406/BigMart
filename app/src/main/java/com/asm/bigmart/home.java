@@ -118,9 +118,9 @@ public class home extends AppCompatActivity {
         toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
         toolbar.setOverflowIcon(getDrawable(R.drawable.ic_menuicon));
 
-        /*ViewGroup.LayoutParams params = (ViewGroup.LayoutParams)toolbar.getLayoutParams();
+        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams)toolbar.getLayoutParams();
         params.height = 160;
-        toolbar.setLayoutParams(params);*/
+        toolbar.setLayoutParams(params);
 
 
 

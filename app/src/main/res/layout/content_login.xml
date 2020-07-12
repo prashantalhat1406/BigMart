@@ -19,9 +19,11 @@
     <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:layout_weight="0.25">
         <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="horizontal" android:layout_weight="0.5">
             <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="0.8"> </TextView>
-            <EditText android:id="@+id/edt_login_mobile" android:background="@drawable/logintextbox" android:hint="Mobile Number"
+            <EditText android:id="@+id/edt_login_mobile" android:background="@drawable/logintextbox"
+                android:hint="Mobile Number"
                 android:inputType="number" android:padding="5dp" android:drawableRight="@drawable/ic_mobilephone"
-                android:layout_width="match_parent" android:layout_height="50dp" android:maxLength="10"  android:layout_weight="0.2"
+                android:layout_width="match_parent" android:layout_height="50dp" android:maxLength="10"
+                android:layout_weight="0.2"
                 android:maxLines="1" android:layout_gravity="bottom" android:gravity="center"></EditText>
             <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="0.8"> </TextView>
         </LinearLayout>
@@ -31,6 +33,7 @@
             <EditText android:background="@drawable/logintextbox" android:id="@+id/edt_login_password" android:visibility="visible"
                 android:hint="4 Digit Pin/Password" android:layout_gravity="center" android:gravity="center"
                 android:drawableRight="@drawable/ic_eye_off" android:imeOptions="actionGo" android:maxLength="4"
+                android:longClickable="false"
                 android:padding="5dp" android:inputType="numberPassword" android:layout_width="match_parent"
                 android:layout_height="50dp" android:layout_weight="0.2"></EditText>
 

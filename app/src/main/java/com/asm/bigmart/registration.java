@@ -18,6 +18,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
@@ -203,6 +205,34 @@ public class registration extends AppCompatActivity {
                     }
                 }
                 return false;
+            }
+        });
+
+        edtPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (edtPassword.getText().length() == 4)
+                    edtAddress1.requestFocus();
+            }
+        });
+
+        edtMobile.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (edtMobile.getText().length() == 10)
+                    edtPassword.requestFocus();
             }
         });
 
