@@ -26,6 +26,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -41,6 +42,7 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
     private String searchItem="";
     private List<String> orderIDs;
     ListView ordersList;
+    ProgressBar progressBar;
 
 
 
@@ -51,7 +53,7 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
     String baseDate="";
     RadioGroup statusRadioGroup;
     TextView txtCurrentSelection;
-    LinearLayout empty,orderslist;
+    LinearLayout empty, orderslistLayout;
 
     public void displayFilteredList(int radioButton, String  baseDate)
     {
@@ -93,11 +95,14 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
 
         if (orders_datewise.size() > 0)
         {
-            orderslist.setVisibility(View.VISIBLE);
+            orderslistLayout.setVisibility(View.VISIBLE);
             empty.setVisibility(View.GONE);
         }else {
-            orderslist.setVisibility(View.GONE);
-            empty.setVisibility(View.VISIBLE);
+            orderslistLayout.setVisibility(View.GONE);
+            if (progressBar.getVisibility() == View.VISIBLE)
+                empty.setVisibility(View.GONE);
+            else
+                empty.setVisibility(View.VISIBLE);
         }
 
         SO_OrderDisplay orderAdapter = new SO_OrderDisplay(shopownerordershistory.this,R.layout.itemordershopowner,orders_datewise, 2);
@@ -127,13 +132,19 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
 
         dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
 
+        progressBar = findViewById(R.id.progressbarSOOrderDisplay);
+        progressBar.setIndeterminate(true);
+        progressBar.setVisibility(View.VISIBLE);
+
 
         orders = new ArrayList<Orders>();
         orderIDs = new ArrayList<String>();
         ordersList = findViewById(R.id.listShopOwnerOrder);
 
         empty = findViewById(R.id.layout_so_orderhistory_empty);
-        orderslist = findViewById(R.id.layout_so_orderhistory_list);
+        empty.setVisibility(View.INVISIBLE);
+        orderslistLayout = findViewById(R.id.layout_so_orderhistory_list);
+        orderslistLayout.setVisibility(View.GONE);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
         DatabaseReference productReference = database.getReference("Orders/");
@@ -149,14 +160,16 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
                 }
 
 
-
+                progressBar.setVisibility(View.GONE);
                 if (orders.size() > 0)
                 {
-                    orderslist.setVisibility(View.VISIBLE);
+                    orderslistLayout.setVisibility(View.VISIBLE);
+
                     empty.setVisibility(View.GONE);
                 }else {
-                    orderslist.setVisibility(View.GONE);
+                    orderslistLayout.setVisibility(View.GONE);
                     empty.setVisibility(View.VISIBLE);
+
                 }
 
                 SO_OrderDisplay orderAdapter = new SO_OrderDisplay(shopownerordershistory.this,R.layout.itemordershopowner,orders, 2);
@@ -167,9 +180,7 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) {       }
         });
 
         autoCompleteTextView = findViewById(R.id.auto_shopownerorderhistory_orderid);
