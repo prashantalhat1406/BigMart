@@ -119,32 +119,37 @@
         <LinearLayout android:orientation="horizontal"
             android:layout_width="match_parent" android:layout_weight="0.4" android:paddingLeft="10dp"
             android:layout_height="match_parent">
-            <LinearLayout
+
+            <LinearLayout android:id="@+id/layout_custOrderDetails_cancelbutton" android:visibility="visible"
+
                 android:layout_width="match_parent" android:paddingStart="5dp" android:paddingEnd="5dp" android:paddingBottom="5dp"
-                android:layout_height="match_parent" android:layout_weight="0.65">
+                android:layout_height="match_parent" android:layout_weight="0.6">
 
-                <Button android:id="@+id/but_customer_orderdetail_cancel" android:layout_weight="0.65"
-                    android:layout_width="match_parent" android:background="@drawable/roundbutton_red" android:textColor="#ffffff"
-                    android:layout_height="match_parent" android:text="Cancel Order" android:visibility="visible"
-
-                    />
+                <Button android:id="@+id/but_customer_orderdetail_cancel"
+                    android:layout_weight="0.65"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/roundbutton_red" android:textColor="#ffffff"
+                    android:layout_height="match_parent" android:text="Cancel Order" android:visibility="gone"/>
 
             </LinearLayout>
 
 
-            <LinearLayout android:id="@+id/layout_custOrderDetails_status" android:layout_weight="0.65"
-                android:layout_width="match_parent"  android:visibility="gone" android:layout_gravity="center"
+            <LinearLayout
+                android:id="@+id/layout_custOrderDetails_status" android:layout_weight="0.6"
+                android:layout_width="match_parent"  android:visibility="visible" android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_height="match_parent" >
-                <TextView android:id="@+id/txt_customer_orderdetails_orderstatus" android:layout_gravity="center" android:gravity="right"
-                    android:layout_width="wrap_content" android:text="Created"
-                    android:layout_height="wrap_content"></TextView>
+                <TextView android:id="@+id/txt_customer_orderdetails_orderstatus" android:layout_gravity="center"
+                    android:gravity="center" android:layout_marginStart="10dp" android:layout_marginEnd="10dp"
+                    android:layout_width="match_parent" android:text="Created"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
             <TextView android:id="@+id/txt_customer_orderdetails_saveAmount"
                 android:layout_width="match_parent" style="@style/saveAmount" android:layout_gravity="center"
                 android:gravity="right|center" android:paddingEnd="30dp"
                 android:layout_height="match_parent" android:layout_weight="0.4" android:text="12.00"></TextView>
+
         </LinearLayout>
 
     </LinearLayout>

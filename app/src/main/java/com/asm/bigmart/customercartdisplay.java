@@ -107,23 +107,24 @@ public class customercartdisplay extends AppCompatActivity {
         TextView dialogMessage = dialog.findViewById(R.id.dialog_message);
         dialogMessage.setText("Have you added all items ?");
 
-        Button yes = dialog.findViewById(R.id.dialog_btn_red);
-        yes.setText("Yes");
-        yes.setOnClickListener(new View.OnClickListener() {
+        Button redbutton = dialog.findViewById(R.id.dialog_btn_red);
+        redbutton.setText("No");
+        redbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                flag = true;
-                Intent intent = new Intent(customercartdisplay.this,customerdeliverypayment.class);
-                startActivityForResult(intent, 100);
+
                 dialog.dismiss();
             }
         });
 
         Button no = dialog.findViewById(R.id.dialog_btn_green);
-        no.setText("No");
+        no.setText("Yes");
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                flag = true;
+                Intent intent = new Intent(customercartdisplay.this,customerdeliverypayment.class);
+                startActivityForResult(intent, 100);
                 dialog.dismiss();
             }
         });

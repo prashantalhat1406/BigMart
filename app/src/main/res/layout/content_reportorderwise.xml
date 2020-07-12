@@ -60,8 +60,10 @@
             android:layout_width="match_parent" android:paddingEnd="5dp" android:paddingStart="5dp"
             android:layout_height="match_parent">
             <TextView android:id="@+id/txt_report_currentselection"
-
-                android:layout_width="match_parent" android:layout_gravity="center" android:gravity="center"
+                android:textColor="@color/blacklabels"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:textSize="@dimen/profileLabel" android:background="@drawable/button_greenborder" android:foreground="?attr/selectableItemBackground"
                 android:layout_height="match_parent" android:text="22-27 June">
 
@@ -187,6 +189,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textStyle="bold"
+                    android:textColor="@color/blacklabels"
                     android:layout_gravity="center" android:gravity="top|center" android:text="0" android:textSize="@dimen/productName">
 
                 </TextView>

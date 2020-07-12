@@ -21,7 +21,7 @@
 
             <TextView android:layout_weight="0.5" android:id="@+id/txt_report_orderwise"
                 android:layout_width="match_parent" android:foreground="?attr/selectableItemBackground"
-                android:layout_height="match_parent"
+                android:layout_height="match_parent" android:textColor="@color/blacklabels"
                 android:background="@drawable/button_redborder" android:textStyle="bold"
                 android:layout_gravity="center" android:gravity="center" android:text="OrderWise Report" android:textSize="@dimen/productName">
 
@@ -35,7 +35,7 @@
             <TextView android:id="@+id/txt_report_productwise"
                 android:layout_weight="0.5" android:paddingBottom="2dp" android:paddingTop="2dp"
                 android:layout_width="match_parent"  android:foreground="?attr/selectableItemBackground"
-                android:layout_height="match_parent"
+                android:layout_height="match_parent" android:textColor="@color/blacklabels"
                 android:background="@drawable/button_greenborder" android:textStyle="bold"
                 android:layout_gravity="center" android:gravity="center" android:text="ProductWise Report" android:textSize="@dimen/productName">
 
@@ -48,7 +48,7 @@
             <TextView android:id="@+id/txt_report_userwise"
                 android:layout_weight="0.5" android:paddingBottom="2dp" android:paddingTop="2dp"
                 android:layout_width="match_parent" android:foreground="?attr/selectableItemBackground"
-                android:layout_height="match_parent"
+                android:layout_height="match_parent" android:textColor="@color/blacklabels"
                 android:background="@drawable/button_blueborder" android:textStyle="bold"
                 android:layout_gravity="center" android:gravity="center" android:text="UserWise Report" android:textSize="@dimen/productName">
 

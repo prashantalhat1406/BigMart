@@ -43,6 +43,7 @@ public class customerorderdetails extends AppCompatActivity {
     ListView productList;
     Orders orderDetail;
     Button butComplete, butConfirm, butCancel,butPrint;
+    LinearLayout cancelButtonLayout;
     User user;
     Double TotalPrice = 0.0;
     Integer savePrice = 0;
@@ -79,6 +80,7 @@ public class customerorderdetails extends AppCompatActivity {
 
         txtorderStatus = findViewById(R.id.txt_customer_orderdetails_orderstatus);
         linearLayout = findViewById(R.id.layout_custOrderDetails_status);
+        cancelButtonLayout = findViewById(R.id.layout_custOrderDetails_cancelbutton);
 
         butCancel = findViewById(R.id.but_customer_orderdetail_cancel);
         butCancel.setOnClickListener(new View.OnClickListener() {
@@ -234,6 +236,7 @@ public class customerorderdetails extends AppCompatActivity {
                     butCancel.setEnabled(true);
                 }else{
                     butCancel.setVisibility(View.GONE);
+                    cancelButtonLayout.setVisibility(View.GONE);
                     //butCancel.setEnabled(false);
                     linearLayout.setVisibility(View.VISIBLE);
                     txtorderStatus.setVisibility(View.VISIBLE);
