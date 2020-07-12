@@ -10,9 +10,9 @@
 
     <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:layout_weight="0.25" >
 
-        <ImageView
-            android:layout_width="match_parent" android:background="@android:color/transparent"
-            android:layout_height="match_parent" android:src="@mipmap/ic_logo_super" android:paddingTop="10dp"></ImageView>
+        <ImageView android:scaleType="fitCenter" android:layout_gravity="center"
+            android:layout_width="200dp" android:background="@android:color/transparent"
+            android:layout_height="200dp" android:src="@drawable/logo_transparent" android:paddingTop="10dp"></ImageView>
 
     </LinearLayout>
 
