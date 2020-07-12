@@ -47,6 +47,7 @@ public class shopownerorderdetails extends AppCompatActivity {
     User user;
     FirebaseDatabase database;
     private String searchItem="";
+    LinearLayout buttons;
 
     public void updateStoreQuantity(List<Product> products){
 
@@ -498,6 +499,13 @@ public class shopownerorderdetails extends AppCompatActivity {
             }
         });
 
+        butComplete.setVisibility(View.GONE);
+        butPrint.setVisibility(View.GONE);
+        butConfirm.setVisibility(View.GONE);
+        butCancel.setVisibility(View.GONE);
+        buttons = findViewById(R.id.layout_soorderdetails_buttons);
+        buttons.setVisibility(View.VISIBLE);
+
         Query queryOrder = database.getReference("/Orders/"+orderID);
         queryOrder.addValueEventListener(new ValueEventListener() {
             @Override
@@ -505,8 +513,7 @@ public class shopownerorderdetails extends AppCompatActivity {
                 orderDetail = dataSnapshot.getValue(Orders.class);
                 TextView orderDate = findViewById(R.id.txt_orderdetails_orderDate);
                 orderDate.setText(""+orderDetail.date);
-                LinearLayout buttons = findViewById(R.id.layout_soorderdetails_buttons);
-                buttons.setVisibility(View.VISIBLE);
+
                 switch (orderDetail.status)
                 {
                     case "Complete":

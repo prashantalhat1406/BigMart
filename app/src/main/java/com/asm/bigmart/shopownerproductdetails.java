@@ -74,6 +74,10 @@ public class shopownerproductdetails extends AppCompatActivity {
     public boolean fieldValidated(){
         boolean flag = true;
 
+        Double discount = Double.parseDouble(edtDiscount.getText().toString());
+        Double MRP = Double.parseDouble(edtMRP.getText().toString());
+        Double discountPercentage = (discount/MRP)*100;
+
         if (edtName.getText().toString().trim().length() == 0)
         {
             flag = false;
@@ -120,7 +124,8 @@ public class shopownerproductdetails extends AppCompatActivity {
                                             flag = false;
                                             edtQTY.setError("Quantity should not be less than Minimum Stock");
                                         }else
-                                            if (Integer.parseInt(edtDiscount.getText().toString()) > 25 )
+                                            if(discountPercentage > 25)
+                                            //if ( Integer.parseInt(edtDiscount.getText().toString()) > 25 )
                                             {
                                                 flag = false;
                                                 edtDiscount.setError("Discount can not be greater than 25%");
@@ -351,7 +356,7 @@ public class shopownerproductdetails extends AppCompatActivity {
                     greenbutton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (fieldValidated()) {
+
                                 Product product = new Product();
                                 product.setName("" + edtName.getText().toString());
                                 product.setName2("" + edtName2.getText().toString());
@@ -389,12 +394,13 @@ public class shopownerproductdetails extends AppCompatActivity {
                                 intent.putExtra("position", position);
                                 setResult(Activity.RESULT_OK, intent);
                                 finish();
-                            }else{
+
                                 dialog.dismiss();
-                            }
+
                         }
                     });
-                    dialog.show();
+                    if (fieldValidated())
+                        dialog.show();
 
 
 

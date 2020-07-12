@@ -1,75 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"  android:backgroundTint="#ffffb1" android:background="#ffffb1"
+    android:layout_width="match_parent" android:weightSum="100"
+    android:layout_height="match_parent"  android:backgroundTint="#fff" android:background="#fff"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <LinearLayout android:orientation="vertical" android:layout_weight="0.7"
+    <LinearLayout android:layout_weight="24"
+        android:orientation="vertical" android:weightSum="100"
         android:paddingStart="2dp" android:paddingEnd="2dp"
         android:layout_width="match_parent" android:background="@drawable/button_greyborder"
-        android:layout_height="match_parent">
-        <LinearLayout android:orientation="horizontal" android:layout_weight="0.5"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <LinearLayout android:layout_weight="0.5"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent" android:orientation="horizontal" android:weightSum="100"
+            android:layout_height="0dp" android:layout_weight="24">
+            <TextView android:layout_gravity="center" android:gravity="left|center"
+                android:layout_width="0dp" android:layout_weight="20"  android:layout_marginStart="5dp"
+                android:layout_height="match_parent" android:text="Name : "/>
+            <TextView android:id="@+id/txt_orderdetails_customerName" android:layout_gravity="center"
+                android:gravity="left|center"
+                android:layout_width="0dp" android:layout_weight="80" android:textStyle="bold"
+                android:layout_height="match_parent" android:text="Name : "
+                android:textColor="@color/blacklabels"/>
+        </LinearLayout>
+
+        <LinearLayout android:orientation="horizontal" android:layout_weight="24"
+            android:layout_width="match_parent" android:weightSum="100"
+            android:layout_height="0dp">
+
+            <LinearLayout android:layout_weight="50"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <TextView android:layout_gravity="center" android:gravity="left|center"
-                    android:layout_width="match_parent" android:layout_weight="0.25"
-                    android:layout_height="match_parent" android:text="Name : "/>
-                <TextView android:id="@+id/txt_orderdetails_customerName" android:layout_gravity="center" android:gravity="left|center"
-                    android:layout_width="match_parent" android:layout_weight="0.2" android:textStyle="bold"
-                    android:layout_height="match_parent" android:text="Name : "
-                    android:textColor="@color/blacklabels"/>
-            </LinearLayout>
-            <LinearLayout android:layout_weight="0.5"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <TextView android:layout_gravity="center" android:gravity="left|center"
-                    android:layout_width="match_parent" android:layout_weight="0.2"
+                    android:layout_width="0dp" android:layout_weight="20" android:layout_marginStart="5dp"
                     android:layout_height="match_parent" android:text="Mobile : "/>
                 <TextView android:id="@+id/txt_orderdetails_customerMobile" android:layout_gravity="center" android:gravity="left|center"
-                    android:layout_width="match_parent" android:layout_weight="0.2" android:textStyle="bold"
+                    android:layout_width="0dp" android:layout_weight="30" android:textStyle="bold"
                     android:layout_height="match_parent" android:text="Mobile : "
                     android:textColor="@color/blacklabels"/>
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:layout_weight="50">
+                <TextView android:layout_gravity="center" android:gravity="left|center"
+                    android:layout_width="0dp" android:layout_weight="20"
+                    android:layout_height="match_parent" android:text="Order Date : "/>
+                <TextView android:id="@+id/txt_orderdetails_orderDate" android:layout_gravity="center" android:gravity="left|center"
+                    android:layout_width="0dp" android:layout_weight="30" android:textStyle="bold"
+                    android:layout_height="match_parent" android:text="12333 "
+                    android:textColor="@color/blacklabels"/>
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout android:orientation="horizontal" android:layout_weight="0.5"
+        <LinearLayout android:orientation="horizontal" android:layout_weight="24"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <LinearLayout android:layout_weight="0.5"
+            android:layout_height="0dp">
+            <LinearLayout android:layout_weight="0.5" android:weightSum="100"
                 android:layout_width="match_parent" android:orientation="horizontal"
                 android:layout_height="match_parent">
                 <TextView android:layout_gravity="center" android:gravity="left|center"
-                    android:layout_width="match_parent" android:layout_weight="0.25"
+                    android:layout_width="0dp" android:layout_weight="20"  android:layout_marginStart="5dp"
                     android:layout_height="match_parent" android:text="Order ID : "/>
                 <TextView android:id="@+id/txt_orderdetails_orderID" android:layout_gravity="center" android:gravity="left|center"
-                    android:layout_width="match_parent" android:layout_weight="0.2" android:textStyle="bold"
+                    android:layout_width="0dp" android:layout_weight="80" android:textStyle="bold"
                     android:layout_height="match_parent" android:text="12333 "
                     android:textColor="@color/blacklabels"/>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" android:layout_weight="0.5">
-                <TextView android:layout_gravity="center" android:gravity="left|center"
-                    android:layout_width="match_parent" android:layout_weight="0.2"
-                    android:layout_height="match_parent" android:text="Order Date : "/>
-                <TextView android:id="@+id/txt_orderdetails_orderDate" android:layout_gravity="center" android:gravity="left|center"
-                    android:layout_width="match_parent" android:layout_weight="0.2" android:textStyle="bold"
-                    android:layout_height="match_parent" android:text="12333 "
-                    android:textColor="@color/blacklabels"/>
-            </LinearLayout>
+
 
         </LinearLayout>
 
-        <LinearLayout android:orientation="horizontal" android:layout_weight="0.35"
+        <LinearLayout android:orientation="horizontal" android:layout_weight="28"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp">
             <TextView android:layout_gravity="center" android:gravity="left|center"
-                android:layout_width="match_parent" android:layout_weight="0.8"
-                android:layout_height="match_parent" android:text="Adress : "></TextView>
+                android:layout_width="match_parent" android:layout_weight="0.8"  android:layout_marginStart="5dp"
+                android:layout_height="match_parent" android:text="Adress : "/>
             <TextView android:id="@+id/txt_orderdetails_customeraddress" android:layout_gravity="center" android:gravity="left|center"
                 android:layout_width="match_parent" android:layout_weight="0.21" android:textStyle="bold"
                 android:layout_height="match_parent" android:text="Pune "
@@ -81,10 +88,11 @@
     </LinearLayout>
 
 
-    <LinearLayout android:orientation="horizontal" android:layout_weight="0.8"
+    <LinearLayout android:layout_weight="6"
+        android:orientation="horizontal"
         android:layout_width="match_parent" android:background="@drawable/button_greyborder"
         android:paddingStart="9dp" android:paddingEnd="5dp"
-        android:layout_height="match_parent">
+        android:layout_height="0dp">
         <TextView android:layout_gravity="center" android:gravity="center" android:textStyle="bold"
             android:layout_width="match_parent" android:layout_weight="0.28"
             android:layout_height="match_parent" android:text="No"></TextView>
@@ -106,20 +114,22 @@
     </LinearLayout>
 
 
-    <LinearLayout android:layout_weight="0.31" android:paddingStart="2dp" android:paddingEnd="2dp"
+    <LinearLayout android:layout_weight="60"
+        android:paddingStart="2dp" android:paddingEnd="2dp"
         android:layout_width="match_parent" android:background="@drawable/button_greyborder"
-        android:layout_height="match_parent" >
+        android:layout_height="0dp" >
         <ListView
             android:layout_width="match_parent" android:id="@+id/listOrderDetail"
             android:layout_height="match_parent" >
         </ListView>
     </LinearLayout>
 
-    <LinearLayout android:id="@+id/layout_soorderdetails_buttons"
+    <LinearLayout  android:layout_weight="10"
+        android:id="@+id/layout_soorderdetails_buttons"
         android:orientation="horizontal" android:background="@drawable/button_greyborder"
         android:layout_width="match_parent"  android:paddingBottom="5dp" android:paddingTop="5dp"
         android:paddingStart="5dp" android:paddingEnd="5dp" android:layout_gravity="center" android:gravity="center"
-        android:layout_height="match_parent" android:layout_weight="0.77">
+        android:layout_height="0dp" >
 
         <LinearLayout
             android:layout_width="match_parent" android:paddingEnd="5dp" android:paddingStart="5dp"
