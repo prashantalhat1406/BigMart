@@ -49,7 +49,9 @@ public class shopownerorderdetails extends AppCompatActivity {
     FirebaseDatabase database;
     private String searchItem="";
     LinearLayout buttons;
-    Parcelable state;;
+    SO_OrderDetails productAdaper;
+    boolean itemDeleted=true;
+
 
     public void updateStoreQuantity(List<Product> products){
 
@@ -66,14 +68,6 @@ public class shopownerorderdetails extends AppCompatActivity {
             }
         }
     }
-
-   /* @Override
-    public void onBackPressed() {
-        Intent intent=new Intent();
-        intent.putExtra("searchItem",searchItem);
-        setResult(Activity.RESULT_OK, intent);
-        super.onBackPressed();
-    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,14 +89,17 @@ public class shopownerorderdetails extends AppCompatActivity {
 
 
         productList = findViewById(R.id.listOrderDetail);
-        products = new ArrayList<Product>();
-        databaseProducts = new ArrayList<Product>();
+        products = new ArrayList<>();
+        databaseProducts = new ArrayList<>();
 
         orderDetail = new Orders();
         user = new User();
 
 
         butPrint = findViewById(R.id.but_orderdetail_print);
+
+        productAdaper = new SO_OrderDetails(shopownerorderdetails.this, R.layout.itemorderdetails, products, databaseProducts, orderDetail.status);
+        productList.setAdapter(productAdaper);
 
         butComplete = findViewById(R.id.but_orderdetail_complete);
         butComplete.setOnClickListener(new View.OnClickListener() {
@@ -148,44 +145,6 @@ public class shopownerorderdetails extends AppCompatActivity {
                     }
                 });
                 dialog.show();
-                /*AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerorderdetails.this);
-                logoutAlertBuilder.setMessage("Do you want to Complete Order ?");
-                logoutAlertBuilder.setCancelable(false);
-                logoutAlertBuilder.setPositiveButton(
-                        "YES", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                DatabaseReference orderReference = database.getReference("Orders/").child(""+orderID);
-                                Map<String, Object> statusUpdate = new HashMap<>();
-                                statusUpdate.put("status", "Complete");
-                                orderReference.updateChildren(statusUpdate);
-                                Intent intent=new Intent();
-                                intent.putExtra("position",position);
-                                intent.putExtra("searchItem",searchItem);
-                                setResult(Activity.RESULT_OK, intent);
-                                finish();
-                            }
-                        });
-                logoutAlertBuilder.setNegativeButton(
-                        "NO", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-                final AlertDialog alertLogout = logoutAlertBuilder.create();
-
-                alertLogout.setOnShowListener(new DialogInterface.OnShowListener() {
-                    @Override
-                    public void onShow(DialogInterface dialog) {
-                        alertLogout.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
-                        alertLogout.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
-                    }
-                });
-
-                alertLogout.show();*/
-
-
             }
         });
 
@@ -266,42 +225,6 @@ public class shopownerorderdetails extends AppCompatActivity {
                         }
                     });
                     dialog.show();
-                    /*AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerorderdetails.this);
-                    logoutAlertBuilder.setMessage("Do you want to Confirm Order ?");
-                    logoutAlertBuilder.setCancelable(false);
-                    logoutAlertBuilder.setPositiveButton(
-                            "YES", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    DatabaseReference orderReference = database.getReference("Orders/").child(""+orderID);
-                                    Map<String, Object> statusUpdate = new HashMap<>();
-                                    statusUpdate.put("status", "InProgress");
-                                    orderReference.updateChildren(statusUpdate);
-                                    butComplete.setVisibility(View.VISIBLE);
-                                    butPrint.setVisibility(View.VISIBLE);
-                                    butConfirm.setVisibility(View.GONE);
-                                    butCancel.setVisibility(View.GONE);
-                                    updateStoreQuantity(products);
-                                }
-                            });
-                    logoutAlertBuilder.setNegativeButton(
-                            "NO", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
-                                }
-                            });
-                    final AlertDialog alertLogout = logoutAlertBuilder.create();
-
-                    alertLogout.setOnShowListener(new DialogInterface.OnShowListener() {
-                        @Override
-                        public void onShow(DialogInterface dialog) {
-                            alertLogout.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
-                            alertLogout.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
-                        }
-                    });
-
-                    alertLogout.show();*/
                 }
 
             }
@@ -350,43 +273,6 @@ public class shopownerorderdetails extends AppCompatActivity {
                     }
                 });
                 dialog.show();
-                /*AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerorderdetails.this);
-                logoutAlertBuilder.setMessage("Do you want to Cancel Order ?");
-                logoutAlertBuilder.setCancelable(false);
-                logoutAlertBuilder.setPositiveButton(
-                        "YES", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                DatabaseReference orderReference = database.getReference("Orders/").child(""+orderID);
-                                Map<String, Object> statusUpdate = new HashMap<>();
-                                statusUpdate.put("status", "Cancelled");
-                                orderReference.updateChildren(statusUpdate);
-                                Intent intent=new Intent();
-                                intent.putExtra("position",position);
-                                intent.putExtra("searchItem",searchItem);
-                                setResult(Activity.RESULT_OK, intent);
-                                finish();
-                            }
-                        });
-                logoutAlertBuilder.setNegativeButton(
-                        "NO", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-                final AlertDialog alertLogout = logoutAlertBuilder.create();
-
-                alertLogout.setOnShowListener(new DialogInterface.OnShowListener() {
-                    @Override
-                    public void onShow(DialogInterface dialog) {
-                        alertLogout.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
-                        alertLogout.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
-                    }
-                });
-
-                alertLogout.show();*/
-
             }
         });
 
@@ -395,7 +281,6 @@ public class shopownerorderdetails extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-                state = productList.onSaveInstanceState();
                 if(orderDetail.status.equals("Created")) {
                     final Dialog dialog = new Dialog(shopownerorderdetails.this);
                     dialog.setContentView(R.layout.logoutdialog);
@@ -408,19 +293,18 @@ public class shopownerorderdetails extends AppCompatActivity {
                     TextView dialogMessage = dialog.findViewById(R.id.dialog_message);
                     dialogMessage.setText("Do you want to Delete Product ?");
 
-                    Button yes = dialog.findViewById(R.id.dialog_btn_red);
-                    yes.setText("No");
-                    yes.setOnClickListener(new View.OnClickListener() {
+                    Button redbutton = dialog.findViewById(R.id.dialog_btn_red);
+                    redbutton.setText("No");
+                    redbutton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-
                             dialog.dismiss();
                         }
                     });
 
-                    Button no = dialog.findViewById(R.id.dialog_btn_green);
-                    no.setText("Yes");
-                    no.setOnClickListener(new View.OnClickListener() {
+                    Button yesbutton = dialog.findViewById(R.id.dialog_btn_green);
+                    yesbutton.setText("Yes");
+                    yesbutton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             if (products.size() == 1){
@@ -437,68 +321,17 @@ public class shopownerorderdetails extends AppCompatActivity {
                                 products.remove(position);
 
                                 if (products.size() > 0) {
-                                    SO_OrderDetails productAdaper = new SO_OrderDetails(shopownerorderdetails.this, R.layout.itemorderdetails, products, databaseProducts, orderDetail.status);
-                                    productList.setAdapter(productAdaper);
-                                    //productList.setSelection(position -1);
-                                    productList.onRestoreInstanceState(state);
+                                    productAdaper.notifyDataSetChanged();
+                                    productList.setSelection(position-1);
                                 } else {
                                     orderReference.removeValue();
                                 }
+                                itemDeleted = false;
                             }
                             dialog.dismiss();
                         }
                     });
                     dialog.show();
-                    /*AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(shopownerorderdetails.this);
-                    logoutAlertBuilder.setMessage("Do you want to delete Product ?");
-                    logoutAlertBuilder.setCancelable(false);
-                    logoutAlertBuilder.setPositiveButton(
-                            "YES", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                    if (products.size() == 1){
-                                        butCancel.callOnClick();
-                                    }else {
-                                        Product product = products.get(position);
-
-                                        DatabaseReference databaseReference = database.getReference("Orders/" + orderID + "/Products/" + products.get(position).ID);
-                                        databaseReference.removeValue();
-
-                                        DatabaseReference orderReference = database.getReference("Orders/" + orderID);
-                                        orderReference.child("amount").setValue(orderDetail.amount - (product.QtyNos * (product.MRP - product.Discount)));
-
-                                        products.remove(position);
-
-                                        if (products.size() > 0) {
-                                            //adapterShopownerOrderDetails productAdaper = new adapterShopownerOrderDetails(shopownerorderdetails.this, R.layout.itemorderdetails, products, databaseProducts, orderDetail.status);
-                                            SO_OrderDetails productAdaper = new SO_OrderDetails(shopownerorderdetails.this, R.layout.itemorderdetails, products, databaseProducts, orderDetail.status);
-                                            productList.setAdapter(productAdaper);
-                                        } else {
-                                            orderReference.removeValue();
-                                        }
-                                    }
-
-                                }
-                            });
-                    logoutAlertBuilder.setNegativeButton(
-                            "NO", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
-                                }
-                            });
-                    final AlertDialog alertLogout = logoutAlertBuilder.create();
-
-                    alertLogout.setOnShowListener(new DialogInterface.OnShowListener() {
-                        @Override
-                        public void onShow(DialogInterface dialog) {
-                            alertLogout.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
-                            alertLogout.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
-                        }
-                    });
-
-                    alertLogout.show();*/
                 }
                 return false;
             }
@@ -556,10 +389,6 @@ public class shopownerorderdetails extends AppCompatActivity {
                         break;
 
                 }
-                /*if(orderDetail.status.equals("Complete"))
-                    butComplete.setEnabled(false);
-                else
-                    butComplete.setEnabled(true);*/
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -591,9 +420,14 @@ public class shopownerorderdetails extends AppCompatActivity {
                     //product.setID(product);
                     products.add(product);
                 }
-                //adapterShopownerOrderDetails productAdaper = new adapterShopownerOrderDetails(shopownerorderdetails.this, R.layout.itemorderdetails, products,databaseProducts, orderDetail.status);
-                SO_OrderDetails productAdaper = new SO_OrderDetails(shopownerorderdetails.this, R.layout.itemorderdetails, products,databaseProducts, orderDetail.status);
-                productList.setAdapter(productAdaper);
+                //SO_OrderDetails productAdaper = new SO_OrderDetails(shopownerorderdetails.this, R.layout.itemorderdetails, products,databaseProducts, orderDetail.status);
+                //productList.setAdapter(productAdaper);
+                if (!itemDeleted)
+                    productAdaper.notifyDataSetChanged();
+                else {
+                    SO_OrderDetails productAdaper = new SO_OrderDetails(shopownerorderdetails.this, R.layout.itemorderdetails, products,databaseProducts, orderDetail.status);
+                    productList.setAdapter(productAdaper);
+                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
