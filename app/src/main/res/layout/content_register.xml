@@ -19,18 +19,45 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
             android:layout_height="match_parent">
             <TextView android:layout_weight="0.5" android:layout_width="match_parent" android:textColor="@color/blacklabels"
                 android:layout_height="match_parent" android:text="@string/fullname"
-                android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                android:textSize="@dimen/textButtons" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
             <LinearLayout android:layout_weight="0.5"
                 android:layout_width="match_parent" android:orientation="horizontal"
                 android:layout_height="match_parent">
 
                 <!--android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM "-->
                 <EditText android:id="@+id/edt_register_Name"
-                    android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
-                    android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="text"
-                    android:tag="Name" android:maxLength="50"
-                    android:nextFocusDown="@id/edt_register_mobile" android:imeOptions="actionNext"
-                    android:layout_height="match_parent" android:hint="Name"/>
+                    android:layout_weight="0.03"
+                    android:visibility="visible"
+                    android:background="@drawable/logintextbox"
+                    android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:tag="Name"
+                    android:maxLength="50"
+                    android:nextFocusDown="@id/edt_register_mobile"
+                    android:imeOptions="actionNext"
+                    android:textSize="@dimen/textButtons"
+                    android:layout_height="match_parent"
+                    android:hint="Name"/>
+
+                <!--<EditText android:background="@drawable/logintextbox"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:id="@+id/edt_login_password"
+                    android:visibility="visible"
+                    android:hint="4 Digit Pin/Password"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:drawableEnd="@drawable/ic_eye_off"
+                    android:imeOptions="actionGo"
+                    android:maxLength="4"
+                    android:longClickable="false"
+                    android:padding="5dp"
+                    android:textSize="@dimen/textButtons"
+                    android:inputType="numberPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />-->
 
             </LinearLayout>
 
@@ -38,7 +65,6 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
         <LinearLayout android:layout_weight="0.5"
             android:layout_width="match_parent" android:orientation="horizontal"
-
             android:layout_height="match_parent">
 
             <LinearLayout
@@ -47,16 +73,16 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
                 android:layout_height="match_parent" android:layout_weight="0.5">
 
                 <TextView android:layout_weight="0.5"        android:layout_width="match_parent" android:textColor="@color/blacklabels"
-                    android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
+                    android:textSize="@dimen/textButtons" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
                     android:layout_height="match_parent" android:text="@string/mobile" />
                 <LinearLayout android:layout_weight="0.5"
                     android:layout_width="match_parent" android:orientation="horizontal"
                     android:layout_height="match_parent">
 
                     <EditText android:id="@+id/edt_register_mobile"
-                        android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
+                        android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/logintextbox"
                         android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="number"
-                        android:maxLength="10"
+                        android:maxLength="10" android:textSize="@dimen/textButtons"
                         android:nextFocusDown="@id/edt_register_pin" android:imeOptions="actionNext"
                         android:layout_height="match_parent" android:hint="Mobile"/>
 
@@ -71,17 +97,17 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
                 android:layout_height="match_parent" android:layout_weight="0.5">
 
                 <TextView android:layout_weight="0.5"        android:layout_width="match_parent" android:textColor="@color/blacklabels"
-                    android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
+                    android:textSize="@dimen/textButtons" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
                     android:layout_height="match_parent" android:text="@string/pin" />
                 <LinearLayout android:layout_weight="0.5"
                     android:layout_width="match_parent" android:orientation="horizontal"
                     android:layout_height="match_parent">
 
                     <EditText android:id="@+id/edt_register_pin"
-                        android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
+                        android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/logintextbox"
                         android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="numberPassword"
                         android:maxLength="4" android:drawableRight="@drawable/ic_eye_off"
-                        android:longClickable="false"
+                        android:longClickable="false" android:textSize="@dimen/textButtons"
                         android:nextFocusDown="@id/edt_register_Address1" android:imeOptions="actionNext"
                         android:layout_height="match_parent" android:hint="4 Digit Pin"/>
 
@@ -98,19 +124,29 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
             android:layout_height="match_parent">
             <TextView android:layout_weight="0.5"        android:layout_width="match_parent" android:textColor="@color/blacklabels"
-                android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
+                android:textSize="@dimen/textButtons" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
                 android:layout_height="match_parent" android:text="@string/address1" />
             <LinearLayout android:layout_weight="0.5"
                 android:layout_width="match_parent" android:orientation="horizontal"
                 android:layout_height="match_parent">
 
                 <EditText android:id="@+id/edt_register_Address1"
-                    android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
-                    android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="text"
-                    android:gravity="left|center" android:layout_gravity="center" android:tag="Address 1"
+                    android:layout_weight="0.03"
+                    android:visibility="visible"
+                    android:background="@drawable/logintextbox"
+                    android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:gravity="left|center"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/textButtons"
+                    android:tag="Address 1"
                     android:maxLength="75"
-                    android:nextFocusDown="@id/edt_register_Address2" android:imeOptions="actionNext"
-                    android:layout_height="match_parent" android:hint="Address 1"/>
+                    android:nextFocusDown="@id/edt_register_Address2"
+                    android:imeOptions="actionNext"
+                    android:layout_height="match_parent"
+                    android:hint="Address 1"/>
 
             </LinearLayout>
             <!--<EditText android:id="@+id/edt_profile_address2"
@@ -124,27 +160,34 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
             android:layout_height="match_parent">
             <TextView android:layout_weight="0.5"        android:layout_width="match_parent" android:textColor="@color/blacklabels"
-                android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
+                android:textSize="@dimen/textButtons" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
                 android:layout_height="match_parent" android:text="@string/address2" />
             <LinearLayout android:layout_weight="0.5"
                 android:layout_width="match_parent" android:orientation="horizontal"
                 android:layout_height="match_parent">
                 <EditText android:id="@+id/edt_register_Address2"
-                    android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
-                    android:layout_width="match_parent" android:padding="10dp" android:maxLines="1" android:inputType="text"
-                    android:gravity="left|center" android:layout_gravity="center" android:tag="Address 2"
+                    android:layout_weight="0.03"
+                    android:visibility="visible"
+                    android:background="@drawable/logintextbox"
+                    android:layout_width="match_parent"
+                    android:padding="10dp" android:maxLines="1"
+                    android:inputType="text"
+                    android:gravity="left|center"
+                    android:layout_gravity="center"
+                    android:tag="Address 2"
                     android:maxLength="75"
-                    android:nextFocusDown="@id/spn_register_security" android:imeOptions="actionNext"
+                    android:nextFocusDown="@id/spn_register_security"
+                    android:textSize="@dimen/textButtons"
+                    android:imeOptions="actionNext"
                     android:layout_height="match_parent" android:hint="Address 2"/>
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout android:layout_weight="0.44" android:visibility="visible"
+        <LinearLayout android:layout_weight="0.46" android:visibility="visible"
             android:layout_width="match_parent" android:orientation="vertical"
-
             android:layout_height="match_parent">
             <TextView android:layout_weight="0.68"        android:layout_width="match_parent" android:textColor="@color/blacklabels"
-                android:textSize="@dimen/profileLabel" android:padding="10dp"
+                android:textSize="@dimen/textButtons" android:padding="10dp"
                 android:layout_gravity="bottom" android:gravity="bottom"
                 android:layout_height="match_parent" android:text="@string/securityquestion" />
             <LinearLayout android:layout_weight="0.32"
@@ -152,29 +195,61 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
                 android:layout_height="match_parent">
 
 
+
                 <Spinner android:layout_weight="0.5" android:id="@+id/spn_register_security"
                     android:layout_width="match_parent" android:nextFocusDown="@id/edt_register_secAnswer"
-                    android:layout_height="match_parent"></Spinner>
+                    android:layout_height="match_parent"/>
+
                 <EditText android:layout_weight="0.5" android:id="@+id/edt_register_secAnswer"
-                    android:background="@drawable/profiletextbox"
-                    android:layout_width="match_parent" android:tag="Security Answer"
-                    android:hint="Security Answer" android:padding="10dp"
-                    android:inputType="text" android:imeOptions="actionNext" android:maxLength="20"
-                    android:maxLines="1" android:nextFocusDown="@id/but_register_save"
-                    android:layout_height="match_parent"></EditText>
+                    android:background="@drawable/logintextbox"
+                    android:layout_width="match_parent"
+                    android:tag="Security Answer"
+                    android:hint="Security Answer"
+                    android:padding="10dp"
+                    android:inputType="text"
+                    android:imeOptions="actionNext"
+                    android:textSize="@dimen/textButtons"
+                    android:maxLength="20"
+                    android:maxLines="1"
+                    android:nextFocusDown="@id/but_register_save"
+                    android:layout_height="match_parent"/>
 
 
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout android:layout_weight="0.52"
+        <LinearLayout android:layout_weight="0.5" android:weightSum="100"
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent" android:orientation="vertical" android:layout_gravity="center"
             android:gravity="center"
             android:layout_height="match_parent">
+
+            <LinearLayout android:layout_weight="40" android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <CheckBox android:id="@+id/chkConditions"
+                    android:layout_weight="10"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+
+                </CheckBox>
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="95"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="left|center"
+                    android:layout_gravity="center"
+                    android:textColor="@color/blacklabels"
+                    android:text="I understand terms &amp; conditions"
+                    />
+
+            </LinearLayout>
+
             <Button android:id="@+id/but_register_save"
                 android:layout_width="200dp" android:background="@drawable/roundbutton" android:backgroundTint="@color/orangeColorButton"
-                android:layout_gravity="center" android:gravity="center"
-                android:layout_height="50dp" android:text="Register" android:textColor="#000" ></Button>
+                android:layout_gravity="center" android:gravity="center" android:layout_weight="50"
+                android:layout_height="0dp" android:text="Register" android:textColor="#000" ></Button>
         </LinearLayout>
 
     </LinearLayout>

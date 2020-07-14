@@ -28,6 +28,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -44,6 +46,7 @@ public class registration extends AppCompatActivity {
     FirebaseDatabase database;
     Spinner spnSecurityQ;
     ArrayAdapter<String> SQadapter;
+    CheckBox terms;
 
     public void showErrorMessage(String message){
         Toast error = Toast.makeText(registration.this, message,Toast.LENGTH_SHORT);
@@ -238,6 +241,8 @@ public class registration extends AppCompatActivity {
 
         edtAddress1 = findViewById(R.id.edt_register_Address1);
         edtAddress2 = findViewById(R.id.edt_register_Address2);
+        terms = findViewById(R.id.chkConditions);
+
 
         edtSecurityAns = findViewById(R.id.edt_register_secAnswer);
         spnSecurityQ = findViewById(R.id.spn_register_security);
@@ -256,6 +261,7 @@ public class registration extends AppCompatActivity {
                         && isFieldEmpty(edtAddress2)
                         && isFieldEmpty(edtSecurityAns)
                         && isSecurityQuestionSelected()
+                        && isTermsChecked()
                 )
                 {
                     try {
@@ -286,6 +292,19 @@ public class registration extends AppCompatActivity {
         });
 
 
+    }
+
+    private boolean isTermsChecked() {
+        boolean flag = false;
+
+
+        if (terms.isChecked())
+            flag = true;
+        else
+            showErrorMessage("Please accept terms & conditions");
+            //terms.setError("Please select checkbox");
+
+        return flag;
     }
 
     public void showLogoutAlertDialog(){
