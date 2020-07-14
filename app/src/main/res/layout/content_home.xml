@@ -3,15 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:backgroundTint="#ffffff" android:background="#ffffff"
-    android:layout_height="match_parent"
+    android:layout_height="match_parent" android:weightSum="100"
     app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
-    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="horizontal"
-        android:layout_weight="0.92">
-        <!--<EditText android:id="@+id/edt_home_search" android:background="@drawable/profiletextbox" android:inputType="text"
-            android:layout_width="match_parent" android:imeOptions="actionSearch" android:maxLines="1"
-            android:visibility="gone"
-            android:layout_height="match_parent" android:layout_weight="0.15"></EditText>-->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:orientation="horizontal"
+        android:layout_weight="7">
+
 
         <AutoCompleteTextView android:id="@+id/txt_auto_search"
             android:layout_width="match_parent" android:layout_weight="0.1" android:maxLines="1" android:inputType="text"
@@ -19,9 +16,7 @@
             android:hint="Search Product Name"
             android:layout_height="match_parent"></AutoCompleteTextView>
 
-        <!--<ImageButton android:id="@+id/but_home_search" android:src="@drawable/ic_search" android:background="@drawable/searchbutton"
-            android:layout_width="match_parent" android:scaleType="center" android:visibility="gone"
-            android:layout_height="match_parent" android:layout_weight="0.9"></ImageButton>-->
+
 
     </LinearLayout>
 
@@ -30,13 +25,22 @@
         android:layout_width="match_parent" android:fillViewport="true" android:overScrollMode="never"
         android:layout_height="wrap_content" android:layout_weight="0.1" >-->
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical"  android:layout_weight="0.08">
+
+    <RelativeLayout android:layout_weight="93"
+        android:layout_width="match_parent" android:layout_marginTop="5dp"
+        android:layout_height="0dp">
+        <ProgressBar android:id="@+id/homeCategoriesProgressbar"
+            android:indeterminateTint="@color/colorPrimaryDark"
+            android:layout_width="80dp" android:layout_gravity="center"
+            android:layout_height="80dp" android:layout_centerInParent="true">
+
+        </ProgressBar>
+        <LinearLayout android:id="@+id/layout_home_categories"
+            android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical"  android:layout_weight="0.08">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp" android:layout_weight="0.1" android:orientation="horizontal">
-                <!--<Button android:id="@+id/but_category_1"
-                    android:layout_width="match_parent" android:text="dairy"
-                    android:layout_height="match_parent" android:layout_weight="0.5"></Button>-->
+
                 <ImageButton android:id="@+id/but_category_1" android:tag="Dairy" android:backgroundTint="#ffffff"
                     android:layout_width="match_parent" android:scaleType="fitCenter" android:foreground="?attr/selectableItemBackground"
                     android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
@@ -75,6 +79,9 @@
                     android:layout_height="match_parent" android:layout_weight="0.5"></ImageButton>
             </LinearLayout>
         </LinearLayout>
+    </RelativeLayout>
+
+
 
     <!--</ScrollView>-->
 

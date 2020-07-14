@@ -35,6 +35,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +54,8 @@ public class home extends AppCompatActivity {
     private List<String> productNames;
     Integer productCount;
     Double cartAmount;
+    ProgressBar progressBar;
+    LinearLayout categorieslayout;
 
     private static final int[] BUTTON_IDS = {
             R.id.but_category_1,
@@ -115,6 +119,8 @@ public class home extends AppCompatActivity {
         toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
         toolbar.setOverflowIcon(getDrawable(R.drawable.ic_menuicon));
 
+
+
         /*ViewGroup.LayoutParams params = (ViewGroup.LayoutParams)toolbar.getLayoutParams();
         params.height = 160;
         toolbar.setLayoutParams(params);*/
@@ -128,6 +134,12 @@ public class home extends AppCompatActivity {
 
         userID = b.getLong("userID");
         productCount = b.getInt("productCount",0);
+
+        categorieslayout = findViewById(R.id.layout_home_categories);
+        progressBar = findViewById(R.id.homeCategoriesProgressbar);
+        progressBar.setIndeterminate(true);
+        progressBar.setVisibility(View.VISIBLE);
+        categorieslayout.setVisibility(View.GONE);
 
 
 
@@ -177,8 +189,27 @@ public class home extends AppCompatActivity {
         //FirebaseDatabase database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
         database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
         Query query = database.getReference("/Categories");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Category category = postSnapshot.getValue(Category.class);
+                    showButton(category.Name,count);
+                    count++;
+                }
 
-        query.addChildEventListener(new ChildEventListener() {
+                progressBar.setVisibility(View.GONE);
+                categorieslayout.setVisibility(View.VISIBLE);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        /*query.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Category category = dataSnapshot.getValue(Category.class);
@@ -194,7 +225,7 @@ public class home extends AppCompatActivity {
             public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {             }
-        });
+        });*/
 
         Query productsQuery = database.getReference("/Products");
         productsQuery.addValueEventListener(new ValueEventListener() {

@@ -151,6 +151,7 @@ public class customerproductdisplay extends AppCompatActivity {
         progressBar = findViewById(R.id.cuatomerProductsDisplayProgressbar);
         progressBar.setIndeterminate(true);
         progressBar.setVisibility(View.VISIBLE);
+        empty.setVisibility(View.GONE);
 
         database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
 
