@@ -6,6 +6,7 @@
     android:layout_height="match_parent"  android:background="@drawable/button_greyborder"
     app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
+
     <LinearLayout android:layout_weight="80" android:background="@drawable/button_greyborder"
         android:paddingStart="5dp" android:paddingEnd="5dp"
         android:layout_width="match_parent" android:orientation="vertical"
@@ -15,7 +16,7 @@
             android:layout_height="match_parent">
             <TextView android:layout_weight="0.5" android:layout_width="match_parent" android:textColor="@color/blacklabels"
                 android:layout_height="match_parent" android:text="@string/fullname"
-                android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                android:textSize="@dimen/textButtons" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
             <LinearLayout android:layout_weight="0.5"
                 android:paddingStart="10dp" android:paddingEnd="10dp"
                 android:layout_width="match_parent" android:orientation="horizontal"
@@ -34,7 +35,7 @@
             android:layout_width="match_parent" android:orientation="vertical"
             android:layout_height="match_parent">
             <TextView android:layout_weight="0.5"        android:layout_width="match_parent" android:textColor="@color/blacklabels"
-                android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
+                android:textSize="@dimen/textButtons" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
                 android:layout_height="match_parent" android:text="@string/mobile" />
             <LinearLayout android:layout_weight="0.5"
                 android:paddingStart="10dp" android:paddingEnd="10dp"
@@ -55,7 +56,7 @@
             android:layout_width="match_parent" android:orientation="vertical"
             android:layout_height="match_parent">
             <TextView android:layout_weight="0.5"        android:layout_width="match_parent" android:textColor="@color/blacklabels"
-                android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
+                android:textSize="@dimen/textButtons" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
                 android:layout_height="match_parent" android:text="@string/address1" />
             <LinearLayout android:layout_weight="0.5"
                 android:paddingStart="10dp" android:paddingEnd="10dp"
@@ -76,7 +77,7 @@
             android:layout_width="match_parent" android:orientation="vertical"
             android:layout_height="match_parent">
             <TextView android:layout_weight="0.5"        android:layout_width="match_parent" android:textColor="@color/blacklabels"
-                android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
+                android:textSize="@dimen/textButtons" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"
                 android:layout_height="match_parent" android:text="@string/address2" />
             <LinearLayout android:layout_weight="0.5"
                 android:paddingStart="10dp" android:paddingEnd="10dp"
