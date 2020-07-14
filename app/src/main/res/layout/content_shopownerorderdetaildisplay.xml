@@ -132,35 +132,63 @@
         android:layout_height="0dp" >
 
         <LinearLayout
-            android:layout_width="match_parent" android:paddingEnd="5dp" android:paddingStart="5dp"
-            android:paddingBottom="5dp" android:paddingTop="5dp"
-            android:layout_height="match_parent" android:layout_weight="0.5">
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5">
 
-            <Button android:id="@+id/but_orderdetail_print" android:layout_weight="0.5"
-                android:paddingStart="5dp" android:paddingEnd="5dp"
-                android:layout_width="match_parent" android:background="@drawable/roundbutton_orange"
-                android:layout_height="match_parent" android:text="Print" android:visibility="gone"> </Button>
-            <Button android:id="@+id/but_orderdetail_cancel" android:layout_weight="0.5"
-                android:paddingStart="5dp" android:paddingEnd="5dp" android:textColor="#ffffff"
-                android:layout_width="match_parent" android:background="@drawable/roundbutton_red"
-                android:layout_height="match_parent" android:text="Cancel Order" android:visibility="visible"> </Button>
+            <Button android:id="@+id/but_orderdetail_print"
+                android:layout_weight="0.5"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:layout_width="match_parent"
+                android:background="@drawable/roundbutton_orange"
+                android:layout_height="match_parent"
+                android:text="Print"
+                android:visibility="gone"/>
+            <Button android:id="@+id/but_orderdetail_cancel"
+                android:layout_weight="0.5"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:textColor="#ffffff"
+                android:layout_width="match_parent"
+                android:background="@drawable/roundbutton_red"
+                android:layout_height="match_parent"
+                android:text="Cancel Order"
+                android:visibility="visible" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent" android:paddingStart="5dp" android:paddingEnd="5dp"
-            android:paddingBottom="5dp" android:layout_marginTop="5dp"
-            android:layout_height="match_parent" android:layout_weight="0.5">
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5">
 
-            <Button android:id="@+id/but_orderdetail_complete" android:layout_weight="0.5"
-                android:paddingStart="5dp" android:paddingEnd="5dp" android:textColor="#ffffff"
-                android:layout_width="match_parent" android:background="@drawable/roundbutton_green"
-                android:layout_height="match_parent" android:text="Complete" android:visibility="gone"/>
-
-            <Button android:id="@+id/but_orderdetail_confirm" android:layout_weight="0.5"
-                android:paddingStart="5dp" android:paddingEnd="5dp" android:textColor="#ffffff"
-                android:layout_width="match_parent" android:background="@drawable/roundbutton_green"
-                android:layout_height="match_parent" android:text="Confirm" android:visibility="visible"/>
+            <Button android:id="@+id/but_orderdetail_complete"
+                android:layout_weight="0.5"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:textColor="#ffffff"
+                android:layout_width="match_parent"
+                android:background="@drawable/roundbutton_green"
+                android:layout_height="match_parent"
+                android:text="Complete"
+                android:visibility="visible"/>
+            <Button android:id="@+id/but_orderdetail_confirm"
+                android:layout_weight="0.5"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:textColor="#ffffff"
+                android:layout_width="match_parent"
+                android:background="@drawable/roundbutton_green"
+                android:layout_height="match_parent"
+                android:text="Confirm"
+                android:visibility="gone"/>
 
         </LinearLayout>
 
