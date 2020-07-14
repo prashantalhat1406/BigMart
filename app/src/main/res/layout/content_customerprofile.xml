@@ -21,10 +21,10 @@
                 android:layout_width="match_parent" android:orientation="horizontal"
                 android:layout_height="match_parent">
                 <EditText android:id="@+id/edt_profile_name"
-                    android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
+                    android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/logintextbox"
                     android:layout_width="0dp" android:padding="10dp"
                     android:maxLines="1" android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM "
-                    android:maxLength="50"
+                    android:maxLength="50" android:textSize="@dimen/textButtons"
                     android:layout_height="match_parent" android:hint="Name"/>
             </LinearLayout>
 
@@ -42,8 +42,8 @@
                 android:layout_height="match_parent">
 
                 <EditText android:id="@+id/edt_profile_mobile"
-                    android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
-                    android:layout_width="match_parent" android:padding="10dp"
+                    android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/logintextbox"
+                    android:layout_width="match_parent" android:padding="10dp" android:textSize="@dimen/textButtons"
                     android:maxLines="1" android:enabled="false" android:maxLength="10"
                     android:layout_height="match_parent" android:hint="Name"/>
 
@@ -63,8 +63,8 @@
                 android:layout_height="match_parent">
 
                 <EditText android:id="@+id/edt_profile_address1"
-                    android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
-                    android:layout_width="match_parent" android:padding="10dp"
+                    android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/logintextbox"
+                    android:layout_width="match_parent" android:padding="10dp" android:textSize="@dimen/textButtons"
                     android:maxLines="1" android:inputType="text" android:maxLength="75"
                     android:layout_height="match_parent" android:hint="Address 1"/>
 
@@ -84,8 +84,8 @@
                 android:layout_height="match_parent">
 
                 <EditText android:id="@+id/edt_profile_address2"
-                    android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
-                    android:layout_width="match_parent" android:padding="10dp"
+                    android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/logintextbox"
+                    android:layout_width="match_parent" android:padding="10dp" android:textSize="@dimen/textButtons"
                     android:maxLines="1" android:inputType="text" android:maxLength="75"
                     android:layout_height="match_parent" android:hint="Address 2"/>
 
