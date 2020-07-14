@@ -6,49 +6,64 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 <!--android:background="@drawable/loginbackground"-->
-    <LinearLayout android:id="@+id/layout_orderhistory_empty"
-        android:layout_width="match_parent" android:orientation="vertical"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:layout_width="match_parent" android:layout_weight="0.3"
+
+    <RelativeLayout android:layout_weight="93"
+        android:layout_width="match_parent" android:layout_marginTop="5dp"
+        android:layout_height="0dp">
+        <ProgressBar android:id="@+id/customerOrderHistoryProgressbar"
+            android:indeterminateTint="@color/colorPrimaryDark"
+            android:layout_width="80dp" android:layout_gravity="center"
+            android:layout_height="80dp" android:layout_centerInParent="true">
+
+        </ProgressBar>
+
+        <LinearLayout android:id="@+id/layout_orderhistory_empty"
+            android:layout_width="match_parent" android:orientation="vertical"
             android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent" android:layout_weight="0.3"
+                android:layout_height="match_parent">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent" android:layout_weight="0.4" android:orientation="vertical"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="match_parent" android:layout_weight="0.2"
+                    android:layout_height="match_parent" android:src="@drawable/ic_orderlist"> </ImageView>
+                <TextView
+                    android:layout_width="wrap_content" android:textStyle="bold" android:textColor="@color/blacklabels"
+                    android:layout_height="wrap_content" android:text="No Orders to show" android:layout_gravity="center"></TextView>
+                <Button android:id="@+id/but_orderhistory_continueShopping"
+                    android:layout_width="wrap_content" android:layout_weight="0.3" android:paddingLeft="20dp" android:paddingRight="20dp"
+                    android:layout_height="match_parent" android:layout_gravity="center" android:text="Continue Shopping"
+                    android:background="@color/darkgreenColorButton" android:textColor="#ffffff">
+
+                </Button>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent" android:layout_weight="0.3"
+                android:layout_height="match_parent">
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent" android:layout_weight="0.4" android:orientation="vertical"
-            android:layout_height="match_parent">
-            <ImageView
-                android:layout_width="match_parent" android:layout_weight="0.2"
-                android:layout_height="match_parent" android:src="@drawable/ic_orderlist"> </ImageView>
-            <TextView
-                android:layout_width="wrap_content" android:textStyle="bold" android:textColor="@color/blacklabels"
-                android:layout_height="wrap_content" android:text="No Orders to show" android:layout_gravity="center"></TextView>
-            <Button android:id="@+id/but_orderhistory_continueShopping"
-                android:layout_width="wrap_content" android:layout_weight="0.3" android:paddingLeft="20dp" android:paddingRight="20dp"
-                android:layout_height="match_parent" android:layout_gravity="center" android:text="Continue Shopping"
-                android:background="@color/darkgreenColorButton" android:textColor="#ffffff">
-
-            </Button>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent" android:layout_weight="0.3"
-            android:layout_height="match_parent">
-
+        <LinearLayout android:id="@+id/layout_orderhistory_list"
+            android:layout_width="match_parent" android:layout_weight="0.1"
+            android:layout_height="match_parent" android:layout_marginTop="5dp">
+            <ListView
+                android:layout_width="match_parent" android:id="@+id/listcustomerOrderHistory" android:divider="@android:color/transparent"
+                android:dividerHeight="5.0dp" android:paddingLeft="5dp" android:paddingRight="5dp"
+                android:layout_height="match_parent" >
+            </ListView>
         </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout android:id="@+id/layout_orderhistory_list"
-        android:layout_width="match_parent" android:layout_weight="0.1"
-        android:layout_height="match_parent" android:layout_marginTop="5dp">
-        <ListView
-            android:layout_width="match_parent" android:id="@+id/listcustomerOrderHistory" android:divider="@android:color/transparent"
-            android:dividerHeight="5.0dp" android:paddingLeft="5dp" android:paddingRight="5dp"
-            android:layout_height="match_parent" >
-        </ListView>
-    </LinearLayout>
+
 
 
 </LinearLayout>

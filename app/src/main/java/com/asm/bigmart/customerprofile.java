@@ -121,9 +121,9 @@ public class customerprofile extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
 
-        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams)toolbar.getLayoutParams();
+        /*ViewGroup.LayoutParams params = (ViewGroup.LayoutParams)toolbar.getLayoutParams();
         params.height = 160;
-        toolbar.setLayoutParams(params);
+        toolbar.setLayoutParams(params);*/
 
 
         Bundle b = getIntent().getExtras();
