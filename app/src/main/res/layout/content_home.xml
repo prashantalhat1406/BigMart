@@ -6,18 +6,20 @@
     android:layout_height="match_parent" android:weightSum="100"
     app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
-    <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:orientation="horizontal"
-        android:layout_weight="7">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="9">
 
         <AutoCompleteTextView android:id="@+id/txt_auto_search"
-            android:layout_width="match_parent" android:layout_weight="0.1" android:maxLines="1" android:inputType="text"
-            android:imeOptions="actionSearch" android:drawableRight="@drawable/ic_search"
+            android:layout_width="match_parent"
+            android:maxLines="1"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+            android:drawableRight="@drawable/ic_search"
             android:hint="Search Product Name"
-            android:layout_height="match_parent"></AutoCompleteTextView>
-
-
-
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
 
@@ -26,7 +28,7 @@
         android:layout_height="wrap_content" android:layout_weight="0.1" >-->
 
 
-    <RelativeLayout android:layout_weight="93"
+    <RelativeLayout android:layout_weight="91"
         android:layout_width="match_parent" android:layout_marginTop="5dp"
         android:layout_height="0dp">
         <ProgressBar android:id="@+id/homeCategoriesProgressbar"

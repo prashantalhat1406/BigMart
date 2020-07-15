@@ -8,7 +8,7 @@
 
 
     <LinearLayout android:layout_weight="80" android:background="@drawable/button_greyborder"
-        android:paddingStart="5dp" android:paddingEnd="5dp"
+        android:paddingStart="5dp" android:paddingEnd="5dp" android:visibility="visible"
         android:layout_width="match_parent" android:orientation="vertical"
         android:layout_height="0dp">
         <LinearLayout android:layout_weight="0.5"

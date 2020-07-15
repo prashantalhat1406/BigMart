@@ -129,7 +129,7 @@ public class CU_ProductDisplay extends ArrayAdapter<Product> {
             product = products.get(position);
 
             viewHolder.productImage = (ImageView) convertView.findViewById(R.id.img_product_image);
-            int id_ = context.getResources().getIdentifier(product.getID().toLowerCase(), "drawable", context.getPackageName());
+            //int id_ = context.getResources().getIdentifier(product.getID().toLowerCase(), "drawable", context.getPackageName());
             int outofstock = context.getResources().getIdentifier("outofstock", "drawable", context.getPackageName());
 
 
@@ -137,7 +137,7 @@ public class CU_ProductDisplay extends ArrayAdapter<Product> {
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageReference = storage.getReference().child("Products").child(imageName);
 
-            storageReference.getBytes(1024 * 512).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            storageReference.getBytes(512 * 512).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                 @Override
                 public void onSuccess(byte[] bytes) {
                     Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);

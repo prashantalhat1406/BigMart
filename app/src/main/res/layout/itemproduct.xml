@@ -17,6 +17,7 @@
                 <ImageView android:id="@+id/img_product_image"
                     android:layout_width="match_parent" android:layout_weight="0.6" android:scaleType="center"
                     android:layout_gravity="center" android:padding="15dp"
+                    android:layout_margin="5dp"
                     android:layout_height="match_parent"></ImageView>
             </LinearLayout>
 
