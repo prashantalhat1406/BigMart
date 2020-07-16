@@ -177,6 +177,10 @@ public class login extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //String versionName = BuildConfig.VERSION_NAME;
+        TextView versionName = findViewById(R.id.versionNumber);
+        versionName.setText(getString( R.string.developerName) + "\nv"+BuildConfig.VERSION_NAME);
+
         toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
 
         usersDB = new ArrayList<>();

@@ -55,7 +55,7 @@
     <string name="name2">Product Name 2 <font fgcolor='#FF0000'>*</font></string>
     <string name="category">Category <font fgcolor='#FF0000'>*</font></string>
     <string name="subcategory">Sub-Category <font fgcolor='#FF0000'>*</font></string>
-
+    <string name="developerName">Copyright 2020. Developed by PS Software Solutions</string>
     <string name="pickup">
 <![CDATA[
 <br>
@@ -75,6 +75,8 @@
 <b>DELIVERY CHARGES EXTRA</b></p>
 ]]>
 </string>
+
+
 
     <string-array name="producttype">
         <item>KG</item>

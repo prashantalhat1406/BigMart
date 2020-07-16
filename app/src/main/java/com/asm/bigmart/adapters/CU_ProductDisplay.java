@@ -204,6 +204,8 @@ public class CU_ProductDisplay extends ArrayAdapter<Product> {
                         viewHolder.incrementor.setVisibility(View.VISIBLE);
                         viewHolder.savedamount.setText(context.getResources().getString(R.string.Rupee) + " " + formater.format((product.getDiscount() * product.getQtyNos())));
                         viewHolder.bmaamount.setText(context.getResources().getString(R.string.Rupee) + " " + formater.format(((product.getMRP() - product.getDiscount()) * product.getQtyNos())));
+                        viewHolder.bmaamount.setText("ASM " + viewHolder.bmaamount.getText());
+                        viewHolder.savedamount.setText("Save " + viewHolder.savedamount.getText());
                     } else {
 
                         AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
@@ -227,8 +229,7 @@ public class CU_ProductDisplay extends ArrayAdapter<Product> {
                         alert11.show();
 
                     }
-                    viewHolder.bmaamount.setText("ASM " + viewHolder.bmaamount.getText());
-                    viewHolder.savedamount.setText("Save " + viewHolder.savedamount.getText());
+
                     //}
 
                 }
