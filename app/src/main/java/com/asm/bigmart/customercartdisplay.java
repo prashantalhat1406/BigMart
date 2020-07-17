@@ -551,21 +551,23 @@ public class customercartdisplay extends AppCompatActivity {
         dialog.setCancelable(false);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        Button yes = dialog.findViewById(R.id.dialog_btn_red);
-        yes.setOnClickListener(new View.OnClickListener() {
+        Button redbutton = dialog.findViewById(R.id.dialog_btn_red);
+        redbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        Button greeenbutton = dialog.findViewById(R.id.dialog_btn_green);
+        greeenbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
                 Intent logoutIntent = new Intent(customercartdisplay.this, login.class);
                 logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(logoutIntent);
                 finish();
-            }
-        });
-        Button no = dialog.findViewById(R.id.dialog_btn_green);
-        no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
+
             }
         });
         dialog.show();
