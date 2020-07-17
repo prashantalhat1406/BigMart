@@ -25,9 +25,11 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,9 +42,10 @@ public class login extends AppCompatActivity {
     private Integer showpassword = 0;
     public List<User> usersDB;
     EditText edtMobile,edtPassword;
-    Button butLogin ;
+    Button butLogin , butRegister;
     private FirebaseAuth mAuth;
     private User user;
+    TextView txtforgotPassword;
 
 
     public void showErrorMessage(String message){
@@ -217,6 +220,7 @@ public class login extends AppCompatActivity {
         edtMobile.requestFocus();
         edtPassword = findViewById(R.id.edt_login_password);
         edtMobile.setText("");
+
         edtMobile.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {            }
@@ -284,7 +288,7 @@ public class login extends AppCompatActivity {
             }
         });
 
-        TextView txtforgotPassword = findViewById(R.id.txt_forgotpassword);
+        txtforgotPassword = findViewById(R.id.txt_forgotpassword);
         txtforgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -312,41 +316,7 @@ public class login extends AppCompatActivity {
             }
         });
 
-        Button butRegister = findViewById(R.id.but_login_register);
-        /*TextView txtRegister = findViewById(R.id.txt_registerN);
-        txtRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                long userMobile;
-
-                if (edtMobile.getText().toString().length() == 0)
-                    userMobile = 0L;
-                else
-                    userMobile = Long.parseLong(edtMobile.getText().toString());
-
-                boolean exitingUser = false;
-                for (User user : usersDB) {
-                    if (user.Mobile.equals(userMobile))
-                    {
-                        exitingUser = true; break;
-                    }
-                }
-
-                if (exitingUser)
-                {
-                    showErrorMessage("User already exists.");
-                    edtPassword.setText("");
-                    edtPassword.requestFocus();
-                }else{
-                    Intent registerIntent = new Intent(login.this, registration.class);
-                    Bundle extras = new Bundle();
-                    extras.putLong("userID", userMobile);
-                    registerIntent.putExtras(extras);
-                    startActivity(registerIntent);
-                    finish();
-                }
-            }
-        });*/
+        butRegister = findViewById(R.id.but_login_register);
         butRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -382,6 +352,18 @@ public class login extends AppCompatActivity {
 
             }
         });
+
+        if  (android.os.Build.VERSION.SDK_INT < 24);
+        {
+
+            LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,0,20);
+            lparams.setMargins(3,3,3,3);
+            edtPassword.setLayoutParams(lparams);
+            edtMobile.setLayoutParams(lparams);
+            butLogin.setLayoutParams(lparams);
+            butRegister.setLayoutParams(lparams);
+
+        }
 
 
 
