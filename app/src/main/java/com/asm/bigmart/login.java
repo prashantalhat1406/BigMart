@@ -2,6 +2,7 @@ package com.asm.bigmart;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.firebase.FirebaseApp;
@@ -353,7 +354,8 @@ public class login extends AppCompatActivity {
             }
         });
 
-        if  (android.os.Build.VERSION.SDK_INT < 24);
+
+        if  (Build.VERSION.SDK_INT <= 24)
         {
 
             LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,0,20);
