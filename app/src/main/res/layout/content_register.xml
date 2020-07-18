@@ -211,7 +211,7 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
                     android:textSize="@dimen/textButtons"
                     android:maxLength="20"
                     android:maxLines="1"
-                    android:nextFocusDown="@id/but_register_save"
+                    android:nextFocusDown="@id/chkConditions"
                     android:layout_height="match_parent"/>
 
 
@@ -230,6 +230,7 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
                 <CheckBox android:id="@+id/chkConditions"
                     android:layout_weight="10"
                     android:layout_width="0dp"
+                    android:nextFocusDown="@id/but_register_save"
                     android:layout_height="match_parent">
 
                 </CheckBox>
