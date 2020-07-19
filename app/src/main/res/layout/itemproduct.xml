@@ -15,10 +15,12 @@
                 android:layout_height="match_parent"
                 android:padding="10dp">
                 <ImageView android:id="@+id/img_product_image"
-                    android:layout_width="match_parent" android:layout_weight="0.6" android:scaleType="center"
-                    android:layout_gravity="center" android:padding="15dp"
+                    android:layout_width="match_parent"
+                    android:scaleType="center"
+                    android:layout_gravity="center"
+                    android:padding="15dp"
                     android:layout_margin="5dp"
-                    android:layout_height="match_parent"></ImageView>
+                    android:layout_height="match_parent" />
             </LinearLayout>
 
 
@@ -58,8 +60,8 @@
                             android:layout_height="match_parent">
                             <TextView android:id="@+id/txt_product_product_MRP" android:layout_gravity="center"
                                 android:gravity="right|center" android:paddingEnd="15dp"
-                                android:layout_width="match_parent" android:layout_weight="0.1"
-                                android:layout_height="match_parent" android:text="200.00"></TextView>
+                                android:layout_width="0dp" android:layout_weight="0.1"
+                                android:layout_height="match_parent" android:text="200.00"/>
 
                         </LinearLayout>
                         <LinearLayout
@@ -67,8 +69,8 @@
                             android:layout_height="match_parent">
                             <TextView android:id="@+id/txt_product_product_BMA" android:layout_gravity="center"
                                 android:gravity="right|center" android:paddingEnd="15dp"
-                                android:layout_width="match_parent" android:layout_weight="0.1" style="@style/BMAAmount"
-                                android:layout_height="match_parent" android:text="BMA"></TextView>
+                                android:layout_width="0dp" android:layout_weight="0.1" style="@style/BMAAmount"
+                                android:layout_height="match_parent" android:text="BMA"/>
 
                         </LinearLayout>
                         <LinearLayout
@@ -76,8 +78,8 @@
                             android:layout_height="match_parent">
                             <TextView android:id="@+id/txt_product_product_Save" android:layout_gravity="center"
                                 android:gravity="right|center" android:paddingEnd="15dp"
-                                android:layout_width="match_parent" android:layout_weight="0.1" style="@style/saveAmount"
-                                android:layout_height="match_parent" android:text="Save"></TextView>
+                                android:layout_width="0dp" android:layout_weight="0.1" style="@style/saveAmount"
+                                android:layout_height="match_parent" android:text="Save"/>
                         </LinearLayout>
 
                     </LinearLayout>
@@ -105,7 +107,7 @@
                         android:layout_gravity="center" android:gravity="center"
                         android:layout_width="match_parent" android:text="  ADD TO CART  "
                         android:textColor="#fff" android:layout_weight="0.5" android:textSize="@dimen/cartItems"
-                        android:layout_height="40dp"></Button>
+                        android:layout_height="40dp"/>
 
                     <LinearLayout android:id="@+id/layout_product_incrementor" android:visibility="gone"
                         android:layout_width="match_parent" android:orientation="horizontal" android:layout_gravity="center"
@@ -118,17 +120,18 @@
                             android:drawableStart="@drawable/ic_remove" android:layout_weight="35"
                             android:paddingLeft="6dp" android:paddingRight="10dp"
                             android:textColor="@color/redColorButton"
-                            android:layout_height="40dp" android:textSize="@dimen/profileLabel" ></Button>
+                            android:layout_height="40dp" android:textSize="@dimen/profileLabel" />
                         <TextView android:id="@+id/txt_product_item_number"
                             android:layout_width="0dp" android:layout_gravity="center" android:gravity="center"
                             android:textColor="@color/blacklabels" android:layout_weight="30"
-                            android:layout_height="match_parent" android:text="1"></TextView>
-                        <Button android:id="@+id/but_product_item_plus" android:layout_gravity="right" android:gravity="right"
+                            android:layout_height="match_parent" android:text="1"/>
+                        <Button android:id="@+id/but_product_item_plus" android:layout_gravity="right"
+                            android:gravity="right"
                             android:layout_width="0dp" android:backgroundTint="#ffffff"
                             android:textColor="@color/greenColorButton" android:textSize="@dimen/profileLabel"
                             android:drawableEnd="@drawable/ic_plus" android:layout_weight="35"
                             android:paddingLeft="0dp" android:paddingRight="6dp"
-                            android:layout_height="40dp"></Button>
+                            android:layout_height="40dp"/>
                     </LinearLayout>
 
                 </LinearLayout>

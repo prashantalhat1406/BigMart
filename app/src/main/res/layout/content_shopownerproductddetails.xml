@@ -25,7 +25,7 @@
                     <TextView android:textColor="@color/blacklabels"
                         android:layout_weight="0.5" android:layout_width="match_parent"
                         android:layout_height="match_parent" android:text="@string/category"
-                        android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                        android:textSize="@dimen/textButtons" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
 
                     <Spinner android:id="@+id/spn_product_category"
                         android:layout_width="match_parent" android:layout_weight="0.6"
@@ -42,7 +42,7 @@
                     <TextView android:textColor="@color/blacklabels"
                         android:layout_weight="0.5" android:layout_width="match_parent"
                         android:layout_height="match_parent" android:text="@string/subcategory"
-                        android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                        android:textSize="@dimen/textButtons" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
                     <Spinner android:id="@+id/spn_product_subcategory"
                         android:layout_width="match_parent" android:layout_weight="0.6"
                         android:layout_height="match_parent">
@@ -56,55 +56,56 @@
             </LinearLayout>
 
             <LinearLayout android:id="@+id/layout_product_name"
-                android:layout_weight="0.5" android:layout_width="match_parent" android:orientation="vertical"
+                android:layout_weight="0.5"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_height="match_parent">
 
                 <TextView android:textColor="@color/blacklabels"
                     android:layout_weight="0.5" android:layout_width="match_parent"
                     android:layout_height="match_parent" android:text="@string/name"
-                    android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                    android:textSize="@dimen/textButtons" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
                 <LinearLayout
                     android:layout_weight="0.5"
-                    android:layout_width="match_parent" android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+
                     android:layout_height="match_parent">
-                    <TextView
-                        android:layout_width="match_parent" android:layout_weight="0.5"
-                        android:layout_height="match_parent"></TextView>
                     <EditText android:id="@+id/edt_productdetails_Name"
                         android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
                         android:layout_width="match_parent" android:padding="10dp" android:inputType="text"
                         android:maxLines="1" android:nextFocusDown="@id/edt_productdetails_Name2"
                         android:layout_height="match_parent" android:hint="Name"/>
-                    <TextView
-                        android:layout_width="match_parent" android:layout_weight="0.5"
-                        android:layout_height="match_parent"></TextView>
+
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout android:id="@+id/layout_product_name2"
-                android:layout_weight="0.5" android:layout_width="match_parent" android:orientation="vertical"
+                android:layout_weight="0.5"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_height="match_parent">
 
                 <TextView android:textColor="@color/blacklabels"
                     android:layout_weight="0.5" android:layout_width="match_parent"
                     android:layout_height="match_parent" android:text="@string/name2"
-                    android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                    android:textSize="@dimen/textButtons" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
                 <LinearLayout
                     android:layout_weight="0.5"
                     android:layout_width="match_parent" android:orientation="horizontal"
                     android:layout_height="match_parent">
-                    <TextView
-                        android:layout_width="match_parent" android:layout_weight="0.5"
-                        android:layout_height="match_parent"></TextView>
+
                     <EditText android:id="@+id/edt_productdetails_Name2"
                         android:layout_weight="0.03" android:visibility="visible" android:background="@drawable/profiletextbox"
                         android:layout_width="match_parent" android:padding="10dp" android:inputType="text" android:imeOptions="actionNext"
                         android:maxLines="1" android:nextFocusDown="@id/edt_productdetails_DisplayName"
                         android:layout_height="match_parent" android:hint="Name2"/>
-                    <TextView
-                        android:layout_width="match_parent" android:layout_weight="0.5"
-                        android:layout_height="match_parent"></TextView>
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -136,7 +137,9 @@
 
             </LinearLayout>
 
-            <LinearLayout android:id="@+id/layout_product_MRP_Discount" android:paddingEnd="10dp" android:paddingStart="10dp"
+            <LinearLayout android:id="@+id/layout_product_MRP_Discount"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="0.5" android:layout_width="match_parent" android:orientation="horizontal"
                 android:layout_height="match_parent">
 
@@ -146,7 +149,7 @@
                     <TextView android:textColor="@color/blacklabels"
                         android:layout_weight="0.5" android:layout_width="match_parent"
                         android:layout_height="match_parent" android:text="@string/mrp"
-                        android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                        android:textSize="@dimen/textButtons" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
                     <EditText android:id="@+id/edt_productdetails_MRP"
                         android:layout_weight="0.5" android:visibility="visible"
                         android:background="@drawable/profiletextbox"
@@ -164,7 +167,7 @@
                     <TextView android:textColor="@color/blacklabels"
                         android:layout_weight="0.5" android:layout_width="match_parent"
                         android:layout_height="match_parent" android:text="@string/discount"
-                        android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                        android:textSize="@dimen/textButtons" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
                     <EditText android:id="@+id/edt_productdetails_Discount"
                         android:layout_weight="0.5" android:visibility="visible"
                         android:gravity="right" android:paddingEnd="15dp"
@@ -181,7 +184,7 @@
                     <TextView android:textColor="@color/blacklabels"
                         android:layout_weight="0.5" android:layout_width="match_parent"
                         android:layout_height="match_parent" android:text="@string/quantity"
-                        android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                        android:textSize="@dimen/textButtons" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
                     <EditText android:id="@+id/edt_productdetails_QTY"
                         android:layout_weight="0.5" android:visibility="visible" android:background="@drawable/profiletextbox"
                         android:layout_width="match_parent" android:padding="10dp"
@@ -195,8 +198,8 @@
             </LinearLayout>
 
             <LinearLayout android:id="@+id/layout_product_GST_QTY"
-                android:paddingEnd="10dp"
-                android:paddingStart="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                     android:layout_weight="0.5" android:layout_width="match_parent" android:orientation="horizontal"
                     android:layout_height="match_parent">
 
@@ -206,7 +209,7 @@
                         <TextView android:textColor="@color/blacklabels"
                             android:layout_weight="0.5" android:layout_width="match_parent"
                             android:layout_height="match_parent" android:text="@string/gst"
-                            android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                            android:textSize="@dimen/textButtons" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
                         <EditText android:id="@+id/edt_productdetails_GST"
                             android:layout_weight="0.5" android:visibility="visible" android:background="@drawable/profiletextbox"
                             android:layout_width="match_parent" android:padding="10dp"
@@ -220,7 +223,7 @@
                     <TextView android:textColor="@color/blacklabels"
                         android:layout_weight="0.5" android:layout_width="match_parent"
                         android:layout_height="match_parent" android:text="@string/hsn"
-                        android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                        android:textSize="@dimen/textButtons" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
                     <EditText android:id="@+id/edt_productdetails_HSN"
                         android:layout_weight="0.5" android:visibility="visible" android:background="@drawable/profiletextbox"
                         android:layout_width="match_parent" android:padding="10dp"
@@ -234,7 +237,7 @@
                     <TextView android:textColor="@color/blacklabels"
                         android:layout_weight="0.5" android:layout_width="match_parent"
                         android:layout_height="match_parent" android:text="@string/type"
-                        android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                        android:textSize="@dimen/textButtons" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
 
                     <Spinner android:id="@+id/spn_productdetails_type" android:layout_weight="0.5"
                         android:layout_width="match_parent" android:paddingLeft="10dp" android:layout_gravity="center"
@@ -257,17 +260,22 @@
                     <TextView android:textColor="@color/blacklabels"
                         android:layout_weight="0.5" android:layout_width="match_parent"
                         android:layout_height="match_parent" android:text="@string/maxstock"
-                        android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                        android:textSize="@dimen/textButtons" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
 
 
                     <EditText android:id="@+id/edt_productdetails_MaxStock"
                         android:layout_weight="0.5"
                         android:background="@drawable/profiletextbox"
-                        android:layout_width="match_parent" android:padding="10dp"
-                        android:gravity="right" android:paddingEnd="15dp"
-                        android:maxLines="1" android:nextFocusDown="@id/edt_productdetails_MinStock"
+                        android:layout_width="match_parent"
+                        android:padding="10dp"
+                        android:gravity="right"
+                        android:paddingEnd="15dp"
+                        android:maxLines="1"
+                        android:layout_gravity="center"
+                        android:nextFocusDown="@id/edt_productdetails_MinStock"
                         android:inputType="number"
-                        android:layout_height="match_parent" android:hint="Max Stock"/>
+                        android:layout_height="match_parent"
+                        android:hint="Max Stock"/>
 
 
 
@@ -280,16 +288,22 @@
                     <TextView android:textColor="@color/blacklabels"
                         android:layout_weight="0.5" android:layout_width="match_parent"
                         android:layout_height="match_parent" android:text="@string/minstock"
-                        android:textSize="@dimen/profileLabel" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
+                        android:textSize="@dimen/textButtons" android:padding="10dp" android:layout_gravity="bottom" android:gravity="bottom"/>
 
 
 
                     <EditText android:id="@+id/edt_productdetails_MinStock"
-                        android:layout_weight="0.5" android:visibility="visible" android:background="@drawable/profiletextbox"
-                        android:layout_width="match_parent" android:padding="10dp"
+                        android:layout_weight="0.5"
+                        android:background="@drawable/profiletextbox"
+                        android:layout_width="match_parent"
+                        android:padding="10dp"
                         android:gravity="right" android:paddingEnd="15dp"
-                        android:maxLines="1" android:nextFocusDown="@id/but_productdetails_save" android:inputType="number"
-                        android:layout_height="match_parent" android:hint="Min Stock"/>
+                        android:maxLines="1"
+                        android:nextFocusDown="@id/but_productdetails_save"
+                        android:inputType="number"
+                        android:layout_gravity="center"
+                        android:layout_height="match_parent"
+                        android:hint="Min Stock"/>
                 </LinearLayout>
 
                 <LinearLayout android:visibility="invisible"
