@@ -89,6 +89,7 @@ public class CU_CartDisplay extends ArrayAdapter<Product> {
             convertView.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder)convertView.getTag();
+            viewHolder.productImage.setImageBitmap(null);
         }
 
         final DecimalFormat formater = new DecimalFormat("0.00");

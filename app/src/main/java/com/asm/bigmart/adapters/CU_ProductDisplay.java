@@ -112,6 +112,7 @@ public class CU_ProductDisplay extends ArrayAdapter<Product> {
             convertView.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder)convertView.getTag();
+            viewHolder.productImage.setImageBitmap(null);
         }
 
         database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
