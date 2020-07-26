@@ -24,6 +24,8 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -119,8 +121,7 @@ public class login extends AppCompatActivity {
         return flag;
     }
 
-    public Integer getPassword(String mobileNumber)
-    {
+    public Integer getPassword(String mobileNumber)     {
         Integer pin = 0;
 
         for (User u : usersDB) {
@@ -129,7 +130,6 @@ public class login extends AppCompatActivity {
         }
         return pin;
     }
-
 
     public void performLogin() {
         if(isMobileValid(edtMobile.getText().toString()) && isPasswordValid(edtPassword.getText().toString()))
@@ -172,7 +172,6 @@ public class login extends AppCompatActivity {
         }
     }
 
-
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,6 +185,7 @@ public class login extends AppCompatActivity {
         versionName.setText(getString( R.string.developerName) + "\nv"+BuildConfig.VERSION_NAME);
 
         toolbar.setTitleTextColor(getColor(R.color.colorPrimaryDark));
+        toolbar.setOverflowIcon(getDrawable(R.drawable.ic_menuicon));
 
         usersDB = new ArrayList<>();
 
@@ -382,5 +382,38 @@ public class login extends AppCompatActivity {
         super.onResume();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.forgotpassword, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+
+        if (id == R.id.menu_forgotpassword) {
+            if(isMobileValid(edtMobile.getText().toString())){
+                if (isUserExist(edtMobile.getText().toString()))
+                {
+                    Intent registerIntent = new Intent(login.this, forgotpassword.class);
+                    Bundle extras = new Bundle();
+                    if (edtMobile.getText().toString().length() > 0)
+                        extras.putLong("userID", Long.parseLong(edtMobile.getText().toString()));
+                    else
+                        extras.putLong("userID", Long.parseLong("0"));
+                    registerIntent.putExtras(extras);
+                    startActivity(registerIntent);
+                    //finish();
+                }else{
+                    edtMobile.setError("User does not exists!");
+                    edtMobile.requestFocus();
+                }
+            }
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }
