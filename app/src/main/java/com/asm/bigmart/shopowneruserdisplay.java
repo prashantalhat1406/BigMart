@@ -17,6 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -103,8 +104,12 @@ public class shopowneruserdisplay extends AppCompatActivity {
                 else {
                     tempList.clear();
                     for (User user : users) {
-                        if (user.Name.toUpperCase().contains(edtsearch.getText().toString().trim().toUpperCase()))
-                            tempList.add(user);
+                        try {
+                            if (CryptUtil.decrypt(user.Name).toUpperCase().contains(edtsearch.getText().toString().trim().toUpperCase()))
+                                tempList.add(user);
+                        }catch (Exception e) {
+                            Log.d("shopowneruserdisplay", e.getMessage());
+                        }
                     }
                 }
 

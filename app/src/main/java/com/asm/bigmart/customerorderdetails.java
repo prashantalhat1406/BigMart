@@ -266,7 +266,7 @@ public class customerorderdetails extends AppCompatActivity {
                     User u = postSnapshot.getValue(User.class);
                     if(u.Mobile.equals( orderDetail.userID))
                     {
-                        name.setText("" + u.Name);
+                        //name.setText("" + u.Name);
                         mobile.setText("" + u.Mobile);
                         break;
                     }
