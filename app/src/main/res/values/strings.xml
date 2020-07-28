@@ -90,7 +90,7 @@
     <string-array name="securityquestions">
         <item>Select your question from list</item>
         <item>What is your Birth Place ?</item>
-        <item>What is your Height ?</item>
+        <item>What is your School Name ?</item>
         <item>Which Credit Card you have ?</item>
     </string-array>
     <string name="title_activity_forgotpassword">Reset Password</string>
