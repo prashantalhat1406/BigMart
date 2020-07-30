@@ -41,7 +41,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class home extends AppCompatActivity {
 
@@ -52,6 +54,7 @@ public class home extends AppCompatActivity {
     EditText search;
     AutoCompleteTextView txtSearch;
     private List<String> productNames;
+    List<String> distinctProducts;
     Integer productCount;
     Double cartAmount;
     ProgressBar progressBar;
@@ -143,7 +146,8 @@ public class home extends AppCompatActivity {
 
 
 
-        productNames = new ArrayList<String>();
+        productNames = new ArrayList<>();
+        distinctProducts = new ArrayList<>();
 
 
         for(int id : BUTTON_IDS) {
@@ -152,41 +156,13 @@ public class home extends AppCompatActivity {
             imageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    displaySubCategory(((ImageButton) v). getTag().toString());
+                    displaySubCategory(v. getTag().toString());
                 }
             });
 
         }
 
-        /*search = findViewById(R.id.edt_home_search);
-        search.clearFocus();
-        search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    gotoProductDisplay();
-                    return true;
-                }
-                return false;
-            }
-        });*/
 
-
-        /*ImageButton searchBut = findViewById(R.id.but_home_search);
-        searchBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (search.getText().length() == 0){
-                    Toast error = Toast.makeText(home.this, "Error : Please enter text to search",Toast.LENGTH_SHORT);
-                    error.setGravity(Gravity.TOP, 0, 0);
-                    error.show();
-                }else {
-                    gotoProductDisplay();
-                }
-            }
-        });*/
-
-        //FirebaseDatabase database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
         database = FirebaseDatabase.getInstance("https://bigmart-sinprl.firebaseio.com/");
         Query query = database.getReference("/Categories");
         query.addValueEventListener(new ValueEventListener() {
@@ -209,23 +185,7 @@ public class home extends AppCompatActivity {
             }
         });
 
-        /*query.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Category category = dataSnapshot.getValue(Category.class);
-                showButton(category.Name,count);
-                count++;
-            }
 
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {            }
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {            }
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {             }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {             }
-        });*/
 
         Query productsQuery = database.getReference("/Products");
         productsQuery.addValueEventListener(new ValueEventListener() {
@@ -235,13 +195,20 @@ public class home extends AppCompatActivity {
                     Product product = postSnapshot.getValue(Product.class);
                     productNames.add(product.Name);
                 }
+
+                HashSet<String> uniqueProductNames= new HashSet<String>(productNames);
+                for (String productName : uniqueProductNames) {
+                    distinctProducts.add(productName);
+                }
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {      }
         });
 
         txtSearch = findViewById(R.id.txt_auto_search);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,productNames);
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,productNames);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,distinctProducts);
         txtSearch.setAdapter(adapter);
         txtSearch.setThreshold(1);
         txtSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -249,9 +216,7 @@ public class home extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object t = parent.getItemAtPosition(position);
                 if (t.toString().length() == 0){
-                    /*Toast error = Toast.makeText(home.this, "Error : Please enter text to search",Toast.LENGTH_SHORT);
-                    error.setGravity(Gravity.TOP, 0, 0);
-                    error.show();*/
+
                     txtSearch.setError("Enter Product Name");
                 }else {
                     gotoProductDisplay(t.toString());
