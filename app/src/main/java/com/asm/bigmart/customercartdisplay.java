@@ -129,36 +129,7 @@ public class customercartdisplay extends AppCompatActivity {
             }
         });
         dialog.show();
-        /*AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(customercartdisplay.this);
-        logoutAlertBuilder.setMessage("Have you added all items ?");
-        logoutAlertBuilder.setCancelable(false);
-        logoutAlertBuilder.setPositiveButton(
-                "YES", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        flag = true;
-                        Intent intent = new Intent(customercartdisplay.this,customerdeliverypayment.class);
-                        startActivityForResult(intent, 100);
-                    }
-                });
-        logoutAlertBuilder.setNegativeButton(
-                "NO", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-        final AlertDialog alertLogout = logoutAlertBuilder.create();
-        alertLogout.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialog) {
-                alertLogout.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
-                alertLogout.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
-            }
-        });
-        alertLogout.setTitle("CONFIRM");
-        alertLogout.show();
-        */
+
     }
 
     public BroadcastReceiver positionMes = new BroadcastReceiver()
@@ -269,38 +240,7 @@ public class customercartdisplay extends AppCompatActivity {
                     }
                 });
                 dialog.show();
-                /*AlertDialog.Builder removeAllAlertBuilder = new AlertDialog.Builder(customercartdisplay.this);
-                removeAllAlertBuilder.setMessage("Are you sure to Remove All items ?");
-                removeAllAlertBuilder.setCancelable(false);
-                removeAllAlertBuilder.setPositiveButton(
-                        "YES", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                DatabaseReference databaseReference = database.getReference("Users/"+userID+"/TempOrder");
-                                databaseReference.removeValue();
-                                //goToHome();
-                                price.setVisibility(View.GONE);
-                                list.setVisibility(View.GONE);
-                                buttons.setVisibility(View.GONE);
-                                emptyCart.setVisibility(View.VISIBLE);
-                            }
-                        });
-                removeAllAlertBuilder.setNegativeButton(
-                        "NO", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-                final AlertDialog alertRemoveall = removeAllAlertBuilder.create();
-                alertRemoveall.setOnShowListener(new DialogInterface.OnShowListener() {
-                    @Override
-                    public void onShow(DialogInterface dialog) {
-                        alertRemoveall.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
-                        alertRemoveall.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
-                    }
-                });
-                alertRemoveall.show();*/
+
 
 
 
@@ -514,37 +454,6 @@ public class customercartdisplay extends AppCompatActivity {
     }
 
     public void showLogoutAlertDialog(){
-
-        /*AlertDialog.Builder logoutAlertBuilder = new AlertDialog.Builder(customercartdisplay.this);
-        logoutAlertBuilder.setMessage("Are you sure to Logout ?");
-        logoutAlertBuilder.setCancelable(false);
-        logoutAlertBuilder.setPositiveButton(
-                "YES", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent logoutIntent = new Intent(customercartdisplay.this, login.class);
-                        logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(logoutIntent);
-                        finish();
-                    }
-                });
-        logoutAlertBuilder.setNegativeButton(
-                "NO", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-        final AlertDialog alertLogout = logoutAlertBuilder.create();
-        alertLogout.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialog) {
-                alertLogout.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
-                alertLogout.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.darkgreenColorButton));
-            }
-        });
-        alertLogout.setTitle("LOGOUT");
-        alertLogout.show();*/
 
         final Dialog dialog = new Dialog(customercartdisplay.this);
         dialog.setContentView(R.layout.logoutdialog);
