@@ -211,6 +211,7 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior" >
                     android:textSize="@dimen/textButtons"
                     android:maxLength="20"
                     android:maxLines="1"
+                    android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM "
                     android:nextFocusDown="@id/chkConditions"
                     android:layout_height="match_parent"/>
 
