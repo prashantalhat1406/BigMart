@@ -13,6 +13,7 @@ import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 
 import com.asm.bigmart.adapters.CU_CartDisplay;
+import com.asm.bigmart.adapters.CU_OrderDisplay;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +42,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -50,7 +52,7 @@ public class customercartdisplay extends AppCompatActivity {
     ListView productList;
     private long userID;
     private int count = 0;
-    private String orderID = "test";
+    private String orderID = "test",exitingOrderID="";
     private Boolean flag = false;
     private Double TotalPrice = 0.0;
     FirebaseDatabase database;
@@ -94,6 +96,8 @@ public class customercartdisplay extends AppCompatActivity {
         //super.onBackPressed();
     }
 
+
+
     public void showOrderConfirmDialog(){
 
         final Dialog dialog = new Dialog(customercartdisplay.this);
@@ -117,14 +121,15 @@ public class customercartdisplay extends AppCompatActivity {
             }
         });
 
-        Button no = dialog.findViewById(R.id.dialog_btn_green);
-        no.setText("Yes");
-        no.setOnClickListener(new View.OnClickListener() {
+        Button greenbutton = dialog.findViewById(R.id.dialog_btn_green);
+        greenbutton.setText("Yes");
+        greenbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 flag = true;
-                Intent intent = new Intent(customercartdisplay.this,customerdeliverypayment.class);
+                Intent intent = new Intent(customercartdisplay.this, customerdeliverypayment.class);
                 startActivityForResult(intent, 100);
+
                 dialog.dismiss();
             }
         });
