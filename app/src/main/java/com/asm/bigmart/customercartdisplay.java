@@ -62,6 +62,35 @@ public class customercartdisplay extends AppCompatActivity {
     private boolean firstLogin=true;
     CU_CartDisplay productAdaper;
     int cartProducts= 0;
+    Orders existingCreatedOrder;
+
+    public void addToExistingOrder(){
+
+        DatabaseReference orderReference = database.getReference("Orders/" + existingCreatedOrder.ID );
+        orderReference.child("amount").setValue(existingCreatedOrder.amount + TotalPrice);
+
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        orderReference.child("date").setValue(df.format(c));
+
+        for (Product product : products) {
+            DatabaseReference productReference = database.getReference("Orders/" + existingCreatedOrder.ID + "/Products");
+            productReference.child(""+product.ID).setValue(product);
+        }
+
+        DatabaseReference databaseReference = database.getReference("Users/" + userID + "/TempOrder");
+        databaseReference.removeValue();
+        flag = false;
+        Toast error = Toast.makeText(customercartdisplay.this, "Thank you. Order Amended", Toast.LENGTH_LONG);
+        error.setGravity(Gravity.TOP, 0, 0);
+        error.show();
+        View view =error.getView();
+        view.getBackground().setColorFilter(getResources().getColor(R.color.darkgreenColorButton), PorterDuff.Mode.SRC_IN);
+        TextView text = view.findViewById(android.R.id.message);
+        text.setTextColor(Color.WHITE);
+        goToHome();
+        finish();
+    }
 
 
     public String getOrderID(){
@@ -127,9 +156,14 @@ public class customercartdisplay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 flag = true;
-                Intent intent = new Intent(customercartdisplay.this, customerdeliverypayment.class);
-                startActivityForResult(intent, 100);
-
+                if (existingCreatedOrder.ID.equals("NO"))
+                {
+                    Intent intent = new Intent(customercartdisplay.this, customerdeliverypayment.class);
+                    startActivityForResult(intent, 100);
+                }else{
+                    String o = existingCreatedOrder.ID;
+                    addToExistingOrder();
+                }
                 dialog.dismiss();
             }
         });
@@ -254,6 +288,10 @@ public class customercartdisplay extends AppCompatActivity {
         productAdaper = new CU_CartDisplay(customercartdisplay.this, R.layout.itemproductcart, products, userID, 2);
         productList.setAdapter(productAdaper);
 
+        //existingOrders = new ArrayList<>();
+        existingCreatedOrder = new Orders();
+        existingCreatedOrder.setID("NO");
+
 
         Query query = database.getReference("Users/"+userID+"/TempOrder");
         query.addValueEventListener(new ValueEventListener() {
@@ -313,6 +351,23 @@ public class customercartdisplay extends AppCompatActivity {
                         //goToHome();
             }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {            }
+        });
+
+        DatabaseReference productReference = database.getReference("Orders/");
+        Query ordersQuery = productReference.orderByKey();
+        ordersQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    Orders order = postSnapshot.getValue(Orders.class);
+                    if (order.userID == userID)
+                        if (order.status.equals("Created"))
+                            existingCreatedOrder = order;
+                }
+            }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {            }
         });
