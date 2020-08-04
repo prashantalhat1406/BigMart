@@ -164,19 +164,20 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
                 if (orders.size() > 0)
                 {
                     orderslistLayout.setVisibility(View.VISIBLE);
-
                     empty.setVisibility(View.GONE);
+
+                    SO_OrderDisplay orderAdapter = new SO_OrderDisplay(shopownerordershistory.this,R.layout.itemordershopowner,orders, 2);
+                    ordersList.setAdapter(orderAdapter);
+                    RadioGroup rg = findViewById(R.id.rdbGroup);
+                    rg.findViewById(R.id.rdbAll).setSelected(true);
+                    displayFilteredList(statusRadioGroup.getCheckedRadioButtonId(), baseDate);
                 }else {
                     orderslistLayout.setVisibility(View.GONE);
                     empty.setVisibility(View.VISIBLE);
 
                 }
 
-                SO_OrderDisplay orderAdapter = new SO_OrderDisplay(shopownerordershistory.this,R.layout.itemordershopowner,orders, 2);
-                ordersList.setAdapter(orderAdapter);
-                RadioGroup rg = findViewById(R.id.rdbGroup);
-                rg.findViewById(R.id.rdbAll).setSelected(true);
-                displayFilteredList(statusRadioGroup.getCheckedRadioButtonId(), baseDate);
+
             }
 
             @Override
