@@ -8,8 +8,8 @@ android {
         applicationId "com.asm.bigmart"
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 10
-        versionName "10.01"
+        versionCode 11
+        versionName "11.01"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

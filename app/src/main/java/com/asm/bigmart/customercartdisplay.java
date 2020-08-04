@@ -13,6 +13,7 @@ import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 
 import com.asm.bigmart.adapters.CU_CartDisplay;
+import com.asm.bigmart.adapters.CU_OrderDetails;
 import com.asm.bigmart.adapters.CU_OrderDisplay;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -63,31 +64,92 @@ public class customercartdisplay extends AppCompatActivity {
     CU_CartDisplay productAdaper;
     int cartProducts= 0;
     Orders existingCreatedOrder;
+    List<Product> existingOrderProducts;
 
-    public void addToExistingOrder(){
+    public void addToExistingOrder(String deliveryType) {
 
-        DatabaseReference orderReference = database.getReference("Orders/" + existingCreatedOrder.ID );
-        orderReference.child("amount").setValue(existingCreatedOrder.amount + TotalPrice);
+        double additionalAmount = 0.0, existingAmount = 0.0;
+        boolean flag = false;
+        int message = 1;
+        for (Product product : products) {
+            for (Product existingOrderProduct : existingOrderProducts) {
+                if (product.ID.equals(existingOrderProduct.ID)) {
+                    flag = true;
+                    if (existingOrderProduct.QtyNos >= 5) {
+                        //Already QTY is 5
+                        message = 1;
+                        product.setQtyNos(5);
+                        additionalAmount = additionalAmount + 0;
+                    } else {
+                        if (existingOrderProduct.QtyNos + product.QtyNos >= 5) {
+                            //Existing + new Qty is more than 5
+                            product.setQtyNos(5);
+                            message = 2;
+                        } else {
+                            //Existing + new Qty is less than 5
+                            product.setQtyNos(existingOrderProduct.QtyNos + product.QtyNos);
+                            message = 3;
+                        }
+                        additionalAmount = additionalAmount + (product.MRP - product.Discount) * (product.QtyNos - existingOrderProduct.QtyNos);
+                    }
+                    break;
+                }
+            }
+            DatabaseReference productReference = database.getReference("Orders/" + existingCreatedOrder.ID + "/Products");
+            productReference.child("" + product.ID).setValue(product);
+            if (!flag) {
+                additionalAmount = additionalAmount + (product.MRP - product.Discount) * (product.QtyNos);
+            }
+            flag = false;
+        }
+
+        for (Product existingOrderProduct : existingOrderProducts) {
+            existingAmount = existingAmount + (existingOrderProduct.MRP - existingOrderProduct.Discount) * existingOrderProduct.QtyNos;
+        }
+
+
+        double newAmount = 0.0;
+        newAmount = existingAmount + additionalAmount;
+
+        DatabaseReference orderReference = database.getReference("Orders/" + existingCreatedOrder.ID);
+        orderReference.child("amount").setValue(newAmount);
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         orderReference.child("date").setValue(df.format(c));
 
-        for (Product product : products) {
-            DatabaseReference productReference = database.getReference("Orders/" + existingCreatedOrder.ID + "/Products");
-            productReference.child(""+product.ID).setValue(product);
-        }
+        orderReference.child("deliveryType").setValue(deliveryType);
+
 
         DatabaseReference databaseReference = database.getReference("Users/" + userID + "/TempOrder");
         databaseReference.removeValue();
-        flag = false;
-        Toast error = Toast.makeText(customercartdisplay.this, "Thank you. Order Amended", Toast.LENGTH_LONG);
+
+        String textToDisplay;
+        /*if (message == 1)
+        {
+            textToDisplay = "Thank you. But your Order is not accepted.\nOnly 5 Product Qty is allowed";
+            Toast error = Toast.makeText(customercartdisplay.this, textToDisplay, Toast.LENGTH_LONG);
+            error.setGravity(Gravity.TOP, 0, 0);
+            error.show();
+            View view = error.getView();
+            view.getBackground().setColorFilter(getResources().getColor(R.color.redColorButton), PorterDuff.Mode.SRC_IN);
+            TextView text = view.findViewById(android.R.id.message);
+            text.setTextColor(Color.WHITE);
+        }
+        else
+            {
+
+         }*/
+
+        textToDisplay = "Thank you. Order " + existingCreatedOrder.ID + " Amended.\nProduct exceeding max limit(5) are capped to max 5 Qty.";
+        Toast error = Toast.makeText(customercartdisplay.this, textToDisplay, Toast.LENGTH_LONG);
         error.setGravity(Gravity.TOP, 0, 0);
         error.show();
-        View view =error.getView();
+        View view = error.getView();
         view.getBackground().setColorFilter(getResources().getColor(R.color.darkgreenColorButton), PorterDuff.Mode.SRC_IN);
         TextView text = view.findViewById(android.R.id.message);
         text.setTextColor(Color.WHITE);
+
         goToHome();
         finish();
     }
@@ -156,14 +218,17 @@ public class customercartdisplay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 flag = true;
+                Intent intent = new Intent(customercartdisplay.this, customerdeliverypayment.class);
+                startActivityForResult(intent, 100);
+                /*
                 if (existingCreatedOrder.ID.equals("NO"))
                 {
                     Intent intent = new Intent(customercartdisplay.this, customerdeliverypayment.class);
                     startActivityForResult(intent, 100);
                 }else{
-                    String o = existingCreatedOrder.ID;
+                    //String o = existingCreatedOrder.ID;
                     addToExistingOrder();
-                }
+                }*/
                 dialog.dismiss();
             }
         });
@@ -178,6 +243,26 @@ public class customercartdisplay extends AppCompatActivity {
             listPosition = intent.getIntExtra("position",0);
         }
     };
+
+    public void getExistingOrderProducts()
+    {
+        Query query = database.getReference("Orders/"+existingCreatedOrder.ID+"/Products/");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                existingOrderProducts.clear();
+
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Product product = postSnapshot.getValue(Product.class);
+                    product.setID(postSnapshot.getKey());
+                    existingOrderProducts.add(product);
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {  }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -291,6 +376,7 @@ public class customercartdisplay extends AppCompatActivity {
         //existingOrders = new ArrayList<>();
         existingCreatedOrder = new Orders();
         existingCreatedOrder.setID("NO");
+        existingOrderProducts = new ArrayList<>();
 
 
         Query query = database.getReference("Users/"+userID+"/TempOrder");
@@ -360,12 +446,15 @@ public class customercartdisplay extends AppCompatActivity {
         ordersQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Orders order = postSnapshot.getValue(Orders.class);
-                    if (order.userID == userID)
-                        if (order.status.equals("Created"))
-                            existingCreatedOrder = order;
+                    if (order.userID != null)
+                        if (order.userID == userID)
+                            if (order.status.equals("Created"))
+                            {
+                                existingCreatedOrder = order;
+                                getExistingOrderProducts();
+                            }
                 }
             }
             @Override
@@ -381,62 +470,69 @@ public class customercartdisplay extends AppCompatActivity {
         if(requestCode == 100)
         {
             if (data.getStringExtra("type").length() != 0) {
-                DatabaseReference productReference = database.getReference("Users/" + userID).child("/TempOrder");
-                Query query = productReference.orderByKey();
-                query.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (flag) {
-                            List<Product> products = new ArrayList<Product>();
-                            for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                                products.add(postSnapshot.getValue(Product.class));
+
+                if (existingCreatedOrder.ID.equals("NO")) {
+                    DatabaseReference productReference = database.getReference("Users/" + userID).child("/TempOrder");
+                    Query query = productReference.orderByKey();
+                    query.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (flag) {
+                                List<Product> products = new ArrayList<Product>();
+                                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                                    products.add(postSnapshot.getValue(Product.class));
+                                }
+                                DatabaseReference orderReference = database.getReference("Orders/");
+
+                                //orderID = orderReference.push().getKey();
+                                orderID =  getOrderID();
+                                Orders orders = new Orders();
+                                orders.setID(orderID);
+                                orders.setUserID(userID);
+                                orders.setAmount(TotalPrice);
+
+                                Date c = Calendar.getInstance().getTime();
+                                SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+                                String formattedDate = df.format(c);
+
+                                orders.setDate(formattedDate);
+                                orders.setDeliveryType(data.getStringExtra("type"));
+                                orders.setPaymentMode("Card");
+                                orders.setStatus("Created");
+                                orderReference.child("" + orderID).setValue(orders);
+
+                                for (Product product : products) {
+                                    DatabaseReference productReference = database.getReference("Orders/" + orderID + "/Products");
+                                    productReference.child(""+product.ID).setValue(product);
+                                }
+
+                                //updateStoreQuantity(products);
+
+                                DatabaseReference databaseReference = database.getReference("Users/" + userID + "/TempOrder");
+                                databaseReference.removeValue();
+                                flag = false;
+                                Toast error = Toast.makeText(customercartdisplay.this, "Thank you. Order placed", Toast.LENGTH_LONG);
+                                error.setGravity(Gravity.TOP, 0, 0);
+                                error.show();
+                                View view =error.getView();
+                                //view.setBackground(getDrawable(R.drawable.roundbutton_green));
+                                view.getBackground().setColorFilter(getResources().getColor(R.color.darkgreenColorButton), PorterDuff.Mode.SRC_IN);
+                                TextView text = view.findViewById(android.R.id.message);
+                                text.setTextColor(Color.WHITE);
+                                goToHome();
+                                finish();
                             }
-                            DatabaseReference orderReference = database.getReference("Orders/");
-
-                            //orderID = orderReference.push().getKey();
-                            orderID =  getOrderID();
-                            Orders orders = new Orders();
-                            orders.setID(orderID);
-                            orders.setUserID(userID);
-                            orders.setAmount(TotalPrice);
-
-                            Date c = Calendar.getInstance().getTime();
-                            SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-                            String formattedDate = df.format(c);
-
-                            orders.setDate(formattedDate);
-                            orders.setDeliveryType(data.getStringExtra("type"));
-                            orders.setPaymentMode("Card");
-                            orders.setStatus("Created");
-                            orderReference.child("" + orderID).setValue(orders);
-
-                            for (Product product : products) {
-                                DatabaseReference productReference = database.getReference("Orders/" + orderID + "/Products");
-                                productReference.child(""+product.ID).setValue(product);
-                            }
-
-                            //updateStoreQuantity(products);
-
-                            DatabaseReference databaseReference = database.getReference("Users/" + userID + "/TempOrder");
-                            databaseReference.removeValue();
-                            flag = false;
-                            Toast error = Toast.makeText(customercartdisplay.this, "Thank you. Order placed", Toast.LENGTH_LONG);
-                            error.setGravity(Gravity.TOP, 0, 0);
-                            error.show();
-                            View view =error.getView();
-                            //view.setBackground(getDrawable(R.drawable.roundbutton_green));
-                            view.getBackground().setColorFilter(getResources().getColor(R.color.darkgreenColorButton), PorterDuff.Mode.SRC_IN);
-                            TextView text = view.findViewById(android.R.id.message);
-                            text.setTextColor(Color.WHITE);
-                            goToHome();
-                            finish();
                         }
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                    }
-                });
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        }
+                    });
+                }else{
+                    addToExistingOrder(data.getStringExtra("type"));
+                }
+
+
             }
         }
     }
