@@ -83,22 +83,26 @@ public class customerorderhistory extends AppCompatActivity {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //if (dataSnapshot.exists()) {
-                List<Orders> orders = new ArrayList<>();
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    Orders order = postSnapshot.getValue(Orders.class);
-                    if (order.userID == userID)
-                        orders.add(order);
-                }
-                Collections.reverse(orders);
-                progressBar.setVisibility(View.GONE);
-                if(orders.size() != 0){
-                    orderListPage.setVisibility(View.VISIBLE);
-                    emptyPage.setVisibility(View.GONE);
-                    CU_OrderDisplay orderAdapter = new CU_OrderDisplay(customerorderhistory.this, R.layout.itemorder, orders, userID, 2);
-                    ordersList.setAdapter(orderAdapter);
-                }else
-                {
+                if (dataSnapshot.exists()) {
+                    List<Orders> orders = new ArrayList<>();
+                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                        Orders order = postSnapshot.getValue(Orders.class);
+                        if (order.userID != null)
+                            if (order.userID == userID)
+                                orders.add(order);
+                    }
+                    Collections.reverse(orders);
+                    progressBar.setVisibility(View.GONE);
+                    if (orders.size() != 0) {
+                        orderListPage.setVisibility(View.VISIBLE);
+                        emptyPage.setVisibility(View.GONE);
+                        CU_OrderDisplay orderAdapter = new CU_OrderDisplay(customerorderhistory.this, R.layout.itemorder, orders, userID, 2);
+                        ordersList.setAdapter(orderAdapter);
+                    } else {
+                        emptyPage.setVisibility(View.VISIBLE);
+                        orderListPage.setVisibility(View.GONE);
+                    }
+                }else{
                     emptyPage.setVisibility(View.VISIBLE);
                     orderListPage.setVisibility(View.GONE);
                 }
