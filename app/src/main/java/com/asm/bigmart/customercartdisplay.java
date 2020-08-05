@@ -126,7 +126,7 @@ public class customercartdisplay extends AppCompatActivity {
 
         //textToDisplay = "Thank you. Order " + existingCreatedOrder.ID + " Amended.\nProduct exceeding max limit(5) are capped to max 5 Qty.";
 
-        if (message == 1){
+        /*if (message == 1){
             String textToDisplay = "Order " + existingCreatedOrder.ID + " NOT Amended. \nMax 5 Qty allowed.";
             Toast error = Toast.makeText(customercartdisplay.this, textToDisplay, Toast.LENGTH_LONG);
             error.setGravity(Gravity.CENTER, 0, 0);
@@ -144,7 +144,16 @@ public class customercartdisplay extends AppCompatActivity {
             view.getBackground().setColorFilter(getResources().getColor(R.color.darkgreenColorButton), PorterDuff.Mode.SRC_IN);
             TextView text = view.findViewById(android.R.id.message);
             text.setTextColor(Color.WHITE);
-        }
+        }*/
+
+        String textToDisplay = "Thank you. \nOrder " + existingCreatedOrder.ID + " Amended.";
+        Toast error = Toast.makeText(customercartdisplay.this, textToDisplay, Toast.LENGTH_LONG);
+        error.setGravity(Gravity.TOP, 0, 0);
+        error.show();
+        View view = error.getView();
+        view.getBackground().setColorFilter(getResources().getColor(R.color.darkgreenColorButton), PorterDuff.Mode.SRC_IN);
+        TextView text = view.findViewById(android.R.id.message);
+        text.setTextColor(Color.WHITE);
 
         goToHome();
         finish();
