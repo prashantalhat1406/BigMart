@@ -185,7 +185,7 @@ public class shopownerordershistory extends AppCompatActivity implements DatePic
         });
 
         autoCompleteTextView = findViewById(R.id.auto_shopownerorderhistory_orderid);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,orderIDs);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,orderIDs);
         autoCompleteTextView.setAdapter(adapter);
         autoCompleteTextView.setThreshold(1);
 

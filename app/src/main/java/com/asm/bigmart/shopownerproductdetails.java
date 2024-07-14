@@ -248,7 +248,7 @@ public class shopownerproductdetails extends AppCompatActivity {
                     strCategories.add(category.Name);
                 }
                 strCategories.add(0,"Select Category");
-                categoryAdapter = new ArrayAdapter<String>(shopownerproductdetails.this,R.layout.support_simple_spinner_dropdown_item,strCategories);
+                categoryAdapter = new ArrayAdapter<String>(shopownerproductdetails.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,strCategories);
                 spncategory.setAdapter(categoryAdapter);
             }
             @Override
@@ -266,7 +266,7 @@ public class shopownerproductdetails extends AppCompatActivity {
                         strSubCategories.add(subCategory.Name);
                     }
                     //strSubCategories.add(0,"Select SubCategory");
-                    subcategoryAdapter = new ArrayAdapter<String>(shopownerproductdetails.this, R.layout.support_simple_spinner_dropdown_item, strSubCategories);
+                    subcategoryAdapter = new ArrayAdapter<String>(shopownerproductdetails.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, strSubCategories);
                     spnsubcategory.setAdapter(subcategoryAdapter);
 
             }
@@ -283,7 +283,7 @@ public class shopownerproductdetails extends AppCompatActivity {
                             strSubCategories.add(subCategory.Name);
                         }
                     }
-                    subcategoryAdapter = new ArrayAdapter<>(shopownerproductdetails.this, R.layout.support_simple_spinner_dropdown_item, strSubCategories);
+                    subcategoryAdapter = new ArrayAdapter<>(shopownerproductdetails.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, strSubCategories);
                     spnsubcategory.setAdapter(subcategoryAdapter);
                     if (butsave.getText().toString().equals("Edit"))
                         spnsubcategory.setEnabled(false);
@@ -296,7 +296,7 @@ public class shopownerproductdetails extends AppCompatActivity {
         });
 
         String[] productTypeArray = getResources().getStringArray(R.array.producttype);
-        PTadapter =  new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, productTypeArray);
+        PTadapter =  new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, productTypeArray);
         spnType.setAdapter(PTadapter);
 
         butsave.setText("Edit");
@@ -523,7 +523,7 @@ public class shopownerproductdetails extends AppCompatActivity {
 
 
                     productSubCategory = product.SubCategory;
-                    categoryAdapter = new ArrayAdapter<String>(shopownerproductdetails.this,R.layout.support_simple_spinner_dropdown_item,strCategories);
+                    categoryAdapter = new ArrayAdapter<String>(shopownerproductdetails.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,strCategories);
                     spncategory.setSelection(categoryAdapter.getPosition(product.Category));
                 }
 

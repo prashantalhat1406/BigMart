@@ -208,7 +208,7 @@ public class home extends AppCompatActivity {
 
         txtSearch = findViewById(R.id.txt_auto_search);
         //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,productNames);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,distinctProducts);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,distinctProducts);
         txtSearch.setAdapter(adapter);
         txtSearch.setThreshold(1);
         txtSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {

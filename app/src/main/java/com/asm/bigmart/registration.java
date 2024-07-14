@@ -264,7 +264,7 @@ public class registration extends AppCompatActivity {
         spnSecurityQ = findViewById(R.id.spn_register_security);
 
         String[] securityQArray = getResources().getStringArray(R.array.securityquestions);
-        SQadapter =  new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, securityQArray);
+        SQadapter =  new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item , securityQArray);
         spnSecurityQ.setAdapter(SQadapter);
 
         Button butRegister = findViewById(R.id.but_register_save);
