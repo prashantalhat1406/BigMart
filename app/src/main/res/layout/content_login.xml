@@ -17,7 +17,7 @@
 
         <ImageView android:scaleType="fitCenter" android:layout_gravity="center"
             android:layout_width="175dp" android:background="@android:color/transparent"
-            android:layout_height="150dp" android:src="@drawable/logo_transparent" android:paddingTop="10dp"/>
+            android:layout_height="150dp" android:src="@mipmap/swananand_login_logo_foreground" android:paddingTop="10dp"/>
 
     </LinearLayout>
 

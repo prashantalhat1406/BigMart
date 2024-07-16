@@ -200,7 +200,7 @@ public class forgotpassword extends AppCompatActivity {
 
 
         String[] securityQArray = getResources().getStringArray(R.array.securityquestions);
-        SQadapter =  new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, securityQArray);
+        SQadapter =  new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, securityQArray);
         spnSecurityQ.setAdapter(SQadapter);
 
         butValidate = findViewById(R.id.but_forgot_validate);

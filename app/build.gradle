@@ -2,16 +2,20 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'  // Google Services plugin
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 34
+    buildToolsVersion "34.0.0"
+    namespace "com.asm.bigmart"
+    buildFeatures {
+        buildConfig true
+    }
 
     defaultConfig {
         applicationId "com.asm.bigmart"
-        minSdkVersion 23
-        targetSdkVersion 28
-        versionCode 14
-        versionName "14.01"
-
+        minSdkVersion 30
+        targetSdkVersion 34
+        versionCode 16
+        versionName "16.01"
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -46,7 +50,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 
 
 }

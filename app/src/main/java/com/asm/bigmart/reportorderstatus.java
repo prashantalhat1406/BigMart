@@ -148,7 +148,7 @@ public class reportorderstatus extends AppCompatActivity {
         });
 
         autoCompleteTextView = findViewById(R.id.auto_reportorderstatus_orderid);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,orderIDs);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,orderIDs);
         autoCompleteTextView.setAdapter(adapter);
         autoCompleteTextView.setThreshold(1);
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
